@@ -50,30 +50,30 @@ export function PixelButton({
       case 'primary':
         return {
           fill:    disabled ? 'var(--cth-cream-300)' : (hover ? 'var(--cth-ink-700)' : 'var(--cth-ink-900)'),
-          text:    disabled ? disabledText : 'var(--cth-cream-50)',
+          text:    disabled ? disabledText : 'var(--cth-paper-100)',
           border:  'var(--cth-ink-900)',
-          shadow:  'var(--cth-ink-900)'
+          shadow:  'rgba(0, 0, 0, 0.25)'
         };
       case 'secondary':
         return {
-          fill:    disabled ? 'var(--cth-cream-300)' : (hover ? 'var(--cth-cream-200)' : 'var(--cth-cream-100)'),
+          fill:    disabled ? 'var(--cth-cream-300)' : (hover ? 'var(--cth-cream-300)' : 'var(--cth-cream-200)'),
           text:    disabled ? disabledText : 'var(--cth-ink-900)',
           border:  'var(--cth-ink-300)',
-          shadow:  'var(--cth-ink-100)'
+          shadow:  'rgba(0, 0, 0, 0.15)'
         };
       case 'ghost':
         return {
           fill:    hover ? 'var(--cth-cream-200)' : 'transparent',
           text:    disabled ? disabledText : 'var(--cth-ink-700)',
-          border:  'var(--cth-ink-300)',
-          shadow:  'var(--cth-ink-100)'
+          border:  hover ? 'var(--cth-ink-300)' : 'transparent',
+          shadow:  'transparent'
         };
       case 'destructive':
         return {
           fill:    disabled ? 'var(--cth-cream-300)' : (hover ? 'var(--cth-coral-light)' : 'var(--cth-coral)'),
-          text:    disabled ? disabledText : 'var(--cth-ink-900)',
-          border:  'var(--cth-ink-500)',
-          shadow:  'var(--cth-ink-300)'
+          text:    disabled ? disabledText : '#ffffff',
+          border:  'var(--cth-coral)',
+          shadow:  'rgba(244, 63, 94, 0.25)'
         };
     }
   })();
@@ -93,13 +93,15 @@ export function PixelButton({
         background: palette.fill,
         color: palette.text,
         border: 'none',
-        // v0.3.4: 1px hairline + 1px lift — the 2px chrome read as heavy boxes
+        borderRadius: 4,
         boxShadow: pressed && !disabled
           ? `inset 0 0 0 1px ${palette.border}`
-          : `inset 0 0 0 1px ${palette.border}, 0 1px 0 ${palette.shadow}`,
+          : `inset 0 0 0 1px ${palette.border}, 0 1px 2px ${palette.shadow}`,
         transform: pressed && !disabled ? 'translateY(1px)' : 'none',
+        transition: 'background 120ms ease, box-shadow 120ms ease, transform 120ms ease',
         fontFamily: 'var(--cth-font-ui)',
         fontSize: size === 'lg' ? 'var(--cth-text-body-md)' : 'var(--cth-text-body-sm)',
+        fontWeight: 500,
         cursor: disabled ? 'not-allowed' : 'pointer',
         width: fullWidth ? '100%' : 'auto',
         userSelect: 'none',

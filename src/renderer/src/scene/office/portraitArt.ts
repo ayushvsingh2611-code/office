@@ -490,7 +490,7 @@ function drawHeavyFace(buf: Buf, skin: string): void {
   set(buf, 7, 17, s.sh); set(buf, 10, 17, s.sh); // crease shadow between chin + roll
 }
 
-const RECIPES: Record<OfficeCharacterName, Recipe> = {
+const RECIPES: Partial<Record<OfficeCharacterName, Recipe>> = {
   michael:  { skin: 'light', hairc: [58, 42, 28],   hair: 'styleShort',  hairargs: { part: 'L' }, cloth: 'suit', c1: [58, 63, 74], tie: [170, 58, 58], brow: 'flat', mouth: 'smile' },
   jim:      { skin: 'light', hairc: [92, 60, 34],   hair: 'styleFloppy', cloth: 'dressshirt', c1: [172, 196, 224], tie: [120, 130, 150], brow: 'flat', mouth: 'smile' },
   pam:      { skin: 'light', hairc: [120, 76, 42],  hair: 'styleFrame',  hairargs: { length: 18, vol: 2 }, cloth: 'cardigan', c1: [236, 174, 192], c2: [244, 242, 238], brow: 'soft', mouth: 'smile', blush: true, lashes: true },
@@ -506,6 +506,15 @@ const RECIPES: Record<OfficeCharacterName, Recipe> = {
   toby:     { skin: 'light', hairc: [106, 90, 66],  hair: 'styleShort',  hairargs: { part: 'L', recede: 1 }, cloth: 'dressshirt', c1: [150, 150, 120], facial: 'mustacheSm', brow: 'soft', mouth: 'frown' },
   creed:    { skin: 'light', hairc: [170, 166, 156], hair: 'styleBald',   cloth: 'dressshirt', c1: [126, 130, 96], facial: 'stubble', brow: 'flat', mouth: 'neutral' },
   meredith: { skin: 'light', hairc: [154, 82, 46],  hair: 'styleMessy',  hairargs: { length: 15 }, cloth: 'blouse', c1: [176, 86, 74], brow: 'raised', mouth: 'smile', lashes: true },
+  // Silicon Valley Tech Startup / Hacker Bullpen Cast
+  richard:  { skin: 'light', hairc: [82, 54, 30],   hair: 'styleMessy',  hairargs: { length: 14 }, cloth: 'sweater', c1: [34, 139, 94], brow: 'soft', mouth: 'neutral' },
+  gilfoyle: { skin: 'light', hairc: [24, 20, 22],   hair: 'styleFrame',  hairargs: { length: 18, vol: 1 }, cloth: 'sweater', c1: [30, 41, 59], facial: 'goatee', brow: 'angry', mouth: 'neutral' },
+  dinesh:   { skin: 'tan',   hairc: [22, 18, 16],   hair: 'styleShort',  hairargs: { part: 'R' }, cloth: 'polo', c1: [99, 102, 241], c2: [79, 70, 229], brow: 'raised', mouth: 'smile' },
+  jared:    { skin: 'light', hairc: [160, 135, 95], hair: 'styleShort',  hairargs: { part: 'L' }, cloth: 'cardigan', c1: [56, 189, 248], c2: [240, 244, 250], brow: 'soft', mouth: 'smile' },
+  erlich:   { skin: 'light', hairc: [95, 62, 38],   hair: 'styleCurly',  cloth: 'polo', c1: [249, 115, 22], c2: [234, 88, 12], facial: 'mustache', brow: 'raised', mouth: 'grin' },
+  bighead:  { skin: 'light', hairc: [110, 80, 50],  hair: 'styleFloppy', cloth: 'sweater', c1: [59, 130, 246], brow: 'soft', mouth: 'smile' },
+  monica:   { skin: 'light', hairc: [115, 75, 45],  hair: 'styleFrame',  hairargs: { length: 20, vol: 2 }, cloth: 'blouse', c1: [236, 72, 153], brow: 'soft', mouth: 'smile', blush: true, lashes: true },
+  jianyang: { skin: 'light', hairc: [25, 22, 20],   hair: 'styleSpiky',  cloth: 'polo', c1: [226, 232, 240], c2: [203, 213, 225], brow: 'flat', mouth: 'neutral' },
 };
 
 /** The face/hair group (head → face → facial hair → hair → glasses), no clothing. */
@@ -553,7 +562,7 @@ const sceneCache = new Map<OfficeCharacterName, SceneFrames>();
 function getBuf(name: OfficeCharacterName): Buf {
   let buf = bufCache.get(name);
   if (!buf) {
-    buf = compose(RECIPES[name] ?? RECIPES.jim);
+    buf = compose((RECIPES[name] ?? RECIPES.jim) as Recipe);
     bufCache.set(name, buf);
   }
   return buf;
@@ -565,7 +574,7 @@ export interface SceneFrames { front: Buf[]; back: Buf[]; }
 export function sceneFrameBufs(name: OfficeCharacterName): SceneFrames {
   let frames = sceneCache.get(name);
   if (!frames) {
-    const r = RECIPES[name] ?? RECIPES.jim;
+    const r = (RECIPES[name] ?? RECIPES.jim) as Recipe;
     frames = {
       front: [composeScene(r, 0, false), composeScene(r, 1, false), composeScene(r, 2, false)],
       back: [composeScene(r, 0, true), composeScene(r, 1, true), composeScene(r, 2, true)],

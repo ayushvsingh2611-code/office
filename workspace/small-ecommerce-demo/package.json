@@ -1,0 +1,19 @@
+{
+  "name": "roast-and-ritual-coffee",
+  "version": "1.0.0",
+  "description": "Roast & Ritual | Artisan Coffee Co. E-Commerce Store",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node -c app.js"
+  },
+  "keywords": [
+    "artisan-coffee",
+    "ecommerce",
+    "spa",
+    "roastery"
+  ],
+  "author": "Roast & Ritual",
+  "license": "ISC"
+}

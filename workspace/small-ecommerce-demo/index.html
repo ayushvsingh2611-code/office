@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roast & Ritual | Artisan Coffee Co.</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="brand-logo">
+        <div class="brand-logo-icon">
+          <i class="fa-solid fa-mug-hot"></i>
+        </div>
+        <div>
+          <span class="brand-name">Roast & Ritual</span>
+          <span class="brand-tag">Artisan Coffee Co.</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#catalog" class="nav-link active">Coffee Catalog</a>
+        <a href="#story" class="nav-link">Our Craft</a>
+        <a href="#reviews-section" class="nav-link">Reviews</a>
+        <a href="#brew-guide" class="nav-link">Brew Guide</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="cart-toggle-btn" class="icon-btn" aria-label="Open shopping cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span id="cart-badge" class="badge-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <i class="fa-solid fa-fire-burner"></i> Micro-Lot Harvests · Roasted to Order
+        </div>
+        <h1 class="hero-title">
+          Elevate Your Daily Ritual With <span>Exceptional</span> Coffee.
+        </h1>
+        <p class="hero-subtitle">
+          Ethically sourced single origins and masterfully crafted blends. Roasted in small batches weekly and shipped direct to your doorstep within 48 hours of roast.
+        </p>
+        <div class="hero-actions">
+          <a href="#catalog" class="btn-primary">
+            <span>Explore Beans</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <button id="hero-cart-btn" class="btn-secondary">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>View Cart</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value Highlights -->
+    <section class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center border-b border-[rgba(212,163,115,0.1)]">
+      <div class="p-4 rounded-xl bg-[rgba(212,163,115,0.04)] border border-[rgba(212,163,115,0.08)]">
+        <i class="fa-solid fa-seedling text-2xl text-[var(--accent-amber)] mb-2"></i>
+        <h3 class="font-bold text-sm text-[var(--text-main)]">100% Direct Trade</h3>
+        <p class="text-xs text-[var(--text-muted)] mt-1">Paying above Fairtrade minimums directly to farmers</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[rgba(212,163,115,0.04)] border border-[rgba(212,163,115,0.08)]">
+        <i class="fa-solid fa-stopwatch text-2xl text-[var(--accent-amber)] mb-2"></i>
+        <h3 class="font-bold text-sm text-[var(--text-main)]">Peak Freshness Guarantee</h3>
+        <p class="text-xs text-[var(--text-muted)] mt-1">Stamping roast dates right on every valve-sealed bag</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[rgba(212,163,115,0.04)] border border-[rgba(212,163,115,0.08)]">
+        <i class="fa-solid fa-truck-fast text-2xl text-[var(--accent-amber)] mb-2"></i>
+        <h3 class="font-bold text-sm text-[var(--text-main)]">Free Express Shipping</h3>
+        <p class="text-xs text-[var(--text-muted)] mt-1">On all domestic orders over $45</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[rgba(212,163,115,0.04)] border border-[rgba(212,163,115,0.08)]">
+        <i class="fa-solid fa-star text-2xl text-[var(--accent-amber)] mb-2"></i>
+        <h3 class="font-bold text-sm text-[var(--text-main)]">4.9 / 5 Rating</h3>
+        <p class="text-xs text-[var(--text-muted)] mt-1">From 4,200+ specialty coffee connoisseurs</p>
+      </div>
+    </section>
+
+    <!-- Filter & Controls Section -->
+    <section id="catalog" class="filter-section">
+      <div class="filter-bar-card">
+        <div class="filter-top-row">
+          <!-- Category Chips -->
+          <div class="category-chips" id="category-chips">
+            <button class="chip-btn active" data-category="all">
+              <i class="fa-solid fa-border-all"></i> All Coffees
+            </button>
+            <button class="chip-btn" data-category="Single Origin">
+              <i class="fa-solid fa-earth-americas"></i> Single Origin
+            </button>
+            <button class="chip-btn" data-category="Artisan Blends">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Signature Blends
+            </button>
+            <button class="chip-btn" data-category="Espresso">
+              <i class="fa-solid fa-fire"></i> Espresso Roasts
+            </button>
+            <button class="chip-btn" data-category="Decaf">
+              <i class="fa-solid fa-moon"></i> Mountain Decaf
+            </button>
+          </div>
+
+          <!-- Search Input -->
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="catalog-search" placeholder="Search origins, flavor notes, roast..." autocomplete="off">
+          </div>
+        </div>
+
+        <div class="filter-bottom-row">
+          <div class="flex flex-wrap items-center gap-4">
+            <!-- Roast Level Filter -->
+            <div class="filter-group">
+              <label for="filter-roast"><i class="fa-solid fa-flame"></i> Roast:</label>
+              <select id="filter-roast" class="custom-select">
+                <option value="all">All Roast Levels</option>
+                <option value="Light">Light Roast</option>
+                <option value="Medium">Medium Roast</option>
+                <option value="Dark">Dark Roast</option>
+                <option value="Espresso">Espresso Roast</option>
+              </select>
+            </div>
+
+            <!-- Price Sort Filter -->
+            <div class="filter-group">
+              <label for="filter-sort"><i class="fa-solid fa-arrow-down-wide-short"></i> Sort By:</label>
+              <select id="filter-sort" class="custom-select">
+                <option value="featured">Featured & Best Selling</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="filter-summary" class="text-xs text-[var(--text-muted)]">
+            Showing <span id="visible-count" class="font-bold text-[var(--accent-amber)]">8</span> coffees
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Catalog Section -->
+    <section class="catalog-section">
+      <div class="section-header-block">
+        <div>
+          <h2 class="section-title">Small-Batch Fresh Roasts</h2>
+          <p class="text-sm text-[var(--text-muted)]">Select your whole bean roast, grind style, and package weight</p>
+        </div>
+        <span class="product-count-badge" id="catalog-badge">Whole bean & specialty grind available</span>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="products-grid" class="products-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="catalog-empty-state" class="hidden text-center py-16 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-color)]">
+        <i class="fa-solid fa-mug-saucer text-5xl text-[var(--text-dim)] mb-4"></i>
+        <h3 class="text-xl font-bold text-[var(--text-main)] mb-2">No coffee matches your search</h3>
+        <p class="text-sm text-[var(--text-muted)] max-w-md mx-auto mb-6">Try clearing your filters or search keywords to discover other delicious roasts.</p>
+        <button id="reset-filters-btn" class="btn-primary">
+          <i class="fa-solid fa-rotate-left"></i> Reset All Filters
+        </button>
+      </div>
+    </section>
+
+    <!-- Craft & Roast Story Section -->
+    <section id="story" class="max-w-7xl mx-auto px-6 py-16 border-t border-[rgba(212,163,115,0.1)]">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="hero-pill mb-4"><i class="fa-solid fa-award"></i> The Ritual Promise</div>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6 text-[var(--text-main)]">
+            From Volcanic Soil To Your Morning Cup
+          </h2>
+          <p class="text-[var(--text-muted)] mb-4 leading-relaxed">
+            We partner with regenerative multi-generational coffee farms located on misty volcanic slopes between 1,600 and 2,200 meters above sea level. Slower maturation produces denser beans bursting with intricate florals, vibrant stone fruit acidity, and deep chocolate undertones.
+          </p>
+          <p class="text-[var(--text-muted)] mb-6 leading-relaxed">
+            Each batch is drum-roasted on vintage cast-iron equipment, profiling temperature and airflow manually to bring out each micro-lot's truest character.
+          </p>
+          <div class="grid grid-cols-3 gap-4 text-center">
+            <div class="p-3 bg-[var(--bg-surface)] rounded-lg border border-[var(--border-color)]">
+              <span class="block font-serif text-2xl font-bold text-[var(--accent-amber)]">48h</span>
+              <span class="text-xs text-[var(--text-muted)]">Roast to Door</span>
+            </div>
+            <div class="p-3 bg-[var(--bg-surface)] rounded-lg border border-[var(--border-color)]">
+              <span class="block font-serif text-2xl font-bold text-[var(--accent-amber)]">86+</span>
+              <span class="text-xs text-[var(--text-muted)]">SCA Cupping Score</span>
+            </div>
+            <div class="p-3 bg-[var(--bg-surface)] rounded-lg border border-[var(--border-color)]">
+              <span class="block font-serif text-2xl font-bold text-[var(--accent-amber)]">100%</span>
+              <span class="text-xs text-[var(--text-muted)]">Compostable Bags</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden border border-[var(--border-color)] shadow-2xl relative">
+          <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1000&auto=format&fit=crop" alt="Coffee beans roasting" class="w-full h-96 object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-[rgba(26,18,11,0.85)] backdrop-blur-md border border-[var(--border-color)]">
+            <p class="text-sm italic text-[var(--text-main)]">"Coffee is not merely caffeine—it is a daily ceremony of craftsmanship and patience."</p>
+            <span class="block text-xs text-[var(--accent-amber)] mt-1 font-semibold">— Marcus Thorne, Master Roaster</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section id="reviews-section" class="max-w-7xl mx-auto px-6 py-16 border-t border-[rgba(212,163,115,0.1)]">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="hero-pill mb-3"><i class="fa-solid fa-comments"></i> Verified Community</div>
+          <h2 class="text-3xl font-serif font-bold text-[var(--text-main)]">Customer Reviews & Cupping Notes</h2>
+          <p class="text-sm text-[var(--text-muted)]">Real feedback from passionate home baristas and pour-over devotees</p>
+        </div>
+        <button id="write-review-general-btn" class="btn-primary self-start md:self-auto">
+          <i class="fa-solid fa-pen-nib"></i> Write a Review
+        </button>
+      </div>
+
+      <div id="reviews-highlight-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- Brewing Guide Section -->
+    <section id="brew-guide" class="max-w-7xl mx-auto px-6 py-16 border-t border-[rgba(212,163,115,0.1)]">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="hero-pill mb-3"><i class="fa-solid fa-flask"></i> Barista Handbook</div>
+        <h2 class="text-3xl font-serif font-bold mb-3 text-[var(--text-main)]">Mastering The Pour</h2>
+        <p class="text-sm text-[var(--text-muted)]">Recommended brew recipes calibrated specifically for our single origin micro-lots.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-color)] hover:border-[var(--border-color-focus)] transition-all">
+          <div class="w-12 h-12 rounded-xl bg-[rgba(212,163,115,0.1)] flex items-center justify-center text-[var(--accent-amber)] text-xl mb-4">
+            <i class="fa-solid fa-filter"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2 text-[var(--text-main)]">V60 Pour Over</h3>
+          <p class="text-xs text-[var(--text-muted)] mb-4">Best for: Light Roasts & High-Altitude Florals</p>
+          <ul class="text-xs space-y-2 text-[var(--text-muted)] border-t border-[rgba(212,163,115,0.1)] pt-3">
+            <li><strong class="text-[var(--text-main)]">Ratio:</strong> 1:16 (18g coffee to 290g water)</li>
+            <li><strong class="text-[var(--text-main)]">Water Temp:</strong> 93°C / 200°F</li>
+            <li><strong class="text-[var(--text-main)]">Grind:</strong> Medium-Fine (sea salt)</li>
+            <li><strong class="text-[var(--text-main)]">Total Brew Time:</strong> 3m 00s</li>
+          </ul>
+        </div>
+
+        <div class="p-6 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-color)] hover:border-[var(--border-color-focus)] transition-all">
+          <div class="w-12 h-12 rounded-xl bg-[rgba(212,163,115,0.1)] flex items-center justify-center text-[var(--accent-amber)] text-xl mb-4">
+            <i class="fa-solid fa-mug-saucer"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2 text-[var(--text-main)]">French Press Immersion</h3>
+          <p class="text-xs text-[var(--text-muted)] mb-4">Best for: Medium & Dark Roasts with Rich Body</p>
+          <ul class="text-xs space-y-2 text-[var(--text-muted)] border-t border-[rgba(212,163,115,0.1)] pt-3">
+            <li><strong class="text-[var(--text-main)]">Ratio:</strong> 1:15 (30g coffee to 450g water)</li>
+            <li><strong class="text-[var(--text-main)]">Water Temp:</strong> 95°C / 203°F</li>
+            <li><strong class="text-[var(--text-main)]">Grind:</strong> Coarse (breadcrumbs)</li>
+            <li><strong class="text-[var(--text-main)]">Steep Time:</strong> 4m 30s</li>
+          </ul>
+        </div>
+
+        <div class="p-6 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-color)] hover:border-[var(--border-color-focus)] transition-all">
+          <div class="w-12 h-12 rounded-xl bg-[rgba(212,163,115,0.1)] flex items-center justify-center text-[var(--accent-amber)] text-xl mb-4">
+            <i class="fa-solid fa-cube"></i>
+          </div>
+          <h3 class="text-lg font-bold mb-2 text-[var(--text-main)]">Slow Cold Drip</h3>
+          <p class="text-xs text-[var(--text-muted)] mb-4">Best for: Low-acidity chocolate & sweet caramel</p>
+          <ul class="text-xs space-y-2 text-[var(--text-muted)] border-t border-[rgba(212,163,115,0.1)] pt-3">
+            <li><strong class="text-[var(--text-main)]">Ratio:</strong> 1:8 (100g coffee to 800g filtered water)</li>
+            <li><strong class="text-[var(--text-main)]">Water Temp:</strong> Chilled 4°C</li>
+            <li><strong class="text-[var(--text-main)]">Grind:</strong> Extra Coarse</li>
+            <li><strong class="text-[var(--text-main)]">Extraction:</strong> 16-18 hours slow steep</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cart Drawer Component -->
+  <div id="cart-overlay" class="cart-drawer-overlay"></div>
+  <aside id="cart-drawer" class="cart-drawer" aria-label="Shopping Cart">
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <i class="fa-solid fa-basket-shopping text-[var(--accent-amber)]"></i>
+        <span>Your Roastery Bag</span>
+        <span id="drawer-item-count" class="text-xs text-[var(--text-muted)] font-normal ml-1">(0 items)</span>
+      </div>
+      <button id="close-cart-btn" class="icon-btn" aria-label="Close cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress -->
+    <div class="free-shipping-progress">
+      <div class="flex justify-between items-center text-xs">
+        <span id="free-shipping-text" class="text-[var(--text-muted)]">
+          Add <strong class="text-[var(--accent-amber)]">$45.00</strong> more for Free Shipping!
+        </span>
+        <i class="fa-solid fa-truck-fast text-[var(--accent-amber)]"></i>
+      </div>
+      <div class="shipping-bar-wrap">
+        <div id="shipping-progress-bar" class="shipping-bar-fill"></div>
+      </div>
+    </div>
+
+    <!-- Drawer Body -->
+    <div id="drawer-body" class="drawer-body">
+      <!-- Items dynamically populated -->
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="drawer-footer">
+      <!-- Promo code input -->
+      <div class="flex gap-2 mb-3">
+        <input type="text" id="promo-input" placeholder="Promo code (try BEAN10)" class="form-input text-xs py-2 uppercase">
+        <button id="apply-promo-btn" class="btn-secondary text-xs px-3 py-2">Apply</button>
+      </div>
+      <div id="promo-notice" class="text-xs text-green-400 mb-2 hidden"></div>
+
+      <div class="subtotal-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">$0.00</span>
+      </div>
+      <div class="subtotal-row text-xs">
+        <span>Estimated Shipping</span>
+        <span id="cart-shipping-est">$4.99</span>
+      </div>
+      <div class="subtotal-row text-xs" id="discount-row" style="display: none;">
+        <span>Discount (BEAN10 -10%)</span>
+        <span id="cart-discount" class="text-green-400">-$0.00</span>
+      </div>
+      <div class="total-row">
+        <span>Total</span>
+        <span id="cart-total-price">$0.00</span>
+      </div>
+      <button id="checkout-btn" class="btn-checkout">
+        <span>Proceed to Checkout</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+      <div class="text-center mt-3">
+        <button id="clear-cart-btn" class="text-xs text-[var(--text-dim)] hover:text-red-400 transition-colors">
+          <i class="fa-regular fa-trash-can mr-1"></i> Empty Cart
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal Component -->
+  <div id="checkout-modal-backdrop" class="modal-backdrop">
+    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title">
+      <div class="modal-header">
+        <h2 id="checkout-modal-title" class="modal-title flex items-center gap-2">
+          <i class="fa-solid fa-lock text-[var(--accent-amber)] text-lg"></i>
+          Secure Checkout
+        </h2>
+        <button id="close-checkout-btn" class="icon-btn" aria-label="Close checkout">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id="checkout-form">
+          <!-- Step 1: Shipping Info -->
+          <div class="mb-6">
+            <h3 class="text-sm font-bold text-[var(--accent-amber)] uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-[var(--accent-amber)] text-black flex items-center justify-center text-xs font-bold">1</span>
+              Shipping Destination
+            </h3>
+            
+            <div class="form-group">
+              <label class="form-label" for="ship-name">Full Name *</label>
+              <input type="text" id="ship-name" class="form-input" placeholder="e.g. Eleanor Vance" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="ship-email">Email Address *</label>
+                <input type="email" id="ship-email" class="form-input" placeholder="eleanor@example.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="ship-phone">Phone Number</label>
+                <input type="tel" id="ship-phone" class="form-input" placeholder="+1 (555) 019-2834">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ship-address">Street Address *</label>
+              <input type="text" id="ship-address" class="form-input" placeholder="742 Evergreen Terrace" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="ship-city">City *</label>
+                <input type="text" id="ship-city" class="form-input" placeholder="Seattle" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="ship-zip">ZIP / Postal Code *</label>
+                <input type="text" id="ship-zip" class="form-input" placeholder="98101" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Delivery Option -->
+          <div class="mb-6">
+            <h3 class="text-sm font-bold text-[var(--accent-amber)] uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-[var(--accent-amber)] text-black flex items-center justify-center text-xs font-bold">2</span>
+              Roastery Delivery Method
+            </h3>
+            <div class="grid grid-cols-2 gap-3">
+              <label class="flex items-center gap-3 p-3 rounded-lg border border-[var(--border-color)] bg-[rgba(0,0,0,0.25)] cursor-pointer hover:border-[var(--accent-amber)]">
+                <input type="radio" name="shipping-speed" value="standard" checked class="accent-[var(--accent-amber)]">
+                <div>
+                  <span class="text-xs font-bold block text-[var(--text-main)]">Standard Roaster Post</span>
+                  <span class="text-[11px] text-[var(--text-muted)]">3-5 business days ($4.99 or Free)</span>
+                </div>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-lg border border-[var(--border-color)] bg-[rgba(0,0,0,0.25)] cursor-pointer hover:border-[var(--accent-amber)]">
+                <input type="radio" name="shipping-speed" value="express" class="accent-[var(--accent-amber)]">
+                <div>
+                  <span class="text-xs font-bold block text-[var(--text-main)]">Express Roaster Air</span>
+                  <span class="text-[11px] text-[var(--text-muted)]">1-2 business days ($9.99)</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 3: Payment Details -->
+          <div class="mb-6">
+            <h3 class="text-sm font-bold text-[var(--accent-amber)] uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-[var(--accent-amber)] text-black flex items-center justify-center text-xs font-bold">3</span>
+              Payment Information
+            </h3>
+            <div class="p-4 rounded-xl border border-[var(--border-color)] bg-[rgba(0,0,0,0.3)] mb-4">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-semibold text-[var(--text-main)] flex items-center gap-2">
+                  <i class="fa-solid fa-credit-card text-[var(--accent-amber)]"></i> Credit / Debit Card (Simulated)
+                </span>
+                <div class="flex gap-2 text-sm text-[var(--text-muted)]">
+                  <i class="fa-brands fa-cc-visa"></i>
+                  <i class="fa-brands fa-cc-mastercard"></i>
+                  <i class="fa-brands fa-cc-amex"></i>
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label class="form-label text-[11px]" for="card-num">Card Number</label>
+                <input type="text" id="card-num" class="form-input text-sm" placeholder="4532 •••• •••• 8892" value="4532 8901 2345 8892" required>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label text-[11px]" for="card-exp">Expiry</label>
+                  <input type="text" id="card-exp" class="form-input text-sm" placeholder="MM/YY" value="08/28" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label text-[11px]" for="card-cvc">CVC / CVI</label>
+                  <input type="text" id="card-cvc" class="form-input text-sm" placeholder="123" value="384" required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary in Modal -->
+          <div class="p-4 rounded-xl bg-[rgba(212,163,115,0.06)] border border-[var(--border-color)] mb-6">
+            <div class="flex justify-between items-center text-sm font-bold mb-2">
+              <span>Order Summary:</span>
+              <span id="checkout-item-count">0 items</span>
+            </div>
+            <div class="flex justify-between text-xs text-[var(--text-muted)] mb-1">
+              <span>Items Subtotal:</span>
+              <span id="checkout-subtotal">$0.00</span>
+            </div>
+            <div class="flex justify-between text-xs text-[var(--text-muted)] mb-1">
+              <span>Shipping:</span>
+              <span id="checkout-shipping">$0.00</span>
+            </div>
+            <div class="flex justify-between text-base font-bold text-[var(--accent-cream)] border-t border-[rgba(212,163,115,0.15)] pt-2 mt-2">
+              <span>Amount Due:</span>
+              <span id="checkout-grand-total">$0.00</span>
+            </div>
+          </div>
+
+          <button type="submit" id="submit-order-btn" class="btn-checkout">
+            <i class="fa-solid fa-lock"></i>
+            <span id="submit-order-text">Authorize & Place Order</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Confirmation Modal -->
+  <div id="confirmation-modal-backdrop" class="modal-backdrop">
+    <div class="modal-container text-center max-w-md p-8" role="dialog" aria-modal="true">
+      <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-3xl mx-auto mb-4">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h2 class="text-2xl font-serif font-bold text-[var(--text-main)] mb-2">Ritual Initiated!</h2>
+      <p class="text-sm text-[var(--text-muted)] mb-4">
+        Thank you for supporting artisan roasters. Your order has been scheduled for our upcoming roast cycle.
+      </p>
+
+      <div class="p-4 bg-[rgba(0,0,0,0.3)] rounded-xl border border-[var(--border-color)] text-left mb-6 text-xs space-y-2">
+        <div class="flex justify-between">
+          <span class="text-[var(--text-muted)]">Order Reference:</span>
+          <strong id="confirm-order-id" class="text-[var(--accent-amber)] font-mono">#RR-84920</strong>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-[var(--text-muted)]">Recipient:</span>
+          <span id="confirm-recipient" class="text-[var(--text-main)] font-semibold">Eleanor Vance</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-[var(--text-muted)]">Estimated Roast Date:</span>
+          <span class="text-[var(--text-main)]">Tomorrow morning</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-[var(--text-muted)]">Dispatch Via:</span>
+          <span id="confirm-shipping-method" class="text-[var(--text-main)]">Standard Roaster Post</span>
+        </div>
+        <div class="flex justify-between border-t border-[rgba(212,163,115,0.1)] pt-2 font-bold text-sm">
+          <span>Total Paid:</span>
+          <span id="confirm-total-amount" class="text-[var(--accent-cream)]">$0.00</span>
+        </div>
+      </div>
+
+      <button id="close-confirmation-btn" class="btn-primary w-full justify-center">
+        <span>Continue Exploring Coffees</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Product Reviews & Write Review Modal -->
+  <div id="reviews-modal-backdrop" class="modal-backdrop">
+    <div class="modal-container max-w-lg" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <div>
+          <h2 id="reviews-modal-title" class="modal-title text-lg font-bold">Cupping Notes & Reviews</h2>
+          <span id="reviews-modal-subtitle" class="text-xs text-[var(--text-muted)]">Share your sensory experience</span>
+        </div>
+        <button id="close-reviews-modal-btn" class="icon-btn" aria-label="Close reviews">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Review submission form -->
+        <form id="new-review-form" class="mb-6 p-4 rounded-xl bg-[rgba(0,0,0,0.3)] border border-[var(--border-color)]">
+          <h3 class="text-xs font-bold text-[var(--accent-amber)] uppercase tracking-wider mb-2">Write Your Tasting Note</h3>
+          
+          <div class="form-group mb-3">
+            <label class="form-label text-[11px]">Select Coffee</label>
+            <select id="review-product-select" class="custom-select w-full text-xs" required>
+              <!-- Populated by JS -->
+            </select>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label text-[11px]">Your Rating</label>
+            <div id="star-picker" class="star-picker" data-rating="5">
+              <i class="fa-solid fa-star active" data-value="1"></i>
+              <i class="fa-solid fa-star active" data-value="2"></i>
+              <i class="fa-solid fa-star active" data-value="3"></i>
+              <i class="fa-solid fa-star active" data-value="4"></i>
+              <i class="fa-solid fa-star active" data-value="5"></i>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label text-[11px]" for="review-author">Your Name</label>
+            <input type="text" id="review-author" class="form-input text-xs" placeholder="e.g. Liam K. (Home Barista)" required>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label text-[11px]" for="review-title">Review Title</label>
+            <input type="text" id="review-title" class="form-input text-xs" placeholder="e.g. Unbelievable blueberry notes on the V60" required>
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="form-label text-[11px]" for="review-comment">Tasting Notes & Brew Method</label>
+            <textarea id="review-comment" rows="3" class="form-input text-xs" placeholder="Describe flavor extraction, grind size used, or overall mouthfeel..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary text-xs w-full justify-center">
+            <i class="fa-solid fa-paper-plane"></i> Publish Cupping Note
+          </button>
+        </form>
+
+        <!-- Existing reviews list -->
+        <h3 class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-3">Recent Cupping Notes</h3>
+        <div id="modal-reviews-list" class="space-y-3 max-h-64 overflow-y-auto pr-1">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="ph-toast-container" aria-live="polite"></div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="brand-logo mb-3">
+          <div class="brand-logo-icon">
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <div>
+            <span class="brand-name">Roast & Ritual</span>
+            <span class="brand-tag">Artisan Coffee Co.</span>
+          </div>
+        </div>
+        <p class="text-xs text-[var(--text-muted)] max-w-sm mb-4 leading-relaxed">
+          Crafting exceptional single-origin coffees and seasonal artisan blends since 2021. Roasted on cast iron, packaged in 100% compostable bags, and dedicated to transparent farmer relationships.
+        </p>
+        <div class="flex gap-3 text-lg text-[var(--text-muted)]">
+          <a href="#" class="hover:text-[var(--accent-amber)]"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="hover:text-[var(--accent-amber)]"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="hover:text-[var(--accent-amber)]"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Coffee Catalog</h4>
+        <ul class="footer-links text-xs">
+          <li><a href="#catalog" onclick="filterCategory('Single Origin')">Single Origin Micro-Lots</a></li>
+          <li><a href="#catalog" onclick="filterCategory('Artisan Blends')">Signature Blends</a></li>
+          <li><a href="#catalog" onclick="filterCategory('Espresso')">Espresso Roast Profiles</a></li>
+          <li><a href="#catalog" onclick="filterCategory('Decaf')">Mountain Water Decaf</a></li>
+          <li><a href="#catalog">Cold Brew Coarse Bags</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>The Craft</h4>
+        <ul class="footer-links text-xs">
+          <li><a href="#story">Our Direct Trade Ethics</a></li>
+          <li><a href="#brew-guide">V60 & French Press Recipes</a></li>
+          <li><a href="#brew-guide">Grind Size Guide</a></li>
+          <li><a href="#reviews-section">Cupping Scores & Notes</a></li>
+          <li><a href="#">Wholesale Roasting</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p class="text-xs text-[var(--text-muted)] mb-3">Subscribe for micro-lot drops and exclusive seasonal releases.</p>
+        <form onsubmit="event.preventDefault(); showToast('Subscribed to micro-lot notifications!');" class="flex gap-2">
+          <input type="email" placeholder="Your email..." required class="form-input text-xs py-2">
+          <button type="submit" class="btn-primary text-xs px-3 py-2"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Roast & Ritual Coffee Co. All rights reserved.</p>
+      <div class="flex gap-4">
+        <a href="#" class="hover:underline">Privacy Policy</a>
+        <a href="#" class="hover:underline">Terms of Service</a>
+        <a href="#" class="hover:underline">Shipping & Returns</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic Engine -->
+  <script src="app.js"></script>
+</body>
+</html>

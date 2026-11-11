@@ -23,7 +23,7 @@ export function SidebarTabs({ current, accent, onChange }: SidebarTabsProps) {
       display: 'flex',
       gap: 0,
       background: 'var(--cth-cream-200)',
-      boxShadow: 'inset 0 -2px 0 var(--cth-ink-900)',
+      boxShadow: 'inset 0 -1px 0 var(--cth-ink-300)',
       flexShrink: 0
     }}>
       {TABS.map(t => {
@@ -40,7 +40,7 @@ export function SidebarTabs({ current, accent, onChange }: SidebarTabsProps) {
               cursor: 'pointer',
               background: active ? 'var(--cth-cream-100)' : 'transparent',
               boxShadow: active
-                ? `inset 0 -3px 0 var(--cth-${accent}), inset 1px 0 0 var(--cth-ink-900), inset -1px 0 0 var(--cth-ink-900)`
+                ? `inset 0 -2px 0 var(--cth-${accent}), inset 1px 0 0 var(--cth-ink-300), inset -1px 0 0 var(--cth-ink-300)`
                 : 'inset 0 0 0 0',
               fontFamily: 'var(--cth-font-display)',
               fontSize: 10,

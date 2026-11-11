@@ -5,6 +5,7 @@ import { Icon } from './Icon';
 import { useStore, type Agent } from '@/store/store';
 import { type HarnessConfig } from '@/store/config';
 import { useRestoreTeam } from '@/hooks/useRestoreTeam';
+import { buildLyzrAgentsForFloor } from '@shared/lyzrAgents';
 
 export interface AgentStripProps {
   /** Needed to rebuild a spawn command when a restorable agent predates the
@@ -21,6 +22,24 @@ export function AgentStrip({ config }: AgentStripProps) {
   const openTaskDetail = useStore(s => s.openTaskDetail);
   const reorderAgents = useStore(s => s.reorderAgents);
   const setAgentNote = useStore(s => s.setAgentNote);
+  const sleepAgent = useStore(s => s.sleepAgent);
+  const wakeAgent = useStore(s => s.wakeAgent);
+  const addAgent = useStore(s => s.addAgent);
+  const pushFeed = useStore(s => s.pushFeed);
+
+  const loadLyzrEnterpriseTeam = () => {
+    const lyzrAgents = buildLyzrAgentsForFloor();
+    const existing = new Set(agents.map((a) => a.id));
+    for (const a of lyzrAgents) {
+      if (!existing.has(a.id)) {
+        addAgent(a);
+        pushFeed(a.id, `Connected to Lyzr AI Studio (${a.description})`);
+      }
+    }
+    select('lyzr-pm');
+  };
+
+  const hasLyzrAgents = agents.some((a) => a.id.startsWith('lyzr-') || a.lyzr);
   // Shared with the fullscreen roster so both show one restore in progress.
   const { restoring, autoRestoring, restoreTeam } = useRestoreTeam(config);
   // ONE restore control (bottom-right): a button whose dropdown OPENS UPWARD and
@@ -133,6 +152,8 @@ export function AgentStrip({ config }: AgentStripProps) {
             accent={a.accent}
             status={a.status}
             sleeping={a.sleeping}
+            onSleep={() => sleepAgent(a.id)}
+            onWake={() => wakeAgent(a.id)}
             ptyId={a.ptyId}
             project={a.project}
             action={a.action}
@@ -235,6 +256,25 @@ export function AgentStrip({ config }: AgentStripProps) {
           <Icon name="plus" /> add agent
         </span>
       </PixelButton>
+      {!hasLyzrAgents && (
+        <PixelButton
+          variant="primary"
+          size="lg"
+          style={{
+            alignSelf: 'center',
+            flexShrink: 0,
+            background: 'var(--cth-mint-light, #e8f9ee)',
+            color: 'var(--cth-ink-900)',
+            boxShadow: 'inset 0 0 0 1.5px var(--cth-mint, #22c55e)'
+          }}
+          onClick={loadLyzrEnterpriseTeam}
+          title="Load all 7 Lyzr AI Agents (Orchestrator, PM, Architect, BA, Frontend, Backend, DevOps)"
+        >
+          <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center', whiteSpace: 'nowrap' }}>
+            ⚡ Load 7-Agent Lyzr Team
+          </span>
+        </PixelButton>
+      )}
       {/* ONE restore control, pinned to the strip's right edge. Busy (manual OR
           boot auto-restore) collapses to a single disabled "restoring your
           team…"; otherwise the button opens an upward dropdown listing last

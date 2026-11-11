@@ -46,12 +46,12 @@ export function PixelPanel({
     ...style
   };
 
-  // Active variant: paint accent over the middle border slot (3px ring at 1px inset)
+  // Active variant: paint accent ring at 1px inset
   if (variant === 'active' && accent) {
     baseStyle.boxShadow = `
       inset 0 0 0 1px var(--cth-ink-100),
-      inset 0 0 0 3px var(--cth-${accent}),
-      inset 0 0 0 5px var(--cth-ink-900)`;
+      inset 0 0 0 2px var(--cth-${accent}),
+      inset 0 0 0 3px var(--cth-ink-900)`;
   }
 
   return (
@@ -62,11 +62,11 @@ export function PixelPanel({
             margin: noPadding ? 0 : '-12px -12px 12px',
             padding: '6px 12px 4px',
             background: accent ? `var(--cth-${accent})` : 'var(--cth-cream-200)',
-            color: 'var(--cth-ink-900)',
+            color: accent ? 'var(--cth-on-accent)' : 'var(--cth-ink-900)',
             fontFamily: 'var(--cth-font-display)',
             fontSize: 'var(--cth-text-display-md)',
             lineHeight: 'var(--cth-lh-display-md)',
-            boxShadow: 'inset 0 -1px 0 var(--cth-ink-900)'
+            boxShadow: 'inset 0 -1px 0 var(--cth-ink-300)'
           }}
         >
           {title}

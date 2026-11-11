@@ -1,0 +1,597 @@
+/* ==========================================================================
+   LUDO KING ULTIMATE — DESIGN SYSTEM & CSS ARCHITECTURE
+   Version: 1.0.0 | Google Stitch UI Engine & Frontend UI/UX Engineering
+   ================ ========================================================== */
+
+:root {
+  /* Brand Colors - Vibrant Gaming Palette */
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-secondary: #06b6d4;
+  --color-accent: #f59e0b;
+  
+  /* Ludo Board Colors */
+  --color-red: #ef4444;
+  --color-red-glow: rgba(239, 68, 68, 0.4);
+  --color-green: #10b981;
+  --color-green-glow: rgba(16, 185, 129, 0.4);
+  --color-yellow: #f59e0b;
+  --color-yellow-glow: rgba(245, 158, 11, 0.4);
+  --color-blue: #3b82f6;
+  --color-blue-glow: rgba(59, 130, 246, 0.4);
+  
+  --color-board-bg: #1e293b;
+  --color-board-track: #f8fafc;
+  
+  /* Neutral Dark Theme */
+  --bg-main: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-surface-glass: rgba(30, 41, 59, 0.75);
+  --bg-card: #334155;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+
+  /* Spacing & Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.3);
+  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 40%);
+}
+
+/* Glassmorphic Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  background: var(--bg-surface-glass);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-logo i {
+  -webkit-text-fill-color: var(--color-accent);
+  font-size: 1.75rem;
+}
+
+.header-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Buttons & Interactive Elements */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-icon {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: var(--radius-full);
+}
+
+/* Main Layout Grid */
+main {
+  flex: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sidebar Panels */
+.panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-main);
+}
+
+/* Ludo Board Area */
+.ludo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* 15x15 Ludo Board Grid */
+.ludo-board {
+  width: min(550px, 90vw);
+  height: min(550px, 90vw);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 50px rgba(99, 102, 241, 0.2);
+  border: 4px solid var(--bg-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Board Base Houses */
+.house-red {
+  grid-column: 1 / span 6;
+  grid-row: 1 / span 6;
+  background-color: var(--color-red);
+  padding: 1.2rem;
+  border-bottom-right-radius: 40px;
+}
+
+.house-green {
+  grid-column: 10 / span 6;
+  grid-row: 1 / span 6;
+  background-color: var(--color-green);
+  padding: 1.2rem;
+  border-bottom-left-radius: 40px;
+}
+
+.house-yellow {
+  grid-column: 10 / span 6;
+  grid-row: 10 / span 6;
+  background-color: var(--color-yellow);
+  padding: 1.2rem;
+  border-top-left-radius: 40px;
+}
+
+.house-blue {
+  grid-column: 1 / span 6;
+  grid-row: 10 / span 6;
+  background-color: var(--color-blue);
+  padding: 1.2rem;
+  border-top-right-radius: 40px;
+}
+
+/* Inner White Box for Pieces */
+.house-inner {
+  background: white;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-sm);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  padding: 12px;
+  gap: 12px;
+  box-shadow: inset 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.home-spot {
+  background: #e2e8f0;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Center Home Triangle Area */
+.board-center {
+  grid-column: 7 / span 3;
+  grid-row: 7 / span 3;
+  background: #f1f5f9;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.center-triangle-red {
+  background: var(--color-red);
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+.center-triangle-green {
+  background: var(--color-green);
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+}
+.center-triangle-yellow {
+  background: var(--color-yellow);
+  grid-column: 3 / 4;
+  grid-row: 1 / 4;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+.center-triangle-blue {
+  background: var(--color-blue);
+  grid-column: 1 / 4;
+  grid-row: 3 / 4;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+/* Board Tracks & Cells */
+.cell {
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cell.red-path { background: rgba(239, 68, 68, 0.2); }
+.cell.green-path { background: rgba(16, 185, 129, 0.2); }
+.cell.yellow-path { background: rgba(245, 158, 11, 0.2); }
+.cell.blue-path { background: rgba(59, 130, 246, 0.2); }
+
+.cell.start-red { background: var(--color-red); }
+.cell.start-green { background: var(--color-green); }
+.cell.start-yellow { background: var(--color-yellow); }
+.cell.start-blue { background: var(--color-blue); }
+
+.cell.star::after {
+  content: '★';
+  color: #cbd5e1;
+  font-size: 12px;
+}
+
+/* Ludo Tokens / Pieces */
+.token {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.4);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  z-index: 10;
+  position: relative;
+}
+
+.token::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.token.red { background: var(--color-red); border: 2px solid #b91c1c; }
+.token.green { background: var(--color-green); border: 2px solid #047857; }
+.token.yellow { background: var(--color-yellow); border: 2px solid #b45309; }
+.token.blue { background: var(--color-blue); border: 2px solid #1d4ed8; }
+
+.token:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+.token.active-piece, .token.valid-move {
+  animation: pulse-glow 1.5s infinite ease-in-out;
+  cursor: pointer;
+}
+
+@keyframes pulse-glow {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+  50% { transform: scale(1.15); box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+/* Dice Roller & Turn Control Section */
+.controls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.turn-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.player-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+}
+
+.dot-red { background: var(--color-red); }
+.dot-green { background: var(--color-green); }
+.dot-yellow { background: var(--color-yellow); }
+.dot-blue { background: var(--color-blue); }
+
+.dice-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.dice-box {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--bg-main);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.dice-box:hover {
+  transform: scale(1.05);
+}
+
+.dice-box.rolling {
+  animation: roll 0.6s ease-in-out;
+}
+
+@keyframes roll {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(90deg) scale(1.1); }
+  50% { transform: rotate(180deg) scale(0.9); }
+  75% { transform: rotate(270deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Toast Notifications Container (.ph-toast, .ph-toast-container) */
+.ph-toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.ph-toast {
+  background: var(--bg-surface);
+  color: var(--text-main);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  pointer-events: auto;
+  animation: slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  max-width: 380px;
+}
+
+.ph-toast.success { border-left: 4px solid var(--color-green); }
+.ph-toast.error { border-left: 4px solid var(--color-red); }
+.ph-toast.info { border-left: 4px solid var(--color-primary); }
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Modal Overlays & Dialog Cards */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-smooth);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-dialog {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 480px;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  transform: scale(0.95) translateY(10px);
+  transition: transform var(--transition-smooth);
+  pointer-events: auto;
+}
+
+.modal-overlay.active .modal-dialog {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.modal-body {
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: var(--color-primary);
+}
+
+/* Responsive Queries */
+@media (max-width: 640px) {
+  header {
+    padding: 0.75rem 1rem;
+  }
+  .brand-logo {
+    font-size: 1.25rem;
+  }
+  main {
+    padding: 1rem 0.5rem;
+    gap: 1rem;
+  }
+  .panel {
+    padding: 1rem;
+  }
+}

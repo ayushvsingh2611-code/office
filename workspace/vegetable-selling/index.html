@@ -1,0 +1,462 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vegiiess. - 10 Min Farm Fresh Vegetable Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Delivery Ticker -->
+  <div class="delivery-ticker">
+    <div class="ticker-content">
+      <span>⚡ <strong>10 MINS SUPERFAST DELIVERY</strong> to your doorstep</span>
+      <span class="dot">•</span>
+      <span>🌱 100% Organically Farm Fresh</span>
+      <span class="dot">•</span>
+      <span>💰 Free Shipping on orders over $15</span>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo-location-group">
+        <a href="#" class="brand-logo">
+          <span class="logo-icon">🥬</span>
+          <span class="logo-text">vegiiess<span class="logo-dot">.</span></span>
+        </a>
+        <div class="location-picker">
+          <svg class="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <div class="location-text">
+            <span class="loc-title">Delivering to</span>
+            <span class="loc-address">Downtown, Block 4B ▾</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-bar-container">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" class="search-input" placeholder="Search 'fresh tomatoes', 'spinach', 'avocado'..." id="search-input">
+        <button class="btn btn-search">Search</button>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-action account-btn">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Login</span>
+        </button>
+
+        <button class="btn btn-cart" id="cart-button">
+          <div class="cart-icon-wrapper">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span class="cart-badge" id="cart-count">3</span>
+          </div>
+          <div class="cart-info">
+            <span class="cart-label">My Cart</span>
+            <span class="cart-total">$14.80</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Categories Pill Bar -->
+  <nav class="categories-bar">
+    <div class="categories-container">
+      <button class="category-pill active">
+        <span class="pill-emoji">🥦</span> All Veggies
+      </button>
+      <button class="category-pill">
+        <span class="pill-emoji">🥬</span> Leafy Greens
+      </button>
+      <button class="category-pill">
+        <span class="pill-emoji">🥕</span> Root & Tubers
+      </button>
+      <button class="category-pill">
+        <span class="pill-emoji">🧄</span> Exotic & Herbs
+      </button>
+      <button class="category-pill">
+        <span class="pill-emoji">🍅</span> Daily Essentials
+      </button>
+      <button class="category-pill">
+        <span class="pill-emoji">🥑</span> Organic Fruits
+      </button>
+      <button class="category-pill">
+        <span class="pill-emoji">📦</span> Value Combos
+      </button>
+      <button class="category-pill discount-pill">
+        <span class="pill-emoji">🔥</span> Super Savers
+      </button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <!-- Hero Banners Carousel/Grid -->
+    <section class="hero-section">
+      <div class="hero-card main-banner">
+        <div class="banner-content">
+          <span class="tagline">FARM TO TABLE IN 10 MINS</span>
+          <h1>Crisp, Fresh & 100% Organic Vegetables</h1>
+          <p>Hand-picked daily from local sustainable farms near you.</p>
+          <div class="banner-cta">
+            <button class="btn btn-action btn-primary">Shop Fresh Deals</button>
+            <span class="discount-badge">UP TO 40% OFF</span>
+          </div>
+        </div>
+        <div class="banner-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Fresh Vegetables Basket" class="hero-img">
+        </div>
+      </div>
+
+      <div class="hero-card side-banner">
+        <div class="side-banner-content">
+          <span class="mini-tag">ORGANIC COMBO</span>
+          <h2>Salad Special Box</h2>
+          <p>Cucumber, Tomato, Lettuce & Sprouts</p>
+          <div class="price-row">
+            <span class="current-price">$8.99</span>
+            <span class="old-price">$12.50</span>
+          </div>
+          <button class="btn btn-action btn-secondary btn-add-cart" data-key="combo-salad">Add Box</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value Proposition Strip -->
+    <section class="features-strip">
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-text">
+          <h4>10-Min Superfast</h4>
+          <p>Express doorstep delivery</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🍃</div>
+        <div class="feature-text">
+          <h4>100% Organic</h4>
+          <p>Directly from certified farms</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-text">
+          <h4>Quality Guaranteed</h4>
+          <p>No questions asked refund</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">❄️</div>
+        <div class="feature-text">
+          <h4>Chilled Packaging</h4>
+          <p>Stays fresh during transit</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Grid: Trending Fresh Veggies -->
+    <section class="products-section">
+      <div class="section-header">
+        <div>
+          <h2>Trending Farm Fresh Veggies</h2>
+          <p class="section-subtitle">Picked this morning for maximum freshness</p>
+        </div>
+        <a href="#" class="view-all-link">View All ➔</a>
+      </div>
+
+      <div class="product-grid">
+        
+        <!-- Product 1 -->
+        <div class="product-card">
+          <span class="badge badge-discount">25% OFF</span>
+          <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=400&q=80" alt="Fresh Tomatoes" class="product-img">
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div class="product-info">
+            <span class="product-weight">500 g</span>
+            <h3 class="product-title">Fresh Vine Farm Tomatoes</h3>
+            <div class="rating-row">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(128)</span>
+            </div>
+            <div class="product-footer">
+              <div class="price-box">
+                <span class="price-current">$2.49</span>
+                <span class="price-original">$3.29</span>
+              </div>
+              <button class="btn btn-add-cart" data-key="tomatoes">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <span class="badge badge-tag">ORGANIC</span>
+          <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1587049352847-4a222e784d38?auto=format&fit=crop&w=400&q=80" alt="Fresh Broccoli" class="product-img">
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div class="product-info">
+            <span class="product-weight">1 Pc (Approx 400g)</span>
+            <h3 class="product-title">Exotic Green Broccoli</h3>
+            <div class="rating-row">
+              <span class="stars">★★★★☆</span>
+              <span class="rating-count">(94)</span>
+            </div>
+            <div class="product-footer">
+              <div class="price-box">
+                <span class="price-current">$1.99</span>
+                <span class="price-original">$2.80</span>
+              </div>
+              <button class="btn btn-add-cart" data-key="broccoli">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <span class="badge badge-discount">18% OFF</span>
+          <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1598170845058-12ef4a457939?auto=format&fit=crop&w=400&q=80" alt="Carrots" class="product-img">
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div class="product-info">
+            <span class="product-weight">1 kg</span>
+            <h3 class="product-title">Crunchy Orange Carrots</h3>
+            <div class="rating-row">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(210)</span>
+            </div>
+            <div class="product-footer">
+              <div class="price-box">
+                <span class="price-current">$3.10</span>
+                <span class="price-original">$3.80</span>
+              </div>
+              <button class="btn btn-add-cart" data-key="carrots">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <span class="badge badge-tag">BESTSELLER</span>
+          <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=400&q=80" alt="Spinach" class="product-img">
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div class="product-info">
+            <span class="product-weight">250 g Bunch</span>
+            <h3 class="product-title">Fresh Tender Spinach</h3>
+            <div class="rating-row">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(305)</span>
+            </div>
+            <div class="product-footer">
+              <div class="price-box">
+                <span class="price-current">$1.49</span>
+                <span class="price-original">$1.99</span>
+              </div>
+              <button class="btn btn-add-cart" data-key="spinach">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=400&q=80" alt="Potatoes" class="product-img">
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div class="product-info">
+            <span class="product-weight">2 kg Bag</span>
+            <h3 class="product-title">New Crop Baby Potatoes</h3>
+            <div class="rating-row">
+              <span class="stars">★★★★☆</span>
+              <span class="rating-count">(88)</span>
+            </div>
+            <div class="product-footer">
+              <div class="price-box">
+                <span class="price-current">$4.20</span>
+                <span class="price-original">$5.00</span>
+              </div>
+              <button class="btn btn-add-cart" data-key="potatoes">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+          <span class="badge badge-discount">30% OFF</span>
+          <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1566842600175-e76042b1b4e7?auto=format&fit=crop&w=400&q=80" alt="Avocado" class="product-img">
+            <button class="quick-view-btn">Quick View</button>
+          </div>
+          <div class="product-info">
+            <span class="product-weight">2 Pcs</span>
+            <h3 class="product-title">Hass Creamy Avocados</h3>
+            <div class="rating-row">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(164)</span>
+            </div>
+            <div class="product-footer">
+              <div class="price-box">
+                <span class="price-current">$3.99</span>
+                <span class="price-original">$5.70</span>
+              </div>
+              <button class="btn btn-add-cart" data-key="avocado">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Special Category Highlight Banner -->
+    <section class="middle-promo-banner">
+      <div class="promo-text">
+        <span class="promo-pill">DAILY ESSENTIAL COMBO</span>
+        <h2>Weekly Veggie Basket (5kg)</h2>
+        <p>Contains Tomatoes, Onions, Potatoes, Carrots, Capsicum & Fresh Coriander</p>
+        <button class="btn btn-action btn-accent">Order Basket for $18.99</button>
+      </div>
+      <div class="promo-badge-circle">
+        <span>Save</span>
+        <strong>$6.00</strong>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-out Cart Drawer (Structure for interactability) -->
+  <div class="cart-drawer-overlay" id="cart-drawer">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3>My Basket (<span id="drawer-item-count">3</span>)</h3>
+        <button class="close-drawer" id="close-cart">&times;</button>
+      </div>
+      <div class="cart-delivery-bar">
+        <span>🎉 You qualify for <strong>FREE Delivery</strong></span>
+      </div>
+      <div class="cart-items-list">
+        <div class="cart-item">
+          <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=100&q=80" alt="Tomatoes">
+          <div class="cart-item-details">
+            <h4>Fresh Vine Farm Tomatoes</h4>
+            <span class="item-size">500g</span>
+            <span class="item-price">$2.49</span>
+          </div>
+          <div class="quantity-controls">
+            <button class="qty-btn">-</button>
+            <span class="qty-num">1</span>
+            <button class="qty-btn">+</button>
+          </div>
+        </div>
+
+        <div class="cart-item">
+          <img src="https://images.unsplash.com/photo-1587049352847-4a222e784d38?auto=format&fit=crop&w=100&q=80" alt="Broccoli">
+          <div class="cart-item-details">
+            <h4>Exotic Green Broccoli</h4>
+            <span class="item-size">1 Pc</span>
+            <span class="item-price">$1.99</span>
+          </div>
+          <div class="quantity-controls">
+            <button class="qty-btn">-</button>
+            <span class="qty-num">2</span>
+            <button class="qty-btn">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="cart-drawer-footer">
+        <div class="bill-details">
+          <div class="bill-row">
+            <span>Item Total</span>
+            <span>$6.47</span>
+          </div>
+          <div class="bill-row">
+            <span>Delivery Fee</span>
+            <span class="free-text">FREE</span>
+          </div>
+          <div class="bill-row total-row">
+            <span>To Pay</span>
+            <span>$6.47</span>
+          </div>
+        </div>
+        <button class="btn btn-action btn-checkout">Proceed to Checkout ➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col brand-col">
+        <a href="#" class="brand-logo footer-logo">
+          <span class="logo-icon">🥬</span>
+          <span class="logo-text light">vegiiess<span class="logo-dot">.</span></span>
+        </a>
+        <p class="footer-desc">Your ultimate destination for farm-fresh, 100% organic vegetables delivered to your home in under 10 minutes.</p>
+        <div class="app-buttons">
+          <button class="app-btn">🍏 App Store</button>
+          <button class="app-btn">🤖 Google Play</button>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Categories</h4>
+        <ul class="footer-links">
+          <li><a href="#">Fresh Vegetables</a></li>
+          <li><a href="#">Leafy Greens</a></li>
+          <li><a href="#">Exotic Vegetables</a></li>
+          <li><a href="#">Organic Fruits</a></li>
+          <li><a href="#">Seasonal Combos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Customer Care</h4>
+        <ul class="footer-links">
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Quality Assurance</a></li>
+          <li><a href="#">Returns & Refunds</a></li>
+          <li><a href="#">Help Center / FAQ</a></li>
+          <li><a href="#">Contact Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Get Fresh Updates</h4>
+        <p class="footer-subtext">Subscribe to our weekly newsletter for organic recipes & offers.</p>
+        <div class="newsletter-box">
+          <input type="email" placeholder="Enter your email">
+          <button class="btn btn-action btn-newsletter">Join</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 vegiiess. Inc. All rights reserved. Express Fresh Commerce.</p>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

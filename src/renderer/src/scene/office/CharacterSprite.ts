@@ -1,4 +1,4 @@
-import { AnimatedSprite, Container, Graphics, Texture } from 'pixi.js';
+ import { AnimatedSprite, Container, Graphics, Texture } from 'pixi.js';
 
 export type Direction = 'down' | 'up' | 'right' | 'left';
 export type AnimState = 'walk' | 'type' | 'read' | 'idle';
@@ -50,7 +50,8 @@ export class CharacterSprite {
     this.frameH = this.sprite.texture.frame.height || this.sprite.height || 32;
 
     this.container.addChild(this.sprite);
-    this.container.scale.set(CHAR_SCALE);
+    const effectiveScale = this.frameH > 48 ? (48 / this.frameH) * 1.08 : CHAR_SCALE;
+    this.container.scale.set(effectiveScale);
   }
 
   /**
@@ -74,10 +75,12 @@ export class CharacterSprite {
     const w = this.frameW;
     const h = this.frameH;
     this.cropMask.clear();
+    // Scale crop proportionally if height differs from standard 32px
+    const actualCrop = Math.round(cropPx * (h / 32));
     // Keep the top (h - cropPx) of the sprite; reveal whatever (the desk) is
     // behind where the legs were.
     this.cropMask
-      .rect(-w / 2 - 2, -h - 2, w + 4, h - cropPx + 2)
+      .rect(-w / 2 - 2, -h - 2, w + 4, h - actualCrop + 2)
       .fill(0xffffff);
     this.cropMask.visible = true;
     this.sprite.mask = this.cropMask;

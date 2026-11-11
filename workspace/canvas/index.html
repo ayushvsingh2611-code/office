@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Canvas — Professional Design & Layout Studio</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f5ff',
+                            100: '#e0ebff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        canvas: {
+                            bg: '#0f172a',
+                            surface: '#1e293b',
+                            border: '#334155',
+                            hover: '#475569'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="h-full bg-canvas-bg text-slate-100 font-sans antialiased overflow-hidden flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="h-16 bg-canvas-surface border-b border-canvas-border flex items-center justify-between px-4 z-30 select-none">
+        <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-2">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                    <i class="fa-solid fa-paintbrush text-white text-sm"></i>
+                </div>
+                <span class="font-bold text-lg tracking-tight text-white">CreateCanvas</span>
+            </div>
+            <div class="h-5 w-px bg-canvas-border"></div>
+            <!-- Project Title Editable -->
+            <div class="flex items-center space-x-2 group">
+                <input id="project-title-input" type="text" value="Untitled Masterpiece v2" class="bg-transparent text-sm font-semibold text-slate-200 focus:outline-none focus:ring-1 focus:ring-blue-500 rounded px-2 py-1 w-56 hover:bg-slate-800/50 transition">
+                <span class="text-xs text-slate-400 bg-slate-800 px-2 py-0.5 rounded border border-canvas-border">Draft</span>
+            </div>
+        </div>
+
+        <!-- Center Quick Tools -->
+        <div class="hidden md:flex items-center bg-slate-900/80 p-1 rounded-xl border border-canvas-border space-x-1">
+            <button id="tool-select" title="Select Tool (V)" class="tool-btn active px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-arrow-pointer"></i>
+                <span>Select</span>
+            </button>
+            <button id="tool-pan" title="Pan Hand (H)" class="tool-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-hand"></i>
+                <span>Hand</span>
+            </button>
+            <div class="h-4 w-px bg-canvas-border mx-1"></div>
+            <button id="tool-rect" title="Rectangle (R)" class="tool-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-1.5">
+                <i class="fa-regular fa-square"></i>
+                <span>Rectangle</span>
+            </button>
+            <button id="tool-circle" title="Circle (C)" class="tool-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-1.5">
+                <i class="fa-regular fa-circle"></i>
+                <span>Circle</span>
+            </button>
+            <button id="tool-text" title="Text (T)" class="tool-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-font"></i>
+                <span>Text</span>
+            </button>
+            <button id="tool-brush" title="Brush (B)" class="tool-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-paintbrush"></i>
+                <span>Brush</span>
+            </button>
+        </div>
+
+        <!-- Right Action Controls -->
+        <div class="flex items-center space-x-3">
+            <button id="undo-btn" title="Undo (Ctrl+Z)" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition border border-canvas-border">
+                <i class="fa-solid fa-rotate-left text-xs"></i>
+            </button>
+            <button id="redo-btn" title="Redo (Ctrl+Y)" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition border border-canvas-border">
+                <i class="fa-solid fa-rotate-right text-xs"></i>
+            </button>
+            <button id="export-modal-trigger" class="bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs px-4 py-2 rounded-xl shadow-lg shadow-blue-600/20 transition flex items-center space-x-2">
+                <i class="fa-solid fa-download"></i>
+                <span>Export</span>
+            </button>
+            <button id="share-modal-trigger" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition border border-canvas-border">
+                <i class="fa-solid fa-share-nodes text-xs"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Workspace Layout -->
+    <div class="flex-1 flex relative overflow-hidden">
+
+        <!-- Left Sidebar: Layers & Assets -->
+        <aside id="left-sidebar" class="w-72 bg-canvas-surface border-r border-canvas-border flex flex-col z-20 transition-all duration-300">
+            <!-- Sidebar Tabs -->
+            <div class="flex border-b border-canvas-border text-xs font-semibold">
+                <button data-tab="layers" class="sidebar-tab flex-1 py-3 text-center text-blue-400 border-b-2 border-blue-500 bg-slate-900/40 transition">Layers</button>
+                <button data-tab="assets" class="sidebar-tab flex-1 py-3 text-center text-slate-400 hover:text-slate-200 transition">Assets</button>
+                <button data-tab="templates" class="sidebar-tab flex-1 py-3 text-center text-slate-400 hover:text-slate-200 transition">Presets</button>
+            </div>
+
+            <!-- Tab Content: Layers -->
+            <div id="tab-layers" class="tab-content flex-1 overflow-y-auto p-3 space-y-2">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Layer Stack (3)</span>
+                    <button id="add-layer-btn" class="text-xs text-blue-400 hover:text-blue-300 flex items-center space-x-1">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>New</span>
+                    </button>
+                </div>
+                
+                <!-- Layer Item 1 -->
+                <div class="layer-item group flex items-center justify-between p-2.5 rounded-xl bg-slate-800/80 border border-canvas-border hover:border-blue-500/50 cursor-pointer transition select-none" data-layer-id="layer-3">
+                    <div class="flex items-center space-x-2.5">
+                        <button class="layer-eye text-slate-400 hover:text-white"><i class="fa-regular fa-eye"></i></button>
+                        <i class="fa-solid fa-font text-purple-400 text-xs"></i>
+                        <span class="text-xs font-medium text-slate-200">Main Heading</span>
+                    </div>
+                    <div class="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition">
+                        <button class="text-slate-400 hover:text-white p-1"><i class="fa-solid fa-lock-open text-xs"></i></button>
+                    </div>
+                </div>
+
+                <!-- Layer Item 2 -->
+                <div class="layer-item group flex items-center justify-between p-2.5 rounded-xl bg-slate-800/80 border border-blue-500/50 cursor-pointer transition select-none shadow-sm" data-layer-id="layer-2">
+                    <div class="flex items-center space-x-2.5">
+                        <button class="layer-eye text-slate-400 hover:text-white"><i class="fa-regular fa-eye"></i></button>
+                        <i class="fa-regular fa-square text-blue-400 text-xs"></i>
+                        <span class="text-xs font-medium text-slate-200">Hero Card Container</span>
+                    </div>
+                    <div class="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition">
+                        <button class="text-slate-400 hover:text-white p-1"><i class="fa-solid fa-lock-open text-xs"></i></button>
+                    </div>
+                </div>
+
+                <!-- Layer Item 3 -->
+                <div class="layer-item group flex items-center justify-between p-2.5 rounded-xl bg-slate-800/80 border border-canvas-border hover:border-blue-500/50 cursor-pointer transition select-none" data-layer-id="layer-1">
+                    <div class="flex items-center space-x-2.5">
+                        <button class="layer-eye text-slate-400 hover:text-white"><i class="fa-regular fa-eye"></i></button>
+                        <i class="fa-solid fa-image text-emerald-400 text-xs"></i>
+                        <span class="text-xs font-medium text-slate-200">Background Gradient</span>
+                    </div>
+                    <div class="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition">
+                        <button class="text-slate-400 hover:text-white p-1"><i class="fa-solid fa-lock-open text-xs"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Assets (Hidden by default) -->
+            <div id="tab-assets" class="tab-content flex-1 overflow-y-auto p-3 space-y-3 hidden">
+                <div class="relative">
+                    <i class="fa-solid fa-search absolute left-3 top-3 text-xs text-slate-400"></i>
+                    <input type="text" placeholder="Search Unsplash photos..." class="w-full bg-slate-900 border border-canvas-border rounded-xl pl-8 pr-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=300&q=80" class="asset-thumb rounded-lg h-24 object-cover cursor-pointer hover:opacity-80 border border-canvas-border transition" alt="Abstract 3D">
+                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=300&q=80" class="asset-thumb rounded-lg h-24 object-cover cursor-pointer hover:opacity-80 border border-canvas-border transition" alt="Neon Gradient">
+                    <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=300&q=80" class="asset-thumb rounded-lg h-24 object-cover cursor-pointer hover:opacity-80 border border-canvas-border transition" alt="Vibrant Mesh">
+                    <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=300&q=80" class="asset-thumb rounded-lg h-24 object-cover cursor-pointer hover:opacity-80 border border-canvas-border transition" alt="Minimal Dark">
+                </div>
+            </div>
+
+            <!-- Tab Content: Templates (Hidden by default) -->
+            <div id="tab-templates" class="tab-content flex-1 overflow-y-auto p-3 space-y-2.5 hidden">
+                <div class="preset-card p-3 rounded-xl bg-slate-800/60 border border-canvas-border hover:border-blue-500 cursor-pointer transition">
+                    <div class="font-semibold text-xs text-white mb-1">SaaS Hero Landing</div>
+                    <p class="text-[11px] text-slate-400">Modern dark SaaS layout with gradients & CTA buttons.</p>
+                </div>
+                <div class="preset-card p-3 rounded-xl bg-slate-800/60 border border-canvas-border hover:border-blue-500 cursor-pointer transition">
+                    <div class="font-semibold text-xs text-white mb-1">Mobile App Wireframe</div>
+                    <p class="text-[11px] text-slate-400">iOS 17 style glassmorphism card grid.</p>
+                </div>
+                <div class="preset-card p-3 rounded-xl bg-slate-800/60 border border-canvas-border hover:border-blue-500 cursor-pointer transition">
+                    <div class="font-semibold text-xs text-white mb-1">Social Media Story</div>
+                    <p class="text-[11px] text-slate-400">9:16 vertical canvas with typographic layout.</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Interactive Canvas Viewport -->
+        <main class="flex-1 bg-[#090d16] relative flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing" id="canvas-viewport">
+            
+            <!-- Grid Background Pattern -->
+            <div class="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none"></div>
+
+            <!-- The Create Canvas Board -->
+            <div id="create-canvas" class="relative w-[800px] h-[500px] bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950 rounded-2xl shadow-2xl border border-canvas-border overflow-hidden select-none transition-transform duration-75">
+                
+                <!-- Canvas Internal Content Elements -->
+                <div class="absolute top-8 left-8 right-8 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="text-xs text-slate-400 font-mono">1920 x 1080px (100%)</div>
+                </div>
+
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-12">
+                    <span class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold mb-4">
+                        <i class="fa-solid fa-sparkles"></i>
+                        <span>AI-Powered Canvas Creator</span>
+                    </span>
+                    <h1 class="text-4xl font-extrabold text-white tracking-tight mb-3">Design Without Limits.</h1>
+                    <p class="text-sm text-slate-400 max-w-md mb-8">Create stunning graphics, wireframes, and digital art with infinite precision and real-time layout tools.</p>
+                    <div class="flex items-center space-x-4">
+                        <button class="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs px-6 py-3 rounded-xl shadow-lg shadow-blue-600/30 transition">Get Started Free</button>
+                        <button class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs px-6 py-3 rounded-xl border border-canvas-border transition">Explore Gallery</button>
+                    </div>
+                </div>
+
+                <!-- Floating Decorative Card Element -->
+                <div class="absolute bottom-10 left-10 bg-slate-800/90 backdrop-blur-md p-4 rounded-xl border border-canvas-border shadow-xl w-64">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" class="w-8 h-8 rounded-full object-cover" alt="User">
+                        <div>
+                            <div class="text-xs font-bold text-white">Sarah Jenkins</div>
+                            <div class="text-[10px] text-slate-400">Lead Product Designer</div>
+                        </div>
+                    </div>
+                    <div class="text-[11px] text-slate-300">"This canvas studio has completely accelerated our team's wireframing workflow."</div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Floating Zoom Controller -->
+            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-canvas-surface/90 backdrop-blur-md border border-canvas-border rounded-2xl px-4 py-2 flex items-center space-x-4 shadow-xl z-10 select-none">
+                <button id="zoom-out" class="text-slate-400 hover:text-white transition"><i class="fa-solid fa-minus text-xs"></i></button>
+                <span id="zoom-level" class="text-xs font-semibold text-slate-200 w-12 text-center">100%</span>
+                <button id="zoom-in" class="text-slate-400 hover:text-white transition"><i class="fa-solid fa-plus text-xs"></i></button>
+                <div class="h-4 w-px bg-canvas-border"></div>
+                <button id="zoom-reset" class="text-xs text-blue-400 hover:text-blue-300 font-medium">Reset View</button>
+            </div>
+        </main>
+
+        <!-- Right Sidebar: Properties Inspector -->
+        <aside id="right-sidebar" class="w-80 bg-canvas-surface border-l border-canvas-border flex flex-col z-20">
+            <!-- Inspector Header -->
+            <div class="h-12 border-b border-canvas-border px-4 flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Inspector</span>
+                <span class="text-xs bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded border border-blue-500/20 font-mono">Frame</span>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-4 space-y-6">
+                <!-- Dimensions -->
+                <div class="space-y-3">
+                    <span class="text-xs font-semibold text-slate-300 block">Dimensions</span>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="text-[10px] text-slate-400 block mb-1">Width (W)</label>
+                            <div class="relative">
+                                <input type="number" id="prop-width" value="800" class="w-full bg-slate-900 border border-canvas-border rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500 font-mono">
+                                <span class="absolute right-3 top-2 text-[10px] text-slate-500">px</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-slate-400 block mb-1">Height (H)</label>
+                            <div class="relative">
+                                <input type="number" id="prop-height" value="500" class="w-full bg-slate-900 border border-canvas-border rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500 font-mono">
+                                <span class="absolute right-3 top-2 text-[10px] text-slate-500">px</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-px bg-canvas-border"></div>
+
+                <!-- Appearance & Fill -->
+                <div class="space-y-3">
+                    <span class="text-xs font-semibold text-slate-300 block">Fill & Background</span>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-slate-900 to-indigo-950 border border-canvas-border cursor-pointer"></div>
+                        <input type="text" value="linear-gradient(135deg, #0f172a, #311042)" class="flex-1 bg-slate-900 border border-canvas-border rounded-xl px-3 py-1.5 text-xs text-slate-200 font-mono">
+                    </div>
+                </div>
+
+                <div class="h-px bg-canvas-border"></div>
+
+                <!-- Corner Radius & Border -->
+                <div class="space-y-3">
+                    <span class="text-xs font-semibold text-slate-300 block">Border Radius</span>
+                    <div class="flex items-center space-x-3">
+                        <input type="range" min="0" max="48" value="16" class="flex-1 accent-blue-500" id="prop-radius">
+                        <span class="text-xs text-slate-400 font-mono w-8 text-right" id="radius-val">16px</span>
+                    </div>
+                </div>
+
+                <div class="h-px bg-canvas-border"></div>
+
+                <!-- Shadow & Effects -->
+                <div class="space-y-3">
+                    <span class="text-xs font-semibold text-slate-300 block">Drop Shadow</span>
+                    <div class="flex items-center justify-between bg-slate-900 p-3 rounded-xl border border-canvas-border">
+                        <span class="text-xs text-slate-300">2XL High Elevation</span>
+                        <input type="checkbox" checked class="accent-blue-500 w-4 h-4 rounded">
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+    </div>
+
+    <!-- EXPORT MODAL OVERLAY (Hidden by default, opacity-0, pointer-events-none) -->
+    <div id="export-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm hidden opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-canvas-surface border border-canvas-border w-full max-w-md rounded-2xl shadow-2xl p-6 pointer-events-auto transform scale-95 transition-transform duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="font-bold text-base text-white">Export Canvas</h3>
+                <button id="export-modal-close" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="text-xs text-slate-400 mb-6">Choose your export format and resolution settings for your design masterpiece.</p>
+            
+            <div class="space-y-3 mb-6">
+                <label class="flex items-center justify-between p-3 rounded-xl bg-slate-900 border border-blue-500 cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-regular fa-file-image text-blue-400 text-lg"></i>
+                        <div>
+                            <div class="text-xs font-bold text-white">PNG Image (High Res)</div>
+                            <div class="text-[10px] text-slate-400">Best for sharing & portfolios (Lossless)</div>
+                        </div>
+                    </div>
+                    <input type="radio" name="export-format" checked class="accent-blue-500">
+                </label>
+                <label class="flex items-center justify-between p-3 rounded-xl bg-slate-900 border border-canvas-border cursor-pointer hover:border-slate-700">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-code text-purple-400 text-lg"></i>
+                        <div>
+                            <div class="text-xs font-bold text-white">SVG Vector Code</div>
+                            <div class="text-[10px] text-slate-400">Infinite scalability for web & print</div>
+                        </div>
+                    </div>
+                    <input type="radio" name="export-format" class="accent-blue-500">
+                </label>
+            </div>
+
+            <div class="flex items-center justify-end space-x-3">
+                <button id="export-cancel" class="px-4 py-2 rounded-xl text-xs font-medium text-slate-300 hover:bg-slate-800 transition">Cancel</button>
+                <button id="export-confirm" class="px-5 py-2 rounded-xl text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition">Download File</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHARE MODAL OVERLAY (Hidden by default, opacity-0, pointer-events-none) -->
+    <div id="share-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm hidden opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-canvas-surface border border-canvas-border w-full max-w-md rounded-2xl shadow-2xl p-6 pointer-events-auto transform scale-95 transition-transform duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="font-bold text-base text-white">Share Project Collaboration</h3>
+                <button id="share-modal-close" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Anyone with this secure link will be able to view and comment on this canvas.</p>
+            
+            <div class="flex items-center space-x-2 mb-6">
+                <input type="text" readonly value="https://createcanvas.app/share/v2_masterpiece_9948" class="flex-1 bg-slate-900 border border-canvas-border rounded-xl px-3 py-2 text-xs text-slate-300 font-mono focus:outline-none">
+                <button id="copy-link-btn" class="bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs px-4 py-2 rounded-xl transition">Copy</button>
+            </div>
+
+            <div class="flex items-center justify-end">
+                <button id="share-done" class="px-5 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white border border-canvas-border transition">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <!-- Scripts -->
+    <script src="app.js" defer></script>
+</body>
+</html>

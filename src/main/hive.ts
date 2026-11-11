@@ -1134,6 +1134,7 @@ export class HiveManager {
       `2. Record durable facts, decisions, and context by appending to ${inDir('memory.md')}.`,
       `3. To ask another agent for something or share information, write ONE message JSON into ${inDir('outbox')} (schema in PROTOCOL.md). NEVER write into another agent's folder — the orchestrator delivers your outbox.`,
       '4. At the END of a task, append what you learned to memory.md so future-you remembers.',
+      '5. 100% DYNAMIC DELIVERABLES ONLY: All web, storefront, dashboard, or tool deliverables must be fully functional and interactive. index.html must link style.css and app.js (<script src="app.js" defer></script>); app.js must have real reactive state, event listeners, live search/filtering, and persistence. Never output static or non-working mockups.',
       guardrailsLine,
       memoryLine,
       knowledgeLine,
@@ -1411,8 +1412,49 @@ export class HiveManager {
     return true;
   }
   memory(id: string): string {
-    const p = join(this.agentDir(id), 'memory.md');
-    return existsSync(p) ? readFileSync(p, 'utf8') : '';
+    const dir = this.agentDir(id);
+    const p = join(dir, 'memory.md');
+    if (existsSync(p)) return readFileSync(p, 'utf8');
+    // Auto-seed initial memory file if missing
+    try {
+      mkdirSync(dir, { recursive: true });
+      const initial = `# Memory — ${id}\n\n_Append durable facts, decisions, and context below._\n`;
+      writeFileSync(p, initial, 'utf8');
+      return initial;
+    } catch { return ''; }
+  }
+
+  saveMemory(id: string, content: string): { ok: boolean; error?: string } {
+    const root = this.root();
+    if (!root) return { ok: false, error: 'Hive root not initialized' };
+    const dir = this.agentDir(id);
+    try {
+      mkdirSync(dir, { recursive: true });
+      writeFileSync(join(dir, 'memory.md'), content, 'utf8');
+      return { ok: true };
+    } catch (err) {
+      return { ok: false, error: err instanceof Error ? err.message : String(err) };
+    }
+  }
+
+  appendMemory(id: string, note: string): { ok: boolean; error?: string } {
+    const root = this.root();
+    if (!root) return { ok: false, error: 'Hive root not initialized' };
+    const dir = this.agentDir(id);
+    const p = join(dir, 'memory.md');
+    const timestamp = new Date().toLocaleString();
+    const entry = `\n\n### [${timestamp}]\n${note.trim()}\n`;
+    try {
+      mkdirSync(dir, { recursive: true });
+      if (!existsSync(p)) {
+        writeFileSync(p, `# Memory — ${id}\n\n_Append durable facts, decisions, and context below._\n${entry}`, 'utf8');
+      } else {
+        appendFileSync(p, entry, 'utf8');
+      }
+      return { ok: true };
+    } catch (err) {
+      return { ok: false, error: err instanceof Error ? err.message : String(err) };
+    }
   }
   /** Whether an agent has recorded NON-TRIVIAL memory — i.e. has appended real
    *  notes beyond the boilerplate header ensureAgent seeds. Lets the voice
@@ -2080,6 +2122,7 @@ The harness fills in \`id\`, \`from\`, \`hops\`, and timestamps.
 - \`board.md\` is the shared plan. Don't edit it directly — \`propose\` changes to \`god\`,
   who is its sole scribe.
 - Re-reading a message you already moved to \`.done/\` is a no-op. Don't reprocess.
+- **100% Dynamic Deliverables**: Whenever creating code deliverables, storefronts, web apps, tools, or dashboards, they MUST be 100% functional, interactive, and dynamic. NEVER output static non-working shells or dead mockups. \`index.html\` must link \`style.css\` and \`app.js\` (\`<script src="app.js" defer></script>\`). \`app.js\` must implement reactive state, event listeners, live search/filtering, CRUD/cart operations, toast alerts, and localStorage persistence so everything works immediately upon opening.
 
 ## The work: board.md vs tasks.json
 There are two shared surfaces, both in the hive root:

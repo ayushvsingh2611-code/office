@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPantry Chef — Intelligent Kitchen & Recipe Assistant</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="h-full bg-slate-50 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] antialiased flex flex-col">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('inventory')">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-md shadow-emerald-500/20">
+                    <i class="fa-solid fa-utensils text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-['Outfit'] font-bold text-xl tracking-tight bg-gradient-to-r from-emerald-600 to-teal-700 bg-clip-text text-transparent">SmartPantry Chef</h1>
+                    <p class="text-xs text-slate-500 font-medium">Zero Waste, Infinite Flavors</p>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="hidden md:flex items-center space-x-1 bg-slate-100 p-1 rounded-xl border border-slate-200/60">
+                <button onclick="switchTab('inventory')" id="nav-inventory" class="nav-tab px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 bg-white text-emerald-700 shadow-xs cursor-pointer">
+                    <i class="fa-solid fa-basket-shopping mr-2"></i>Pantry Inventory
+                </button>
+                <button onclick="switchTab('recipes')" id="nav-recipes" class="nav-tab px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900 cursor-pointer">
+                    <i class="fa-solid fa-hat-chef mr-2"></i>Chef AI Recipes
+                </button>
+                <button onclick="switchTab('calendar')" id="nav-calendar" class="nav-tab px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900 cursor-pointer">
+                    <i class="fa-solid fa-calendar-days mr-2"></i>Meal Planner
+                </button>
+            </nav>
+
+            <!-- Quick Action Right -->
+            <div class="flex items-center space-x-3">
+                <button onclick="openAddIngredientModal()" class="hidden sm:inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-semibold text-sm shadow-md shadow-emerald-600/20 transition-all active:scale-95 cursor-pointer">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    <span>Add Ingredient</span>
+                </button>
+                <button onclick="openCalendarModal()" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors relative cursor-pointer" title="Meal Prep Calendar">
+                    <i class="fa-regular fa-calendar-alt text-lg"></i>
+                    <span id="planner-badge" class="absolute -top-1 -right-1 w-5 h-5 bg-emerald-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white shadow-xs">0</span>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 cursor-pointer">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 border-t border-slate-100 bg-white space-y-2">
+            <button onclick="switchTab('inventory'); toggleMobileMenu();" class="w-full text-left px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"><i class="fa-solid fa-basket-shopping mr-3 w-5"></i>Pantry Inventory</button>
+            <button onclick="switchTab('recipes'); toggleMobileMenu();" class="w-full text-left px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"><i class="fa-solid fa-hat-chef mr-3 w-5"></i>Chef AI Recipes</button>
+            <button onclick="switchTab('calendar'); toggleMobileMenu();" class="w-full text-left px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"><i class="fa-solid fa-calendar-days mr-3 w-5"></i>Meal Planner</button>
+            <button onclick="openAddIngredientModal(); toggleMobileMenu();" class="w-full text-left px-3 py-2 rounded-lg font-medium text-emerald-600 hover:bg-emerald-50 cursor-pointer"><i class="fa-solid fa-plus mr-3 w-5"></i>Add Ingredient</button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ================= TAB 1: INVENTORY TRACKER ================= -->
+        <section id="view-inventory" class="tab-view space-y-6">
+            <!-- Welcome Banner & Quick Stats -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <div class="lg:col-span-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 rounded-3xl p-6 sm:p-8 text-white shadow-xl shadow-emerald-900/10 relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold tracking-wide uppercase mb-3">
+                            <i class="fa-solid fa-sparkles text-amber-300"></i>
+                            <span>AI Kitchen Assistant</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-['Outfit'] font-bold tracking-tight mb-2">What's in your kitchen today?</h2>
+                        <p class="text-emerald-100 text-sm sm:text-base max-w-2xl leading-relaxed">Track your groceries, monitor freshness alerts, and instantly discover recipes you can cook right now without making a store run.</p>
+                    </div>
+                    <div class="relative z-10 mt-6 flex flex-wrap gap-3">
+                        <button onclick="switchTab('recipes')" class="bg-white text-emerald-800 hover:bg-emerald-50 font-semibold px-5 py-2.5 rounded-xl text-sm shadow-md transition-all cursor-pointer flex items-center space-x-2">
+                            <i class="fa-solid fa-wand-magic-sparkles text-emerald-600"></i>
+                            <span>Generate Instant Recipes</span>
+                        </button>
+                        <button onclick="openAddIngredientModal()" class="bg-emerald-700/60 hover:bg-emerald-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-white/20 transition-all cursor-pointer flex items-center space-x-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Quick Add Items</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Metric Card -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pantry Summary</span>
+                            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-sm">
+                                <i class="fa-solid fa-box-archive"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-baseline space-x-2">
+                            <span id="stat-total-items" class="text-3xl font-['Outfit'] font-bold text-slate-900">0</span>
+                            <span class="text-sm font-medium text-slate-500">items tracked</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-100 space-y-2">
+                        <div class="flex justify-between text-xs font-medium">
+                            <span class="text-amber-600 flex items-center"><i class="fa-solid fa-triangle-exclamation mr-1.5"></i>Expiring Soon</span>
+                            <span id="stat-expiring-count" class="font-bold text-slate-800">0</span>
+                        </div>
+                        <div class="flex justify-between text-xs font-medium">
+                            <span class="text-emerald-600 flex items-center"><i class="fa-solid fa-circle-check mr-1.5"></i>Fresh Stock</span>
+                            <span id="stat-fresh-count" class="font-bold text-slate-800">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search, Filter Bar & Controls -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-xs flex flex-col md:flex-row items-center justify-between gap-4">
+                <!-- Search Input -->
+                <div class="relative w-full md:w-96">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" id="site-search" oninput="filterInventory()" placeholder="Search ingredients (e.g., tomatoes, chicken)..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+                </div>
+
+                <!-- Category Filter Pills -->
+                <div class="flex items-center space-x-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar">
+                    <button onclick="setCategoryFilter('all')" id="cat-all" class="category-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-emerald-600 text-white shadow-xs transition-all cursor-pointer">All Items</button>
+                    <button onclick="setCategoryFilter('Produce')" id="cat-Produce" class="category-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">🥬 Produce</button>
+                    <button onclick="setCategoryFilter('Dairy')" id="cat-Dairy" class="category-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">🧀 Dairy & Eggs</button>
+                    <button onclick="setCategoryFilter('Meat')" id="cat-Meat" class="category-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">🥩 Meat & Seafood</button>
+                    <button onclick="setCategoryFilter('Pantry')" id="cat-Pantry" class="category-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">🥫 Pantry & Spices</button>
+                    <button onclick="setCategoryFilter('Bakery')" id="cat-Bakery" class="category-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">🍞 Bakery</button>
+                </div>
+            </div>
+
+            <!-- Inventory Grid Container -->
+            <div id="inventory-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                <!-- Dynamically populated ingredient cards will appear here -->
+            </div>
+
+            <!-- Empty State for Inventory -->
+            <div id="inventory-empty" class="hidden text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300 p-8">
+                <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+                <h3 class="font-['Outfit'] font-bold text-lg text-slate-800 mb-1">Your pantry is looking empty</h3>
+                <p class="text-sm text-slate-500 max-w-md mx-auto mb-6">Add ingredients you currently have at home to let SmartPantry Chef suggest delicious recipes.</p>
+                <button onclick="openAddIngredientModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm shadow-md transition-all cursor-pointer">
+                    <i class="fa-solid fa-plus mr-2"></i>Add First Ingredient
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: RECIPE SUGGESTIONS ================= -->
+        <section id="view-recipes" class="tab-view hidden space-y-6">
+            <!-- Header & Dietary Filters -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-1 block">AI Recipe Generator</span>
+                        <h2 class="text-2xl sm:text-3xl font-['Outfit'] font-bold text-slate-900">Recipes You Can Cook Right Now</h2>
+                        <p class="text-sm text-slate-500 mt-1">Matched automatically against your active pantry inventory.</p>
+                    </div>
+                    <button onclick="generateAiringRecipes()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-5 py-3 rounded-xl font-semibold text-sm shadow-md shadow-emerald-600/20 transition-all cursor-pointer flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Refresh AI Suggestions</span>
+                    </button>
+                </div>
+
+                <!-- Dietary Preference Filter Chips -->
+                <div class="pt-4 border-t border-slate-100 flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mr-2"><i class="fa-solid fa-filter mr-1"></i>Dietary Filter:</span>
+                    <button onclick="setDietaryFilter('all')" id="diet-all" class="diet-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white transition-all cursor-pointer">All Diets</button>
+                    <button onclick="setDietaryFilter('Vegetarian')" id="diet-Vegetarian" class="diet-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">🌱 Vegetarian</button>
+                    <button onclick="setDietaryFilter('Vegan')" id="diet-Vegan" class="diet-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">🌿 Vegan</button>
+                    <button onclick="setDietaryFilter('Gluten-Free')" id="diet-Gluten-Free" class="diet-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">🌾 Gluten-Free</button>
+                    <button onclick="setDietaryFilter('Keto')" id="diet-Keto" class="diet-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">🥑 Keto-Friendly</button>
+                    <button onclick="setDietaryFilter('High-Protein')" id="diet-High-Protein" class="diet-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">💪 High Protein</button>
+                </div>
+            </div>
+
+            <!-- Recipes Grid -->
+            <div id="recipes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated recipe cards -->
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: MEAL PLANNER CALENDAR ================= -->
+        <section id="view-calendar" class="tab-view hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-1 block">Weekly Kitchen Schedule</span>
+                    <h2 class="text-2xl sm:text-3xl font-['Outfit'] font-bold text-slate-900">Meal Prep Calendar</h2>
+                    <p class="text-sm text-slate-500 mt-1">Organize your breakfasts, lunches, and dinners for the week ahead.</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="openCalendarModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-semibold text-sm shadow-md transition-all cursor-pointer flex items-center space-x-2">
+                        <i class="fa-solid fa-plus text-xs"></i>
+                        <span>Schedule Meal</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Weekly Schedule Grid View -->
+            <div class="grid grid-cols-1 md:grid-cols-7 gap-4" id="weekly-calendar-grid">
+                <!-- Dynamically populated 7-day schedule columns -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2025 SmartPantry Chef. Intelligent Kitchen & Recipe Assistant. All rights reserved.</p>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-emerald-600 transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-emerald-600 transition-colors">Terms of Service</a>
+                <a href="#" class="hover:text-emerald-600 transition-colors">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MODAL 1: ADD / EDIT INGREDIENT ================= -->
+    <div id="modal-ingredient" class="fixed inset-0 z-50 hidden pointer-events-none flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs transition-opacity">
+        <div class="pointer-events-auto bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-200 transform transition-all scale-95 opacity-0" id="modal-ingredient-card">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </div>
+                    <div>
+                        <h3 id="ingredient-modal-title" class="font-['Outfit'] font-bold text-lg text-slate-900">Add Pantry Item</h3>
+                        <p class="text-xs text-slate-500">Keep your inventory accurate & up to date</p>
+                    </div>
+                </div>
+                <button onclick="closeAddIngredientModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="form-ingredient" onsubmit="saveIngredient(event)" class="space-y-4">
+                <input type="hidden" id="ing-id">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Ingredient Name *</label>
+                    <input type="text" id="ing-name" required placeholder="e.g., Organic Avocados, Greek Yogurt..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Quantity / Unit *</label>
+                        <input type="text" id="ing-quantity" required placeholder="e.g., 3 pcs, 500g, 1L" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Category *</label>
+                        <select id="ing-category" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+                            <option value="Produce">🥬 Produce</option>
+                            <option value="Dairy">🧀 Dairy & Eggs</option>
+                            <option value="Meat">🥩 Meat & Seafood</option>
+                            <option value="Pantry">🥫 Pantry & Spices</option>
+                            <option value="Bakery">🍞 Bakery</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Expiry Date *</label>
+                    <input type="date" id="ing-expiry" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+                </div>
+
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeAddIngredientModal()" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-semibold text-sm hover:bg-slate-50 transition-colors cursor-pointer">Cancel</button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 transition-all cursor-pointer">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 2: RECIPE DETAILS & COOKING INSTRUCTIONS ================= -->
+    <div id="modal-recipe" class="fixed inset-0 z-50 hidden pointer-events-none flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs transition-opacity">
+        <div class="pointer-events-auto bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 transform transition-all scale-95 opacity-0" id="modal-recipe-card">
+            <div id="recipe-modal-content" class="p-6 sm:p-8">
+                <!-- Dynamically populated recipe details -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 3: MEAL PREP CALENDAR SCHEDULING ================= -->
+    <div id="modal-calendar" class="fixed inset-0 z-50 hidden pointer-events-none flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs transition-opacity">
+        <div class="pointer-events-auto bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 transform transition-all scale-95 opacity-0" id="modal-calendar-card">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-['Outfit'] font-bold text-lg text-slate-900">Schedule Meal Plan</h3>
+                        <p class="text-xs text-slate-500">Plan your weekly menu in advance</p>
+                    </div>
+                </div>
+                <button onclick="closeCalendarModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="form-calendar" onsubmit="saveMealPlan(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Select Day *</label>
+                    <select id="plan-day" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Meal Type *</label>
+                    <select id="plan-meal-type" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+                        <option value="Breakfast">🌅 Breakfast</option>
+                        <option value="Lunch">☀️ Lunch</option>
+                        <option value="Dinner">🌙 Dinner</option>
+                        <option value="Snack">🍎 Snack / Treat</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Recipe or Dish Name *</label>
+                    <select id="plan-recipe-select" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all">
+                        <!-- Populated dynamically with available recipes -->
+                    </select>
+                </div>
+
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeCalendarModal()" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-semibold text-sm hover:bg-slate-50 transition-colors cursor-pointer">Cancel</button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 transition-all cursor-pointer">Add to Calendar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <!-- Application JavaScript -->
+    <script src="app.js" defer></script>
+</body>
+</html>

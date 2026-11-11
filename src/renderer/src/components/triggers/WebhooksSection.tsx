@@ -51,9 +51,11 @@ export function WebhooksSection({ onSummary }: { onSummary?: (s: string) => void
     return () => { alive = false; clearInterval(t); };
   }, [setHooks]);
 
+  const safeHooks = Array.isArray(hooks) ? hooks : [];
+
   useEffect(() => {
-    onSummary?.(hooks.length === 0 ? 'none' : `${hooks.length} · ${status.running ? 'live' : 'offline'}`);
-  }, [hooks, status.running, onSummary]);
+    onSummary?.(safeHooks.length === 0 ? 'none' : `${safeHooks.length} · ${status.running ? 'live' : 'offline'}`);
+  }, [safeHooks, status.running, onSummary]);
 
   /** Update the shared mirror; optionally write it through. Main sanitises what
    *  it stores (it will not enable a secretless endpoint), so we adopt its
@@ -61,21 +63,21 @@ export function WebhooksSection({ onSummary }: { onSummary?: (s: string) => void
   const apply = (next: WebhookTrigger[], persist = true) => {
     setHooks(next);
     if (!persist) return;
-    void saveWebhooks(next).then((canonical) => { if (canonical) setHooks(canonical); });
+    void saveWebhooks(next).then((canonical) => { if (canonical && Array.isArray(canonical)) setHooks(canonical); });
   };
   const patch = (id: string, fields: Partial<WebhookTrigger>, persist = true) =>
-    apply(hooks.map((w) => (w.id === id ? { ...w, ...fields } : w)), persist);
+    apply(safeHooks.map((w) => (w.id === id ? { ...w, ...fields } : w)), persist);
 
   const remove = (id: string) => {
-    setHooks(hooks.filter((w) => w.id !== id));
-    void deleteWebhook(id).then((canonical) => { if (canonical) setHooks(canonical); });
+    setHooks(safeHooks.filter((w) => w.id !== id));
+    void deleteWebhook(id).then((canonical) => { if (canonical && Array.isArray(canonical)) setHooks(canonical); });
   };
 
   const add = async () => {
     setMinting(true);
     try {
       const secret = await generateWebhookSecret();
-      apply([...hooks, newWebhook(secret, hooks.length)]);
+      apply([...safeHooks, newWebhook(secret, safeHooks.length)]);
     } finally {
       setMinting(false);
     }
@@ -91,8 +93,8 @@ export function WebhooksSection({ onSummary }: { onSummary?: (s: string) => void
       </Muted>
       <div style={{ height: 8 }} />
 
-      {hooks.length === 0 && <Muted>No endpoints yet.</Muted>}
-      {hooks.map((w) => (
+      {safeHooks.length === 0 && <Muted>No endpoints yet.</Muted>}
+      {safeHooks.map((w) => (
         <WebhookRow
           key={w.id}
           hook={w}

@@ -87,8 +87,13 @@ export function parseTasks(raw: unknown): HiveTask[] {
       title: typeof t.title === 'string' ? t.title : '(untitled)',
       description: typeof t.description === 'string' ? t.description : undefined,
       assignee: typeof t.assignee === 'string' ? t.assignee : undefined,
-      status: (['todo', 'doing', 'blocked', 'done'] as const).includes(t.status as Status)
-        ? (t.status as Status) : 'todo',
+      status: (() => {
+        const s = typeof t.status === 'string' ? t.status.toLowerCase() : '';
+        if (s === 'doing' || s === 'working' || s === 'in_progress') return 'doing' as Status;
+        if (s === 'done' || s === 'completed' || s === 'success') return 'done' as Status;
+        if (s === 'blocked' || s === 'failed') return 'blocked' as Status;
+        return 'todo' as Status;
+      })(),
       dependsOn: Array.isArray(t.dependsOn) ? t.dependsOn.filter((d): d is string => typeof d === 'string') : [],
       priority: typeof t.priority === 'number' ? t.priority : 3,
       createdAt: typeof t.createdAt === 'string' ? t.createdAt : new Date().toISOString(),

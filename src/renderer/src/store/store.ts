@@ -104,6 +104,13 @@ export interface Agent {
   /** PANDA HIVE: Timestamp (epoch ms) when the agent last went to sleep.
    *  Shown in the UI as "sleeping for X min". */
   sleepSince?: number;
+  /** Lyzr AI Studio configuration if this agent is connected to a Lyzr agent */
+  lyzr?: {
+    userId: string;
+    agentId: string;
+    sessionId: string;
+    apiKey?: string;
+  };
 }
 
 export interface FeedEntry {
@@ -199,6 +206,7 @@ interface State {
   setAgentNote: (id: string, note: string) => void;
   pushFeed: (id: string, line: string) => void;
   addAgent: (agent: Agent) => void;
+  setAgents: (agents: Agent[]) => void;
   removeAgent: (id: string) => void;
   /** Archive an agent (its terminal was closed): move it from the active roster
    *  into `archivedAgents` with its PTY cleared. Retained + flagged, NOT deleted. */
@@ -256,6 +264,11 @@ interface State {
    *  on switch). OfficeFloor depends on this and rebuilds the scene on change. */
   officeTheme: ThemeId;
   setOfficeTheme: (theme: ThemeId) => void;
+  /** Silicon Valley War Room standup meeting state */
+  standupActive: boolean;
+  standupTopic: string | null;
+  triggerStandup: (topic?: string) => void;
+  endStandup: () => void;
   /** Mirror of config.webhookTriggers — the inbound HTTP endpoints. Webhooks are
    *  editable from BOTH Settings → Connections and the Triggers tab, so neither
    *  surface keeps its own copy: both render off this list and both call the
@@ -586,6 +599,7 @@ if (!useFileRoster && rosterMirror.agents.length + rosterMirror.archived.length 
 }
 
 let queuedSeq = 0;
+let standupTimer: ReturnType<typeof setTimeout> | null = null;
 /** Process-unique id for a queued message (timestamp + counter avoids collisions
  *  when several are queued within the same millisecond). */
 function newQueuedId(): string {
@@ -667,6 +681,14 @@ export const useStore = create<State>((set) => ({
       persistAgents(agents, agent.id);
       persistArchived(archivedAgents);
       if (restorableAgents.length !== s.restorableAgents.length) persistRestorable(restorableAgents);
+
+      // When a new worker agent is added, call the team to the conference room for onboarding!
+      if (!agent.isGod && !agent.isAssistant) {
+        setTimeout(() => {
+          useStore.getState().triggerStandup(`Welcoming ${agent.name} & assigning mission!`);
+        }, 500);
+      }
+
       return {
         agents,
         archivedAgents,
@@ -674,6 +696,12 @@ export const useStore = create<State>((set) => ({
         selectedId: agent.id,
         feeds: { ...s.feeds, [agent.id]: s.feeds[agent.id] ?? [] }
       };
+    }),
+  setAgents: (agents) =>
+    set((s) => {
+      const selectedId = agents.some((a) => a.id === s.selectedId) ? s.selectedId : (agents[0]?.id ?? null);
+      persistAgents(agents, selectedId);
+      return { agents, selectedId };
     }),
   removeAgent: (id) =>
     set((s) => {
@@ -780,6 +808,20 @@ export const useStore = create<State>((set) => ({
   setHasOpenAiKey: (has) => set({ hasOpenAiKey: has }),
   officeTheme: 'office',
   setOfficeTheme: (theme) => set({ officeTheme: theme }),
+  standupActive: false,
+  standupTopic: null,
+  triggerStandup: (topic) => {
+    if (standupTimer) clearTimeout(standupTimer);
+    set({ standupActive: true, standupTopic: topic ?? 'Middle-Out Architecture & Sprint Plan' });
+    standupTimer = setTimeout(() => {
+      useStore.getState().endStandup();
+      standupTimer = null;
+    }, 15000);
+  },
+  endStandup: () => {
+    if (standupTimer) { clearTimeout(standupTimer); standupTimer = null; }
+    set({ standupActive: false, standupTopic: null });
+  },
   webhookTriggers: [],
   setWebhookTriggers: (list) => set({ webhookTriggers: list }),
   // A copy, not the shared DEFAULT_ORG_TRIGGER instance — main takes the same
@@ -787,7 +829,7 @@ export const useStore = create<State>((set) => ({
   // one careless mutation rewrites the default for everyone.
   orgTrigger: { ...DEFAULT_ORG_TRIGGER },
   setOrgTrigger: (cfg) => set({ orgTrigger: cfg }),
-  enqueueMessage: (agentId, text, meta) =>
+    enqueueMessage: (agentId, text, meta) =>
     set((s) => {
       const trimmed = text.trim();
       if (!trimmed) return s;
@@ -803,7 +845,8 @@ export const useStore = create<State>((set) => ({
       // by the next path someone adds. The context trigger's own check stays as
       // cheap defence in depth, but this is the one that cannot be routed around.
       const queued = s.messageQueues[agentId] ?? [];
-      if (isCompactionCommand(trimmed) && queued.some((m) => isCompactionCommand(m.text))) {
+      const isCompaction = isCompactionCommand(trimmed);
+      if (isCompaction && queued.some((m) => isCompactionCommand(m.text))) {
         return s;
       }
       const msg: QueuedMessage = {
@@ -813,6 +856,18 @@ export const useStore = create<State>((set) => ({
       };
       const messageQueues = { ...s.messageQueues, [agentId]: [...(s.messageQueues[agentId] ?? []), msg] };
       persistQueues(messageQueues);
+
+      // Auto-trigger conference room meeting when a new task is assigned!
+      const isResume = trimmed.startsWith('[PANDA_RESUME]') || trimmed.startsWith('[SYSTEM]');
+      if (!isCompaction && !isResume) {
+        setTimeout(() => {
+          const target = useStore.getState().agents.find((a) => a.id === agentId);
+          const name = target ? target.name : 'Team';
+          const preview = trimmed.replace(/\s+/g, ' ').slice(0, 32);
+          useStore.getState().triggerStandup(`Task for ${name}: ${preview}...`);
+        }, 80);
+      }
+
       return { messageQueues };
     }),
   removeQueuedMessage: (agentId, messageId) =>

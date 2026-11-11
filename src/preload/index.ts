@@ -18,6 +18,8 @@ import type {
 export type {
   ContextRule, ContextTriggerConfig, OrgTriggerConfig, TriggerHistoryEntry, WebhookTrigger
 } from '../shared/triggers';
+import type { PandaHiveTaskState, CafeOrder, MilestoneRecord, TaskGroup, TaskPhase } from '../main/pandaHiveOrchestrator';
+export type { PandaHiveTaskState, CafeOrder, MilestoneRecord, TaskGroup, TaskPhase };
 
 /** Renderer-visible integration record: the secretRef handle is redacted to a
  *  presence boolean. Matches main `integrations.listRecordsRedacted()` — the
@@ -587,6 +589,8 @@ const api = {
     ipcRenderer.invoke('externalAgent:registerWebhook', agentId, url),
   getExternalServerInfo: (): Promise<{ ok: boolean; port: number; baseUrl: string }> =>
     ipcRenderer.invoke('externalAgent:getServerInfo'),
+  resetFloor: (): Promise<{ ok: boolean }> =>
+    ipcRenderer.invoke('externalAgent:resetFloor'),
   onExternalAgentEvent: (
     cb: (e: {
       agentId: string;
@@ -773,6 +777,10 @@ const api = {
   hiveTasks: (): Promise<unknown> => ipcRenderer.invoke('hive:tasks'),
   hiveLog: (n?: number): Promise<unknown[]> => ipcRenderer.invoke('hive:log', n ?? 200),
   hiveMemory: (id: string): Promise<string> => ipcRenderer.invoke('hive:memory', id),
+  saveMemory: (id: string, content: string): Promise<{ ok: boolean; error?: string }> =>
+    ipcRenderer.invoke('hive:saveMemory', id, content),
+  appendMemory: (id: string, note: string): Promise<{ ok: boolean; error?: string }> =>
+    ipcRenderer.invoke('hive:appendMemory', id, note),
   hiveInbox: (id: string): Promise<HiveMessage[]> => ipcRenderer.invoke('hive:inbox', id),
   /** Voice read-layer: recent message CONTENT (inbox/outbox bodies), REDACTED in
    *  main. Pass { id } for one message, { agentId } to scope to one mailbox, or
@@ -1404,9 +1412,61 @@ const api = {
     notes?: string;
     /** Preview the centered release page using the default drop template. */
     drop?: boolean;
-  }): Promise<{ ok: boolean; error?: string }> => ipcRenderer.invoke('update:simulate', opts)
+  }): Promise<{ ok: boolean; error?: string }> => ipcRenderer.invoke('update:simulate', opts),
+
+  // ─── AgentHive 3-Worker / 2-Group Orchestrator & Usopp Café ───────────────
+  agentHiveRunTask: (payload: { group: 'group1' | 'group2'; prompt: string; projectName?: string; taskId?: string }): Promise<{ ok: boolean; task?: PandaHiveTaskState; error?: string }> =>
+    ipcRenderer.invoke('agentHive:runTask', payload),
+  agentHiveOpenFolder: (folderPath: string): Promise<{ ok: boolean; error?: string }> =>
+    ipcRenderer.invoke('agentHive:openFolder', folderPath),
+  agentHiveOpenPreview: (workspaceDir: string): Promise<{ ok: boolean; error?: string }> =>
+    ipcRenderer.invoke('agentHive:openPreview', workspaceDir),
+  agentHiveTaskStatus: (taskId: string): Promise<PandaHiveTaskState | null> =>
+    ipcRenderer.invoke('agentHive:taskStatus', taskId),
+  agentHiveAllTasks: (): Promise<PandaHiveTaskState[]> =>
+    ipcRenderer.invoke('agentHive:allTasks'),
+  agentHiveUsoppServe: (payload: { agentId: string; item: string }): Promise<{ ok: boolean; order?: CafeOrder; error?: string }> =>
+    ipcRenderer.invoke('agentHive:usoppServe', payload),
+  onAgentHiveTaskUpdated: (cb: (task: PandaHiveTaskState) => void): (() => void) => {
+    const listener = (_e: IpcRendererEvent, payload: PandaHiveTaskState) => cb(payload);
+    ipcRenderer.on('agentHive:taskUpdated', listener);
+    return () => ipcRenderer.removeListener('agentHive:taskUpdated', listener);
+  },
+
+  // Backward compatible aliases
+  pandaHiveRunTask: (payload: { group: 'group1' | 'group2'; prompt: string; projectName?: string; taskId?: string }): Promise<{ ok: boolean; task?: PandaHiveTaskState; error?: string }> =>
+    ipcRenderer.invoke('agentHive:runTask', payload),
+  pandaHiveOpenFolder: (folderPath: string): Promise<{ ok: boolean; error?: string }> =>
+    ipcRenderer.invoke('agentHive:openFolder', folderPath),
+  pandaHiveOpenPreview: (workspaceDir: string): Promise<{ ok: boolean; error?: string }> =>
+    ipcRenderer.invoke('agentHive:openPreview', workspaceDir),
+  pandaHiveTaskStatus: (taskId: string): Promise<PandaHiveTaskState | null> =>
+    ipcRenderer.invoke('agentHive:taskStatus', taskId),
+  pandaHiveAllTasks: (): Promise<PandaHiveTaskState[]> =>
+    ipcRenderer.invoke('agentHive:allTasks'),
+  pandaHiveUsoppServe: (payload: { agentId: string; item: string }): Promise<{ ok: boolean; order?: CafeOrder; error?: string }> =>
+    ipcRenderer.invoke('agentHive:usoppServe', payload),
+  onPandaHiveTaskUpdated: (cb: (task: PandaHiveTaskState) => void): (() => void) => {
+    const listener = (_e: IpcRendererEvent, payload: PandaHiveTaskState) => cb(payload);
+    ipcRenderer.on('agentHive:taskUpdated', listener);
+    return () => ipcRenderer.removeListener('agentHive:taskUpdated', listener);
+  }
 };
 
 contextBridge.exposeInMainWorld('cth', api);
+contextBridge.exposeInMainWorld('agentHive', {
+  runTask: api.agentHiveRunTask,
+  taskStatus: api.agentHiveTaskStatus,
+  allTasks: api.agentHiveAllTasks,
+  usoppServe: api.agentHiveUsoppServe,
+  onTaskUpdated: api.onAgentHiveTaskUpdated
+});
+contextBridge.exposeInMainWorld('pandaHive', {
+  runTask: api.agentHiveRunTask,
+  taskStatus: api.agentHiveTaskStatus,
+  allTasks: api.agentHiveAllTasks,
+  usoppServe: api.agentHiveUsoppServe,
+  onTaskUpdated: api.onAgentHiveTaskUpdated
+});
 
 export type CthApi = typeof api;

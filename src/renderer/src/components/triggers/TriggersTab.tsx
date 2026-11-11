@@ -54,7 +54,7 @@ export function TriggersTab() {
 
       <TriggerCard
         title="ORGANISATION"
-        blurb="Let a teammate's Panda Hive message yours."
+        blurb="Let a teammate's AgentHive message yours."
         summary={orgSummary}
       >
         <OrgSection onSummary={setOrgSummary} />

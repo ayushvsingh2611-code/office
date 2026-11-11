@@ -1,4 +1,4 @@
-import { ClipboardEvent, DragEvent, KeyboardEvent, type MouseEvent as ReactMouseEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { ClipboardEvent, DragEvent, KeyboardEvent, type MouseEvent as ReactMouseEvent, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { PixelButton } from './PixelButton';
 import { Icon } from './Icon';
@@ -7,6 +7,9 @@ import { clearTerminalDraft, dismissTerminalPicker, terminalAutomationBlockFor }
 import type { TerminalAutomationBlock } from './terminalAutomation';
 import { freeflowRecorder, useFreeflow } from '@/freeflow/recorder';
 import { useTerminalFontSize } from './terminalFontSize';
+import { resolveSkillsForPrompt, formatPromptWithOnDemandSkills } from '@shared/skillResolver';
+import skillsCatalogData from '../skillsCatalogData.json';
+import { findLyzrConfig } from '@shared/lyzrAgents';
 
 const EMPTY_QUEUE: QueuedMessage[] = [];
 
@@ -125,18 +128,31 @@ export function MessageQueueComposer({ agent }: MessageQueueComposerProps) {
     }
   };
 
+  const detectedSkills = useMemo(() => {
+    return resolveSkillsForPrompt(text, skillsCatalogData as any[]);
+  }, [text]);
+
   const canSend = !!text.trim() || attachments.length > 0;
 
   const queueIt = () => {
     if (!canSend) return;
     // Prepend an "Attached files:" block using the same path-based convention as
     // the Slack inbound path (useHive.ts) so agents Read the files directly.
-    const body = attachments.length
+    let body = attachments.length
       ? (text.trim()
           ? `${text}\n\nAttached files:\n`
           : 'Attached files:\n') + attachments.map((a) => `- ${a.path} (${a.name})`).join('\n')
       : text;
+
+    if (detectedSkills.length > 0) {
+      const formatted = formatPromptWithOnDemandSkills(body, detectedSkills);
+      body = formatted.prompt;
+    }
+
     enqueueMessage(agent.id, body);
+    if (agent.isGod) {
+      useStore.getState().triggerStandup(body.slice(0, 45));
+    }
     setText('');
     setAttachments([]);
   };
@@ -169,7 +185,7 @@ export function MessageQueueComposer({ agent }: MessageQueueComposerProps) {
     : block === 'picker'
     ? `held — a slash-command picker is open in ${agent.name}'s terminal`
     : block === 'exited'
-    ? `held — ${agent.name}'s terminal has exited`
+    ? (agent.provider === 'external' || findLyzrConfig(agent) ? `routing via Multi-Engine AI Cloud…` : `held — ${agent.name}'s terminal has exited`)
     : `sending to ${agent.name} one-by-one…`;
 
   return (
@@ -357,6 +373,32 @@ export function MessageQueueComposer({ agent }: MessageQueueComposerProps) {
             boxSizing: 'border-box'
           }}
         />
+        {detectedSkills.length > 0 && (
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap',
+            padding: '4px 8px', background: 'var(--cth-mint-light)',
+            boxShadow: 'inset 0 0 0 1px var(--cth-mint)',
+            fontFamily: 'var(--cth-font-ui)', fontSize: 11, color: 'var(--cth-ink-900)'
+          }}>
+            <span style={{ fontWeight: 'bold' }}>⚡ On-Demand Skills:</span>
+            {detectedSkills.map((s) => (
+              <span
+                key={s.name}
+                title={`${s.description} (${s.owner})`}
+                style={{
+                  background: 'var(--cth-mint)', color: '#fff',
+                  padding: '1px 6px', fontSize: 10, fontFamily: 'var(--cth-font-mono)',
+                  letterSpacing: 0.5
+                }}
+              >
+                {s.name.toUpperCase()}
+              </span>
+            ))}
+            <span style={{ fontSize: 10, color: 'var(--cth-ink-500)', marginLeft: 'auto' }}>
+              Auto-resolving without download
+            </span>
+          </div>
+        )}
         {/* Control bar: Attach + voice + Send aligned right. flexWrap so a
             narrow sidebar wraps the buttons onto a second row instead of
             pushing Send off-screen. */}

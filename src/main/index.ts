@@ -60,7 +60,7 @@ import { validateBaseUrl, buildAuthHeaders, resolveUpstreamUrl, secretRefFor, IN
 import { RosterStore } from './roster';
 import { ControlRegistry } from './control';
 import { fetchHireManifest, readHireManifestFile } from './hire';
-import { ExternalAgentServer } from './externalAgentServer';
+import { ExternalAgentServer, resetFloorStatus } from './externalAgentServer';
 import { parseHireDeepLink, type HireManifest } from '../shared/hire';
 import { ClosingTimeController } from './closingTime';
 import {
@@ -76,6 +76,7 @@ import { detectNodeVersion, nodeIsUsable, resolveNodeInstaller } from './nodeIns
 import { toolCatalog, type ToolStatus } from '../shared/toolCatalog';
 import { listLocalSkills, loadCatalog, installSkill, uninstallSkill, type LocalSkill } from './skills';
 import { loadHero } from './hero';
+import { pandaHiveOrchestrator, type PandaHiveTaskState, type CafeOrder } from './pandaHiveOrchestrator';
 import {
   CODEX_REMOTE_SOCKET_RELATIVE,
   codexRemoteAliasPath,
@@ -1960,8 +1961,8 @@ function stopWebhookServer(): void {
 /** The persisted main-window geometry (kv key `window.bounds`). */
 interface WindowBounds { x?: number; y?: number; width: number; height: number }
 
-const DEFAULT_WIN = { width: 1440, height: 900 };
-const MIN_WIN = { width: 1280, height: 800 };
+const DEFAULT_WIN = { width: 1280, height: 750 };
+const MIN_WIN = { width: 1024, height: 600 };
 
 /** Validate + clamp restored bounds: enforce the minimum size, and drop a
  *  position that no longer lands on any connected display (monitor unplugged) so
@@ -2045,9 +2046,13 @@ async function handleHireLink(link: string): Promise<void> {
 // exe+args form or the registration points at electron.exe with no entry.
 if (process.defaultApp) {
   if (process.argv.length >= 2) {
+    app.setAsDefaultProtocolClient('agenthive', process.execPath, [resolve(process.argv[1])]);
+    app.setAsDefaultProtocolClient('pandahive', process.execPath, [resolve(process.argv[1])]);
     app.setAsDefaultProtocolClient('munderdifflin', process.execPath, [resolve(process.argv[1])]);
   }
 } else {
+  app.setAsDefaultProtocolClient('agenthive');
+  app.setAsDefaultProtocolClient('pandahive');
   app.setAsDefaultProtocolClient('munderdifflin');
 }
 
@@ -2065,7 +2070,7 @@ if (!gotInstanceLock) {
       if (mainWindow.isMinimized()) mainWindow.restore();
       mainWindow.focus();
     }
-    const link = argv.find((a) => a.startsWith('munderdifflin://'));
+    const link = argv.find((a) => a.startsWith('agenthive://') || a.startsWith('pandahive://') || a.startsWith('munderdifflin://'));
     if (link) void handleHireLink(link);
   });
 }
@@ -2117,10 +2122,10 @@ function createWindow(opts: { floor?: boolean } = {}): BrowserWindow {
     ...(geom && geom.x !== undefined && geom.y !== undefined ? { x: geom.x, y: geom.y } : {}),
     minWidth: MIN_WIN.width,
     minHeight: MIN_WIN.height,
-    title: isFloor ? 'Panda Hive — Floor' : 'Panda Hive',
+    title: isFloor ? 'AgentHive — Floor' : 'AgentHive',
     backgroundColor: '#FFF8E7',
-    titleBarStyle: 'hiddenInset',
-    show: false,
+    titleBarStyle: process.platform === 'darwin' ? 'hiddenInset' : 'default',
+    show: true,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,
@@ -2194,7 +2199,21 @@ function createWindow(opts: { floor?: boolean } = {}): BrowserWindow {
   }
 
 
-  win.once('ready-to-show', () => win.show());
+  win.once('ready-to-show', () => {
+    win.show();
+    win.focus();
+  });
+  // Ensure window is visible and focused on screen
+  setTimeout(() => {
+    if (!win.isDestroyed()) {
+      win.show();
+      win.focus();
+    }
+  }, 1000);
+
+  wc.on('did-fail-load', (_evt, code, desc, url) => {
+    console.error(`[window] did-fail-load: code ${code} (${desc}) on ${url}`);
+  });
 
   win.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
@@ -2813,6 +2832,10 @@ ipcMain.handle('externalAgent:getServerInfo', async () => {
   const port = externalAgentServer?.getPort() ?? 3737;
   return { ok: true, port, baseUrl: `http://127.0.0.1:${port}` };
 });
+ipcMain.handle('externalAgent:resetFloor', async () => {
+  resetFloorStatus(liveWebContents());
+  return { ok: true };
+});
 
 // Resolve a pasted Claude session id to the cwd it originally ran in, so the Add
 // Agent dialog can auto-fill the folder for a resume (#2 zero-step resume). Reads
@@ -3313,12 +3336,94 @@ ipcMain.handle('tools:status', (): ToolStatus[] => {
   });
 });
 
-// ─── IPC: semantic memory (MemPalace CLI) ───────────────────────────────────
+// ─── IPC: semantic memory (MemPalace CLI + Smart Built-in Fallback) ───────
 ipcMain.handle('hive:memoryStatus', () => { memory.resetBinCache(); return memory.status(); });
-ipcMain.handle('hive:searchMemory', (_evt, query: unknown, wing: unknown) => {
+ipcMain.handle('hive:searchMemory', async (_evt, query: unknown, wing: unknown) => {
   if (typeof query !== 'string' || !query.trim()) return { ok: false, output: '', error: 'empty query' };
-  return memory.search(query, { wing: typeof wing === 'string' ? wing : undefined });
+  try {
+    const res = await memory.search(query, { wing: typeof wing === 'string' ? wing : undefined });
+    if (res.ok && res.output && !res.output.includes('Nothing matched') && !res.output.includes('not active')) {
+      return res;
+    }
+  } catch { /* proceed to built-in fallback */ }
+
+  // Intelligent built-in fallback semantic/keyword search
+  const root = hive.root();
+  const qTerms = query.toLowerCase().split(/\s+/).filter((t) => t.length > 2);
+  const matches: Array<{ source: string; text: string; score: number }> = [];
+
+  if (root) {
+    const agentsDir = join(root, 'agents');
+    if (existsSync(agentsDir)) {
+      for (const agentId of readdirSync(agentsDir)) {
+        if (typeof wing === 'string' && wing && wing !== agentId) continue;
+        const memFile = join(agentsDir, agentId, 'memory.md');
+        if (existsSync(memFile)) {
+          const content = readFileSync(memFile, 'utf8');
+          const sections = content.split(/(?=\n### |\n## |\n# )/);
+          for (const sec of sections) {
+            const lower = sec.toLowerCase();
+            let score = 0;
+            for (const term of qTerms) {
+              if (lower.includes(term)) score += 2;
+            }
+            if (score > 0) {
+              matches.push({ source: `${agentId}/memory.md`, text: sec.trim(), score });
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Scan workspace deliverables (architecture, specs, code notes)
+  const wsDir = join(process.cwd(), 'workspace');
+  if (existsSync(wsDir)) {
+    try {
+      const projects = readdirSync(wsDir);
+      for (const p of projects) {
+        const pDir = join(wsDir, p);
+        if (statSync(pDir).isDirectory()) {
+          const files = readdirSync(pDir);
+          for (const f of files) {
+            if (f.endsWith('.md') || f.endsWith('.json') || f.endsWith('.js') || f.endsWith('.html')) {
+              const fPath = join(pDir, f);
+              const text = readFileSync(fPath, 'utf8');
+              const lower = text.toLowerCase();
+              let score = 0;
+              for (const term of qTerms) {
+                if (lower.includes(term)) score += 2;
+              }
+              if (score > 0) {
+                matches.push({ source: `workspace/${p}/${f}`, text: text.slice(0, 300).trim(), score });
+              }
+            }
+          }
+        }
+      }
+    } catch { /* ignore */ }
+  }
+
+  matches.sort((a, b) => b.score - a.score);
+  if (matches.length === 0) {
+    return { ok: true, output: `Nothing found matching "${query}".` };
+  }
+
+  const topMatches = matches.slice(0, 5);
+  const formatted = topMatches.map((m) => `[Source: ${m.source}]\n${m.text}`).join('\n\n---\n\n');
+  return { ok: true, output: formatted };
 });
+
+ipcMain.handle('hive:saveMemory', (_evt, id: unknown, content: unknown) => {
+  if (typeof id !== 'string' || typeof content !== 'string') return { ok: false, error: 'invalid arguments' };
+  return hive.saveMemory(id, content);
+});
+
+ipcMain.handle('hive:appendMemory', (_evt, id: unknown, note: unknown) => {
+  if (typeof id !== 'string' || typeof note !== 'string') return { ok: false, error: 'invalid arguments' };
+  return hive.appendMemory(id, note);
+});
+
 ipcMain.handle('hive:memoryWakeUp', (_evt, wing: unknown) =>
   memory.wakeUp(typeof wing === 'string' ? wing : undefined));
 ipcMain.handle('hive:mineNow', () => { memory.mineNow(); return { ok: true }; });
@@ -3687,6 +3792,20 @@ ipcMain.handle('hive:textSearch', (_evt, query: unknown) => {
     for (const id of readdirSync(agentsDir)) {
       targets.push({ path: join(agentsDir, id, 'memory.md'), source: `${id}/memory.md` });
     }
+  }
+  // Include workspace files in text search
+  const wsDir = join(process.cwd(), 'workspace');
+  if (existsSync(wsDir)) {
+    try {
+      for (const p of readdirSync(wsDir)) {
+        const pDir = join(wsDir, p);
+        if (statSync(pDir).isDirectory()) {
+          for (const f of readdirSync(pDir)) {
+            targets.push({ path: join(pDir, f), source: `workspace/${p}/${f}` });
+          }
+        }
+      }
+    } catch { /* ignore */ }
   }
   for (const { path, source } of targets) {
     if (!existsSync(path)) continue;
@@ -4609,6 +4728,145 @@ ipcMain.handle('workers:stop', (_evt, workerId: string): { ok: boolean; error?: 
   return { ok: true };
 });
 
+// ─── AgentHive 3-Worker / 2-Group Orchestrator IPC ──────────────────────────
+const handleRunTask = async (
+  _evt: any,
+  payload: { group: 'group1' | 'group2'; prompt: string; projectName?: string; taskId?: string }
+): Promise<{ ok: boolean; task?: PandaHiveTaskState; error?: string }> => {
+  try {
+    if (!payload || !payload.group || !payload.prompt) {
+      return { ok: false, error: 'Invalid payload: group and prompt are required' };
+    }
+    const task = await pandaHiveOrchestrator.runTask(payload);
+    return { ok: true, task };
+  } catch (err: any) {
+    console.error('[ipcMain] agentHive:runTask error:', err);
+    return { ok: false, error: err?.message || String(err) };
+  }
+};
+
+ipcMain.handle('agentHive:runTask', handleRunTask);
+ipcMain.handle('pandaHive:runTask', handleRunTask);
+
+const handleTaskStatus = (_evt: any, taskId: string): PandaHiveTaskState | null => {
+  if (typeof taskId !== 'string' || !taskId) return null;
+  return pandaHiveOrchestrator.getTask(taskId) ?? null;
+};
+ipcMain.handle('agentHive:taskStatus', handleTaskStatus);
+ipcMain.handle('pandaHive:taskStatus', handleTaskStatus);
+
+const handleAllTasks = (): PandaHiveTaskState[] => {
+  return pandaHiveOrchestrator.getAllTasks();
+};
+ipcMain.handle('agentHive:allTasks', handleAllTasks);
+ipcMain.handle('pandaHive:allTasks', handleAllTasks);
+
+const handleUsoppServe = (
+  _evt: any,
+  payload: { agentId: string; item: string }
+): { ok: boolean; order?: CafeOrder; error?: string } => {
+  try {
+    if (!payload || !payload.agentId || !payload.item) {
+      return { ok: false, error: 'agentId and item are required' };
+    }
+    const res = pandaHiveOrchestrator.serveCafeItem(payload.agentId, payload.item);
+    return { ok: true, order: res.order };
+  } catch (err: any) {
+    return { ok: false, error: err?.message || String(err) };
+  }
+};
+ipcMain.handle('agentHive:usoppServe', handleUsoppServe);
+ipcMain.handle('pandaHive:usoppServe', handleUsoppServe);
+
+const handleOpenFolder = async (_evt: any, folderPath: string): Promise<{ ok: boolean; error?: string }> => {
+  try {
+    if (typeof folderPath !== 'string' || !folderPath.trim()) return { ok: false, error: 'Path is required' };
+    const resolved = resolve(folderPath);
+    if (!existsSync(resolved)) return { ok: false, error: `Folder does not exist: ${resolved}` };
+    await shell.openPath(resolved);
+    return { ok: true };
+  } catch (err: any) {
+    return { ok: false, error: err?.message || String(err) };
+  }
+};
+ipcMain.handle('agentHive:openFolder', handleOpenFolder);
+ipcMain.handle('pandaHive:openFolder', handleOpenFolder);
+
+const handleOpenPreview = async (_evt: any, workspaceDir: string): Promise<{ ok: boolean; error?: string }> => {
+  try {
+    if (typeof workspaceDir !== 'string' || !workspaceDir.trim()) return { ok: false, error: 'Path is required' };
+    const htmlPath = join(resolve(workspaceDir), 'index.html');
+    if (!existsSync(htmlPath)) return { ok: false, error: 'index.html not found in project workspace' };
+    await shell.openPath(htmlPath);
+    return { ok: true };
+  } catch (err: any) {
+    return { ok: false, error: err?.message || String(err) };
+  }
+};
+ipcMain.handle('agentHive:openPreview', handleOpenPreview);
+ipcMain.handle('pandaHive:openPreview', handleOpenPreview);
+
+// Broadcast task updates to renderer and synchronize office floor characters in real-time
+pandaHiveOrchestrator.subscribe((task) => {
+  try {
+    const wc = liveWebContents();
+    if (!wc) return;
+    wc.send('agentHive:taskUpdated', task);
+    wc.send('pandaHive:taskUpdated', task);
+
+    const activeId = task.activeAgentId === 'sh-luffy' ? 'god' : task.activeAgentId;
+    if (task.status === 'ARCHITECTING' || task.status === 'BUILDING' || task.status === 'VERIFYING') {
+      const workerRole = task.status === 'ARCHITECTING' ? 'architect' : task.status === 'BUILDING' ? 'builder' : 'verifier';
+      const workerName = task.assignedWorkers[workerRole]?.name || 'Straw Hat Agent';
+
+      wc.send('hive:externalAgentEvent', {
+        agentId: activeId,
+        status: 'working',
+        action: task.currentStepDescription,
+        tool: task.status === 'BUILDING' ? 'WriteFile' : task.status === 'VERIFYING' ? 'Playwright' : 'SpecArchitect',
+        station: 'desk',
+        sleeping: false
+      });
+      wc.send('hive:externalAgentMessage', {
+        agentId: activeId,
+        sender: workerName,
+        text: `▶️ [${task.projectName}] ${task.currentStepDescription}`,
+        timestamp: Date.now()
+      });
+    } else if (task.status === 'COMPLETED') {
+      wc.send('hive:externalAgentEvent', {
+        agentId: activeId,
+        status: 'idle',
+        action: `Sprint Completed! ${task.projectName} verified & approved.`,
+        station: 'desk',
+        sleeping: false
+      });
+      wc.send('hive:externalAgentMessage', {
+        agentId: 'god',
+        sender: 'Luffy (Captain)',
+        text: `🎉 SPRINT COMPLETED! "${task.projectName}" successfully built and verified by ${task.group.toUpperCase()} squad!`,
+        timestamp: Date.now()
+      });
+    } else if (task.status === 'BLOCKED' || task.status === 'FAILED') {
+      wc.send('hive:externalAgentEvent', {
+        agentId: activeId,
+        status: 'blocked',
+        action: `Blocked: ${task.error}`,
+        station: 'desk',
+        sleeping: false
+      });
+      wc.send('hive:externalAgentMessage', {
+        agentId: activeId,
+        sender: 'Straw Hat Alert',
+        text: `⛔ Task ${task.projectName} is BLOCKED: ${task.error}`,
+        timestamp: Date.now()
+      });
+    }
+  } catch (err) {
+    // Window might be tearing down
+  }
+});
+
 /** Start every hive-bound background service against the current harnessHome.
  *  Called on boot, and again to recover in place if a folder-change copy fails
  *  (config:changeHome tears these down before copying). No-op without a home. */
@@ -4761,7 +5019,7 @@ app.whenReady().then(() => {
   });
 
   // A cold-start deep link (Windows/Linux) rides in on OUR argv.
-  const startupHireLink = process.argv.find((a) => a.startsWith('munderdifflin://'));
+  const startupHireLink = process.argv.find((a) => a.startsWith('pandahive://') || a.startsWith('munderdifflin://'));
   if (startupHireLink) void handleHireLink(startupHireLink);
 
   // Hand every spawned agent the path to the Slack reply discovery file via the

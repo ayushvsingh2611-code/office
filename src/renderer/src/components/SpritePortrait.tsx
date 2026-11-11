@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { paintCastPortrait, type OfficeCharacterName } from '@/scene/office/cast';
+import { HD_PORTRAITS, paintCastPortrait, type OfficeCharacterName } from '@/scene/office/cast';
 import { PORTRAIT_W, PORTRAIT_H } from '@/scene/office/portraitArt';
 
 const FRAME_W = PORTRAIT_W;
@@ -12,17 +12,21 @@ export interface SpritePortraitProps {
    *  smoothing off, so nothing here is ever interpolated. */
   scale?: number;
   background?: string;
+  style?: React.CSSProperties;
 }
 
-/** Static standing portrait of an Office cast member (recolored LimeZu sprite). */
+/** Static standing portrait of a character. */
 export function SpritePortrait({
   character,
-  scale = 2,
-  background = 'transparent'
+  scale = 1,
+  background = 'transparent',
+  style
 }: SpritePortraitProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const hdSrc = HD_PORTRAITS[character];
 
   useEffect(() => {
+    if (hdSrc) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -36,7 +40,7 @@ export function SpritePortrait({
     }
     paintCastPortrait(ctx, character, scale).catch(() => { /* asset load race */ });
     return () => { cancelled = true; void cancelled; };
-  }, [character, scale, background]);
+  }, [character, scale, background, hdSrc]);
 
   // A fractional scale can land on a fractional pixel count; the canvas
   // attributes are integers either way, so round once and use the same number
@@ -44,6 +48,25 @@ export function SpritePortrait({
   // blurry).
   const w = Math.round(FRAME_W * scale);
   const h = Math.round(FRAME_H * scale);
+
+  if (hdSrc) {
+    return (
+      <img
+        src={hdSrc}
+        alt={character}
+        draggable={false}
+        style={{
+          width: w,
+          height: h,
+          maxWidth: '100%',
+          maxHeight: '100%',
+          objectFit: 'contain',
+          display: 'block',
+          ...style
+        }}
+      />
+    );
+  }
 
   return (
     <canvas
@@ -53,7 +76,8 @@ export function SpritePortrait({
       style={{
         width: w,
         height: h,
-        imageRendering: 'pixelated'
+        imageRendering: 'pixelated',
+        ...style
       }}
     />
   );

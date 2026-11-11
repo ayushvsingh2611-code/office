@@ -11,6 +11,7 @@
  */
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { PixelButton } from './PixelButton';
+import { useStore } from '../store/store';
 import type { LocalSkill, CatalogSkill } from '../../../preload';
 
 type Mode = 'installed' | 'browse';
@@ -34,6 +35,8 @@ function Chip({ text, tone = 'quiet' }: { text: string; tone?: 'quiet' | 'accent
 }
 
 export function SkillsTab({ agentCwd }: { agentCwd?: string }) {
+  const selectedId = useStore((s) => s.selectedId);
+  const setDraft = useStore((s) => s.setDraft);
   const [mode, setMode] = useState<Mode>('installed');
   const [query, setQuery] = useState('');
   const [local, setLocal] = useState<LocalSkill[] | null>(null);
@@ -42,6 +45,15 @@ export function SkillsTab({ agentCwd }: { agentCwd?: string }) {
   const [owner, setOwner] = useState<string>('all');
   const [category, setCategory] = useState<string>('all');
   const [busy, setBusy] = useState(false);
+  const [onDemandNotice, setOnDemandNotice] = useState<string | null>(null);
+
+  const useOnDemand = (s: CatalogSkill) => {
+    if (selectedId) {
+      setDraft(selectedId, `Please use the ${s.name} skill to `);
+      setOnDemandNotice(`Prepared "${s.name}" prompt for active agent in message box.`);
+      setTimeout(() => setOnDemandNotice(null), 4000);
+    }
+  };
   /** Per-row action state, keyed by catalog url / local path. Keeps one row's
    *  spinner or error from being mistaken for the whole tab failing. */
   const [action, setAction] = useState<Record<string, { busy?: boolean; error?: string; done?: string }>>({});
@@ -50,15 +62,18 @@ export function SkillsTab({ agentCwd }: { agentCwd?: string }) {
   const [confirming, setConfirming] = useState<string | null>(null);
 
   const loadLocal = useCallback(async () => {
-    try { setLocal(await window.cth.skillsLocal(agentCwd)); } catch { setLocal([]); }
+    try {
+      const res = await window.cth.skillsLocal(agentCwd);
+      setLocal(Array.isArray(res) ? res : []);
+    } catch { setLocal([]); }
   }, [agentCwd]);
 
   const loadCatalog = useCallback(async (force = false) => {
     setBusy(true);
     try {
       const res = await window.cth.skillsCatalog(force);
-      setCatalog(res.skills);
-      setCatalogMeta({ stale: res.stale, error: res.error, fetchedAt: res.fetchedAt });
+      setCatalog(Array.isArray(res?.skills) ? res.skills : []);
+      setCatalogMeta({ stale: !!res?.stale, error: res?.error, fetchedAt: res?.fetchedAt ?? Date.now() });
     } catch {
       setCatalog([]);
       setCatalogMeta({ stale: true, error: 'could not reach the catalog', fetchedAt: 0 });
@@ -73,7 +88,7 @@ export function SkillsTab({ agentCwd }: { agentCwd?: string }) {
   const q = query.trim().toLowerCase();
 
   const shownLocal = useMemo(() => {
-    const list = local ?? [];
+    const list = Array.isArray(local) ? local : [];
     if (!q) return list;
     return list.filter((s) =>
       s.name.toLowerCase().includes(q) || s.description.toLowerCase().includes(q));
@@ -81,18 +96,18 @@ export function SkillsTab({ agentCwd }: { agentCwd?: string }) {
 
   const owners = useMemo(() => {
     const counts = new Map<string, number>();
-    for (const s of catalog ?? []) counts.set(s.owner, (counts.get(s.owner) ?? 0) + 1);
+    for (const s of (Array.isArray(catalog) ? catalog : [])) counts.set(s.owner, (counts.get(s.owner) ?? 0) + 1);
     return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   }, [catalog]);
 
   const categories = useMemo(() => {
     const counts = new Map<string, number>();
-    for (const s of catalog ?? []) counts.set(s.category, (counts.get(s.category) ?? 0) + 1);
+    for (const s of (Array.isArray(catalog) ? catalog : [])) counts.set(s.category, (counts.get(s.category) ?? 0) + 1);
     return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   }, [catalog]);
 
   const shownCatalog = useMemo(() => {
-    let list = catalog ?? [];
+    let list = Array.isArray(catalog) ? catalog : [];
     if (owner !== 'all') list = list.filter((s) => s.owner === owner);
     if (category !== 'all') list = list.filter((s) => s.category === category);
     if (q) {
@@ -239,8 +254,15 @@ export function SkillsTab({ agentCwd }: { agentCwd?: string }) {
               {shownLocal.map((s) => (
                 <div key={s.id + s.path} style={rowStyle}>
                   <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                    <span style={{ fontFamily: 'var(--cth-font-display)', fontSize: 11, flex: 1, minWidth: 0 }}>
-                      {s.name.toUpperCase()}
+                    <span
+                      onClick={() => void window.cth.skillsReveal(s.path)}
+                      title={`Open ${s.name} code`}
+                      style={{
+                        fontFamily: 'var(--cth-font-display)', fontSize: 11, flex: 1, minWidth: 0,
+                        cursor: 'pointer', textDecoration: 'underline', color: 'var(--cth-ink-900)'
+                      }}
+                    >
+                      {s.name.toUpperCase()} <span style={{ opacity: 0.6, fontSize: 10 }}>↗</span>
                     </span>
                     <Chip text={PROVIDER_LABEL[s.provider]} />
                     <Chip text={s.scope} tone={s.scope === 'project' ? 'accent' : 'quiet'} />
@@ -256,7 +278,7 @@ export function SkillsTab({ agentCwd }: { agentCwd?: string }) {
                   }}>{s.path}</div>
                   <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
                     <button onClick={() => void window.cth.skillsReveal(s.path)} style={actionBtn('quiet')}>
-                      open folder
+                      view code ↗
                     </button>
                     {s.scope === 'bundled' ? (
                       // Bundled skills ship inside the app and are re-copied into
@@ -298,6 +320,23 @@ export function SkillsTab({ agentCwd }: { agentCwd?: string }) {
                 Showing a cached copy — {catalogMeta.error}.
               </div>
             )}
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 8, padding: '7px 12px',
+              marginBottom: 8, background: 'var(--cth-mint-light)',
+              boxShadow: 'inset 0 0 0 1px var(--cth-mint)',
+              fontSize: 11, color: 'var(--cth-ink-900)'
+            }}>
+              <span style={{ fontWeight: 'bold' }}>⚡ SMART ON-DEMAND ACTIVE:</span>
+              <span>All 252 catalog skills are auto-resolved at runtime — no manual download required!</span>
+            </div>
+            {onDemandNotice && (
+              <div style={{
+                marginBottom: 8, padding: '6px 10px', fontSize: 11, color: 'var(--cth-ink-900)',
+                background: 'var(--cth-lemon-light)', boxShadow: 'inset 0 0 0 1px var(--cth-lemon)'
+              }}>
+                {onDemandNotice}
+              </div>
+            )}
             <div style={{ fontSize: 11, color: 'var(--cth-ink-500)', marginBottom: 8 }}>
               {totalMatching} matching{totalMatching > shownCatalog.length ? ` · showing the first ${shownCatalog.length}` : ''}
               {' · '}curated by abubakarsiddik31/claude-skills-collection
@@ -306,27 +345,40 @@ export function SkillsTab({ agentCwd }: { agentCwd?: string }) {
               {shownCatalog.map((s) => (
                 <div key={s.url + s.name} style={rowStyle}>
                   <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                    <span style={{ fontFamily: 'var(--cth-font-display)', fontSize: 11, flex: 1, minWidth: 0 }}>
-                      {s.name.toUpperCase()}
+                    <span
+                      onClick={() => void window.cth.openExternal(s.url)}
+                      title={`Open ${s.url}`}
+                      style={{
+                        fontFamily: 'var(--cth-font-display)', fontSize: 11, flex: 1, minWidth: 0,
+                        cursor: 'pointer', textDecoration: 'underline', color: 'var(--cth-ink-900)'
+                      }}
+                    >
+                      {s.name.toUpperCase()} <span style={{ opacity: 0.6, fontSize: 10 }}>↗</span>
                     </span>
                     <Chip text={s.category} />
                     <Chip text={s.owner} />
+                    <Chip text="⚡ on-demand" tone="accent" />
                   </div>
                   <div style={{ fontSize: 12, color: 'var(--cth-ink-700)', lineHeight: 1.45 }}>
                     {s.description}
                   </div>
                   <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
                     <button
-                      onClick={() => void install(s)}
-                      disabled={!!action[s.url]?.busy || !!action[s.url]?.done}
-                      style={actionBtn(action[s.url]?.done ? 'quiet' : 'primary')}
-                    >
-                      {action[s.url]?.busy ? 'installing…' : action[s.url]?.done ?? 'install'}
-                    </button>
+                      onClick={() => useOnDemand(s)}
+                      title={`Send task with ${s.name} to active agent`}
+                      style={actionBtn('primary')}
+                    >⚡ use on-demand</button>
                     <button
                       onClick={() => void window.cth.openExternal(s.url)}
                       style={actionBtn('quiet')}
-                    >learn more</button>
+                    >view repo ↗</button>
+                    <button
+                      onClick={() => void install(s)}
+                      disabled={!!action[s.url]?.busy || !!action[s.url]?.done}
+                      style={actionBtn(action[s.url]?.done ? 'quiet' : 'quiet')}
+                    >
+                      {action[s.url]?.busy ? 'installing…' : action[s.url]?.done ?? 'install offline copy'}
+                    </button>
                     {action[s.url]?.error && (
                       <span style={{ fontSize: 11, color: 'var(--cth-coral)', flex: 1, minWidth: 0 }}>
                         {action[s.url]?.error}

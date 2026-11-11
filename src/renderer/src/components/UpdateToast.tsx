@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Auto-update toast (v0.3.4) — the visual half of the background updater.
  *
  * Main's updater (src/main/updater.ts) downloads a new release in the
@@ -50,7 +50,7 @@ function toastable(s: UpdateStatus): ToastStatus | null {
   return s.state === 'downloaded' || s.state === 'available-manual' ? s : null;
 }
 
-const GITHUB_REPO_URL = 'https://github.com/chaitanyagiri/panda-hive';
+const GITHUB_REPO_URL = 'https://github.com/ayushvsingh2611-code/office';
 /** Only ever the `href` — the click is handled by `updateOpenRelease`, which
  *  resolves `undefined` to this same page in main. */
 const GITHUB_RELEASES_URL = `${GITHUB_REPO_URL}/releases/latest`;
@@ -207,7 +207,7 @@ export function UpdateToast() {
       </div>
       <span style={{ fontSize: 12, lineHeight: '16px', color: 'var(--cth-ink-700)' }}>
         {status.state === 'downloaded'
-          ? 'Restart Panda Hive whenever you like to apply it — nothing restarts on its own.'
+          ? 'Restart AgentHive whenever you like to apply it — nothing restarts on its own.'
           : 'This install can’t update itself — grab the new build from the releases page.'}
       </span>
 

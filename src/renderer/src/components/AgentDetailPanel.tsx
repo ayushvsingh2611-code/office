@@ -8,6 +8,7 @@ import { terminalInstanceKey } from './terminalRecovery';
 import { MessageQueueComposer } from './MessageQueueComposer';
 import { CommandCenterPanel } from './CommandCenterPanel';
 import { ExternalAgentPanel } from './ExternalAgentPanel';
+import { findLyzrConfig } from '@shared/lyzrAgents';
 import { disposeTerminal } from './terminalPool';
 import { SidebarTabs } from './SidebarTabs';
 import { ThreadsPanel } from './ThreadsPanel';
@@ -120,19 +121,21 @@ export function AgentDetailPanel({ agent }: AgentDetailPanelProps) {
             }}>{agent.provider === 'external' ? 'API / External' : agent.project}</span>
           </div>
         </div>
-        {/* PANDA HIVE: Sleep / Wake button */}
-        {agent.sleeping ? (
-          <PixelButton variant="primary" size="sm" onClick={() => wakeAgent(agent.id)}>
-            <span title="Wake up this agent" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-              ☀️ Wake
-            </span>
-          </PixelButton>
-        ) : (
-          <PixelButton variant="secondary" size="sm" onClick={() => sleepAgent(agent.id)}>
-            <span title="Put agent to sleep to save API credits" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-              🌙 Sleep
-            </span>
-          </PixelButton>
+        {/* AGENT HIVE: Sleep / Wake button */}
+        {!agent.isGod && (
+          agent.sleeping ? (
+            <PixelButton variant="primary" size="sm" onClick={() => wakeAgent(agent.id)}>
+              <span title="Wake up this agent" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                ☀️ Wake
+              </span>
+            </PixelButton>
+          ) : (
+            <PixelButton variant="secondary" size="sm" onClick={() => sleepAgent(agent.id)}>
+              <span title="Put agent to sleep to save API credits" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                🌙 Sleep
+              </span>
+            </PixelButton>
+          )
         )}
         {/* v0.3.4: the IDE lives at agent level (replaces the old files tab) —
             opens the full-window Monaco editor rooted at this agent's workspace. */}
@@ -182,7 +185,7 @@ export function AgentDetailPanel({ agent }: AgentDetailPanelProps) {
       {/* Active tab body — fills remaining space */}
       <div style={{ flex: 1, minHeight: 0, display: 'flex' }}>
         {sidebarTab === 'terminal' && (
-          agent.provider === 'external' ? (
+          (agent.provider === 'external' || !!findLyzrConfig(agent)) ? (
             <ExternalAgentPanel agent={agent} />
           ) : isReal && agent.ptyId ? (
             isFullscreenedHere ? (

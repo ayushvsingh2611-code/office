@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCore | Healthcare Management System</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full font-sans text-slate-900 antialiased flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="h-10 w-10 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                    <i class="fa-solid fa-heart-pulse text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-slate-900">Medi<span class="text-brand-600">Core</span></span>
+                    <span class="hidden sm:inline-block ml-2 px-2 py-0.5 text-xs font-semibold bg-brand-50 text-brand-600 rounded-full">HMS v2.4</span>
+                </div>
+            </div>
+
+            <!-- Search Bar Header -->
+            <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+                <div class="relative w-full">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" id="globalSearch" placeholder="Search patients, doctors, or medical records..." class="w-full pl-10 pr-4 py-2 bg-slate-100 border border-transparent rounded-lg text-sm focus:bg-white focus:border-brand-500 focus:outline-none transition-all">
+                </div>
+            </div>
+
+            <!-- User Profile & Quick Actions -->
+            <div class="flex items-center space-x-4">
+                <button id="openAppointmentModalBtn" class="hidden sm:inline-flex items-center justify-center px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-lg shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
+                    <i class="fa-solid fa-calendar-plus mr-2"></i> Book Appointment
+                </button>
+                <div class="flex items-center space-x-3 pl-3 border-l border-slate-200">
+                    <img class="h-9 w-9 rounded-full object-cover ring-2 ring-slate-200" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=150" alt="Dr. Sarah Jenkins">
+                    <div class="hidden lg:block text-left">
+                        <p class="text-sm font-semibold text-slate-800">Dr. Sarah Jenkins</p>
+                        <p class="text-xs text-slate-500">Chief Medical Officer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Container -->
+    <div class="flex-1 flex overflow-hidden">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-20 lg:w-64 bg-white border-r border-slate-200 flex flex-col justify-between transition-all duration-300">
+            <nav class="p-4 space-y-1">
+                <button data-tab="dashboard" class="sidebar-tab active w-full flex items-center space-x-3 px-3 py-3 rounded-xl text-sm font-semibold text-brand-600 bg-brand-50 transition-all">
+                    <i class="fa-solid fa-chart-pie text-lg w-6 text-center"></i>
+                    <span class="hidden lg:inline">Dashboard</span>
+                </button>
+                <button data-tab="patients" class="sidebar-tab w-full flex items-center space-x-3 px-3 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                    <i class="fa-solid fa-hospital-user text-lg w-6 text-center"></i>
+                    <span class="hidden lg:inline">Patient Records</span>
+                </button>
+                <button data-tab="doctors" class="sidebar-tab w-full flex items-center space-x-3 px-3 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                    <i class="fa-solid fa-user-doctor text-lg w-6 text-center"></i>
+                    <span class="hidden lg:inline">Doctor Directory</span>
+                </button>
+                <button data-tab="appointments" class="sidebar-tab w-full flex items-center space-x-3 px-3 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all">
+                    <i class="fa-solid fa-calendar-days text-lg w-6 text-center"></i>
+                    <span class="hidden lg:inline">Appointments</span>
+                </button>
+            </nav>
+
+            <div class="p-4 border-t border-slate-200">
+                <button id="resetDataBtn" class="w-full flex items-center justify-center lg:justify-start space-x-3 px-3 py-2.5 rounded-lg text-xs font-semibold text-red-600 hover:bg-red-50 transition-all" title="Reset Demo Data">
+                    <i class="fa-solid fa-rotate text-base w-6 text-center"></i>
+                    <span class="hidden lg:inline">Reset Demo Data</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 overflow-y-auto bg-slate-50 p-4 sm:p-6 lg:p-8">
+            
+            <!-- TAB 1: DASHBOARD -->
+            <section id="tab-dashboard" class="tab-content space-y-6">
+                <!-- Welcome Banner -->
+                <div class="bg-gradient-to-r from-brand-600 to-indigo-700 rounded-2xl p-6 sm:p-8 text-white shadow-xl shadow-brand-500/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Hospital Management Overview</h1>
+                        <p class="mt-1 text-brand-100 text-sm sm:text-base">Monitor daily operations, patient admissions, and active schedules seamlessly.</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="switchTab('appointments')" class="px-4 py-2.5 bg-white text-brand-600 hover:bg-brand-50 text-sm font-semibold rounded-xl shadow-sm transition-all">
+                            View Schedule
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KPI Metric Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Patients</p>
+                            <h3 id="kpiTotalPatients" class="text-3xl font-bold text-slate-900 mt-1">0</h3>
+                            <span class="text-xs font-medium text-emerald-600 mt-2 inline-flex items-center"><i class="fa-solid fa-arrow-trend-up mr-1"></i> Active registry</span>
+                        </div>
+                        <div class="h-12 w-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Available Doctors</p>
+                            <h3 id="kpiTotalDoctors" class="text-3xl font-bold text-slate-900 mt-1">0</h3>
+                            <span class="text-xs font-medium text-emerald-600 mt-2 inline-flex items-center"><i class="fa-solid fa-circle-check mr-1"></i> On duty today</span>
+                        </div>
+                        <div class="h-12 w-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Appointments Today</p>
+                            <h3 id="kpiTotalAppointments" class="text-3xl font-bold text-slate-900 mt-1">0</h3>
+                            <span class="text-xs font-medium text-indigo-600 mt-2 inline-flex items-center"><i class="fa-solid fa-clock mr-1"></i> Scheduled sessions</span>
+                        </div>
+                        <div class="h-12 w-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Critical Cases</p>
+                            <h3 id="kpiCriticalCases" class="text-3xl font-bold text-slate-900 mt-1">0</h3>
+                            <span class="text-xs font-medium text-amber-600 mt-2 inline-flex items-center"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Requires monitoring</span>
+                        </div>
+                        <div class="h-12 w-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-bed-pulse"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity & Quick Schedule Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm lg:col-span-2">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold text-slate-900">Upcoming Appointments</h3>
+                            <button onclick="switchTab('appointments')" class="text-sm font-semibold text-brand-600 hover:text-brand-700">View All</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                               <thead>
+                                    <tr class="border-b border-slate-200 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                                        <th class="py-3 px-4">Patient</th>
+                                        <th class="py-3 px-4">Doctor</th>
+                                        <th class="py-3 px-4">Date & Time</th>
+                                        <th class="py-3 px-4">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashboardAppointmentsTable" class="divide-y divide-slate-100 text-sm">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">System Quick Actions</h3>
+                            <p class="text-sm text-slate-500 mb-6">Frequently used workflows for healthcare providers.</p>
+                            
+                            <div class="space-y-3">
+                                <button onclick="openModal('patientModal')" class="w-full flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition-all group">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-10 w-10 rounded-lg bg-indigo-50 text-brand-600 flex items-center justify-center font-bold">
+                                            <i class="fa-solid fa-user-plus"></i>
+                                        </div>
+                                        <div class="text-left">
+                                            <p class="text-sm font-semibold text-slate-900 group-hover:text-brand-600">Register Patient</p>
+                                            <p class="text-xs text-slate-500">Add new chart profile</p>
+                                        </div>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+                                </button>
+                                <button onclick="openModal('appointmentModal')" class="w-full flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition-all group">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-10 w-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+                                            <i class="fa-solid fa-calendar-check"></i>
+                                        </div>
+                                        <div class="text-left">
+                                            <p class="text-sm font-semibold text-slate-900 group-hover:text-brand-600">Schedule Booking</p>
+                                            <p class="text-xs text-slate-500">Book doctor slot</p>
+                                        </div>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+                                </button>
+                                <button onclick="switchTab('doctors')" class="w-full flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition-all group">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-10 w-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center font-bold">
+                                            <i class="fa-solid fa-stethoscope"></i>
+                                        </div>
+                                        <div class="text-left">
+                                            <p class="text-sm font-semibold text-slate-900 group-hover:text-brand-600">Find Specialist</p>
+                                            <p class="text-xs text-slate-500">Browse doctor directory</p>
+                                        </div>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                            <span>LocalStorage: Active</span>
+                            <span class="text-emerald-600 font-semibold flex items-center"><i class="fa-solid fa-circle text-[8px] mr-1.5"></i> Synced</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: PATIENT RECORDS -->
+            <section id="tab-patients" class="tab-content hidden space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900">Patient Records</h2>
+                        <p class="text-sm text-slate-500">Manage comprehensive medical charts, vitals, and history.</p>
+                    </div>
+                    <button onclick="openModal('patientModal')" class="px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-all flex items-center">
+                        <i class="fa-solid fa-user-plus mr-2"></i> Register New Patient
+                    </button>
+                </div>
+
+                <!-- Filters and Search -->
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <div class="relative w-full md:w-96">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" id="patientSearchInput" placeholder="Search by name, ID, or phone..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:border-brand-500 focus:outline-none">
+                    </div>
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                        <select id="patientConditionFilter" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-700 focus:outline-none focus:border-brand-500 w-full md:w-auto">
+                            <option value="">All Conditions</option>
+                            <option value="Stable">Stable</option>
+                            <option value="Critical">Critical</option>
+                            <option value="Recovering">Recovering</option>
+                            <option value="Observation">Observation</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Patients Data Table -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                                    <th class="py-3 px-6">Patient Info</th>
+                                    <th class="py-3 px-6">Age / Gender</th>
+                                    <th class="py-3 px-6">Blood Group</th>
+                                    <th class="py-3 px-6">Condition</th>
+                                    <th class="py-3 px-6">Last Visit</th>
+                                    <th class="py-3 px-6 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="patientsTableBody" class="divide-y divide-slate-100 text-sm">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: DOCTOR DIRECTORY -->
+            <section id="tab-doctors" class="tab-content hidden space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900">Doctor Directory & Specialists</h2>
+                        <p class="text-sm text-slate-500">Explore qualified medical professionals and book consultations.</p>
+                    </div>
+                    <div class="flex items-center space-x-3 w-full sm:w-auto">
+                        <div class="relative w-full sm:w-64">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                            <input type="text" id="doctorSearchInput" placeholder="Search doctors..." class="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500">
+                        </div>
+                        <select id="doctorSpecialtyFilter" class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-700 focus:outline-none focus:border-brand-500">
+                            <option value="">All Specialties</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                            <option value="Orthopedics">Orthopedics</option>
+                            <option value="Dermatology">Dermatology</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Doctors Grid -->
+                <div id="doctorsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic doctor cards -->
+                </div>
+            </section>
+
+            <!-- TAB 4: APPOINTMENTS -->
+            <section id="tab-appointments" class="tab-content hidden space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900">Appointment Management</h2>
+                        <p class="text-sm text-slate-500">Schedule, track, and manage patient consultations.</p>
+                    </div>
+                    <button onclick="openModal('appointmentModal')" class="px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-all flex items-center">
+                        <i class="fa-solid fa-calendar-plus mr-2"></i> Book New Appointment
+                    </button>
+                </div>
+
+                <!-- Appointments Table -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                                    <th class="py-3 px-6">Patient Name</th>
+                                    <th class="py-3 px-6">Attending Doctor</th>
+                                    <th class="py-3 px-6">Date & Time</th>
+                                    <th class="py-3 px-6">Department</th>
+                                    <th class="py-3 px-6">Status</th>
+                                    <th class="py-3 px-6 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointmentsTableBody" class="divide-y divide-slate-100 text-sm">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- MODALS -->
+
+    <!-- 1. Patient Registration / Edit Modal -->
+    <div id="patientModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm hidden opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden pointer-events-auto transform scale-95 transition-all duration-300 modal-dialog">
+            <div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <h3 id="patientModalTitle" class="text-lg font-bold text-slate-900">Register New Patient</h3>
+                <button onclick="closeModal('patientModal')" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <form id="patientForm" class="p-6 space-y-4">
+                <input type="hidden" id="patientId">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Full Name</label>
+                    <input type="text" id="patientName" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500" placeholder="e.g. John Doe">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Age</label>
+                        <input type="number" id="patientAge" required min="0" max="120" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500" placeholder="e.g. 34">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Gender</label>
+                        <select id="patientGender" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Blood Group</label>
+                        <select id="patientBlood" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500">
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Condition Status</label>
+                        <select id="patientCondition" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500">
+                            <option value="Stable">Stable</option>
+                            <option value="Critical">Critical</option>
+                            <option value="Recovering">Recovering</option>
+                            <option value="Observation">Observation</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Phone Number</label>
+                    <input type="tel" id="patientPhone" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500" placeholder="+1 (555) 000-0000">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Medical Notes / History</label>
+                    <textarea id="patientNotes" rows="3" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500" placeholder="Allergies, chronic conditions..."></textarea>
+                </div>
+                <div class="flex items-center justify-end space-x-3 pt-4 border-t border-slate-100">
+                    <button type="button" onclick="closeModal('patientModal')" class="px-4 py-2 border border-slate-200 text-slate-600 hover:bg-slate-50 text-sm font-semibold rounded-xl transition-all">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-all">Save Patient</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. Appointment Booking Modal -->
+    <div id="appointmentModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm hidden opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden pointer-events-auto transform scale-95 transition-all duration-300 modal-dialog">
+            <div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <h3 class="text-lg font-bold text-slate-900">Schedule New Appointment</h3>
+                <button onclick="closeModal('appointmentModal')" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <form id="appointmentForm" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Select Patient</label>
+                    <select id="appointmentPatient" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500">
+                        <!-- Populated dynamically -->
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Select Doctor</label>
+                    <select id="appointmentDoctor" required class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500">
+                        <!-- Populated dynamically -->
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-
+<script src="app.js" defer></script>
+</body>
+</html>

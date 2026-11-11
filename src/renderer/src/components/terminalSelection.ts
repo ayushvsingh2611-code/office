@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copy hygiene for terminal selections.
  *
  * Agent CLIs paint their decoration INTO the character grid. Claude Code draws
@@ -7,7 +7,7 @@
  * triple-click or a full-width drag does) therefore copies the rail with the
  * prose, and the paste lands as:
  *
- *     ▎ Panda Hive — clones for you and your team, working 24/7.
+ *     ▎ AgentHive — clones for you and your team, working 24/7.
  *
  * Nothing downstream wants that glyph, so strip it on the way to the clipboard.
  *

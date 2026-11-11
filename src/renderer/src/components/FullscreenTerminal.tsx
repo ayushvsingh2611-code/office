@@ -1,8 +1,10 @@
-﻿import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { PixelBadge } from './PixelBadge';
 import { PixelButton } from './PixelButton';
 import { PtyTerminalView } from './PtyTerminalView';
+import { ExternalAgentPanel } from './ExternalAgentPanel';
+import { findLyzrConfig } from '@shared/lyzrAgents';
 import { terminalInstanceKey } from './terminalRecovery';
 import { MessageQueueComposer } from './MessageQueueComposer';
 import { AgentControlStrip } from './AgentControlStrip';
@@ -239,7 +241,7 @@ export function FullscreenTerminal({ config }: FullscreenTerminalProps) {
     return () => window.removeEventListener('keydown', onKey);
   }, [addAgentOpen, setFullscreen]);
 
-  if (!agent || !agent.ptyId) {
+  if (!agent || (!agent.ptyId && agent.provider !== 'external')) {
     // Bail out — no real agent to show
     setFullscreen(null);
     return null;
@@ -274,7 +276,7 @@ export function FullscreenTerminal({ config }: FullscreenTerminalProps) {
         <span style={{
           fontFamily: 'var(--cth-font-display)', fontSize: 12, lineHeight: '20px',
           color: 'var(--cth-ink-900)'
-        }}>Panda Hive · FULLSCREEN</span>
+        }}>AgentHive · FULLSCREEN</span>
         {/* Same top-right controls as the main title bar — fullscreen covers
             it, so theme / exit-fullscreen / IDE must live here too. */}
         <div className="cth-titlebar-nodrag" style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -546,22 +548,26 @@ export function FullscreenTerminal({ config }: FullscreenTerminalProps) {
 
               <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
                 <div style={{ flex: 1, minHeight: 0, display: 'flex' }}>
-                  <PtyTerminalView
-                    key={terminalInstanceKey(agent.ptyId, agent.terminalGeneration)}
-                    ptyId={agent.ptyId}
-                    onStreamData={parser}
-                    onUserPrompt={(t) => {
-                      updateAgent(agent.id, { lastPrompt: t });
-                      if (t.trim().toLowerCase() === '/clear') {
-                        updateAgent(agent.id, { contextTokens: 0, contextLimit: undefined, progress: 0 });
-                      }
-                      void window.cth.historyAdd({ agentId: agent.id, cwd: agent.cwd, text: t });
-                    }}
-                    onToggleFullscreen={() => setFullscreen(null)}
-                    fullscreen
-                  />
+                  {(agent.provider === 'external' || !!findLyzrConfig(agent)) ? (
+                    <ExternalAgentPanel agent={agent} />
+                  ) : agent.ptyId ? (
+                    <PtyTerminalView
+                      key={terminalInstanceKey(agent.ptyId, agent.terminalGeneration)}
+                      ptyId={agent.ptyId}
+                      onStreamData={parser}
+                      onUserPrompt={(t) => {
+                        updateAgent(agent.id, { lastPrompt: t });
+                        if (t.trim().toLowerCase() === '/clear') {
+                          updateAgent(agent.id, { contextTokens: 0, contextLimit: undefined, progress: 0 });
+                        }
+                        void window.cth.historyAdd({ agentId: agent.id, cwd: agent.cwd, text: t });
+                      }}
+                      onToggleFullscreen={() => setFullscreen(null)}
+                      fullscreen
+                    />
+                  ) : null}
                 </div>
-                <MessageQueueComposer agent={agent} />
+                {agent.provider !== 'external' && <MessageQueueComposer agent={agent} />}
               </div>
             </>
           )}
@@ -723,7 +729,24 @@ function SidebarRow({
             {/* Your unsent text outranks the agent's own state here: an idle
                 agent with a draft on its prompt is not idle-and-free, it is
                 idle-and-held, and nothing else on screen said so. */}
-            <PixelBadge status={typing ? 'typing' : agent.status} />
+            {agent.sleeping ? (
+              <span
+                role="button"
+                tabIndex={0}
+                onClick={(e) => { e.stopPropagation(); useStore.getState().wakeAgent(agent.id); }}
+                title="Sleeping — click to WAKE UP"
+                style={{
+                  fontFamily: 'var(--cth-font-display)', fontSize: 7, lineHeight: '11px',
+                  background: 'var(--cth-lilac-light, #e8ddf5)', color: 'var(--cth-ink-900)',
+                  boxShadow: 'inset 0 0 0 1px var(--cth-ink-300)',
+                  padding: '1px 4px 0', flexShrink: 0, cursor: 'pointer'
+                }}
+              >
+                ZZZ 😴 ☀️
+              </span>
+            ) : (
+              <PixelBadge status={typing ? 'typing' : agent.status} />
+            )}
             {/* Explicit note edit — a real control instead of a hover surprise.
                 A span, not a <button>: we're inside the row's button element. */}
             <span

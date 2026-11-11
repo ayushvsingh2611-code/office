@@ -1,0 +1,43 @@
+/* ==========================================================
+   SMARTPANTRY CHEF — DESIGN TOKENS & CUSTOM STYLES
+   ================ =========================================== */
+
+:root {
+    --color-primary: #059669; /* Emerald 600 */
+    --color-primary-hover: #047857; /* Emerald 700 */
+    --color-bg: #f8fafc; /* Slate 50 */
+    --color-card: #ffffff;
+    --color-text: #0f172a; /* Slate 900 */
+    --color-text-muted: #64748b; /* Slate 500 */
+    --radius-card: 1.5rem;
+    --radius-btn: 0.75rem;
+}
+
+/* Custom Scrollbar Utility */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Modal Open & Close Transitions */
+.modal-active {
+    display: flex !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+}
+.modal-active > div {
+    transform: scale(1) !important;
+    opacity: 1 !important;
+}
+
+/* Custom Pulse / Glow Animation */
+@keyframes soft-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+.animate-soft-pulse {
+    animation: soft-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

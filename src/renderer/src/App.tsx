@@ -28,6 +28,7 @@ import { TaskDetailOverlay } from '@/components/TaskDetailOverlay';
 import { FullscreenFileEditor } from '@/components/FullscreenFileEditor';
 import { IdePanel } from '@/ide/IdePanel';
 import { useHoldOptionToTalk } from '@/freeflow/holdOption';
+import { buildLyzrAgentsForFloor } from '@shared/lyzrAgents';
 import brandLogo from '@brand/logo.png?url';
 
 // Injected at build time from package.json (see electron.vite.config.ts).
@@ -117,6 +118,69 @@ export function App() {
   // for whichever agent the user is viewing; gated on the flag, terminal-safe
   // (solo-hold threshold, aborts on any other key). See freeflow/holdOption.ts.
   useHoldOptionToTalk();
+
+  // Auto-seed and migrate Straw Hat Dev Crew (12 Agents) on the floor
+  useEffect(() => {
+    try {
+      const store = useStore.getState();
+      const strawHatAgents = buildLyzrAgentsForFloor();
+      const hasOldAgents = store.agents.some((a) =>
+        a.id.startsWith('lyzr-') ||
+        a.name.includes('Andy') ||
+        a.name.includes('Dwight') ||
+        a.name.includes('Michael') ||
+        a.name.includes('Oscar') ||
+        a.name.includes('Pam') ||
+        a.name.includes('Jim')
+      );
+      const hasStrawHat = store.agents.some((a) => a.id.startsWith('sh-') || a.name.includes('Luffy'));
+
+      if (hasOldAgents || !hasStrawHat || store.agents.length < 12) {
+        store.setAgents(strawHatAgents);
+        strawHatAgents.forEach((a) => {
+          store.pushFeed(a.id, `Straw Hat Dev Crew agent ready: ${a.name} (${a.description})`);
+        });
+        window.localStorage.setItem('cth.strawHatCrewSeeded', '1');
+      }
+    } catch { /* noop */ }
+  }, []);
+
+  // Floor synchronization for Multi-Engine / OmniRoute Straw Hat agents
+  useEffect(() => {
+    const unsubEvt = window.cth.onExternalAgentEvent?.((e) => {
+      const store = useStore.getState();
+      const target = store.agents.find((a) => a.id === e.agentId || (e.agentId === 'sh-luffy' && a.id === 'god'));
+      if (target) {
+        store.updateAgent(target.id, {
+          status: e.status ? (e.status === 'blocked' ? 'error' : (e.status as any)) : target.status,
+          action: e.action || target.action,
+          currentStation: (e.station as any) || target.currentStation,
+          carrying: (e.tool as any) || target.carrying,
+          sleeping: e.sleeping ?? false
+        });
+        if (e.action) store.pushFeed(target.id, `[Action] ${e.action}`);
+      }
+    });
+
+    const unsubMsg = window.cth.onExternalAgentMessage?.((e) => {
+      const store = useStore.getState();
+      const target = store.agents.find((a) => a.id === e.agentId || (e.agentId === 'sh-luffy' && a.id === 'god'));
+      if (target) {
+        store.pushFeed(target.id, `${e.sender || target.name}: ${e.text}`);
+        store.updateAgent(target.id, {
+          status: 'idle',
+          action: e.text.length > 50 ? `${e.text.slice(0, 48)}...` : e.text,
+          recentAssistantText: e.text,
+          recentTextTs: Date.now()
+        });
+      }
+    });
+
+    return () => {
+      unsubEvt?.();
+      unsubMsg?.();
+    };
+  }, []);
 
   // Quit warning subscription
   useEffect(() => window.cth.onCloseRequested((info) => setQuitWarn(info)), []);
@@ -257,7 +321,7 @@ export function App() {
       >
         <img
           src={brandLogo}
-          alt="Panda Hive"
+          alt="AgentHive"
           style={{ height: 20, width: 'auto', display: 'block' }}
         />
         {/* v0.3.7: the version is no longer inert text — it doubles as the
@@ -402,7 +466,7 @@ export function App() {
                 color: 'var(--cth-ink-500)'
               }}>WAKING THE HIVE</div>
               <p style={{ margin: 0, fontSize: 13, textAlign: 'center', color: 'var(--cth-ink-700)' }}>
-                The boss panda is clocking in.<br />
+                The boss agent is clocking in.<br />
                 The terminal will land here once they are seated.
               </p>
             </PixelPanel>

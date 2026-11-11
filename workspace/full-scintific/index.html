@@ -1,0 +1,243 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUPER-CALC PRO | Advanced Scientific Calculator</title>
+  <!-- Google Fonts for crisp display typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- App Header Bar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <span class="brand-badge">PRO</span>
+        <h1 class="brand-title">SUPER-CALC</h1>
+      </div>
+
+      <!-- Dynamic Search Input -->
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search functions, physics constants, formulas...">
+      </div>
+
+      <!-- Cart / Saved Memory Trigger Button -->
+      <button id="cart-button" class="cart-trigger-btn" aria-label="Open saved formulas sheet">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span class="btn-text">Saved Sheet</span>
+        <span id="cart-count" class="cart-badge">4</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Application Workspace -->
+  <main class="app-workspace">
+    
+    <!-- Left Column: Primary Scientific Calculator -->
+    <section class="calculator-card">
+      <div class="calculator-header">
+        <div class="mode-toggles">
+          <button class="mode-btn active">DEG</button>
+          <button class="mode-btn">RAD</button>
+          <button class="mode-btn">GRAD</button>
+        </div>
+        <div class="status-indicators">
+          <span class="indicator active">FIX: 4</span>
+          <span class="indicator">M1: ACTIVE</span>
+        </div>
+      </div>
+
+      <!-- Calculator Screen Display -->
+      <div class="calc-display">
+        <div class="calc-history-line" id="calc-history">MODE: DEG | READY</div>
+        <div class="calc-main-line" id="calc-output">0</div>
+      </div>
+
+      <!-- Keypad Function Mode Tabs / Filters -->
+      <div class="keypad-tabs">
+        <button class="keypad-tab active">Standard</button>
+        <button class="keypad-tab">Trigonometry</button>
+        <button class="keypad-tab">Hyperbolic</button>
+        <button class="keypad-tab">Statistics</button>
+      </div>
+
+      <!-- Scientific Calculator Keypad Grid -->
+      <div class="calc-keypad">
+        <!-- Row 1: Scientific Functions -->
+        <button class="btn btn-func">2nd</button>
+        <button class="btn btn-func">x!</button>
+        <button class="btn btn-func">1/x</button>
+        <button class="btn btn-func">|</button>
+        <button class="btn btn-action btn-clear">AC</button>
+        <button class="btn btn-action btn-del">DEL</button>
+
+        <!-- Row 2: Powers & Logs -->
+        <button class="btn btn-func">sin</button>
+        <button class="btn btn-func">cos</button>
+        <button class="btn btn-func">tan</button>
+        <button class="btn btn-func">x²</button>
+        <button class="btn btn-func">xⁿ</button>
+        <button class="btn btn-op">÷</button>
+
+        <!-- Row 3: Advanced Math -->
+        <button class="btn btn-func">asin</button>
+        <button class="btn btn-func">acos</button>
+        <button class="btn btn-func">atan</button>
+        <button class="btn btn-func">√x</button>
+        <button class="btn btn-func">ⁿ√x</button>
+        <button class="btn btn-op">×</button>
+
+        <!-- Row 4: Digits & Logarithms -->
+        <button class="btn btn-func">ln</button>
+        <button class="btn btn-func">log</button>
+        <button class="btn btn-num">7</button>
+        <button class="btn btn-num">8</button>
+        <button class="btn btn-num">9</button>
+        <button class="btn btn-op">-</button>
+
+        <!-- Row 5: Constants & Numbers -->
+        <button class="btn btn-func">π</button>
+        <button class="btn btn-func">e</button>
+        <button class="btn btn-num">4</button>
+        <button class="btn btn-num">5</button>
+        <button class="btn btn-num">6</button>
+        <button class="btn btn-op">+</button>
+
+        <!-- Row 6: Memory & Operations -->
+        <button class="btn btn-func">STO</button>
+        <button class="btn btn-func">RCL</button>
+        <button class="btn btn-num">1</button>
+        <button class="btn btn-num">2</button>
+        <button class="btn btn-num">3</button>
+        <button class="btn btn-equals" rowspan="2">=</button>
+
+        <!-- Row 7: Base Numbers & Decimal -->
+        <button class="btn btn-func">( )</button>
+        <button class="btn btn-func">±</button>
+        <button class="btn btn-num btn-zero">0</button>
+        <button class="btn btn-num">.</button>
+        <button class="btn btn-func">EXP</button>
+      </div>
+    </section>
+
+    <!-- Right Column: Scientific Constants & Quick Reference Cards -->
+    <section class="reference-section">
+      <div class="reference-header">
+        <h2>Scientific Constants & Formulas</h2>
+        <p>Quickly insert preset constants or save calculation presets</p>
+      </div>
+
+      <!-- Category Filter Buttons -->
+      <div class="category-filters">
+        <button class="filter-chip active">All</button>
+        <button class="filter-chip">Physics</button>
+        <button class="filter-chip">Astrophysics</button>
+        <button class="filter-chip">Mathematics</button>
+        <button class="filter-chip">Chemistry</button>
+      </div>
+
+      <!-- Product / Item Cards Grid -->
+      <div class="cards-grid">
+        
+        <!-- Constant Card 1 -->
+        <article class="item-card">
+          <div class="card-badge">Physics</div>
+          <h3 class="card-title">Speed of Light in Vacuum</h3>
+          <p class="card-symbol">c = 2.99792458 × 10⁸ m/s</p>
+          <div class="card-footer">
+            <span class="card-tag">Exact Constant</span>
+            <button class="card-action-btn">
+              <span>Insert</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Constant Card 2 -->
+        <article class="item-card">
+          <div class="card-badge">Quantum</div>
+          <h3 class="card-title">Planck's Constant</h3>
+          <p class="card-symbol">h = 6.62607015 × 10⁻³⁴ J·s</p>
+          <div class="card-footer">
+            <span class="card-tag">SI Unit</span>
+            <button class="card-action-btn">
+              <span>Insert</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Constant Card 3 -->
+        <article class="item-card">
+          <div class="card-badge">Math</div>
+          <h3 class="card-title">Golden Ratio</h3>
+          <p class="card-symbol">φ = 1.6180339887...</p>
+          <div class="card-footer">
+            <span class="card-tag">(1 + √5) / 2</span>
+            <button class="card-action-btn">
+              <span>Insert</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Constant Card 4 -->
+        <article class="item-card">
+          <div class="card-badge">Chemistry</div>
+          <h3 class="card-title">Avogadro's Constant</h3>
+          <p class="card-symbol">Nₐ = 6.02214076 × 10²³ mol⁻¹</p>
+          <div class="card-footer">
+            <span class="card-tag">Standard</span>
+            <button class="card-action-btn">
+              <span>Insert</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Constant Card 5 -->
+        <article class="item-card">
+          <div class="card-badge">Astrophysics</div>
+          <h3 class="card-title">Gravitational Constant</h3>
+          <p class="card-symbol">G = 6.67430 × 10⁻¹¹ m³·kg⁻¹·s⁻²</p>
+          <div class="card-footer">
+            <span class="card-tag">Newtonian</span>
+            <button class="card-action-btn">
+              <span>Insert</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Constant Card 6 -->
+        <article class="item-card">
+          <div class="card-badge">Physics</div>
+          <h3 class="card-title">Elementary Charge</h3>
+          <p class="card-symbol">e = 1.602176634 × 10⁻¹⁹ C</p>
+          <div class="card-footer">
+            <span class="card-tag">Coulombs</span>
+            <button class="card-action-btn">
+              <span>Insert</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

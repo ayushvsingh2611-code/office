@@ -19,6 +19,7 @@ import type { AgentProvider } from '../../../shared/agentProvider';
 import { acquireTerminal, resetTerminal, isTerminalAutomationSafe } from '@/components/terminalPool';
 import { deliverWithAcknowledgement } from './queueDelivery';
 import { OFFICE_CAST, DEFAULT_CHARACTER } from '@/scene/office/cast';
+import { findLyzrConfig } from '@shared/lyzrAgents';
 
 const GOD_ID = 'god';
 /** Accent palette for MAIN-spawned (voice-hired) agents — picked deterministically
@@ -348,23 +349,23 @@ export function useHive(config: HarnessConfig | null): void {
         // fresh session. Without this the most important context on the floor —
         // the orchestrator's — was lost on every restart.
         resume: true,
-        hive: { id: GOD_ID, name: 'Michael', provider: godProvider, cwd: config.harnessHome!, isGod: true, role: 'orchestrator (god)' }
+        hive: { id: GOD_ID, name: 'Luffy (Captain)', provider: godProvider, cwd: config.harnessHome!, isGod: true, role: 'Lead Orchestrator (Manager)' }
       });
       if (cancelled) { godSpawning.current = false; return; }
       if (!res.ok) { godSpawning.current = false; useStore.getState().setGodStatus('failed'); return; }
       const god: Agent = {
         id: GOD_ID,
-        name: 'Michael',
-        character: 'michael',
-        accent: 'lemon',
-        description: 'god — runs the floor, triages requests, escalates only critical calls to you',
-        project: 'hive',
+        name: 'Luffy (Captain)',
+        character: 'luffy',
+        accent: 'coral',
+        description: 'Lead Orchestrator (Manager) — runs the floor, decomposes requirements, coordinates the Straw Hat Crew',
+        project: 'Straw Hat Dev Crew',
         tmuxTarget: '',
         cwd: config.harnessHome!,
         status: 'idle',
         action: 'running the floor',
         progress: 0,
-        currentStation: 'desk',
+        currentStation: 'board',
         ptyId: GOD_PTY,
         command: command.trim(),
         provider: godProvider,
@@ -375,20 +376,20 @@ export function useHive(config: HarnessConfig | null): void {
       useStore.getState().addAgent(god);
       useStore.getState().setGodStatus('ready');
 
-      // Kick Michael off once his TUI is up. Always re-enable remote control so
+      // Kick Luffy off once his TUI is up. Always re-enable remote control so
       // the human can approve permission prompts from their phone (best-effort — a
       // failed/unknown slash command just prints to his terminal and is harmless).
       // Then, ONLY on a genuinely fresh spawn, hand him the orientation prompt —
-      // a RESUMED Michael already has his full context and must not be re-oriented
+      // a RESUMED Luffy already has his full context and must not be re-oriented
       // mid-thread (that would reset the floor's situational awareness). Both go
       // through the per-pty submit chain, so they're strictly sequential and can't
       // jam together; the boot-grace window keeps the inbox-wake/drain loops off
-      // Michael until he's settled. The live-PTY branch above skips this entirely.
+      // Luffy until he's settled. The live-PTY branch above skips this entirely.
       const resumedGod = res.resumed === true;
       bootGraceUntil.current[GOD_ID] = Date.now() + BOOT_GRACE_MS;
       void (async () => {
         try {
-          const remoteCommand = remoteControlCommandForProvider(godProvider, 'Michael');
+          const remoteCommand = remoteControlCommandForProvider(godProvider, 'Luffy');
           if (remoteCommand) {
             // settleMs pauses the chain ~1.5s after /remote-control before the
             // orientation prompt (fresh spawns only) is submitted next.
@@ -485,8 +486,23 @@ export function useHive(config: HarnessConfig | null): void {
     });
   }, []);
 
-  // 2a.2) External Agent API & Webhooks (Panda Hive External Agent Server)
+  // 2a.2) External Agent API & Webhooks (AgentHive External Agent Server)
   useEffect(() => {
+    // Proactively clear any stale blocked statuses from previous crashed session
+    try {
+      const { agents, updateAgent } = useStore.getState();
+      for (const a of agents) {
+        if (a.status === 'blocked' && (a.action?.includes('Blocked:') || a.action?.includes('Michael Scott'))) {
+          updateAgent(a.id, {
+            status: 'idle',
+            action: 'Ready for new task',
+            recentAssistantText: undefined
+          });
+        }
+      }
+      window.cth?.resetFloor?.().catch(() => {});
+    } catch {}
+
     const unsubEvent = window.cth.onExternalAgentEvent?.((e) => {
       if (!e.agentId) return;
       const { updateAgent, agents, pushFeed } = useStore.getState();
@@ -788,7 +804,23 @@ export function useHive(config: HarnessConfig | null): void {
     ): Promise<{ sent: boolean; message?: QueuedMessage }> => {
       const { messageQueues, removeQueuedMessage } = useStore.getState();
       const next = messageQueues[srcId]?.[0];
-      if (!next || !target?.ptyId || target.status !== 'idle') return { sent: false };
+      if (!next) return { sent: false };
+
+      // Auto-drain external & Lyzr agents directly via API dispatch
+      const lyzr = findLyzrConfig(srcId) || (target ? findLyzrConfig(target) : undefined);
+      if (target?.provider === 'external' || lyzr) {
+        const flightKey = `${srcId}:${next.id}`;
+        if (inFlight.has(flightKey)) return { sent: false };
+        inFlight.add(flightKey);
+        removeQueuedMessage(srcId, next.id);
+        const targetId = target ? target.id : srcId;
+        void window.cth.dispatchExternalPrompt?.(targetId, next.text).finally(() => {
+          inFlight.delete(flightKey);
+        });
+        return { sent: true, message: next };
+      }
+
+      if (!target?.ptyId || target.status !== 'idle') return { sent: false };
       const now = Date.now();
       const control = await window.cth.controlSnapshot(target.id);
       // The pause gate holds everything EXCEPT messages the user explicitly
@@ -1139,10 +1171,10 @@ export function useHive(config: HarnessConfig | null): void {
         const command = (a.command ?? '').trim() || buildSpawnCommand(cfg, a.model, provider);
         const [exe, ...args] = tokenizeCommand(command);
         const hive = a.isGod
-          ? { id: a.id, name: a.name, cwd, provider, isGod: true, role: 'orchestrator (god)' }
+          ? { id: a.id, name: a.name, cwd, provider, isGod: true, role: 'Lead Orchestrator (Manager)' }
           : a.isAssistant
-          ? { id: a.id, name: a.name, cwd, provider, isAssistant: true, role: "Michael's prep assistant" }
-          : { id: a.id, name: a.name, cwd, provider, role: a.description };
+            ? { id: a.id, name: a.name, cwd, provider, isAssistant: true, role: "Luffy's prep assistant" }
+            : { id: a.id, name: a.name, cwd, provider, role: a.description };
         // Spawn at the terminal's real grid so the TUI's absolute cursor moves land
         // in the right cells (a size mismatch scatters the redraw).
         const entry = acquireTerminal(deadId);

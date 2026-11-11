@@ -1,9 +1,9 @@
-# Munder Difflin v0.4.4
+# Panda Hive v0.4.4
 
 **A local hive of Claude Code, Antigravity, Codex, Grok & Copilot agents that run themselves** — messaging,
 routing, and remembering, coordinated by your clone, Michael, who you talk to. Local-first and open source.
 
-### → [**munderdiffl.in**](https://munderdiffl.in/) — see it in action, then grab a build below
+### → [**panda-hive.local**](https://panda-hive.local/) — see it in action, then grab a build below
 
 ---
 
@@ -181,7 +181,7 @@ because xterm takes literals, so it moved with them.
 
   <section class="page p1">
     <div class="content center">
-      <p class="kicker">Munder Difflin</p>
+      <p class="kicker">Panda Hive</p>
       <h1 class="big">0.4.4</h1>
       <p class="lede" style="font-size:clamp(1.05rem,2.1vw,1.3rem);margin-top:.5em">
         The release where Windows finally joined the floor — and the first run
@@ -360,7 +360,7 @@ because xterm takes literals, so it moved with them.
 
 ## Still new in 0.4.3 — *Michael is the logo*
 
-**The mark is a face now.** Munder Difflin has always been an office you watch people work in,
+**The mark is a face now.** Panda Hive has always been an office you watch people work in,
 and the icon was a pair of script initials on a gradient. It's Michael — your clone — drawn in
 the app's own pixel art, on the brand yellow, looking straight back at you.
 
@@ -369,7 +369,7 @@ the app's own pixel art, on the brand yellow, looking straight back at you.
   redrawing of another.
 - **The SVG is the source of truth.** The mark is authored as pure vector — every pixel of the
   sprite is a rect, with no fonts, no gradients and no filters — and every raster in `build/`
-  and `docs/` is generated from it by [`tools/make-logo.cjs`](https://github.com/chaitanyagiri/munder-difflin/blob/main/tools/make-logo.cjs).
+  and `docs/` is generated from it by [`tools/make-logo.cjs`](https://github.com/ayushvsingh2611-code/office/blob/main/tools/make-logo.cjs).
   The old icon depended on the Lobster webfont being installed to render correctly.
 - **Icons are native at every size.** A real multi-resolution `.icns` (16→1024, with the macOS
   drop shadow) and a `.ico` carrying six sizes, plus a 32px favicon and a 180px apple-touch-icon,
@@ -386,11 +386,11 @@ the app's own pixel art, on the brand yellow, looking straight back at you.
 
 ## Still new in 0.4.2 — *Anonymous usage stats, done in the open*
 
-Munder Difflin now sends a **small set of anonymous usage events** (app opened, agent spawned,
+Panda Hive now sends a **small set of anonymous usage events** (app opened, agent spawned,
 feature used) so we can tell whether features are actually used. It is built the way an
 open-source project should build it:
 
-- **[TELEMETRY.md](https://github.com/chaitanyagiri/munder-difflin/blob/main/TELEMETRY.md) is the
+- **[TELEMETRY.md](https://github.com/ayushvsingh2611-code/office/blob/main/TELEMETRY.md) is the
   complete contract.** Every event and property is listed there, and the code enforces that list
   as a hard allowlist — anything not in the table cannot be sent. No prompts, no transcripts, no
   file paths, no repo names, no identifiers. Events are PostHog *anonymous events* (no person
@@ -404,7 +404,7 @@ open-source project should build it:
 
 ## Still new in 0.4.1 — *The app says what the site says*
 
-**Michael is your clone.** The website has been describing Munder Difflin as a clone of you that
+**Michael is your clone.** The website has been describing Panda Hive as a clone of you that
 works around the clock — the app still called it a "GOD agent." Now they match.
 
 - **Your clone, not the GOD agent.** Michael is described as your clone throughout onboarding,
@@ -432,7 +432,7 @@ works around the clock — the app still called it a "GOD agent." Now they match
 ## Previously
 
 - **0.4.0** — *the brand grew up*: one yellow "MD" mark across the dock icon, in-app logo, site
-  favicon, and munderdiffl.in; the landing page rebuilt around real screenshots and a live
+  favicon, and panda-hive.local; the landing page rebuilt around real screenshots and a live
   pixel-floor sim; pricing reframed around **Private Cloud** and **Private Network**.
 - **0.3.9** — Settings → General answers "am I up to date?" directly, and removes 0.3.8's
   usage-limit guard that never released held agents.
@@ -454,7 +454,7 @@ works around the clock — the app still called it a "GOD agent." Now they match
 - **0.3.2** — Realtime Michael: a voice channel to the GOD orchestrator.
 - **0.3.1** — three more engines: OpenCode, Crush, and pi.dev.
 
-Full history in the [CHANGELOG](https://github.com/chaitanyagiri/munder-difflin/blob/main/CHANGELOG.md).
+Full history in the [CHANGELOG](https://github.com/ayushvsingh2611-code/office/blob/main/CHANGELOG.md).
 
 
 ---
@@ -465,16 +465,16 @@ This release carries community work. Every one of these landed in v0.4.4:
 
 | | | |
 |---|---|---|
-| [#129](https://github.com/chaitanyagiri/munder-difflin/pull/129) | [@gts-47](https://github.com/gts-47) | "Restart & Continue" now works on an agent that already died |
-| [#130](https://github.com/chaitanyagiri/munder-difflin/pull/130) | [@gts-47](https://github.com/gts-47) | one odd message id no longer silences an agent's wake nudge |
-| [#131](https://github.com/chaitanyagiri/munder-difflin/pull/131) | [@gts-47](https://github.com/gts-47) | dictation pastes what you just said, not the clipboard's previous text |
-| [#132](https://github.com/chaitanyagiri/munder-difflin/pull/132) | [@gts-47](https://github.com/gts-47) | a root cwd no longer resolves to the projects directory itself |
-| [#133](https://github.com/chaitanyagiri/munder-difflin/pull/133) | [@gts-47](https://github.com/gts-47) | a frozen context reading no longer re-fires `/compact` forever |
-| [#134](https://github.com/chaitanyagiri/munder-difflin/pull/134) | [@gts-47](https://github.com/gts-47) | the office floor stops rendering when nobody is looking at it |
-| [#143](https://github.com/chaitanyagiri/munder-difflin/pull/143) | [@gts-47](https://github.com/gts-47) | Grok 4.6 in the model picker |
-| [#144](https://github.com/chaitanyagiri/munder-difflin/pull/144) | [@gts-47](https://github.com/gts-47) | the cost ledger stays out of the hive's git history |
-| [#142](https://github.com/chaitanyagiri/munder-difflin/pull/142) | [@baziyer](https://github.com/baziyer) | renderer task-ledger lost updates — mutations are atomic now |
-| [#137](https://github.com/chaitanyagiri/munder-difflin/pull/137) | [@chaitanyagiri](https://github.com/chaitanyagiri) | the CLI's quote rail is stripped from copied selections |
+| [#129](https://github.com/ayushvsingh2611-code/office/pull/129) | [@gts-47](https://github.com/gts-47) | "Restart & Continue" now works on an agent that already died |
+| [#130](https://github.com/ayushvsingh2611-code/office/pull/130) | [@gts-47](https://github.com/gts-47) | one odd message id no longer silences an agent's wake nudge |
+| [#131](https://github.com/ayushvsingh2611-code/office/pull/131) | [@gts-47](https://github.com/gts-47) | dictation pastes what you just said, not the clipboard's previous text |
+| [#132](https://github.com/ayushvsingh2611-code/office/pull/132) | [@gts-47](https://github.com/gts-47) | a root cwd no longer resolves to the projects directory itself |
+| [#133](https://github.com/ayushvsingh2611-code/office/pull/133) | [@gts-47](https://github.com/gts-47) | a frozen context reading no longer re-fires `/compact` forever |
+| [#134](https://github.com/ayushvsingh2611-code/office/pull/134) | [@gts-47](https://github.com/gts-47) | the office floor stops rendering when nobody is looking at it |
+| [#143](https://github.com/ayushvsingh2611-code/office/pull/143) | [@gts-47](https://github.com/gts-47) | Grok 4.6 in the model picker |
+| [#144](https://github.com/ayushvsingh2611-code/office/pull/144) | [@gts-47](https://github.com/gts-47) | the cost ledger stays out of the hive's git history |
+| [#142](https://github.com/ayushvsingh2611-code/office/pull/142) | [@baziyer](https://github.com/baziyer) | renderer task-ledger lost updates — mutations are atomic now |
+| [#137](https://github.com/ayushvsingh2611-code/office/pull/137) | [@chaitanyagiri](https://github.com/chaitanyagiri) | the CLI's quote rail is stripped from copied selections |
 
 Eight of the fixes above are [@gts-47](https://github.com/gts-47)'s. Thank you.
 
@@ -486,28 +486,28 @@ Apple Silicon and Intel.
 ### 🍎 macOS
 | Build | File |
 |---|---|
-| Universal (Apple Silicon + Intel) | [`Munder-Difflin-0.4.4-mac-universal.dmg`](https://github.com/chaitanyagiri/munder-difflin/releases/latest/download/Munder-Difflin-0.4.4-mac-universal.dmg) |
+| Universal (Apple Silicon + Intel) | [`Panda-Hive-0.4.4-mac-universal.dmg`](https://github.com/ayushvsingh2611-code/office/releases/latest/download/Panda-Hive-0.4.4-mac-universal.dmg) |
 
 ### 🪟 Windows
 | Build | File |
 |---|---|
-| Installer (x64) — *recommended* | [`Munder-Difflin-0.4.4-win-x64-setup.exe`](https://github.com/chaitanyagiri/munder-difflin/releases/latest/download/Munder-Difflin-0.4.4-win-x64-setup.exe) |
-| Portable (x64, no install) | [`Munder-Difflin-0.4.4-win-x64-portable.exe`](https://github.com/chaitanyagiri/munder-difflin/releases/latest/download/Munder-Difflin-0.4.4-win-x64-portable.exe) |
+| Installer (x64) — *recommended* | [`Panda-Hive-0.4.4-win-x64-setup.exe`](https://github.com/ayushvsingh2611-code/office/releases/latest/download/Panda-Hive-0.4.4-win-x64-setup.exe) |
+| Portable (x64, no install) | [`Panda-Hive-0.4.4-win-x64-portable.exe`](https://github.com/ayushvsingh2611-code/office/releases/latest/download/Panda-Hive-0.4.4-win-x64-portable.exe) |
 
 ### 🐧 Linux
 | Build | File |
 |---|---|
-| AppImage (x86_64) | [`Munder-Difflin-0.4.4-linux-x86_64.AppImage`](https://github.com/chaitanyagiri/munder-difflin/releases/latest/download/Munder-Difflin-0.4.4-linux-x86_64.AppImage) |
+| AppImage (x86_64) | [`Panda-Hive-0.4.4-linux-x86_64.AppImage`](https://github.com/ayushvsingh2611-code/office/releases/latest/download/Panda-Hive-0.4.4-linux-x86_64.AppImage) |
 
 ### 📦 Source
-[Source code (zip)](https://github.com/chaitanyagiri/munder-difflin/archive/refs/tags/v0.4.4.zip) ·
-[Source code (tar.gz)](https://github.com/chaitanyagiri/munder-difflin/archive/refs/tags/v0.4.4.tar.gz)
+[Source code (zip)](https://github.com/ayushvsingh2611-code/office/archive/refs/tags/v0.4.4.zip) ·
+[Source code (tar.gz)](https://github.com/ayushvsingh2611-code/office/archive/refs/tags/v0.4.4.tar.gz)
 
-> **Verify your download:** [`SHA256SUMS.txt`](https://github.com/chaitanyagiri/munder-difflin/releases/latest/download/SHA256SUMS.txt) — then `shasum -a 256 -c SHA256SUMS.txt` (macOS/Linux) or `Get-FileHash` (Windows).
+> **Verify your download:** [`SHA256SUMS.txt`](https://github.com/ayushvsingh2611-code/office/releases/latest/download/SHA256SUMS.txt) — then `shasum -a 256 -c SHA256SUMS.txt` (macOS/Linux) or `Get-FileHash` (Windows).
 
 > The filenames above carry a version number, so they only resolve while this is the
 > latest release. If a link 404s you are reading an old release page — grab the current
-> build from the [**releases page**](https://github.com/chaitanyagiri/munder-difflin/releases/latest),
+> build from the [**releases page**](https://github.com/ayushvsingh2611-code/office/releases/latest),
 > which is always right.
 
 ---
@@ -522,21 +522,21 @@ Apple Silicon and Intel.
   to the app's stable signature.
 - **Windows** — not code-signed yet; SmartScreen may show "Windows protected your PC" →
   **More info** → **Run anyway**.
-- **Linux** — make the AppImage executable: `chmod +x Munder-Difflin-*.AppImage`, then run it.
+- **Linux** — make the AppImage executable: `chmod +x Panda-Hive-*.AppImage`, then run it.
 
 ---
 
 ## Requirements
 - macOS 12+, Windows 10/11, or a modern Linux desktop
 - [Claude Code](https://claude.com/claude-code) installed and on your `PATH` (and/or the Antigravity `agy` or OpenAI `codex` CLI for those providers)
-- A Claude Code subscription (Munder Difflin drives your existing `claude` CLI — it doesn't replace it)
+- A Claude Code subscription (Panda Hive drives your existing `claude` CLI — it doesn't replace it)
 - For **Realtime Michael** (voice): your own **OpenAI key with Realtime API access** — without it the **Talk** button stays disabled
 
 ---
 
 ## 🛠 Build from source
 ```bash
-git clone https://github.com/chaitanyagiri/munder-difflin.git
+git clone https://github.com/ayushvsingh2611-code/office.git
 cd munder-difflin
 npm install        # rebuilds node-pty for Electron
 npm run dev        # launches the app with hot reload
@@ -554,15 +554,15 @@ To produce installers yourself: `npm run dist` (current OS), or `dist:mac` / `di
 - **GOD orchestrator + hive** — one agent you talk to routes work to specialists and stays autonomous, escalating only critical items (spend, destructive ops, scope) to you natively, through human-in-the-loop prompts. It can also spawn an ephemeral worker straight from Slack and tear it down safely.
 - **Plugs into your setup** — your subscription, settings, skills, and MCP servers, plus an integrations registry with a write-only secret broker; `/remote-control` reaches the whole floor from your phone.
 
-Full notes in the [CHANGELOG](https://github.com/chaitanyagiri/munder-difflin/blob/main/CHANGELOG.md).
+Full notes in the [CHANGELOG](https://github.com/ayushvsingh2611-code/office/blob/main/CHANGELOG.md).
 
 ---
 
 ## Links
-[Website](https://munderdiffl.in/) ·
-[Repo](https://github.com/chaitanyagiri/munder-difflin) ·
-[Issues](https://github.com/chaitanyagiri/munder-difflin/issues) ·
-[Contribute](https://github.com/chaitanyagiri/munder-difflin/blob/main/CONTRIBUTING.md) ·
+[Website](https://panda-hive.local/) ·
+[Repo](https://github.com/ayushvsingh2611-code/office) ·
+[Issues](https://github.com/ayushvsingh2611-code/office/issues) ·
+[Contribute](https://github.com/ayushvsingh2611-code/office/blob/main/CONTRIBUTING.md) ·
 [Become a patron](https://razorpay.me/@munderdifflinfund)
 
 MIT-licensed. An affectionate parody — not affiliated with NBC's *The Office* or Dunder Mifflin.

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grandmaster Chess — Two Player Arena</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        if (typeof tailwind !== 'undefined') {
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            slate: {
+                                850: '#151c2c',
+                                900: '#0f172a',
+                                950: '#090d16',
+                            },
+                            amber: {
+                                400: '#fbbf24',
+                                500: '#f59e0b',
+                                600: '#d97706',
+                            }
+                        },
+                        fontFamily: {
+                            sans: ['"Inter"', '"Plus Jakarta Sans"', 'sans-serif'],
+                            mono: ['"JetBrains Mono"', 'monospace']
+                        }
+                    }
+                }
+            };
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-full flex flex-col font-sans antialiased selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center text-slate-950 font-bold text-xl shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-chess-king"></i>
+                </div>
+                <div>
+                    <span class="text-lg font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-amber-400 bg-clip-text text-transparent">Grandmaster Chess</span>
+                    <span class="block text-[10px] uppercase tracking-widest text-amber-400/80 font-semibold">Two Player Arena</span>
+                </div>
+            </div>
+
+            <!-- Quick Controls & Theme toggles -->
+            <div class="flex items-center space-x-3">
+                <button id="rules-btn" class="px-3.5 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white text-sm font-medium transition-all flex items-center space-x-2 border border-slate-700/50">
+                    <i class="fa-solid fa-book-open text-amber-400"></i>
+                    <span class="hidden sm:inline">How to Play</span>
+                </button>
+                <button id="history-btn" class="px-3.5 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white text-sm font-medium transition-all flex items-center space-x-2 border border-slate-700/50">
+                    <i class="fa-solid fa-clock-rotate-left text-blue-400"></i>
+                    <span class="hidden sm:inline">Move Log</span>
+                    <span id="move-count-badge" class="bg-slate-700 text-slate-200 text-xs px-1.5 py-0.5 rounded-full font-mono">0</span>
+                </button>
+                <button id="sound-toggle" title="Toggle Sound" class="w-10 h-10 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700/50 transition-all">
+                    <i class="fa-solid fa-volume-high text-emerald-400" id="sound-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Game Arena -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 flex flex-col lg:flex-row gap-8 items-center lg:items-start justify-center">
+
+        <!-- Left Column / Player 2 (Black) info & Captures -->
+        <div class="w-full lg:w-80 flex flex-col space-y-4 order-2 lg:order-1">
+            <!-- Player 2 Card -->
+            <div id="player-black-card" class="bg-slate-900/90 rounded-2xl p-4 border border-slate-800 shadow-xl transition-all">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-slate-700 flex items-center justify-center text-slate-300 font-bold text-lg shadow-inner">
+                            <i class="fa-solid fa-chess-pawn"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-200 text-base" id="player2-name-display">Black Player</h3>
+                            <span class="text-xs text-slate-400 flex items-center gap-1.5 font-mono">
+                                <span class="w-2 h-2 rounded-full bg-slate-500 inline-block" id="black-status-dot"></span>
+                                <span id="black-timer">10:00</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs uppercase tracking-wider font-bold text-slate-500 px-2 py-1 rounded bg-slate-800/50">Black</span>
+                    </div>
+                </div>
+                <!-- Captured pieces by Black -->
+                <div class="bg-slate-950/60 rounded-xl p-2.5 border border-slate-800/60">
+                    <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5 flex justify-between">
+                        <span>Captured Advantage</span>
+                        <span id="black-score" class="font-mono text-amber-400">+0</span>
+                    </div>
+                    <div id="black-captured" class="flex flex-wrap gap-1 min-h-[32px] items-center text-lg text-slate-300">
+                        <span class="text-xs text-slate-600 italic">No captures yet</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Status & Turn Indicator Banner -->
+            <div class="bg-gradient-to-br from-slate-900 to-slate-900/90 rounded-2xl p-4 border border-slate-800 shadow-xl">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-slate-400">Current Turn</span>
+                    <span id="turn-indicator" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        White's Turn
+                    </span>
+                </div>
+                <div id="game-status-message" class="text-sm font-medium text-slate-300 mt-2 p-2.5 rounded-xl bg-slate-950/50 border border-slate-800/60 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-blue-400"></i>
+                    <span>Game in progress. Select a piece to move.</span>
+                </div>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="grid grid-cols-2 gap-3">
+                <button id="reset-btn" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>New Game</span>
+                </button>
+                <button id="resign-btn" class="w-full py-3 px-4 rounded-xl bg-slate-800 hover:bg-red-900/30 hover:border-red-500/50 text-slate-300 hover:text-red-400 font-bold text-sm border border-slate-700/80 transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-flag"></i>
+                    <span>Resign</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Center Column / The Chessboard -->
+        <div class="flex flex-col items-center order-1 lg:order-2">
+            <div class="relative p-3 sm:p-4 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl shadow-slate-950/80 backdrop-blur-xl">
+                
+                <!-- Board Frame with Rank & File labels -->
+                <div class="relative">
+                    <!-- File labels Top -->
+                    <div class="flex text-slate-500 text-xs font-mono font-bold pb-2 pl-7 pr-1 justify-between select-none">
+                        <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span>
+                    </div>
+
+                    <div class="flex">
+                        <!-- Rank labels Left -->
+                        <div class="flex flex-col text-slate-500 text-xs font-mono font-bold justify-between pr-2 py-1 select-none items-center w-6">
+                            <span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span>
+                        </div>
+
+                        <!-- 8x8 Chessboard Grid -->
+                        <div id="chessboard" class="grid grid-cols-8 grid-rows-8 w-[320px] h-[320px] sm:w-[440px] sm:h-[440px] md:w-[480px] md:h-[480px] rounded-xl overflow-hidden border-4 border-slate-800 shadow-2xl">
+                            <!-- Squares are generated dynamically by app.js -->
+                        </div>
+
+                        <!-- Rank labels Right -->
+                        <div class="flex flex-col text-slate-500 text-xs font-mono font-bold justify-between pl-2 py-1 select-none items-center w-6">
+                            <span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span>
+                        </div>
+                    </div>
+
+                    <!-- File labels Bottom -->
+                    <div class="flex text-slate-500 text-xs font-mono font-bold pt-2 pl-7 pr-1 justify-between select-none">
+                        <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right Column / Player 1 (White) info & Move History -->
+        <div class="w-full lg:w-80 flex flex-col space-y-4 order-3">
+            <!-- Player 1 Card -->
+            <div id="player-white-card" class="bg-slate-900/90 rounded-2xl p-4 border border-slate-800 shadow-xl transition-all ring-2 ring-amber-500/50">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-amber-500/60 flex items-center justify-center text-amber-400 font-bold text-lg shadow-inner">
+                            <i class="fa-solid fa-chess-king"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-200 text-base" id="player1-name-display">White Player</h3>
+                            <span class="text-xs text-slate-400 flex items-center gap-1.5 font-mono">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" id="white-status-dot"></span>
+                                <span id="white-timer">10:00</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs uppercase tracking-wider font-bold text-amber-400 px-2 py-1 rounded bg-amber-500/10 border border-amber-500/20">White</span>
+                    </div>
+                </div>
+                <!-- Captured pieces by White -->
+                <div class="bg-slate-950/60 rounded-xl p-2.5 border border-slate-800/60">
+                    <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5 flex justify-between">
+                        <span>Captured Advantage</span>
+                        <span id="white-score" class="font-mono text-amber-400">+0</span>
+                    </div>
+                    <div id="white-captured" class="flex flex-wrap gap-1 min-h-[32px] items-center text-lg text-slate-300">
+                        <span class="text-xs text-slate-600 italic">No captures yet</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Move History Box -->
+            <div class="bg-slate-900/90 rounded-2xl p-4 border border-slate-800 shadow-xl flex flex-col h-64">
+                <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-2">
+                    <span class="text-xs uppercase tracking-wider font-bold text-slate-400 flex items-center gap-2">
+                        <i class="fa-solid fa-list-ol text-amber-400"></i> Move History
+                    </span>
+                    <button id="clear-history" class="text-xs text-slate-500 hover:text-slate-300 transition-colors">Clear</button>
+                </div>
+                <div id="move-history-list" class="flex-1 overflow-y-auto pr-1 space-y-1 font-mono text-xs scrollbar-thin scrollbar-thumb-slate-700">
+                    <div class="text-slate-500 italic text-center py-8">Moves will appear here...</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-slate-800/80 bg-slate-900/50 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 space-y-2 sm:space-y-0">
+            <p>© Grandmaster Chess Arena • Two Player Local Match</p>
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Standard FIDE Rules</span>
+                <span>•</span>
+                <span>Press <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">R</kbd> to Reset</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL: Game Over / Checkmate Modal -->
+    <div id="game-over-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden opacity-0 pointer-events-none transition-all duration-300">
+        <div class="modal-card bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl text-center pointer-events-auto transform scale-95 transition-all duration-300" id="game-over-card">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-3xl shadow-lg shadow-amber-500/10 animate-bounce">
+                <i class="fa-solid fa-trophy" id="modal-trophy-icon"></i>
+            </div>
+            <h2 id="modal-title" class="text-2xl font-bold text-white mb-2">Checkmate!</h2>
+            <p id="modal-message" class="text-slate-300 text-sm mb-6">White player wins the match by checkmate in 34 moves.</p>
+            <div class="flex space-x-3">
+                <button id="modal-rematch-btn" class="flex-1 py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>Play Again</span>
+                </button>
+                <button id="modal-close-btn" class="py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-medium text-sm border border-slate-700 transition-all">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Rules & How to Play Modal -->
+    <div id="rules-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden opacity-0 pointer-events-none transition-all duration-300">
+        <div class="modal-card bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl pointer-events-auto transform scale-95 transition-all duration-300 max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-400">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-white">How to Play Chess</h2>
+                </div>
+                <button id="rules-close-x" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto space-y-4 text-sm text-slate-300 pr-2">
+                <div class="space-y-2">
+                    <h3 class="font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-chess-board"></i> Objective</h3>
+                    <p>The goal of chess is to checkmate your opponent's king. This occurs when the king is under an inescapable threat of capture.</p>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-hand-pointer"></i> Controls</h3>
+                    <p>White moves first. Players take turns moving one piece per turn according to standard chess movement rules:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-slate-400">
+                        <li><strong class="text-slate-200">Pawn:</strong> Moves forward one square (or two on first move); captures diagonally.</li>
+                        <li><strong class="text-slate-200">Rook:</strong> Moves horizontally or vertically any number of unoccupied squares.</li>
+                        <li><strong class="text-slate-200">Knight:</strong> Moves in an L-shape (two squares in one direction, then one square perpendicular). Can jump over other pieces.</li>
+                        <li><strong class="text-slate-200">Bishop:</strong> Moves diagonally any number of unoccupied squares.</li>
+                        <li><strong class="text-slate-200">Queen:</strong> Moves horizontally, vertically, or diagonally any number of squares.</li>
+                        <li><strong class="text-slate-200">King:</strong> Moves one square in any direction.</li>
+                    </ul>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> Turn Indicator</h3>
+                    <p>Valid destination squares for a selected piece are highlighted in green. Capturable enemy squares are highlighted with a red ring.</p>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-800 mt-4 text-right">
+                <button id="rules-close-btn" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all">
+                    Got it, Let's Play!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Game Engine -->
+    <script src="app.js" defer></script>
+</body>
+</html>

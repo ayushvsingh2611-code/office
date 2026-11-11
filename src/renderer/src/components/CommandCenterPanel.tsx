@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { PixelPanel } from './PixelPanel';
 import { PixelBadge } from './PixelBadge';
 import { PixelButton } from './PixelButton';
@@ -6,6 +6,7 @@ import { SpritePortrait } from './SpritePortrait';
 import { PtyTerminalView } from './PtyTerminalView';
 import { MessageQueueComposer } from './MessageQueueComposer';
 import { TasksKanban } from './TasksKanban';
+import { AgentHivePanel } from './AgentHivePanel';
 import { AskMeTab } from './AskMeTab';
 import { TriggersTab } from './triggers/TriggersTab';
 import { TriggerHistoryTab } from './triggers/TriggerHistoryTab';
@@ -81,6 +82,7 @@ const TABS: { key: CCTab; label: string; icon: Parameters<typeof Icon>[0]['name'
  *  cols/rows and corrupt the display. */
 export function CommandCenterPanel({ agent, fullscreen = false }: { agent: Agent; fullscreen?: boolean }) {
   const [tab, setTab] = useState<CCTab>('terminal');
+  const [sprintModalOpen, setSprintModalOpen] = useState(false);
   // The trigger-history ledger has nothing to say until an outside party can
   // reach us, so its tab appears only once an org key or a webhook exists. This
   // is the first config-gated tab in the panel: TABS stays the canonical order
@@ -176,7 +178,7 @@ export function CommandCenterPanel({ agent, fullscreen = false }: { agent: Agent
             <span style={{
               fontSize: 12, color: 'var(--cth-ink-500)',
               whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'
-            }}>Michael runs the floor</span>
+            }}>Luffy runs the floor</span>
           </div>
         </div>
         {/* v0.3.4: floor-wide auto-delivery lives HERE (one switch for every
@@ -207,6 +209,11 @@ export function CommandCenterPanel({ agent, fullscreen = false }: { agent: Agent
           }}>
             <span title="Open the IDE — file editor + git diff" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
               <Icon name="code" /> IDE
+            </span>
+          </PixelButton>
+          <PixelButton variant="primary" size="sm" onClick={() => setSprintModalOpen(true)}>
+            <span title="Open Dual Sprint & Usopp's Café Panel View" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+              <span>⚡</span> Dual Sprint & Café
             </span>
           </PixelButton>
         </div>
@@ -244,7 +251,7 @@ export function CommandCenterPanel({ agent, fullscreen = false }: { agent: Agent
         flexWrap: fullscreen ? 'nowrap' : 'wrap',
         overflowX: fullscreen ? 'auto' : 'visible',
         padding: '6px 8px', background: 'var(--cth-cream-100)',
-        borderBottom: '1px solid var(--cth-ink-700)', flexShrink: 0
+        borderBottom: '1px solid var(--cth-ink-300)', flexShrink: 0
       }}>
         {visibleTabs.map((t) => (
           <button
@@ -252,22 +259,17 @@ export function CommandCenterPanel({ agent, fullscreen = false }: { agent: Agent
             onClick={() => setTab(t.key)}
             style={{
               whiteSpace: 'nowrap',
-              // grow to share any spare width (so the strip still spans the panel
-              // exactly as the old grid did), never shrink below the label (a
-              // squashed tab is unreadable — overflow into the scroll instead).
               flex: '1 0 auto',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
-              padding: '4px 8px 3px', border: 'none', cursor: 'pointer',
-              background: tab === t.key ? `var(--cth-${agent.accent})` : 'var(--cth-cream-200)',
-              // The selected tab is filled with the agent's accent, which is a
-              // LIGHT colour in both themes. ink-900 flips to near-white in dark
-              // mode, so the active tab's label was pale-on-pale — the one tab
-              // you most need to read. On-accent text is dark in both themes.
-              color: tab === t.key ? 'var(--cth-on-accent)' : 'var(--cth-ink-900)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
+              padding: '5px 9px 4px', border: 'none', cursor: 'pointer',
+              borderRadius: 4,
+              background: tab === t.key ? `var(--cth-${agent.accent})` : 'var(--cth-paper-100)',
+              color: tab === t.key ? 'var(--cth-on-accent)' : 'var(--cth-ink-700)',
               boxShadow: tab === t.key
-                ? 'inset 0 0 0 1px var(--cth-ink-300)'
-                : 'inset 0 0 0 1px var(--cth-ink-100)',
-              fontFamily: 'var(--cth-font-ui)', fontSize: 13
+                ? 'inset 0 0 0 1px var(--cth-ink-300), 0 1px 3px rgba(0, 0, 0, 0.25)'
+                : 'inset 0 0 0 1px var(--cth-cream-300)',
+              fontFamily: 'var(--cth-font-ui)', fontSize: 13,
+              transition: 'background 120ms ease, box-shadow 120ms ease'
             }}
           >
             <Icon name={t.icon} /> {t.label}
@@ -302,7 +304,35 @@ export function CommandCenterPanel({ agent, fullscreen = false }: { agent: Agent
               <MessageQueueComposer agent={agent} />
             </>
           ) : (
-            <Centered>Michael has no live terminal.</Centered>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, padding: 20 }}>
+              <div style={{ fontSize: 13, color: 'var(--cth-ink-500)', fontFamily: 'var(--cth-font-ui)' }}>
+                Michael has no live terminal attached.
+              </div>
+              <PixelButton
+                variant="primary"
+                size="md"
+                onClick={async () => {
+                  try {
+                    const cfg = await window.cth.getConfig();
+                    const bin = cfg.godProvider === 'claude' ? 'claude' : (cfg.godProvider || 'claude');
+                    const res = await window.cth.spawnPty({
+                      id: agent.id,
+                      cwd: agent.cwd || '',
+                      command: bin,
+                      cols: 100,
+                      rows: 30
+                    });
+                    if (res.ok) {
+                      updateAgent(agent.id, { ptyId: agent.id, status: 'idle' });
+                    }
+                  } catch (err) {
+                    console.error('Failed to spawn terminal:', err);
+                  }
+                }}
+              >
+                ▶️ Launch Terminal
+              </PixelButton>
+            </div>
           )
         )}
         {tab === 'floor' && <FloorTab seed={dispatchSeed} />}
@@ -323,6 +353,7 @@ export function CommandCenterPanel({ agent, fullscreen = false }: { agent: Agent
         {tab === 'skills' && <SkillsTab agentCwd={agent.cwd} />}
         {tab === 'workers' && <WorkersTab />}
       </div>
+      {sprintModalOpen && <AgentHivePanel isOpen={sprintModalOpen} onClose={() => setSprintModalOpen(false)} />}
     </PixelPanel>
   );
 }
@@ -544,7 +575,7 @@ function FloorTab({ seed }: { seed: { text: string; seq: number } }) {
     );
     setDispatchText('');
     setDispatchMsg(res.ok
-      ? `sent to Michael${suggested ? ` (suggesting ${suggested.name})` : ''}`
+      ? `sent to Luffy${suggested ? ` (suggesting ${suggested.name})` : ''}`
       : `failed: ${res.error ?? '?'}`);
     setTimeout(() => setDispatchMsg(null), 4000);
   };
@@ -605,13 +636,13 @@ function FloorTab({ seed }: { seed: { text: string; seq: number } }) {
 
   return (
     <Scroll>
-      <Section title="DISPATCH — VIA MICHAEL">
+      <Section title="DISPATCH — VIA LUFFY">
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
           <span style={{ fontFamily: 'var(--cth-font-display)', fontSize: 8, color: 'var(--cth-ink-500)', flexShrink: 0 }}>
             SUGGESTED OWNER
           </span>
           <Select value={dispatchTo} onChange={setDispatchTo}>
-            <option value="">Michael decides</option>
+            <option value="">Luffy decides</option>
             {agents.filter((a) => !a.isGod).map((a) => (
               <option key={a.id} value={a.id}>{a.name}</option>
             ))}
@@ -621,7 +652,7 @@ function FloorTab({ seed }: { seed: { text: string; seq: number } }) {
           value={dispatchText}
           onChange={(e) => setDispatchText(e.target.value)}
           rows={2}
-          placeholder="Describe the task… (Michael decomposes, writes the card, and assigns)"
+          placeholder="Describe the task… (Luffy decomposes, writes the card, and assigns)"
           style={textareaStyle}
         />
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 6 }}>
@@ -1016,25 +1047,122 @@ function ArchivedSection() {
 
 // ─── Memory tab ──────────────────────────────────────────────────────────────
 
+const KNOWN_ROSTER_AGENTS: Array<{ id: string; name: string }> = [
+  { id: 'god', name: 'Luffy (Lead Orchestrator / Manager)' },
+  { id: 'sh-hancock', name: 'Hancock (Requirements & BA)' },
+  { id: 'sh-shanks', name: 'Shanks (System Architect)' },
+  { id: 'sh-nami', name: 'Nami (Data Architect)' },
+  { id: 'sh-franky', name: 'Franky (UI Engineer)' },
+  { id: 'sh-usopp', name: 'Usopp (Backend Engineer)' },
+  { id: 'sh-brook', name: 'Brook (Integrations & Content)' },
+  { id: 'sh-jinbe', name: 'Jinbe (Security Reviewer)' },
+  { id: 'sh-chopper', name: 'Chopper (Testing & Bug Fixing)' },
+  { id: 'sh-sanji', name: 'Sanji (DevOps Engineer)' },
+  { id: 'sh-zoro', name: 'Zoro (Final Code Reviewer)' },
+  { id: 'sh-robin', name: 'Robin (Documentation Specialist)' }
+];
+
 function MemoryTab({ godId, who: controlledWho, onWho }: { godId: string; who?: string; onWho?: (id: string) => void }) {
   const agents = useStore((s) => s.agents);
   // Selection is controllable from the graph tab; falls back to local state.
   const [internalWho, setInternalWho] = useState<string>(godId);
   const who = controlledWho ?? internalWho;
   const setWho = onWho ?? setInternalWho;
-  const [mem, setMem] = useState('');
+
+  // Build complete list of selectable agents (Floor agents + Lyzr Roster)
+  const selectableAgents = useMemo(() => {
+    const map = new Map<string, { id: string; name: string }>();
+    KNOWN_ROSTER_AGENTS.forEach((k) => map.set(k.id, k));
+    agents.forEach((a) => {
+      if (!map.has(a.id)) {
+        map.set(a.id, { id: a.id, name: a.name });
+      } else {
+        const existing = map.get(a.id)!;
+        if (!existing.name.includes('(') && a.name) {
+          map.set(a.id, { id: a.id, name: a.name });
+        }
+      }
+    });
+    return Array.from(map.values());
+  }, [agents]);
+
+  const [rawMem, setRawMem] = useState('');
+  const [editContent, setEditContent] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  const [loadingMem, setLoadingMem] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [saveError, setSaveError] = useState<string | null>(null);
+
+  // Quick Append state
+  const [quickNote, setQuickNote] = useState('');
+  const [appending, setAppending] = useState(false);
+
+  // Search states
   const [query, setQuery] = useState('');
   const [searchOut, setSearchOut] = useState('');
   const [busy, setBusy] = useState(false);
-  // Full-text search across hive files (board, tasks, memory) — additive.
   const [textQuery, setTextQuery] = useState('');
   const [textResults, setTextResults] = useState<Array<{ source: string; excerpt: string }>>([]);
   const [textSearched, setTextSearched] = useState(false);
   const [textBusy, setTextBusy] = useState(false);
 
+  const loadMemory = (targetId: string) => {
+    setLoadingMem(true);
+    setSaveStatus('idle');
+    setSaveError(null);
+    window.cth.hiveMemory(targetId)
+      .then((val: any) => {
+        const text = typeof val === 'string' ? val : (val && Object.keys(val).length > 0 ? JSON.stringify(val, null, 2) : '');
+        setRawMem(text);
+        setEditContent(text);
+      })
+      .catch(() => {
+        setRawMem('');
+        setEditContent('');
+      })
+      .finally(() => setLoadingMem(false));
+  };
+
   useEffect(() => {
-    window.cth.hiveMemory(who).then(setMem).catch(() => setMem(''));
+    loadMemory(who);
+    setIsEditing(false);
   }, [who]);
+
+  const handleSave = async () => {
+    setSaveStatus('saving');
+    setSaveError(null);
+    try {
+      const res = await window.cth.saveMemory(who, editContent);
+      if (res.ok) {
+        setRawMem(editContent);
+        setSaveStatus('saved');
+        setIsEditing(false);
+        setTimeout(() => setSaveStatus('idle'), 3000);
+      } else {
+        setSaveStatus('error');
+        setSaveError(res.error || 'Failed to save');
+      }
+    } catch (e: any) {
+      setSaveStatus('error');
+      setSaveError(e?.message || 'Save error');
+    }
+  };
+
+  const handleAppend = async () => {
+    if (!quickNote.trim()) return;
+    setAppending(true);
+    try {
+      const res = await window.cth.appendMemory(who, quickNote.trim());
+      if (res.ok) {
+        setQuickNote('');
+        loadMemory(who);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setAppending(false);
+    }
+  };
 
   const search = async () => {
     if (!query.trim()) return;
@@ -1050,10 +1178,14 @@ function MemoryTab({ godId, who: controlledWho, onWho }: { godId: string; who?: 
     setTextBusy(true);
     try {
       const res = await window.cth.textSearch(textQuery.trim());
-      setTextResults(res.ok ? res.results.slice(0, 10) : []);
+      setTextResults(res.ok ? res.results.slice(0, 15) : []);
     } catch { setTextResults([]); }
     finally { setTextBusy(false); setTextSearched(true); }
   };
+
+  const isDirty = editContent !== rawMem;
+  const lineCount = editContent ? editContent.split('\n').length : 0;
+  const charCount = editContent.length;
 
   return (
     <Scroll>
@@ -1072,18 +1204,32 @@ function MemoryTab({ godId, who: controlledWho, onWho }: { godId: string; who?: 
         </div>
         {textResults.length > 0 && (
           <div style={{ marginTop: 6 }}>
-            {textResults.map((r, i) => (
-              <div key={i} style={{ marginBottom: 4 }}>
-                <div style={{ fontFamily: 'var(--cth-font-mono)', fontSize: 11, color: 'var(--cth-ink-500)' }}>{r.source}</div>
-                <Pre>{r.excerpt}</Pre>
-              </div>
-            ))}
+            <div style={{ fontFamily: 'var(--cth-font-mono)', fontSize: 11, color: 'var(--cth-ink-500)', marginBottom: 4 }}>
+              Found {textResults.length} match{textResults.length === 1 ? '' : 'es'}:
+            </div>
+            {textResults.map((r, i) => {
+              const agentMatch = r.source.match(/agents[/\\]([^/\\]+)[/\\]memory\.md/);
+              const matchedAgentId = agentMatch ? agentMatch[1] : null;
+              return (
+                <div key={i} style={{ marginBottom: 6, padding: 6, background: 'var(--cth-paper-100)', boxShadow: 'inset 0 0 0 1px var(--cth-ink-100)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
+                    <span style={{ fontFamily: 'var(--cth-font-mono)', fontSize: 11, color: 'var(--cth-sky)', fontWeight: 'bold' }}>{r.source}</span>
+                    {matchedAgentId && (
+                      <PixelButton variant="secondary" size="sm" onClick={() => setWho(matchedAgentId)}>
+                        View {matchedAgentId}
+                      </PixelButton>
+                    )}
+                  </div>
+                  <Pre style={{ maxHeight: 100, fontSize: 11 }}>{r.excerpt}</Pre>
+                </div>
+              );
+            })}
           </div>
         )}
         {textSearched && textResults.length === 0 && <Muted>Nothing matched.</Muted>}
       </Section>
 
-      <Section title="SEMANTIC SEARCH (MemPalace)">
+      <Section title="SEMANTIC SEARCH (MemPalace / Smart Semantic Fallback)">
         <div style={{ display: 'flex', gap: 6 }}>
           <input
             value={query}
@@ -1096,14 +1242,97 @@ function MemoryTab({ godId, who: controlledWho, onWho }: { godId: string; who?: 
             {busy ? '…' : 'search'}
           </PixelButton>
         </div>
-        {searchOut && <Pre>{searchOut}</Pre>}
+        {searchOut && <Pre style={{ maxHeight: 220, fontSize: 11 }}>{searchOut}</Pre>}
       </Section>
 
       <Section title="MEMORY FILE">
-        <Select value={who} onChange={setWho}>
-          {agents.map((a) => (<option key={a.id} value={a.id}>{a.name}</option>))}
-        </Select>
-        <Pre>{mem || 'No memory recorded yet.'}</Pre>
+        {/* Agent Selector & Action Toolbar */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center', marginBottom: 6 }}>
+          <div style={{ flex: '1 1 180px' }}>
+            <Select value={who} onChange={setWho}>
+              {selectableAgents.map((a) => (<option key={a.id} value={a.id}>{a.name}</option>))}
+            </Select>
+          </div>
+          <div style={{ display: 'flex', gap: 4 }}>
+            <PixelButton
+              variant="secondary"
+              size="sm"
+              onClick={() => loadMemory(who)}
+              disabled={loadingMem}
+              title="Reload memory from disk"
+            >
+              {loadingMem ? '…' : '🔄'}
+            </PixelButton>
+            <PixelButton
+              variant={isEditing ? 'primary' : 'secondary'}
+              size="sm"
+              onClick={() => setIsEditing(!isEditing)}
+              title={isEditing ? 'View formatted' : 'Edit raw markdown'}
+            >
+              {isEditing ? '👁 View' : '✏️ Edit'}
+            </PixelButton>
+            <PixelButton
+              variant="primary"
+              size="sm"
+              onClick={handleSave}
+              disabled={!isDirty || saveStatus === 'saving'}
+              title="Save changes to disk"
+            >
+              {saveStatus === 'saving' ? 'Saving…' : '💾 Save'}
+            </PixelButton>
+          </div>
+        </div>
+
+        {/* Status & File Info Bar */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 11, fontFamily: 'var(--cth-font-mono)', marginBottom: 6, color: 'var(--cth-ink-500)' }}>
+          <span>agents/{who}/memory.md</span>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <span>{lineCount} lines ({charCount} B)</span>
+            {saveStatus === 'saved' && <span style={{ color: '#27ae60', fontWeight: 'bold' }}>✓ Saved!</span>}
+            {saveStatus === 'error' && <span style={{ color: '#e74c3c' }}>✕ {saveError}</span>}
+            {isDirty && saveStatus !== 'saved' && <span style={{ color: '#e67e22', fontWeight: 'bold' }}>● Unsaved</span>}
+          </div>
+        </div>
+
+        {/* Memory Content: Editable Textarea or Formatted Pre */}
+        {isEditing ? (
+          <div>
+            <textarea
+              value={editContent}
+              onChange={(e) => setEditContent(e.target.value)}
+              placeholder="Enter markdown memory for this agent..."
+              style={{ ...textareaStyle, minHeight: 220, maxHeight: 380, resize: 'vertical' }}
+            />
+          </div>
+        ) : (
+          <Pre style={{ minHeight: 140, maxHeight: 320 }}>
+            {rawMem || 'No memory recorded yet. Use Quick Note below or click ✏️ Edit to write context.'}
+          </Pre>
+        )}
+
+        {/* Quick Append Note / Fact Bar */}
+        <div style={{ marginTop: 10, paddingTop: 8, borderTop: '1px dashed var(--cth-ink-100)' }}>
+          <div style={{ fontFamily: 'var(--cth-font-display)', fontSize: 9, lineHeight: '12px', color: 'var(--cth-ink-500)', marginBottom: 4 }}>
+            QUICK APPEND FACT / NOTE
+          </div>
+          <div style={{ display: 'flex', gap: 6 }}>
+            <input
+              value={quickNote}
+              onChange={(e) => setQuickNote(e.target.value)}
+              onKeyDown={(e) => { if (e.key === 'Enter') handleAppend(); }}
+              placeholder={`Add a fact or decision to ${who}'s memory...`}
+              style={{ ...textareaStyle, height: 28, fontSize: 11 }}
+            />
+            <PixelButton
+              variant="primary"
+              size="sm"
+              onClick={handleAppend}
+              disabled={appending || !quickNote.trim()}
+            >
+              {appending ? '…' : '+ Note'}
+            </PixelButton>
+          </div>
+        </div>
       </Section>
     </Scroll>
   );
@@ -1196,15 +1425,16 @@ function ActivityTab() {
   const [board, setBoard] = useState('');
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  useEffect(() => {
-    const refresh = async () => {
-      try { setLog((await window.cth.hiveLog(60)) as LogEntry[]); } catch { /* noop */ }
-      try { setBoard(await window.cth.hiveBoard()); } catch { /* noop */ }
-    };
-    refresh();
-    timer.current = setInterval(refresh, 3000);
-    return () => { if (timer.current) clearInterval(timer.current); };
+  const refreshActivity = useCallback(async () => {
+    try { setLog((await window.cth.hiveLog(60)) as LogEntry[]); } catch { /* noop */ }
+    try { setBoard(await window.cth.hiveBoard()); } catch { /* noop */ }
   }, []);
+
+  useEffect(() => {
+    refreshActivity();
+    timer.current = setInterval(refreshActivity, 3000);
+    return () => { if (timer.current) clearInterval(timer.current); };
+  }, [refreshActivity]);
 
   const fmt = (e: LogEntry): string => {
     switch (e.kind) {
@@ -1213,13 +1443,26 @@ function ActivityTab() {
       case 'drain': return `${e.agentId} drained ${e.count} msg(s)`;
       case 'escalate': return `escalated to human: ${e.subject ?? ''}`;
       case 'approval': return `approval ${e.approve ? 'granted' : 'denied'}`;
-      default: return JSON.stringify(e);
+      case 'sprint': return `🚀 [Sprint] ${e.agentName ?? e.agentId ?? 'Team'}: ${e.text ?? e.message ?? 'Step updated'}`;
+      case 'external': return `🤖 ${e.agentName ?? e.agentId ?? 'Agent'}: ${e.text ?? e.action ?? 'Event'}`;
+      case 'tasks': return `📋 Tasks ledger updated (${e.count ?? ''} tasks)`;
+      default: {
+        if (typeof e.text === 'string') return e.text;
+        if (typeof e.message === 'string') return e.message;
+        return JSON.stringify(e);
+      }
     }
   };
 
   return (
     <Scroll>
       <Section title="ACTIVITY">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+          <span style={{ fontSize: 11, color: 'var(--cth-ink-500)', fontFamily: 'var(--cth-font-mono)' }}>
+            {log.length} recent event{log.length === 1 ? '' : 's'}
+          </span>
+          <PixelButton variant="secondary" size="sm" onClick={refreshActivity}>🔄</PixelButton>
+        </div>
         {log.length === 0 && <Muted>Nothing yet.</Muted>}
         {[...log].reverse().map((e, i) => (
           <div key={i} style={{ fontSize: 12, color: 'var(--cth-ink-700)', padding: '2px 0', display: 'flex', gap: 6 }}>
@@ -1267,13 +1510,14 @@ function Muted({ children }: { children: React.ReactNode }) {
   return <div style={{ fontSize: 12, color: 'var(--cth-ink-500)' }}>{children}</div>;
 }
 
-function Pre({ children }: { children: React.ReactNode }) {
+function Pre({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
     <pre style={{
       margin: '6px 0 0', padding: 8, maxHeight: 200, overflow: 'auto',
       background: 'var(--cth-paper-100)', boxShadow: 'inset 0 0 0 1px var(--cth-ink-300)',
       fontFamily: 'var(--cth-font-mono)', fontSize: 12, lineHeight: '16px',
-      color: 'var(--cth-ink-900)', whiteSpace: 'pre-wrap', wordBreak: 'break-word'
+      color: 'var(--cth-ink-900)', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
+      ...style
     }}>{children}</pre>
   );
 }

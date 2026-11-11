@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraCare Diagnostics & Pathology Portal | Advanced Lab Testing & Home Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== 1. TOP UTILITY BAR ==================== -->
+  <div id="top-bar" class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span class="emergency-badge">24/7 Emergency Lab Support</span>
+        <span class="helpline">Helpline: <a href="tel:180028725227">1800-AURA-LABS (1800-287-2522)</a></span>
+      </div>
+      <div class="top-bar-right">
+        <span class="home-collection-alert">⚡ Free Home Sample Collection on orders above $50</span>
+        <div class="top-utility-links">
+          <a href="#centers-section" id="top-link-locator">Lab Locator</a>
+          <span class="divider">|</span>
+          <button id="top-accessibility-btn" class="utility-text-btn" type="button">Accessibility</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 2. STICKY PRIMARY NAVIGATION ==================== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="nav-left">
+        <a href="#" id="nav-brand-logo" class="brand-logo">
+          <div class="logo-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">AuraCare</span>
+            <span class="brand-sub">Diagnostics & Pathology</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="nav-center">
+        <nav class="main-nav">
+          <a href="#tests-section" id="nav-link-tests">Tests Directory</a>
+          <a href="#packages-section" id="nav-link-packages">Health Packages</a>
+          <a href="#centers-section" id="nav-link-centers">Find a Lab</a>
+          <button id="nav-link-upload-rx" class="nav-action-link" type="button">Upload Rx</button>
+          <button id="nav-link-reports" class="nav-action-link" type="button">My Reports</button>
+          <button id="nav-link-tracker" class="nav-action-link" type="button">Live Tracker</button>
+        </nav>
+      </div>
+
+      <div class="nav-right">
+        <div class="nav-search-wrapper">
+          <input type="text" id="nav-search-input" placeholder="Search tests, symptoms...">
+          <button id="nav-search-btn" aria-label="Search" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+        </div>
+
+        <button id="nav-cart-btn" class="nav-icon-btn" title="View Health Cart" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span id="cart-badge" class="badge">0</span>
+        </button>
+
+        <button id="nav-patient-profile-btn" class="patient-profile-btn" title="Patient Profile" type="button">
+          <div class="avatar-initials">JV</div>
+          <span class="patient-name-display">Johnathan V.</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== 3. INTERACTIVE HERO SECTION ==================== -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          NABL & CAP Accredited Reference Laboratory
+        </div>
+        <h1>Precision Diagnostics. <br><span class="highlight">Delivered to Your Doorstep.</span></h1>
+        <p class="hero-subtitle">Book certified blood tests, advanced radiology scans, and full-body health checkups with complimentary home phlebotomy collection by trained experts.</p>
+        
+        <!-- Hero Search Bar -->
+        <div class="hero-search-box">
+          <div class="search-input-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="hero-search-input" placeholder="Search 1,200+ tests (e.g., CBC, Lipid Profile, Thyroid, HbA1c)..." autocomplete="off">
+          </div>
+          <button id="hero-search-submit-btn" class="btn btn-primary" type="button">Explore Tests</button>
+          
+          <!-- Auto-suggestions Dropdown -->
+          <div id="hero-search-suggestions" class="search-suggestions-dropdown hidden"></div>
+        </div>
+      </div>
+
+      <!-- Multi-Modal Quick Action Deck -->
+      <div class="hero-action-deck">
+        <div class="action-card" id="hero-action-book-home" role="button" tabindex="0">
+          <div class="action-card-icon teal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </div>
+          <div class="action-card-text">
+            <h3>Book Home Visit</h3>
+            <p>Free phlebotomist dispatch at your home or office</p>
+          </div>
+          <span class="action-arrow">→</span>
+        </div>
+
+        <div class="action-card" id="hero-action-upload-rx" role="button" tabindex="0">
+          <div class="action-card-icon blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          </div>
+          <div class="action-card-text">
+            <h3>Upload Prescription</h3>
+            <p>AI instantly detects tests from your doctor's Rx</p>
+          </div>
+          <span class="action-arrow">→</span>
+        </div>
+
+        <div class="action-card" id="hero-action-view-reports" role="button" tabindex="0">
+          <div class="action-card-icon green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="action-card-text">
+            <h3>Download Reports</h3>
+            <p>Access secure lab vault with interactive ranges</p>
+          </div>
+          <span class="action-arrow">→</span>
+        </div>
+
+        <div class="action-card" id="hero-action-locate-center" role="button" tabindex="0">
+          <div class="action-card-icon orange">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <div class="action-card-text">
+            <h3>Find a Diagnostic Center</h3>
+            <p>Locate 24/7 labs with drive-thru & MRI suites</p>
+          </div>
+          <span class="action-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 4. TRUST & ACCREDITATION BANNER ==================== -->
+  <section class="trust-banner">
+    <div class="container trust-grid">
+      <div class="trust-item">
+        <div class="trust-num">1,200+</div>
+        <div class="trust-label">Specialized Diagnostic Tests</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">99.8%</div>
+        <div class="trust-label">Analytical Precision Accuracy</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">500k+</div>
+        <div class="trust-label">Satisfied Patients & Families</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">NABL & CAP</div>
+        <div class="trust-label">Certified Gold Standard Labs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 5. TEST CATALOG & SEARCH/FILTER SECTION ==================== -->
+  <section id="tests-section" class="section test-catalog-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Diagnostic Test Directory</h2>
+        <p>Browse clinically validated tests categorized by organ system and medical specialty</p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div id="test-category-pills" class="category-pills">
+        <button class="pill-btn active" data-category="all" id="pill-all" type="button">All Tests</button>
+        <button class="pill-btn" data-category="pathology" id="pill-pathology" type="button">Pathology & Hematology</button>
+        <button class="pill-btn" data-category="cardiology" id="pill-cardiology" type="button">Cardiology</button>
+        <button class="pill-btn" data-category="diabetes" id="pill-diabetes" type="button">Diabetes</button>
+        <button class="pill-btn" data-category="thyroid" id="pill-thyroid" type="button">Thyroid & Endocrine</button>
+        <button class="pill-btn" data-category="radiology" id="pill-radiology" type="button">Radiology & Imaging</button>
+        <button class="pill-btn" data-category="women" id="pill-women" type="button">Women's Health</button>
+      </div>
+
+      <!-- Sub-filter & Sorting Toolbar -->
+      <div class="catalog-toolbar">
+        <div class="search-filter-wrap">
+          <input type="text" id="test-search-field" placeholder="Filter tests by name or code...">
+        </div>
+        <div class="catalog-meta-right">
+          <span id="test-card-count" class="card-count-text">Showing 12 of 12 tests</span>
+          <select id="test-sort-select" class="sort-select">
+            <option value="relevance">Sort by: Recommended</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="tat-fast">Turnaround Time: Fastest</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Test Grid Container -->
+      <div id="test-grid-container" class="test-grid">
+        <!-- Dynamically populated by app.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-tests-state" class="empty-state hidden">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+        <h3>No matching diagnostic tests found</h3>
+        <p>Try adjusting your search query or selecting a different category filter.</p>
+        <button class="btn btn-outline" id="reset-filters-btn" type="button">Reset All Filters</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 6. PREVENTIVE HEALTH CHECKUP PACKAGES ==================== -->
+  <section id="packages-section" class="section packages-section">
+    <div class="container">
+      <div class="section-header with-action">
+        <div>
+          <h2>Curated Preventive Health Packages</h2>
+          <p>Comprehensive bundled profiles designed for deep physiological health audits</p>
+        </div>
+        <button id="compare-packages-btn" class="btn btn-outline" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          Compare Packages Side-by-Side
+        </button>
+      </div>
+
+      <div id="packages-grid-container" class="packages-grid">
+        <!-- Dynamically populated by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 7. DIAGNOSTIC CENTERS LOCATOR ==================== -->
+  <section id="centers-section" class="section centers-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>AuraCare Diagnostic & Imaging Centers</h2>
+        <p>Find advanced labs, drive-thru phlebotomy, and 24/7 hospital partner locations near you</p>
+      </div>
+
+      <!-- Locator Filter Toolbar -->
+      <div class="locator-toolbar">
+        <div class="locator-controls">
+          <div class="control-group">
+            <label for="center-city-select">Select City / Region</label>
+            <select id="center-city-select">
+              <option value="all">All Regions / Tri-State</option>
+              <option value="New York - Manhattan">New York - Manhattan</option>
+              <option value="Brooklyn">Brooklyn</option>
+              <option value="Queens">Queens</option>
+              <option value="Jersey City">Jersey City</option>
+              <option value="Philadelphia">Philadelphia</option>
+            </select>
+          </div>
+
+          <div class="control-group search-group">
+            <label for="center-search-input">Locality or Zip Code</label>
+            <input type="text" id="center-search-input" placeholder="e.g. Midtown, 10017...">
+          </div>
+        </div>
+
+        <div class="locator-checkboxes">
+          <label class="checkbox-label">
+            <input type="checkbox" id="filter-center-247">
+            <span>Open 24/7</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="filter-center-radiology">
+            <span>Advanced Radiology (MRI/CT)</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="filter-center-drivethru">
+            <span>Drive-Thru Blood Draw</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Locator Split Pane -->
+      <div class="locator-split-pane">
+        <div id="centers-list-container" class="centers-list">
+          <!-- Dynamically populated by app.js -->
+        </div>
+        <div class="center-map-pane">
+          <div id="center-map-display" class="map-simulation-card">
+            <div class="map-header-overlay">
+              <span class="live-dot"></span> Interactive Lab Map Simulator
+            </div>
+            <div class="map-graphic-body">
+              <div class="map-grid-lines"></div>
+              <div class="map-center-pins" id="map-pins-container">
+                <!-- Pins injected dynamically -->
+              </div>
+              <div class="map-tooltip-card" id="map-tooltip-card">
+                <h4 id="map-tip-title">Flagship Midtown Hub</h4>
+                <p id="map-tip-address">450 Lexington Ave, New York</p>
+                <span id="map-tip-status" class="status-pill normal">Open Now</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 8. FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <div class="logo-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          </div>
+          <span class="brand-name">AuraCare</span>
+        </div>
+        <p class="footer-desc">AuraCare Diagnostics is a premier clinical laboratory network delivering uncompromising medical accuracy, patient safety, and seamless digital healthcare solutions.</p>
+        <p class="copyright">© 2025 AuraCare Health Inc. All rights reserved.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Clinical Services</h4>
+        <ul>
+          <li><a href="#tests-section">Pathology & Hematology</a></li>
+          <li><a href="#tests-section">Cardiology Diagnostics</a></li>
+          <li><a href="#tests-section">Diabetes & Endocrinology</a></li>
+          <li><a href="#tests-section">Radiology & MRI Suites</a></li>
+          <li><a href="#packages-section">Preventive Health Checkups</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Patient Portal</h4>
+        <ul>
+          <li><button class="footer-link-btn" id="footer-btn-reports" type="button">Lab Report Vault</button></li>
+          <li><button class="footer-link-btn" id="footer-btn-tracker" type="button">Live Sample Tracker</button></li>
+          <li><button class="footer-link-btn" id="footer-btn-upload" type="button">Prescription Upload</button></li>
+          <li><a href="#centers-section">Branch Locator</a></li>
+          <li><a href="#">FAQ & Fasting Guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Accreditations & Quality</h4>
+        <div class="badge-row">
+          <span class="cert-badge">NABL ISO 15189</span>
+          <span class="cert-badge">CAP Accredited</span>
+          <span class="cert-badge">CLIA Certified</span>
+          <span class="cert-badge">HIPAA Compliant</span>
+        </div>
+        <p class="footer-help-text">Emergency Hotline: <br><strong>1800-287-2522 (24/7 Toll-Free)</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== 9. MODALS & DRAWERS ==================== -->
+
+  <!-- Cart Drawer & Backdrop -->
+  <div id="cart-drawer-backdrop" class="drawer-backdrop hidden"></div>
+  <div id="cart-drawer" class="cart-drawer hidden">
+    <div class="drawer-header">
+      <h3>Your Health Cart (<span id="drawer-item-count">0</span>)</h3>
+      <button id="cart-drawer-close-btn" class="close-icon-btn" type="button">&times;</button>
+    </div>
+    <div id="cart-items-list" class="cart-items-body">
+      <!-- Dynamically populated -->
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="promo-box">
+        <input type="text" id="promo-input" placeholder="Promo code (e.g., HEALTH20)">
+        <button id="promo-apply-btn" class="btn btn-outline btn-sm" type="button">Apply</button>
+      </div>
+      <div id="promo-feedback-msg" class="promo-feedback hidden"></div>
+
+      <div class="price-summary-rows">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal-price">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Home Collection Fee</span>
+          <span id="cart-home-fee">$15.00</span>
+        </div>
+        <div class="summary-row discount-row">
+          <span>Promo Discount</span>
+          <span id="cart-discount-amount">-$0.00</span>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total Payable</span>
+          <span id="cart-total-price">$0.00</span>
+        </div>
+      </div>
+
+      <button id="proceed-to-checkout-btn" class="btn btn-primary btn-full" type="button">Proceed to Secure Checkout</button>
+    </div>
+  </div>
+
+  <!-- Prescription Upload Modal -->
+  <div id="rx-upload-modal" class="modal-backdrop hidden">
+    <div class="modal-dialog rx-modal">
+      <div class="modal-header">
+        <h3>AI Prescription Upload & Test Extractor</h3>
+        <button id="rx-modal-close-btn" class="close-icon-btn" type="button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="rx-dropzone" class="dropzone-area">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          <h4>Drag & Drop Doctor's Prescription Here</h4>
+          <p>Supports JPEG, PNG, or PDF up to 25MB</p>
+          <button class="btn btn-outline btn-sm" id="browse-file-btn" type="button">Browse Device Files</button>
+          <input type="file" id="rx-file-input" class="hidden" accept=".jpg,.jpeg,.png,.pdf">
+        </div>
+
+        <div id="rx-preview-container" class="rx-preview-container hidden">
+          <div class="preview-thumbnail-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            <span id="rx-file-name">Dr_Prescription_Scan.jpg</span>
+            <button id="rx-remove-file" class="text-btn-danger" type="button">Remove</button>
+          </div>
+          <div class="form-row mt-3">
+            <div class="form-group">
+              <label for="rx-patient-phone">Patient Mobile Number</label>
+              <input type="tel" id="rx-patient-phone" placeholder="(555) 000-0000" value="(555) 382-9910">
+            </div>
+            <div class="form-group">
+              <label for="rx-patient-notes">Clinical Notes / Symptoms (Optional)</label>
+              <input type="text" id="rx-patient-notes" placeholder="e.g. chronic fatigue, annual checkup">
+            </div>
+          </div>
+          <button id="rx-analyze-btn" class="btn btn-primary btn-full mt-3" type="button">Run AI Test Extraction Simulation</button>
+        </div>
+
+        <!-- Detected Tests Container -->
+        <div id="rx-detected-tests-container" class="rx-detected-container hidden">
+          <h4>AI Detected Tests from Prescription:</h4>
+          <p class="text-muted">Select the tests you would like to add to your health cart:</p>
+          <div id="rx-detected-list" class="detected-list">
+            <!-- Populated dynamically -->
+          </div>
+          <button id="rx-confirm-cart-btn" class="btn btn-primary btn-full mt-3" type="button">Add Selected Tests to Cart & Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Patient Lab Report Vault Modal -->
+  <div id="reports-modal" class="modal-backdrop hidden">
+    <div class="modal-dialog reports-modal-dialog">
+      <div class="modal-header">
+        <div class="reports-header-title">
+          <h3>Patient Lab Report Vault</h3>
+          <select id="reports-patient-selector" class="patient-selector-dropdown">
+            <option value="0">Johnathan Vance - Male, 42 (Executive Panel)</option>
+            <option value="1">Elena Rostova - Female, 36 (Thyroid & CBC)</option>
+          </select>
+        </div>
+        <button id="reports-modal-close-btn" class="close-icon-btn" type="button">&times;</button>
+      </div>
+      <div class="modal-body reports-modal-body">
+        <!-- Left Pane: Report List -->
+        <div id="reports-list-container" class="reports-list-pane">
+          <!-- Populated dynamically -->
+        </div>
+        <!-- Right Pane: Report Detail & Range Visualizer -->
+        <div id="report-detail-pane" class="report-detail-pane">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multi-Step Checkout Modal -->
+  <div id="checkout-modal" class="modal-backdrop hidden">
+    <div class="modal-dialog checkout-modal-dialog">
+      <div class="modal-header">
+        <h3>Secure Diagnostic Booking & Checkout</h3>
+        <button id="checkout-modal-close-btn" class="close-icon-btn" type="button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Visual Step Wizard -->
+        <div class="step-wizard">
+          <div class="step-item active" id="checkout-step-1-indicator">
+            <span class="step-num">1</span>
+            <span class="step-label">Service & Schedule</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-item" id="checkout-step-2-indicator">
+            <span class="step-num">2</span>
+            <span class="step-label">Patient Details</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-item" id="checkout-step-3-indicator">
+            <span class="step-num">3</span>
+            <span class="step-label">Payment & Confirm</span>
+          </div>
+        </div>
+
+        <!-- Step 1 Content -->
+        <div class="checkout-step-content" id="checkout-step-1-content">
+          <h4>Choose Collection Type</h4>
+          <div class="service-type-selector">
+            <label class="radio-card active" id="service-type-home-label">
+              <input type="radio" name="serviceType" id="service-type-home" value="home" checked>
+              <div class="radio-card-content">
+                <strong>Home Sample Collection</strong>
+                <p>Phlebotomist visits your home or office. Free above $50.</p>
+              </div>
+            </label>
+            <label class="radio-card" id="service-type-center-label">
+              <input type="radio" name="serviceType" id="service-type-center" value="center">
+              <div class="radio-card-content">
+                <strong>Walk-in Lab Center Visit</strong>
+                <p>Visit any AuraCare branch for blood draw or radiology.</p>
+              </div>
+            </label>
+          </div>
+
+          <div id="checkout-center-select-group" class="form-group hidden mt-3">
+            <label for="checkout-center-dropdown">Select Branch Location</label>
+            <select id="checkout-center-dropdown" class="form-control">
+              <!-- Populated from centers -->
+            </select>
+          </div>
+
+          <div class="form-row mt-3">
+            <div class="form-group">
+              <label for="checkout-date-input">Preferred Collection Date</label>
+              <input type="date" id="checkout-date-input" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="checkout-time-slot-select">Preferred Time Slot</label>
+              <select id="checkout-time-slot-select" class="form-control">
+                <option value="07:00 AM - 08:30 AM">07:00 AM - 08:30 AM (Fasting Preferred)</option>
+                <option value="08:30 AM - 10:00 AM">08:30 AM - 10:00 AM</option>
+                <option value="10:00 AM - 11:30 AM">10:00 AM - 11:30 AM</option>
+                <option value="02:00 PM - 04:00 PM">02:00 PM - 04:00 PM (Afternoon)</option>
+                <option value="04:00 PM - 06:00 PM">04:00 PM - 06:00 PM (Evening)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 Content -->
+        <div class="checkout-step-content hidden" id="checkout-step-2-content">
+          <h4>Patient Clinical Information</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="patient-full-name">Full Patient Name *</label>
+              <input type="text" id="patient-full-name" class="form-control" placeholder="Johnathan Vance" value="Johnathan Vance">
+            </div>
+            <div class="form-group">
+              <label for="patient-age">Age *</label>
+              <input type="number" id="patient-age" class="form-control" placeholder="42" value="42">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="patient-gender">Gender *</label>
+              <select id="patient-gender" class="form-control">
+                <option value="Male" selected>Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="patient-phone">Mobile Phone *</label>
+              <input type="tel" id="patient-phone" class="form-control" placeholder="(555) 000-0000" value="(555) 492-1100">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="patient-email">Email Address (For Secure PDF Delivery) *</label>
+            <input type="email" id="patient-email" class="form-control" placeholder="johnathan@example.com" value="johnathan.vance@example.com">
+          </div>
+          <div class="form-group" id="patient-address-group">
+            <label for="patient-address">Complete Home / Office Address *</label>
+            <textarea id="patient-address" class="form-control" rows="2" placeholder="Street, Apt, City, Zip">742 Evergreen Terrace, Apt 4B, New York, NY 10025</textarea>
+          </div>
+          <div class="form-group checkbox-group mt-2">
+            <label class="checkbox-label">
+              <input type="checkbox" id="patient-fasting-acknowledged" checked>
+              <span>I acknowledge that some selected tests require 10-12 hours fasting for clinical accuracy.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Step 3 Content -->
+        <div class="checkout-step-content hidden" id="checkout-step-3-content">
+          <h4>Payment Method & Final Review</h4>
+          <div class="payment-methods-grid">
+            <label class="payment-card active" id="payment-card-label">
+              <input type="radio" name="paymentMethod" id="payment-method-card" value="card" checked>
+              <div class="payment-card-body">
+                <strong>Credit / Debit Card</strong>
+                <p>Secure online payment via Stripe / Visa / MC</p>
+              </div>
+            </label>
+            <label class="payment-card" id="payment-cash-label">
+              <input type="radio" name="paymentMethod" id="payment-method-cash" value="cash">
+              <div class="payment-card-body">
+                <strong>Pay to Phlebotomist / Lab</strong>
+                <p>Cash, UPI, or Card on sample collection</p>
+              </div>
+            </label>
+            <label class="payment-card" id="payment-insurance-label">
+              <input type="radio" name="paymentMethod" id="payment-method-insurance" value="insurance">
+              <div class="payment-card-body">
+                <strong>Health Insurance Direct</strong>
+                <p>Aetna, BlueCross, UnitedHealthcare</p>
+              </div>
+            </label>
+          </div>
+
+          <div class="checkout-order-summary-box mt-3">
+            <h5>Order Summary</h5>
+            <div id="checkout-summary-items" class="checkout-summary-items-list">
+              <!-- Summary items -->
+            </div>
+            <div class="checkout-summary-totals">
+              <div class="summary-row"><span>Subtotal:</span> <span id="chk-sub">$0.00</span></div>
+              <div class="summary-row"><span>Collection Fee:</span> <span id="chk-fee">$0.00</span></div>
+              <div class="summary-row"><span>Discount:</span> <span id="chk-disc">$0.00</span></div>
+              <div class="summary-row total-row"><span>Total Payable:</span> <span id="chk-total">$0.00</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stepper Navigation Buttons -->
+        <div class="modal-footer-stepper">
+          <button id="checkout-prev-btn" class="btn btn-outline hidden" type="button">Back</button>
+          <button id="checkout-next-btn" class="btn btn-primary" type="button">Continue to Patient Details</button>
+          <button id="checkout-submit-btn" class="btn btn-success hidden" type="button">Confirm & Book Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Sample Tracker Modal -->
+  <div id="tracker-modal" class="modal-backdrop hidden">
+    <div class="modal-dialog tracker-modal-dialog">
+      <div class="modal-header">
+        <h3>Live Sample & Phlebotomist Tracker</h3>
+        <button id="tracker-modal-close-btn" class="close-icon-btn" type="button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="tracker-lookup-row">
+          <input type="text" id="tracker-booking-id-input" placeholder="Enter Booking ID (e.g. AUR-89241)" value="AUR-89241">
+          <button id="tracker-search-btn" class="btn btn-outline" type="button">Lookup Order</button>
+        </div>
+
+        <!-- Tracker Stepper Container -->
+        <div class="tracker-main-card">
+          <div class="tracker-meta-bar">
+            <div>
+              <span class="tracker-id-badge" id="track-display-id">Booking ID: AUR-89241</span>
+              <h4 id="track-display-patient">Johnathan Vance</h4>
+            </div>
+            <div class="text-right">
+              <span class="status-pill in-progress" id="track-display-status">Sample Processing in Lab</span>
+              <p class="text-muted text-sm mt-1" id="track-display-date">Scheduled: Today, Feb 18, 2025</p>
+            </div>
+          </div>
+
+          <!-- 5 Step Visual Progress -->
+          <div id="tracker-stepper-container" class="tracker-stepper-grid">
+            <div class="track-step completed">
+              <div class="step-bullet">✓</div>
+              <span>Booked</span>
+            </div>
+            <div class="track-line completed"></div>
+            <div class="track-step completed">
+              <div class="step-bullet">✓</div>
+              <span>Assigned</span>
+            </div>
+            <div class="track-line completed"></div>
+            <div class="track-step completed">
+              <div class="step-bullet">✓</div>
+              <span>Collected</span>
+            </div>
+            <div class="track-line completed"></div>
+            <div class="track-step active">
+              <div class="step-bullet">4</div>
+              <span>In Lab</span>
+            </div>
+            <div class="track-line"></div>
+            <div class="track-step">
+              <div class="step-bullet">5</div>
+              <span>Ready</span>
+            </div>
+          </div>
+
+          <!-- Phlebotomist Card -->
+          <div id="tracker-phlebotomist-card" class="phlebotomist-card">
+            <div class="phleo-avatar">MG</div>
+            <div class="phleo-details">
+              <h4>Marcus Green, CPT-II <span class="badge-blue-sm">Certified Phlebotomist</span></h4>
+              <p>Rating: 4.98 / 5.0 (640+ draws) | Temp: 98.4 °F (Normal)</p>
+              <p class="text-xs text-muted">Cold Chain Specimen Transport Verified • Triple Vaccinated</p>
+            </div>
+            <div class="phleo-action">
+              <a href="tel:5550198822" class="btn btn-outline btn-sm">Call Phleo</a>
+            </div>
+          </div>
+
+          <div class="tracker-actions-footer">
+            <button id="tracker-action-view-report" class="btn btn-primary" type="button" disabled>View Final Report (Available at 2:00 PM)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Package Comparison Modal -->
+  <div id="compare-modal" class="modal-backdrop hidden">
+    <div class="modal-dialog compare-modal-dialog">
+      <div class="modal-header">
+        <h3>Preventive Health Package Comparison Matrix</h3>
+        <button id="compare-modal-close-btn" class="close-icon-btn" type="button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="comparison-table" id="comparison-table-element">
+            <!-- Dynamically populated -->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- JavaScript Application Bundle -->
+  <script src="app.js"></script>
+</body>
+</html>

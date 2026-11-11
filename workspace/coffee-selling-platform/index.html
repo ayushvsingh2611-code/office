@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bean & Brew | Premium Coffee Roastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tighter text-stone-900">BEAN&BREW</h1>
+            <div class="flex items-center gap-6">
+                <button id="cart-button" class="relative p-2 hover:bg-stone-100 rounded-full transition">
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-amber-600 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="pt-32 pb-16 px-4 text-center">
+        <h2 class="text-5xl font-bold mb-4">Roasting Perfection Daily</h2>
+        <p class="text-stone-600 max-w-xl mx-auto">Sourced from the best highlands, roasted to perfection in our local lab.</p>
+    </header>
+
+    <!-- Products -->
+    <main class="max-w-7xl mx-auto px-4 pb-20">
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Product Item -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
+                <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover rounded-xl mb-4" alt="Coffee">
+                <h3 class="font-bold text-lg">Ethiopian Yirgacheffe</h3>
+                <p class="text-stone-500 text-sm mb-4">Floral, citrus, bright acidity.</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-xl">$18.00</span>
+                    <button class="btn-add-cart bg-stone-900 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition" data-name="Ethiopian Yirgacheffe" data-price="18.00">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Product Item -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
+                <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover rounded-xl mb-4" alt="Coffee">
+                <h3 class="font-bold text-lg">Sumatra Mandheling</h3>
+                <p class="text-stone-500 text-sm mb-4">Earthy, spicy, full-bodied.</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-xl">$22.00</span>
+                    <button class="btn-add-cart bg-stone-900 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition" data-name="Sumatra Mandheling" data-price="22.00">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Product Item -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100">
+                <img src="https://images.unsplash.com/photo-1517702334621-30691515220c?auto=format&fit=crop&w=800&q=80" class="w-full h-48 object-cover rounded-xl mb-4" alt="Coffee">
+                <h3 class="font-bold text-lg">Colombia Supremo</h3>
+                <p class="text-stone-500 text-sm mb-4">Nutty, caramel, smooth finish.</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-xl">$16.00</span>
+                    <button class="btn-add-cart bg-stone-900 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition" data-name="Colombia Supremo" data-price="16.00">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 pointer-events-none opacity-0 transition-opacity">
+        <div class="bg-white w-full max-w-md rounded-3xl p-8 pointer-events-auto shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Your Cart</h3>
+                <button onclick="document.getElementById('cart-modal').classList.add('hidden', 'opacity-0');" class="text-stone-400 hover:text-stone-900"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div id="cart-items" class="space-y-4 mb-6 max-h-60 overflow-y-auto"></div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between font-bold text-lg mb-6">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button onclick="alert('Proceeding to checkout...')" class="w-full bg-amber-600 text-white py-4 rounded-xl font-bold hover:bg-amber-700 transition">Checkout Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        const cartModal = document.getElementById('cart-modal');
+        const cartButton = document.getElementById('cart-button');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotal = document.getElementById('cart-total');
+
+        cartButton.addEventListener('click', () => cartModal.classList.remove('hidden', 'opacity-0'));
+
+        document.querySelectorAll('.btn-add-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const item = { name: e.target.dataset.name, price: parseFloat(e.target.dataset.price) };
+                cart.push(item);
+                updateCartUI();
+            });
+        });
+
+        function updateCartUI() {
+            cartItemsContainer.innerHTML = cart.map(item => \`
+                <div class="flex justify-between">
+                    <span>\${item.name}</span>
+                    <span class="font-bold">$\${item.price.toFixed(2)}</span>
+                </div>
+            \`).join('');
+            cartCount.innerText = cart.length;
+            cartTotal.innerText = '$' + cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+        }
+    </script>
+</body>
+</html>

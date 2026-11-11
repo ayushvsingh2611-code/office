@@ -1,0 +1,6 @@
+.git
+.gitignore
+*.md
+execution-audit.json
+Dockerfile
+.dockerignore

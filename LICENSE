@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 Chaitanya Giri
+Copyright (c) 2026 Ayush Singh
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,25 @@ SOFTWARE.
 
 ---
 
-NOTE ON BUNDLED ART ASSETS
+NOTE ON SCOPE, THIRD-PARTY SKILLS, AND BUNDLED ART ASSETS
 
-This MIT License applies to the SOURCE CODE of this project. It does NOT apply
-to the bundled pixel-art assets under src/renderer/src/assets/ (tilesets, maps,
-and character sheets), which originate from LimeZu and are distributed under the
-LimeZu FREE VERSION license — non-commercial use only. The recolored sprites
-derived from those sheets inherit the same restriction. See
-src/renderer/src/assets/ATTRIBUTION.md for details. To use this project
-commercially, replace those assets or obtain a paid LimeZu license.
+1. SOURCE CODE, DOCUMENTATION & INTERNALLY AUTHORED SKILLS:
+   This MIT License (Copyright (c) 2026 Ayush Singh) explicitly covers all original
+   source code, documentation, and internally authored agent skills in this repository:
+   - skills/system-architecture-design/
+   - skills/database-schema-modeling/
+   - skills/documentation-generation/
+
+2. THIRD-PARTY AGENT SKILLS:
+   The 9 agent skills under skills/ adapted from the addyosmani/agent-skills
+   repository are licensed under the MIT License, Copyright (c) 2025 Addy Osmani.
+   In accordance with the MIT redistribution condition, full copyright and permission
+   notices are preserved in skills/NOTICE.md.
+
+3. BUNDLED ART ASSETS:
+   This MIT License does NOT apply to the bundled pixel-art assets under
+   src/renderer/src/assets/ (tilesets, maps, and character sheets), which originate
+   from LimeZu and are distributed under the LimeZu FREE VERSION license —
+   non-commercial use only. The recolored sprites derived from those sheets inherit
+   the same restriction. See src/renderer/src/assets/ATTRIBUTION.md for details.
+   To use this project commercially, replace those assets or obtain a paid LimeZu license.

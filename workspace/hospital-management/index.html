@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Management — Clinical Health & Hospital Management</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="health-theme">
+  <!-- Emergency Ticker -->
+  <div class="emergency-ticker">
+    <div class="ticker-inner">
+      <span class="ticker-badge"><i class="fa-solid fa-truck-medical"></i> 24/7 TRAUMA & EMERGENCY</span>
+      <span class="ticker-dot">•</span>
+      <span>National Emergency Hotline: <strong>108 / +91 800-CARE-911</strong></span>
+      <span class="ticker-dot">•</span>
+      <span>Emergency ICU Beds Online: <strong class="text-emerald-400">14 Available</strong></span>
+      <span class="ticker-dot">•</span>
+      <span>Specialists on Duty: <strong>48 Doctors</strong></span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-badge"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div>
+          <h1>Hospital Management<span class="brand-dot">.</span></h1>
+          <p class="brand-subtitle">Smart Clinical & Hospital ERP</p>
+        </div>
+      </div>
+      <form id="search-form" class="search-box" role="search">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="search" id="site-search" name="q" placeholder="Search patients, doctors, lab tests, prescriptions..." autocomplete="off">
+        <button type="submit" class="search-btn">Search</button>
+      </form>
+      <div class="header-actions">
+        <button type="button" class="action-btn emergency-btn"><i class="fa-solid fa-bell"></i> <span>Emergency</span></button>
+        <button type="button" id="cart-button" class="action-btn appointment-btn">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span>Appointments</span>
+          <span id="cart-count" class="badge">3</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="department-strip" aria-label="Hospital Departments">
+    <div class="department-scroll">
+      <button type="button" class="filter-btn active" data-category="all"><i class="fa-solid fa-hospital"></i> All Services</button>
+      <button type="button" class="filter-btn" data-category="consultation"><i class="fa-solid fa-user-doctor"></i> Doctor Consultations</button>
+      <button type="button" class="filter-btn" data-category="vitals"><i class="fa-solid fa-wave-square"></i> Patient Vitals</button>
+      <button type="button" class="filter-btn" data-category="diagnostics"><i class="fa-solid fa-microscope"></i> Lab Diagnostics</button>
+      <button type="button" class="filter-btn" data-category="records"><i class="fa-solid fa-file-medical"></i> Health Records (EHR)</button>
+      <button type="button" class="filter-btn" data-category="pharmacy"><i class="fa-solid fa-pills"></i> Pharmacy</button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <section class="overview-banner">
+      <div class="overview-left">
+        <span class="overview-tag"><i class="fa-solid fa-shield-halved"></i> NABH & JCI ACCREDITED FACILITY</span>
+        <h2>build hospital management system with patient portal, doc...</h2>
+        <p>Integrated clinical diagnostics, doctor appointment scheduling, patient EHR records, and ICU occupancy telemetry.</p>
+        <div class="quick-stats-grid">
+          <div class="stat-card"><span class="stat-num">1,420</span><span class="stat-label">Active In-Patients</span></div>
+          <div class="stat-card"><span class="stat-num text-emerald-400">98.9%</span><span class="stat-label">Recovery Rate</span></div>
+          <div class="stat-card"><span class="stat-num text-cyan-400">14 Beds</span><span class="stat-label">ICU Vacancy</span></div>
+          <div class="stat-card"><span class="stat-num text-amber-400">12 Mins</span><span class="stat-label">Avg. OPD Wait</span></div>
+        </div>
+      </div>
+      <div class="overview-right">
+        <div class="vitals-highlight-card">
+          <div class="vitals-header">
+            <div><span class="patient-id">PATIENT #CP-8842</span><h4>Arjun Mehta (42y / M)</h4></div>
+            <span class="status-pill status-stable">STABLE</span>
+          </div>
+          <div class="vitals-grid">
+            <div class="vital-item"><span class="vital-name"><i class="fa-solid fa-heart text-rose-500"></i> Heart Rate</span><span class="vital-val">74 <small>BPM</small></span></div>
+            <div class="vital-item"><span class="vital-name"><i class="fa-solid fa-droplet text-blue-500"></i> Blood Pressure</span><span class="vital-val">120/80 <small>mmHg</small></span></div>
+            <div class="vital-item"><span class="vital-name"><i class="fa-solid fa-lungs text-cyan-400"></i> SpO2</span><span class="vital-val">99 <small>%</small></span></div>
+            <div class="vital-item"><span class="vital-name"><i class="fa-solid fa-temperature-half text-amber-400"></i> Temp</span><span class="vital-val">98.4 <small>°F</small></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-section">
+      <div class="catalog-header">
+        <div>
+          <h3>Clinical Modules & Active Healthcare Services</h3>
+          <p class="section-subtitle">Real-time scheduling, diagnostic ordering, and patient lifecycle actions</p>
+        </div>
+        <div class="live-indicator"><span class="pulsing-dot"></span><span>All Hospital Systems Operational</span></div>
+      </div>
+
+      <div class="grid" id="product-catalog">
+        <!-- 1. Cardiologist -->
+        <div class="product-card" data-category="consultation">
+          <span class="doctor-badge">SENIOR CONSULTANT</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80" alt="Dr. Sarah Jenkins" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta"><span class="dept-tag"><i class="fa-solid fa-heart-pulse"></i> Cardiology</span><span class="exp-tag">16 Yrs Exp</span></div>
+            <h4 class="product-title">Dr. Sarah Jenkins, MD, DM</h4>
+            <p class="product-desc">Chief Interventional Cardiologist specializing in coronary interventions, cardiac pacing, and preventive health.</p>
+            <div class="rating-strip"><span class="stars"><i class="fa-solid fa-star"></i> 4.9</span><span class="patient-reviews">(840 patient reviews)</span></div>
+            <div class="card-footer">
+              <div class="fee-box"><span class="price">₹800</span><span class="fee-label">Consultation Fee</span></div>
+              <button type="button" class="btn-add-cart" data-key="dr-jenkins">+ Book Appointment</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Diagnostics -->
+        <div class="product-card" data-category="diagnostics">
+          <span class="discount-pill">40% OFF</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=400&q=80" alt="Diagnostic Pathology" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta"><span class="dept-tag"><i class="fa-solid fa-microscope"></i> Pathology</span><span class="exp-tag">NABL Accredited</span></div>
+            <h4 class="product-title">Comprehensive Metabolic & Blood Panel</h4>
+            <p class="product-desc">Complete Blood Count (CBC), Fasting Glucose, HbA1c, Lipid Profile, Liver & Kidney Function Tests with digital reports.</p>
+            <div class="rating-strip"><span class="stars"><i class="fa-solid fa-star"></i> 4.9</span><span class="patient-reviews">(1,920 tests fulfilled)</span></div>
+            <div class="card-footer">
+              <div class="fee-box"><span class="price">₹1,499</span><span class="mrp">₹2,499</span></div>
+              <button type="button" class="btn-add-cart" data-key="metabolic-panel">+ Schedule Test</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Health Records -->
+        <div class="product-card" data-category="records">
+          <span class="feature-badge">ENCRYPTED EHR</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=400&q=80" alt="Medical Records" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta"><span class="dept-tag"><i class="fa-solid fa-file-medical"></i> Health Records</span><span class="exp-tag">HIPAA Compliant</span></div>
+            <h4 class="product-title">Digital Health Locker & Patient History</h4>
+            <p class="product-desc">Instant cloud access to MRI/CT scans, discharge summaries, verified prescriptions, and allergy alerts.</p>
+            <div class="rating-strip"><span class="stars"><i class="fa-solid fa-shield-halved"></i> 256-bit AES</span><span class="patient-reviews">Doctor Verified</span></div>
+            <div class="card-footer">
+              <div class="fee-box"><span class="price">FREE</span><span class="fee-label">Included with Care</span></div>
+              <button type="button" class="btn-add-cart" data-key="ehr-locker">Access Records</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Neurologist -->
+        <div class="product-card" data-category="consultation">
+          <span class="doctor-badge">DEPARTMENT HEAD</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80" alt="Dr. Rajesh Verma" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta"><span class="dept-tag"><i class="fa-solid fa-brain"></i> Neurology</span><span class="exp-tag">22 Yrs Exp</span></div>
+            <h4 class="product-title">Dr. Rajesh Verma, MBBS, MCh</h4>
+            <p class="product-desc">Senior Neurosurgeon and Brain Specialist. Extensive expertise in acute stroke intervention and neuro-trauma surgery.</p>
+            <div class="rating-strip"><span class="stars"><i class="fa-solid fa-star"></i> 4.9</span><span class="patient-reviews">(1,150 patient reviews)</span></div>
+            <div class="card-footer">
+              <div class="fee-box"><span class="price">₹950</span><span class="fee-label">Consultation Fee</span></div>
+              <button type="button" class="btn-add-cart" data-key="dr-verma">+ Book Appointment</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. ICU Bed Tracker -->
+        <div class="product-card" data-category="vitals">
+          <span class="emergency-pill">CRITICAL CARE</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=400&q=80" alt="ICU Beds" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta"><span class="dept-tag text-rose-400"><i class="fa-solid fa-bed-pulse"></i> Critical Care</span><span class="exp-tag">Live Telemetry</span></div>
+            <h4 class="product-title">ICU & Emergency Ventilator Tracker</h4>
+            <p class="product-desc">Hospital wing occupancy telemetry: 14 Class-A ICU Beds, 8 Ventilators, and 24/7 cardiac monitoring units ready.</p>
+            <div class="rating-strip"><span class="stars text-emerald-400"><i class="fa-solid fa-circle-check"></i> 14 Beds Available</span><span class="patient-reviews">Ambulance Linked</span></div>
+            <div class="card-footer">
+              <div class="fee-box"><span class="price">24/7</span><span class="fee-label">Emergency Desk</span></div>
+              <button type="button" class="btn-add-cart" data-key="icu-tracker">Check Bed Status</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Pharmacy -->
+        <div class="product-card" data-category="pharmacy">
+          <span class="discount-pill">15% OFF</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80" alt="Pharmacy" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta"><span class="dept-tag"><i class="fa-solid fa-pills"></i> Pharmacy</span><span class="exp-tag">Express 30 Mins</span></div>
+            <h4 class="product-title">Digital Pharmacy & Prescription Refills</h4>
+            <p class="product-desc">Order genuine hospital-grade medicines, antibiotics, and cardiac maintenance therapy with cold-chain delivery.</p>
+            <div class="rating-strip"><span class="stars"><i class="fa-solid fa-star"></i> 4.8</span><span class="patient-reviews">(3,200 orders fulfilled)</span></div>
+            <div class="card-footer">
+              <div class="fee-box"><span class="price">₹350</span><span class="fee-label">Standard Pack</span></div>
+              <button type="button" class="btn-add-cart" data-key="pharmacy-refill">+ Refill Medicines</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Hospital Management. Comprehensive hospital care and health management suite.</p>
+  </footer>
+  <script src="app.js" defer></script>
+</body>
+</html>

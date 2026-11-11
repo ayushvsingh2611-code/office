@@ -51,61 +51,54 @@ const zoomBtnStyle: CSSProperties = {
 // green/yellow are kept deep enough to read as text on cream (the brighter
 // variants are the lighter shades, per terminal convention).
 const lightTheme = {
-  background: '#FCFAF0',
-  foreground: '#1A1320',
-  cursor: '#D96A62',
-  cursorAccent: '#FCFAF0',
-  selectionBackground: '#FFEC99',
-  selectionForeground: '#1A1320',
-  black:        '#1A1320',
-  red:          '#D1453B',
-  green:        '#20904B',    // deep green → readable as text on cream
-  yellow:       '#9C6B00',    // deep amber → readable as text on cream
-  blue:         '#2B6CB0',
-  magenta:      '#8A5CF0',
-  cyan:         '#1F9C94',
-  white:        '#3A2F44',   // default "white" text → dark, so it's visible
-  brightBlack:  '#6B5878',
-  brightRed:    '#E0584E',
-  brightGreen:  '#2E9E54',
-  brightYellow: '#B8860B',
-  brightBlue:   '#3B7DC4',
-  brightMagenta:'#9B72F2',
-  brightCyan:   '#2BA89F',
-  brightWhite:  '#1A1320'
+  background: '#FFFFFF',
+  foreground: '#0F172A',
+  cursor: '#0284C7',
+  cursorAccent: '#FFFFFF',
+  selectionBackground: '#E2E8F0',
+  selectionForeground: '#0F172A',
+  black:        '#0F172A',
+  red:          '#E11D48',
+  green:        '#059669',
+  yellow:       '#D97706',
+  blue:         '#0284C7',
+  magenta:      '#6366F1',
+  cyan:         '#0891B2',
+  white:        '#334155',
+  brightBlack:  '#64748B',
+  brightRed:    '#F43F5E',
+  brightGreen:  '#10B981',
+  brightYellow: '#F59E0B',
+  brightBlue:   '#38BDF8',
+  brightMagenta:'#818CF8',
+  brightCyan:   '#06B6D4',
+  brightWhite:  '#0F172A'
 };
 
-// Dark theme — mirrors the app's dark surface ramp (tokens.css
-// data-cth-theme='dark'). xterm takes literal colours and cannot read CSS
-// custom properties, so these values are RE-STATED rather than referenced, and
-// drift the moment the tokens move: this set was still on the pre-readability
-// ramp (background #1D1C21, the old paper-100) after tokens.css dropped to
-// a softer ground, which would have left every terminal sitting a visible step
-// apart from the panel holding it. Muted-professional ANSI: recognizable hues, no
-// fluorescing on the dark ground; brights are one legible step up, not pastels.
+// Dark theme — mirrors the app's modern obsidian surface ramp (tokens.css).
 const darkTheme = {
-  background: '#1A1A1F',        // = --cth-paper-100
-  foreground: '#DEDBD6',        // = --cth-ink-900
-  cursor: '#E08C82',
-  cursorAccent: '#1A1A1F',
-  selectionBackground: '#37363F',
-  selectionForeground: '#DEDBD6',
-  black:        '#222229',
-  red:          '#E08C82',
-  green:        '#74C096',
-  yellow:       '#CFAA57',
-  blue:         '#6FB3C4',
-  magenta:      '#A896E3',
-  cyan:         '#6FB3C4',
-  white:        '#DEDBD6',
-  brightBlack:  '#96919F',
-  brightRed:    '#EBA39C',
-  brightGreen:  '#96CDA9',
-  brightYellow: '#E5C87E',
-  brightBlue:   '#8FC5D1',
-  brightMagenta:'#C0B3EB',
-  brightCyan:   '#8FC5D1',
-  brightWhite:  '#EFEDE9'
+  background: '#0B0F19',        // = --cth-paper-100 (sleek obsidian base)
+  foreground: '#F8FAFC',        // = --cth-ink-900 (crisp high-contrast text)
+  cursor: '#38BDF8',            // modern cyan terminal cursor
+  cursorAccent: '#0B0F19',
+  selectionBackground: '#1E293B',
+  selectionForeground: '#F8FAFC',
+  black:        '#0B0F19',
+  red:          '#F43F5E',
+  green:        '#10B981',
+  yellow:       '#F59E0B',
+  blue:         '#38BDF8',
+  magenta:      '#818CF8',
+  cyan:         '#22D3EE',
+  white:        '#F8FAFC',
+  brightBlack:  '#475569',
+  brightRed:    '#FB7185',
+  brightGreen:  '#34D399',
+  brightYellow: '#FBBF24',
+  brightBlue:   '#60A5FA',
+  brightMagenta:'#A5B4FC',
+  brightCyan:   '#67E8F9',
+  brightWhite:  '#FFFFFF'
 };
 
 const THEMES: Record<PtyTheme, typeof lightTheme> = { light: lightTheme, dark: darkTheme };

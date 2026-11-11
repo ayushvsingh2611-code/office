@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PandaStream Ultra - JIT Hive Streaming Command Center</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            950: '#052e16',
+                        },
+                        hive: {
+                            dark: '#0a0f0d',
+                            card: '#121a15',
+                            border: '#1e2922',
+                            accent: '#10b981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-hive-dark text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+    <!-- TOP JIT HIVE ACTIVATION BANNER -->
+    <header class="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-950 border-b border-brand-500/20 px-4 py-2 text-xs font-mono text-brand-400 flex flex-wrap items-center justify-between gap-2 shadow-inner">
+        <div class="flex items-center gap-2">
+            <span class="flex h-2 w-2 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+            </span>
+            <span class="font-bold text-slate-200">[⚡ PANDA HIVE JIT SKILL ACTIVATION]:</span>
+            <span class="hidden sm:inline text-slate-400">Resolved on-demand: DOCX, FRONTEND-SLIDES, CLAUDE-API</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="bg-brand-500/10 text-brand-300 px-2 py-0.5 rounded border border-brand-500/30">Node: US-EAST-JIT-1</span>
+            <button id="systemLogsBtn" class="hover:text-white transition underline cursor-pointer">View JIT Protocol</button>
+        </div>
+    </header>
+
+    <!-- MAIN APP NAVIGATION -->
+    <nav class="sticky top-0 z-40 bg-hive-dark/90 backdrop-blur-md border-b border-hive-border px-4 lg:px-8 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-6">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-emerald-700 flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-bolt text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-brand-400 bg-clip-text text-transparent">PandaStream</span>
+                    <span class="block text-[10px] font-mono text-brand-500 uppercase tracking-widest font-bold">Hive JIT Engine</span>
+                </div>
+            </a>
+            
+            <!-- Nav Links -->
+            <div class="hidden md:flex items-center gap-1 bg-hive-card p-1 rounded-xl border border-hive-border text-sm font-medium">
+                <button class="nav-tab active px-4 py-1.5 rounded-lg bg-brand-500/20 text-brand-400 transition cursor-pointer" data-target="streamTab">Stream Hub</button>
+                <button class="nav-tab px-4 py-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition cursor-pointer" data-target="apiTab">Claude API & Docs</button>
+                <button class="nav-tab px-4 py-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition cursor-pointer" data-target="slidesTab">Slides & Canvas</button>
+            </div>
+        </div>
+
+        <!-- Search & User Action Controls -->
+        <div class="flex items-center gap-3">
+            <div class="relative hidden sm:block">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input type="text" id="globalSearchInput" placeholder="Search streams, docs, skills..." class="bg-hive-card border border-hive-border text-xs rounded-xl pl-9 pr-4 py-2 w-48 lg:w-64 focus:outline-none focus:border-brand-500 text-slate-200 placeholder-slate-500 transition">
+            </div>
+
+            <button id="openUploadModalBtn" class="bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs px-4 py-2 rounded-xl shadow-md shadow-brand-600/30 flex items-center gap-2 transition cursor-pointer">
+                <i class="fa-solid fa-plus"></i>
+                <span>New Stream</span>
+            </button>
+
+            <div class="relative">
+                <button id="userMenuBtn" class="w-9 h-9 rounded-xl overflow-hidden border border-hive-border hover:border-brand-500 transition flex items-center justify-center bg-hive-card cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="w-full h-full object-cover">
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 flex flex-col gap-6">
+
+        <!-- TAB 1: STREAM HUB (Active by default) -->
+        <section id="streamTab" class="tab-content flex flex-col gap-6">
+            
+            <!-- FEATURED LIVE STREAM HERO -->
+            <div class="relative rounded-2xl overflow-hidden border border-hive-border bg-hive-card shadow-2xl group">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&auto=format&fit=crop&q=80" alt="Hero Stream" class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-hive-dark via-hive-dark/80 to-transparent"></div>
+                </div>
+
+                <div class="relative z-10 p-6 lg:p-10 flex flex-col items-start gap-4 max-w-3xl">
+                    <div class="flex items-center gap-2">
+                        <span class="bg-red-500 text-white font-bold text-[10px] px-2.5 py-1 rounded-md uppercase tracking-wider animate-pulse flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-white"></span> LIVE 4K 60FPS
+                        </span>
+                        <span class="bg-hive-card/80 backdrop-blur-md border border-hive-border text-brand-400 font-mono text-xs px-3 py-1 rounded-md">
+                            Bitrate: 12.4 Mbps | Latency: 140ms
+                        </span>
+                    </div>
+
+                    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+                        Panda Hive Neural Engine: Real-time JIT Skill Synthesis & Claude API Stream
+                    </h1>
+
+                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                        Broadcasting live from the JIT pipeline. Demonstrating dynamic document compilation (DOCX), zero-dependency canvas slide presentations, and high-performance neural streaming features with working control toggles.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <button id="heroPlayBtn" class="bg-brand-600 hover:bg-brand-500 text-white font-bold px-6 py-3 rounded-xl flex items-center gap-2 shadow-lg shadow-brand-600/30 transition cursor-pointer">
+                            <i class="fa-solid fa-play"></i>
+                            <span>Launch Stream Player</span>
+                        </button>
+                        <button id="heroPipBtn" class="bg-hive-card/90 hover:bg-hive-border border border-hive-border text-slate-200 font-semibold px-4 py-3 rounded-xl flex items-center gap-2 transition cursor-pointer">
+                            <i class="fa-solid fa-clone"></i>
+                            <span>Picture-in-Picture</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STREAM FILTERS & CATEGORIES -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-hive-border pb-4">
+                <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0">
+                    <button class="stream-filter px-4 py-2 rounded-xl text-xs font-semibold bg-brand-500 text-white transition cursor-pointer" data-filter="all">All Streams</button>
+                    <button class="stream-filter px-4 py-2 rounded-xl text-xs font-semibold bg-hive-card text-slate-400 hover:text-white hover:bg-hive-border transition cursor-pointer" data-filter="ai">AI & Neural</button>
+                    <button class="stream-filter px-4 py-2 rounded-xl text-xs font-semibold bg-hive-card text-slate-400 hover:text-white hover:bg-hive-border transition cursor-pointer" data-filter="dev">Development</button>
+                    <button class="stream-filter px-4 py-2 rounded-xl text-xs font-semibold bg-hive-card text-slate-400 hover:text-white hover:bg-hive-border transition cursor-pointer" data-filter="design">Slides & UI</button>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-400">
+                    <span>Sort by:</span>
+                    <select id="streamSortSelect" class="bg-hive-card border border-hive-border rounded-lg px-3 py-1.5 text-slate-200 focus:outline-none focus:border-brand-500 cursor-pointer">
+                        <option value="viewers">Highest Viewers</option>
+                        <option value="recent">Recently Started</option>
+                        <option value="bitrate">Bitrate Quality</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- STREAM GRID CARDS -->
+            <div id="streamGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="stream-card bg-hive-card border border-hive-border rounded-2xl overflow-hidden hover:border-brand-500/50 transition group flex flex-col" data-category="ai" data-viewers="4250">
+                    <div class="relative aspect-video overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&auto=format&fit=crop&q=80" alt="Stream Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded uppercase">LIVE</span>
+                        <span class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md text-white text-xs font-mono px-2 py-1 rounded flex items-center gap-1.5">
+                            <i class="fa-solid fa-users text-[10px] text-brand-400"></i> 4,250
+                        </span>
+                    </div>
+                    <div class="p-4 flex flex-col flex-1 justify-between gap-4">
+                        <div class="flex items-start gap-3">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" alt="Host" class="w-10 h-10 rounded-xl object-cover border border-hive-border">
+                            <div>
+                                <h3 class="font-bold text-slate-100 group-hover:text-brand-400 transition">Claude API Architecture & Advanced Prompt Caching</h3>
+                                <p class="text-xs text-slate-400 mt-0.5">Anthropic Dev Guild</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-hive-border pt-3 text-xs text-slate-400">
+                            <span class="font-mono text-brand-400">#CLAUDE-API</span>
+                            <button class="join-stream-btn bg-brand-500/10 hover:bg-brand-500 text-brand-400 hover:text-white px-3 py-1.5 rounded-lg font-semibold transition cursor-pointer">Watch Stream</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="stream-card bg-hive-card border border-hive-border rounded-2xl overflow-hidden hover:border-brand-500/50 transition group flex flex-col" data-category="design" data-viewers="2810">
+                    <div class="relative aspect-video overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80" alt="Stream Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded uppercase">LIVE</span>
+                        <span class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md text-white text-xs font-mono px-2 py-1 rounded flex items-center gap-1.5">
+                            <i class="fa-solid fa-users text-[10px] text-brand-400"></i> 2,810
+                        </span>
+                    </div>
+                    <div class="p-4 flex flex-col flex-1 justify-between gap-4">
+                        <div class="flex items-start gap-3">
+                            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&auto=format&fit=crop&q=80" alt="Host" class="w-10 h-10 rounded-xl object-cover border border-hive-border">
+                            <div>
+                                <h3 class="font-bold text-slate-100 group-hover:text-brand-400 transition">Frontend-Slides: Zero-Dependency Single File Presentation Workshop</h3>
+                                <p class="text-xs text-slate-400 mt-0.5">Creative UI Design Lab</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-hive-border pt-3 text-xs text-slate-400">
+                            <span class="font-mono text-brand-400">#FRONTEND-SLIDES</span>
+                            <button class="join-stream-btn bg-brand-500/10 hover:bg-brand-500 text-brand-400 hover:text-white px-3 py-1.5 rounded-lg font-semibold transition cursor-pointer">Watch Stream</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="stream-card bg-hive-card border border-hive-border rounded-2xl overflow-hidden hover:border-brand-500/50 transition group flex flex-col" data-category="dev" data-viewers="1940">
+                    <div class="relative aspect-video overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80" alt="Stream Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded uppercase">LIVE</span>
+                        <span class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md text-white text-xs font-mono px-2 py-1 rounded flex items-center gap-1.5">
+                            <i class="fa-solid fa-users text-[10px] text-brand-400"></i> 1,940
+                        </span>
+                    </div>
+                    <div class="p-4 flex flex-col flex-1 justify-between gap-4">
+                        <div class="flex items-start gap-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Host" class="w-10 h-10 rounded-xl object-cover border border-hive-border">
+                            <div>
+                                <h3 class="font-bold text-slate-100 group-hover:text-brand-400 transition">DOCX Skill Synthesis: Programmatic Word Document Generation</h3>
+                                <p class="text-xs text-slate-400 mt-0.5">Franky & Shanks Engineering</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-hive-border pt-3 text-xs text-slate-400">
+                            <span class="font-mono text-brand-400">#DOCX-ENGINE</span>
+                            <button class="join-stream-btn bg-brand-500/10 hover:bg-brand-500 text-brand-400 hover:text-white px-3 py-1.5 rounded-lg font-semibold transition cursor-pointer">Watch Stream</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: CLAUDE API & DOCS -->
+        <section id="apiTab" class="tab-content hidden flex flex-col gap-6">
+            <div class="bg-hive-card border border-hive-border rounded-2xl p-6 lg:p-8 flex flex-col gap-6">
+                <div class="flex items-center justify-between border-b border-hive-border pb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-white">Claude API & JIT Document Generator</h2>
+                        <p class="text-xs text-slate-400 mt-1">Generate dynamic prompt templates or synthesize DOCX & markdown files instantly.</p>
+                    </div>
+                    <span class="bg-brand-500/10 text-brand-400 font-mono text-xs px-3 py-1 rounded-lg border border-brand-500/20">API v2.4 Active</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col gap-4">
+                        <label class="text-xs font-semibold text-slate-300">Prompt / Task Description</label>
+                        <textarea id="apiPromptInput" rows="4" class="bg-hive-dark border border-hive-border rounded-xl p-3 text-xs text-slate-200 focus:outline-none focus:border-brand-500" placeholder="Enter instructions for Claude API simulation..."></textarea>
+                        <div class="flex items-center gap-3">
+                            <button id="sendApiBtn" class="bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs px-4 py-2.5 rounded-xl transition cursor-pointer">Run Claude Inference</button>
+                            <button id="generateDocxBtn" class="bg-hive-border hover:bg-slate-700 text-slate-200 font-semibold text-xs px-4 py-2.5 rounded-xl transition cursor-pointer"><i class="fa-solid fa-file-word mr-1.5 text-brand-400"></i> Export DOCX</button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-semibold text-slate-300">Inference Output Response</label>
+                        <div id="apiOutputBox" class="bg-hive-dark border border-hive-border rounded-xl p-4 font-mono text-xs text-brand-400 h-40 overflow-y-auto">
+                            // Ready for Claude API request or DOCX JIT generation...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: SLIDES & CANVAS -->
+        <section id="slidesTab" class="tab-content hidden flex flex-col gap-6">
+            <div class="bg-hive-card border border-hive-border rounded-2xl p-6 lg:p-8 flex flex-col gap-6">
+                <div class="flex items-center justify-between border-b border-hive-border pb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-white">Frontend-Slides Canvas Presentation</h2>
+                        <p class="text-xs text-slate-400 mt-1">Zero-dependency interactive slide deck powered by HTML5 Canvas & JIT rendering.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button id="prevSlideBtn" class="bg-hive-border hover:bg-slate-700 text-white text-xs px-3 py-1.5 rounded-lg transition cursor-pointer"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+                        <span id="slideIndicator" class="font-mono text-xs text-brand-400 px-2">Slide 1 / 3</span>
+                        <button id="nextSlideBtn" class="bg-hive-border hover:bg-slate-700 text-white text-xs px-3 py-1.5 rounded-lg transition cursor-pointer">Next <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative aspect-video bg-hive-dark rounded-xl overflow-hidden border border-hive-border flex items-center justify-center">
+                    <canvas id="slidesCanvas" width="960" height="540" class="w-full h-full object-contain"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toastContainer" class="ph-toast-container"></div>
+
+    <!-- MODAL: UPLOAD NEW STREAM (Hidden by default to prevent pointer-events blocking) -->
+    <div id="uploadModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="pointer-events-auto bg-hive-card border border-hive-border rounded-2xl max-w-md w-full p-6 flex flex-col gap-4 shadow-2xl relative">
+            <div class="flex items-center justify-between border-b border-hive-border pb-3">
+                <h3 class="text-lg font-bold text-white">Broadcast New Stream</h3>
+                <button id="closeUploadModalBtn" class="text-slate-400 hover:text-white transition cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="flex flex-col gap-3">
+                <div>
+                    <label class="text-xs font-semibold text-slate-300">Stream Title</label>
+                    <input type="text" id="newStreamTitle" placeholder="e.g. Advanced JIT Architecture" class="mt-1 w-full bg-hive-dark border border-hive-border rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-brand-500">
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-slate-300">Category</label>
+                    <select id="newStreamCategory" class="mt-1 w-full bg-hive-dark border border-hive-border rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-brand-500 cursor-pointer">
+                        <option value="ai">AI & Neural</option>
+                        <option value="dev">Development</option>
+                        <option value="design">Slides & UI</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex items-center justify-end gap-2 pt-2 border-t border-hive-border">
+                <button id="cancelUploadBtn" class="bg-hive-border hover:bg-slate-700 text-slate-200 font-semibold text-xs px-4 py-2 rounded-xl transition cursor-pointer">Cancel</button>
+                <button id="submitStreamBtn" class="bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs px-4 py-2 rounded-xl transition cursor-pointer">Start Broadcast</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT INCLUSION MANDATED BY QA -->
+    <script src="app.js"></script>
+</body>
+</html>

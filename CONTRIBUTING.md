@@ -1,4 +1,4 @@
-# Contributing to Munder Difflin
+# Contributing to AgentHive
 
 Thanks for your interest! This is an early prototype, so there's a lot of surface
 area and plenty of room to help. This guide covers setup, the gotchas, and the
@@ -13,21 +13,17 @@ participating, you agree to uphold it.
 
 ### Prerequisites
 
-- **macOS** — the app is macOS-first. Windows/Linux are untested but PRs that
-  improve cross-platform support are welcome.
+- **macOS / Windows / Linux**
 - **Node.js 18+** and npm.
-- A **C/C++ toolchain** to build `node-pty`'s native addon. On macOS:
-  ```bash
-  xcode-select --install
-  ```
+- A **C/C++ toolchain** to build `node-pty`'s native addon.
 - **[Claude Code](https://claude.com/claude-code)** on your `PATH` if you want
-  agents to actually run `claude` (the default command). Any other command works.
+  agents to run `claude`.
 
 ### Install & run
 
 ```bash
-git clone <your-fork-url> munder-difflin
-cd munder-difflin
+git clone https://github.com/ayushvsingh2611-code/office.git
+cd office
 npm install        # postinstall rebuilds node-pty against Electron's ABI
 npm run dev        # live-reloading Electron build
 ```

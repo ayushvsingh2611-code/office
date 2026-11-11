@@ -435,6 +435,8 @@ export class PtyManager {
       const localAppData = process.env.LOCALAPPDATA ?? '';
       const home = process.env.USERPROFILE ?? process.env.HOME ?? '';
       const winCandidates = [
+        `${home}\\.gemini\\antigravity\\bin\\${command}.exe`,
+        `${home}\\.gemini\\antigravity\\bin\\${command}`,
         `${appData}\\npm\\${command}.cmd`,
         `${appData}\\npm\\${command}`,
         `${localAppData}\\Programs\\claude\\${command}.exe`,
@@ -456,6 +458,7 @@ export class PtyManager {
     const candidates = [
       `/opt/homebrew/bin/${command}`,
       `/usr/local/bin/${command}`,
+      `${process.env.HOME ?? ''}/.gemini/antigravity/bin/${command}`,
       `${process.env.HOME ?? ''}/.local/bin/${command}`,
       `${process.env.HOME ?? ''}/.claude/local/${command}`,
       `${process.env.HOME ?? ''}/.volta/bin/${command}`

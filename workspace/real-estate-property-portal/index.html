@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESTATEHUB — Premium Real Estate & Property Portal</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Stylesheet link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div
+                    class="w-11 h-11 bg-brand-600 rounded-xl flex items-center justify-center text-white text-xl font-bold shadow-md shadow-brand-500/20 group-hover:bg-brand-700 transition">
+                    <i class="fa-solid fa-city"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-slate-900">ESTATE<span
+                            class="text-brand-600">HUB</span></span>
+                    <span class="block text-[10px] uppercase tracking-widest font-semibold text-slate-400">Properties &
+                        Living</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
+                <a href="#properties" class="hover:text-brand-600 transition">Properties</a>
+                <a href="#calculator" class="hover:text-brand-600 transition">Mortgage Calculator</a>
+                <a href="#agents" class="hover:text-brand-600 transition">Top Agents</a>
+                <a href="#about" class="hover:text-brand-600 transition">About Us</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-4">
+                <button id="openConsultationModal"
+                    class="hidden sm:inline-flex items-center gap-2 bg-brand-50 text-brand-700 hover:bg-brand-100 px-4 py-2.5 rounded-xl font-semibold text-sm transition">
+                    <i class="fa-solid fa-headset"></i> Consult Agent
+                </button>
+                <a href="#properties"
+                    class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-md shadow-brand-600/20 transition">
+                    Browse Listings
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION & SEARCH FILTER BAR -->
+    <section class="relative bg-slate-900 text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <!-- Hero Background Image with Overlay -->
+        <div class="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=2000"
+                alt="Luxury Real Estate" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent z-0"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center space-y-6">
+            <span
+                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/20 text-xs font-semibold uppercase tracking-wider text-brand-200">
+                <i class="fa-solid fa-sparkles text-amber-400"></i> Discover Your Dream Home Today
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+                Find Properties That Match <br class="hidden sm:inline"> Your <span class="text-brand-400">Lifestyle &
+                    Budget</span>
+            </h1>
+            <p class="text-lg text-slate-300 max-w-2xl mx-auto font-light">
+                Explore verified luxury villas, modern apartments, and suburban family homes with transparent pricing
+                and expert consultation.
+            </p>
+
+            <!-- SEARCH & FILTER CONTROLS BAR -->
+            <div
+                class="mt-10 bg-white p-4 sm:p-6 rounded-2xl shadow-2xl text-slate-800 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+                <!-- Search Keyword -->
+                <div>
+                    <label for="searchInput"
+                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Location or
+                        Keyword</label>
+                    <div class="relative">
+                        <span
+                            class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" id="searchInput" placeholder="e.g. Beverly Hills, Modern..."
+                            class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition">
+                    </div>
+                </div>
+
+                <!-- Filter by Price -->
+                <div>
+                    <label for="priceFilter"
+                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Max Price</label>
+                    <div class="relative">
+                        <span
+                            class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                        </span>
+                        <select id="priceFilter"
+                            class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition cursor-pointer">
+                            <option value="all">Any Price</option>
+                            <option value="500000">Up to $500,000</option>
+                            <option value="800000">Up to $800,000</option>
+                            <option value="1200000">Up to $1,200,000</option>
+                            <option value="2000000">Up to $2,000,000+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Filter by Bedrooms -->
+                <div>
+                    <label for="bedsFilter"
+                        class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Bedrooms</label>
+                    <div class="relative">
+                        <span
+                            class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-bed"></i>
+                        </span>
+                        <select id="bedsFilter"
+                            class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition cursor-pointer">
+                            <option value="all">Any Bedrooms</option>
+                            <option value="1">1+ Bedrooms</option>
+                            <option value="2">2+ Bedrooms</option>
+                            <option value="3">3+ Bedrooms</option>
+                            <option value="4">4+ Bedrooms</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROPERTY LISTINGS SECTION -->
+    <main id="properties" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
+            <div>
+                <span class="text-brand-600 font-bold uppercase tracking-wider text-xs">Exclusive Inventory</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mt-1">Featured Properties</h2>
+            </div>
+            <p id="listingCount" class="text-sm font-medium text-slate-500 mt-2 sm:mt-0">Showing 6 results</p>
+        </div>
+
+        <!-- PROPERTY CARDS GRID -->
+        <div id="propertyGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Property 1 -->
+            <div class="property-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col"
+                data-price="750000" data-beds="3" data-title="Modern Glass Villa Beverly">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800"
+                        alt="Modern Glass Villa"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span
+                        class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur text-white text-xs font-semibold px-3 py-1.5 rounded-lg">Featured</span>
+                    <span
+                        class="absolute bottom-4 left-4 bg-brand-600 text-white font-extrabold text-lg px-3.5 py-1.5 rounded-xl shadow-md">$750,000</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-1">Modern Glass Villa</h3>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5 mb-4">
+                            <i class="fa-solid fa-location-dot text-brand-600"></i> 742 Evergreen Terrace, Beverly Hills
+                        </p>
+                        <div
+                            class="grid grid-cols-3 gap-2 py-3 border-y border-slate-100 text-xs font-medium text-slate-600">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-brand-600"></i> 3
+                                Beds</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-brand-600"></i> 2
+                                Baths</span>
+                            <span class="flex items-center gap-1.5"><i
+                                    class="fa-solid fa-ruler-combined text-brand-600"></i> 2,400 sqft</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 flex items-center justify-between border-t border-slate-100">
+                        <div class="flex items-center gap-2">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100"
+                                alt="Agent" class="w-8 h-8 rounded-full object-cover">
+                            <span class="text-xs font-semibold text-slate-700">Sarah Jenkins</span>
+                        </div>
+                        <button onclick="openModalForProperty('Modern Glass Villa')"
+                            class="consult-btn text-xs font-bold text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100 px-3.5 py-2 rounded-lg transition">
+                            Inquire Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 2 -->
+            <div class="property-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col"
+                data-price="1250000" data-beds="4" data-title="Sunset Luxury Penthouse">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800"
+                        alt="Sunset Luxury Penthouse"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span
+                        class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-semibold px-3 py-1.5 rounded-lg">New
+                        Listing</span>
+                    <span
+                        class="absolute bottom-4 left-4 bg-brand-600 text-white font-extrabold text-lg px-3.5 py-1.5 rounded-xl shadow-md">$1,250,000</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-1">Sunset Luxury Penthouse</h3>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5 mb-4">
+                            <i class="fa-solid fa-location-dot text-brand-600"></i> 100 Ocean Drive, Miami Beach
+                        </p>
+                        <div
+                            class="grid grid-cols-3 gap-2 py-3 border-y border-slate-100 text-xs font-medium text-slate-600">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-brand-600"></i> 4
+                                Beds</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-brand-600"></i> 3.5
+                                Baths</span>
+                            <span class="flex items-center gap-1.5"><i
+                                    class="fa-solid fa-ruler-combined text-brand-600"></i> 3,850 sqft</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 flex items-center justify-between border-t border-slate-100">
+                        <div class="flex items-center gap-2">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100"
+                                alt="Agent" class="w-8 h-8 rounded-full object-cover">
+                            <span class="text-xs font-semibold text-slate-700">David Ross</span>
+                        </div>
+                        <button onclick="openModalForProperty('Sunset Luxury Penthouse')"
+                            class="consult-btn text-xs font-bold text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100 px-3.5 py-2 rounded-lg transition">
+                            Inquire Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 3 -->
+            <div class="property-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col"
+                data-price="480000" data-beds="2" data-title="Minimalist Urban Loft">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800"
+                        alt="Minimalist Urban Loft"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span
+                        class="absolute top-4 left-4 bg-amber-600 text-white text-xs font-semibold px-3 py-1.5 rounded-lg">Hot
+                        Deal</span>
+                    <span
+                        class="absolute bottom-4 left-4 bg-brand-600 text-white font-extrabold text-lg px-3.5 py-1.5 rounded-xl shadow-md">$480,000</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-1">Minimalist Urban Loft</h3>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5 mb-4">
+                            <i class="fa-solid fa-location-dot text-brand-600"></i> 45 Broadway, Downtown NY
+                        </p>
+                        <div
+                            class="grid grid-cols-3 gap-2 py-3 border-y border-slate-100 text-xs font-medium text-slate-600">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-brand-600"></i> 2
+                                Beds</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-brand-600"></i> 2
+                                Baths</span>
+                            <span class="flex items-center gap-1.5"><i
+                                    class="fa-solid fa-ruler-combined text-brand-600"></i> 1,500 sqft</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 flex items-center justify-between border-t border-slate-100">
+                        <div class="flex items-center gap-2">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100"
+                                alt="Agent" class="w-8 h-8 rounded-full object-cover">
+                            <span class="text-xs font-semibold text-slate-700">Elena Vance</span>
+                        </div>
+                        <button onclick="openModalForProperty('Minimalist Urban Loft')"
+                            class="consult-btn text-xs font-bold text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100 px-3.5 py-2 rounded-lg transition">
+                            Inquire Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 4 -->
+            <div class="property-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col"
+                data-price="950000" data-beds="3" data-title="Serene Alpine Chalet">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=800"
+                        alt="Serene Alpine Chalet"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span
+                        class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur text-white text-xs font-semibold px-3 py-1.5 rounded-lg">Featured</span>
+                    <span
+                        class="absolute bottom-4 left-4 bg-brand-600 text-white font-extrabold text-lg px-3.5 py-1.5 rounded-xl shadow-md">$950,000</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-1">Serene Alpine Chalet</h3>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5 mb-4">
+                            <i class="fa-solid fa-location-dot text-brand-600"></i> 12 Pine Ridge, Aspen, CO
+                        </p>
+                        <div
+                            class="grid grid-cols-3 gap-2 py-3 border-y border-slate-100 text-xs font-medium text-slate-600">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-brand-600"></i> 3
+                                Beds</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-brand-600"></i> 3
+                                Baths</span>
+                            <span class="flex items-center gap-1.5"><i
+                                    class="fa-solid fa-ruler-combined text-brand-600"></i> 2,900 sqft</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 flex items-center justify-between border-t border-slate-100">
+                        <div class="flex items-center gap-2">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100"
+                                alt="Agent" class="w-8 h-8 rounded-full object-cover">
+                            <span class="text-xs font-semibold text-slate-700">Sarah Jenkins</span>
+                        </div>
+                        <button onclick="openModalForProperty('Serene Alpine Chalet')"
+                            class="consult-btn text-xs font-bold text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100 px-3.5 py-2 rounded-lg transition">
+                            Inquire Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 5 -->
+            <div class="property-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col"
+                data-price="620000" data-beds="2" data-title="Cozy Suburban Family Home">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=800"
+                        alt="Cozy Suburban Family Home"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span
+                        class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-semibold px-3 py-1.5 rounded-lg">Verified</span>
+                    <span
+                        class="absolute bottom-4 left-4 bg-brand-600 text-white font-extrabold text-lg px-3.5 py-1.5 rounded-xl shadow-md">$620,000</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-1">Cozy Suburban Family Home</h3>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5 mb-4">
+                            <i class="fa-solid fa-location-dot text-brand-600"></i> 88 Maplewood Ave, Austin, TX
+                        </p>
+                        <div
+                            class="grid grid-cols-3 gap-2 py-3 border-y border-slate-100 text-xs font-medium text-slate-600">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-brand-600"></i> 2
+                                Beds</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-brand-600"></i> 2
+                                Baths</span>
+                            <span class="flex items-center gap-1.5"><i
+                                    class="fa-solid fa-ruler-combined text-brand-600"></i> 2,100 sqft</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 flex items-center justify-between border-t border-slate-100">
+                        <div class="flex items-center gap-2">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100"
+                                alt="Agent" class="w-8 h-8 rounded-full object-cover">
+                            <span class="text-xs font-semibold text-slate-700">David Ross</span>
+                        </div>
+                        <button onclick="openModalForProperty('Cozy Suburban Family Home')"
+                            class="consult-btn text-xs font-bold text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100 px-3.5 py-2 rounded-lg transition">
+                            Inquire Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property 6 -->
+            <div class="property-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition duration-300 flex flex-col"
+                data-price="1800000" data-beds="5" data-title="Grand Marina Waterfront Estate">
+                <div class="relative h-64 overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&q=80&w=800"
+                        alt="Grand Marina Waterfront Estate"
+                        class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span
+                        class="absolute top-4 left-4 bg-brand-600 text-white text-xs font-semibold px-3 py-1.5 rounded-lg">Luxury
+                        Villa</span>
+                    <span
+                        class="absolute bottom-4 left-4 bg-brand-600 text-white font-extrabold text-lg px-3.5 py-1.5 rounded-xl shadow-md">$1,800,000</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-1">Grand Marina Waterfront Estate</h3>
+                        <p class="text-sm text-slate-500 flex items-center gap-1.5 mb-4">
+                            <i class="fa-solid fa-location-dot text-brand-600"></i> 404 Harbor Lights, Malibu, CA
+                        </p>
+                        <div
+                            class="grid grid-cols-3 gap-2 py-3 border-y border-slate-100 text-xs font-medium text-slate-600">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bed text-brand-600"></i> 5
+                                Beds</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-brand-600"></i> 5.5
+                                Baths</span>
+                            <span class="flex items-center gap-1.5"><i
+                                    class="fa-solid fa-ruler-combined text-brand-600"></i> 5,200 sqft</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 flex items-center justify-between border-t border-slate-100">
+                        <div class="flex items-center gap-2">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100"
+                                alt="Agent" class="w-8 h-8 rounded-full object-cover">
+                            <span class="text-xs font-semibold text-slate-700">Elena Vance</span>
+                        </div>
+                        <button onclick="openModalForProperty('Grand Marina Waterfront Estate')"
+                            class="consult-btn text-xs font-bold text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100 px-3.5 py-2 rounded-lg transition">
+                            Inquire Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Empty State (Hidden by Default) -->
+        <div id="noResults" class="hidden text-center py-20 bg-white rounded-2xl border border-slate-200 mt-6">
+            <div
+                class="w-16 h-16 bg-brand-50 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                <i class="fa-solid fa-house-chimney-crack"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">No properties found</h3>
+            <p class="text-sm text-slate-500">Try adjusting your price filter, bedroom count, or search keyword.</p>
+        </div>
+    </main>
+
+    <!-- MORTGAGE CALCULATOR SECTION -->
+    <section id="calculator" class="bg-white py-20 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-brand-600 font-bold uppercase tracking-wider text-xs">Financial Planning</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mt-1">Mortgage Calculator</h2>
+                <p class="text-slate-500 text-sm mt-2">Estimate your monthly home loan payments with our transparent
+                    calculation tool.</p>
+            </div>
+
+            <div
+                class="max-w-4xl mx-auto bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Calculator Inputs -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold text-slate-700 mb-2">
+                            <span>Home Price</span>
+                            <span id="homePriceVal" class="text-brand-600 font-bold">$600,000</span>
+                        </div>
+                        <input type="range" id="calcPrice" min="100000" max="3000000" step="25000" value="600000"
+                            class="w-full accent-brand-600 cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold text-slate-700 mb-2">
+                            <script src="app.js" defer></script>
+</body>
+
+</html>

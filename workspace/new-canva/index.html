@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas Learning Management System - Replica</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Root Application Wrapper -->
+  <div id="app-container">
+    
+    <!-- Toast Notification Banner -->
+    <div id="toast-notification" class="toast-hidden" role="alert" aria-live="polite">
+      <i id="toast-icon" class="fas fa-info-circle"></i>
+      <span id="toast-message">Notification message</span>
+    </div>
+
+    <!-- 1. Global Navigation Sidebar -->
+    <nav id="global-nav">
+      <div id="nav-logo" title="Canvas LMS Replica">
+        <div class="canvas-logo-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <span class="nav-logo-text">Canvas</span>
+      </div>
+      
+      <div class="nav-items-group">
+        <button id="nav-account" class="nav-item" title="User Account">
+          <div class="nav-avatar-wrapper">
+            <img id="user-avatar-badge" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="User Avatar">
+          </div>
+          <span class="nav-label">Account</span>
+        </button>
+
+        <button id="nav-dashboard" class="nav-item active" title="Dashboard">
+          <i class="fas fa-tachometer-alt"></i>
+          <span class="nav-label">Dashboard</span>
+        </button>
+
+        <button id="nav-courses" class="nav-item" title="Courses">
+          <i class="fas fa-book"></i>
+          <span class="nav-label">Courses</span>
+        </button>
+
+        <button id="nav-calendar" class="nav-item" title="Calendar">
+          <i class="fas fa-calendar-alt"></i>
+          <span class="nav-label">Calendar</span>
+        </button>
+
+        <button id="nav-grades" class="nav-item" title="Grades">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="nav-label">Grades</span>
+        </button>
+
+        <button id="nav-inbox" class="nav-item" title="Inbox">
+          <i class="fas fa-inbox"></i>
+          <span class="nav-label">Inbox</span>
+          <span id="inbox-badge-count" class="nav-badge">3</span>
+        </button>
+      </div>
+
+      <div class="nav-footer">
+        <button id="nav-help" class="nav-item" title="Help & Support">
+          <i class="fas fa-question-circle"></i>
+          <span class="nav-label">Help</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <div id="main-content-wrapper">
+      
+      <!-- Top Header Bar -->
+      <header id="top-header-bar">
+        <div class="header-left">
+          <button id="btn-mobile-nav-toggle" aria-label="Toggle Navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+          <nav id="breadcrumb-nav" aria-label="Breadcrumb">
+            <span class="breadcrumb-root"><span>Home</span> <i class="fas fa-chevron-right separator"></i></span>
+            <span id="breadcrumb-current">Dashboard</span>
+          </nav>
+        </div>
+        <div class="header-right">
+          <div class="user-profile-summary">
+            <span class="user-greeting">Hello, <strong>Monkey D. Luffy</strong></span>
+            <div class="user-mini-avatar">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="Luffy">
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Active View Container (Dynamic Mount Point) -->
+      <main id="active-view-container">
+        
+        <!-- 2. Dashboard View (#view-dashboard) -->
+        <section id="view-dashboard" class="app-view active">
+          <header id="dashboard-header">
+            <h1 id="dashboard-title">Dashboard</h1>
+          </header>
+          
+          <div id="dashboard-main-area">
+            <!-- Left: Courses Grid -->
+            <div class="dashboard-primary-column">
+              <div class="section-title-row">
+                <h2>Enrolled Courses</h2>
+                <span class="subtitle-count">4 Active Courses</span>
+              </div>
+              <div id="courses-grid" class="courses-grid">
+                <!-- Dynamically rendered Course Cards -->
+              </div>
+            </div>
+
+            <!-- Right: Sidebar (To-Do, Feedback, Coming Up) -->
+            <aside id="dashboard-sidebar" class="dashboard-sidebar">
+              
+              <!-- To-Do Section -->
+              <div id="todo-section" class="sidebar-widget">
+                <div class="widget-header">
+                  <h3><i class="fas fa-check-circle"></i> To Do</h3>
+                </div>
+                <div class="widget-body">
+                  <ul id="todo-list" class="sidebar-item-list">
+                    <!-- Dynamically rendered todo items -->
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Recent Feedback Section -->
+              <div id="recent-feedback-section" class="sidebar-widget">
+                <div class="widget-header">
+                  <h3><i class="fas fa-comment-alt"></i> Recent Feedback</h3>
+                </div>
+                <div class="widget-body">
+                  <ul id="recent-feedback-list" class="sidebar-item-list">
+                    <!-- Dynamically rendered feedback -->
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Coming Up Section -->
+              <div id="coming-up-section" class="sidebar-widget">
+                <div class="widget-header">
+                  <h3><i class="fas fa-clock"></i> Coming Up</h3>
+                  <span class="widget-subaction">View Calendar</span>
+                </div>
+                <div class="widget-body">
+                  <ul id="coming-up-list" class="sidebar-item-list">
+                    <!-- Dynamically rendered coming up deadlines -->
+                  </ul>
+                </div>
+              </div>
+
+              <!-- View All Grades Shortcut -->
+              <div class="sidebar-action-footer">
+                <button id="btn-view-all-grades" class="btn-canvas-secondary">
+                  <i class="fas fa-graduation-cap"></i> View Grades Across All Courses
+                </button>
+              </div>
+
+            </aside>
+          </div>
+        </section>
+
+        <!-- 3. Course Workspace View (#view-course) -->
+        <section id="view-course" class="app-view">
+          <div id="course-header-banner" class="course-header-banner">
+            <div class="course-banner-info">
+              <span id="course-banner-code">CS 101</span>
+              <h2 id="course-banner-name">Introduction to Computer Science</h2>
+              <span id="course-banner-term">Fall 2025</span>
+            </div>
+            <div class="course-banner-actions">
+              <span class="instructor-tag"><i class="fas fa-chalkboard-teacher"></i> <span id="course-banner-instructor">Dr. Vegapunk</span></span>
+            </div>
+          </div>
+
+          <div id="course-inner-layout">
+            <!-- Course Subnav Sidebar -->
+            <nav id="course-subnav" class="course-subnav">
+              <button id="course-nav-modules" class="course-nav-item active">
+                <i class="fas fa-cubes"></i> Modules
+              </button>
+              <button id="course-nav-assignments" class="course-nav-item">
+                <i class="fas fa-file-alt"></i> Assignments
+              </button>
+              <button id="course-nav-grades" class="course-nav-item">
+                <i class="fas fa-chart-line"></i> Grades
+              </button>
+              <button id="course-nav-announcements" class="course-nav-item">
+                <i class="fas fa-bullhorn"></i> Announcements <span id="course-announcement-badge" class="nav-badge hidden">0</span>
+              </button>
+              <button id="course-nav-syllabus" class="course-nav-item">
+                <i class="fas fa-scroll"></i> Syllabus
+              </button>
+            </nav>
+
+            <!-- Course Content Pane -->
+            <div id="course-content-pane" class="course-content-pane">
+              
+              <!-- Sub-Panel 1: Modules -->
+              <div id="panel-modules" class="course-sub-panel active">
+                <div id="modules-control-bar" class="modules-control-bar">
+                  <button id="btn-toggle-all-modules" class="btn-canvas-subtle">
+                    <i class="fas fa-compress-alt"></i> Collapse All
+                  </button>
+                  <div class="modules-search-filter">
+                    <input type="text" id="module-search-input" placeholder="Search modules...">
+                  </div>
+                </div>
+                <div id="modules-list" class="modules-list-container">
+                  <!-- Accordion modules rendered here -->
+                </div>
+              </div>
+
+              <!-- Sub-Panel 2: Assignments Index -->
+              <div id="panel-assignments" class="course-sub-panel">
+                <div class="assignments-header-bar">
+                  <div class="search-box-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="assignment-search-input" placeholder="Search Assignments...">
+                  </div>
+                  <div class="filter-box-wrapper">
+                    <label for="assignment-filter-select">Filter by:</label>
+                    <select id="assignment-filter-select">
+                      <option value="all">All Assignments</option>
+                      <option value="upcoming">Upcoming</option>
+                      <option value="submitted">Submitted</option>
+                      <option value="ungraded">Unsubmitted</option>
+                    </select>
+                  </div>
+                </div>
+                <div id="assignments-table" class="assignments-table-container">
+                  <!-- Assignment cards/rows rendered here -->
+                </div>
+              </div>
+
+              <!-- Sub-Panel 3: Course Grades -->
+              <div id="panel-grades" class="course-sub-panel">
+                <div class="course-grades-notice">
+                  <h3>Course Gradebook View</h3>
+                  <p>View detailed scores and test out hypothetical grades using the What-If calculator.</p>
+                </div>
+                <!-- Embedded mini grade table or shortcut -->
+                <div class="embedded-gradebook-action">
+                  <button class="btn-canvas-primary" onclick="switchGlobalView('grades')">
+                    <i class="fas fa-calculator"></i> Open Full Grade Calculator & Grades View
+                  </button>
+                </div>
+              </div>
+
+              <!-- Sub-Panel 4: Announcements -->
+              <div id="panel-announcements" class="course-sub-panel">
+                <div class="panel-title-bar">
+                  <h3>Announcements</h3>
+                </div>
+                <div id="announcements-list" class="announcements-list-container">
+                  <!-- Announcement cards rendered here -->
+                </div>
+              </div>
+
+              <!-- Sub-Panel 5: Syllabus -->
+              <div id="panel-syllabus" class="course-sub-panel">
+                <div class="panel-title-bar">
+                  <h3>Course Syllabus & Grading Weights</h3>
+                </div>
+                <div id="syllabus-content" class="syllabus-content-body">
+                  <!-- Syllabus rendered here -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Gradebook & What-If Calculator View (#view-grades) -->
+        <section id="view-grades" class="app-view">
+          <header id="grades-header">
+            <div class="grades-title-area">
+              <h1>Grades for Monkey D. Luffy</h1>
+              <p>Review assignment scores and calculate hypothetical "What-If" final grades.</p>
+            </div>
+            <div class="grades-controls-area">
+              <div class="control-group">
+                <label for="grades-course-select"><i class="fas fa-book"></i> Course:</label>
+                <select id="grades-course-select">
+                  <!-- Dynamically populated course selector -->
+                </select>
+              </div>
+              <div class="control-group">
+                <label for="grades-sorting-select"><i class="fas fa-sort"></i> Sort by:</label>
+                <select id="grades-sorting-select">
+                  <option value="dueDate">Due Date</option>
+                  <option value="title">Assignment Name</option>
+                  <option value="score">Score</option>
+                </select>
+              </div>
+            </div>
+          </header>
+
+          <div class="grades-main-layout">
+            <div id="grades-table-wrapper" class="grades-table-wrapper">
+              <table id="grades-table" class="canvas-data-table">
+                <thead>
+                  <tr>
+                    <th>Assignment</th>
+                    <th>Due</th>
+                    <th>Status</th>
+                    <th>Score</th>
+                    <th>Out of</th>
+                  </tr>
+                </thead>
+                <tbody id="grades-tbody">
+                  <!-- Dynamic rows -->
+                </tbody>
+              </table>
+            </div>
+
+            <aside id="grades-summary-sidebar" class="grades-summary-sidebar">
+              <div class="summary-card">
+                <h3>Total Grade Summary</h3>
+                <div id="summary-percentage-display" class="summary-percentage">94.5%</div>
+                <div class="letter-grade-badge-row">
+                  <span>Letter Grade:</span>
+                  <span id="summary-letter-grade" class="letter-badge">A</span>
+                </div>
+
+                <div id="what-if-badge-indicator" class="what-if-indicator hidden">
+                  <i class="fas fa-calculator"></i> What-If Score Active
+                </div>
+
+                <div class="summary-actions">
+                  <button id="btn-reset-what-if" class="btn-canvas-subtle">
+                    <i class="fas fa-undo"></i> Revert What-If Scores
+                  </button>
+                </div>
+                
+                <div class="what-if-instructions">
+                  <small><i class="fas fa-info-circle"></i> Click any score in the table to test a hypothetical "What-If" score and see your grade recalculate instantly.</small>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- 5. Calendar View (#view-calendar) -->
+        <section id="view-calendar" class="app-view">
+          <header id="calendar-controls">
+            <div class="calendar-nav-group">
+              <button id="calendar-btn-prev" class="btn-canvas-subtle" title="Previous Month"><i class="fas fa-chevron-left"></i></button>
+              <button id="calendar-btn-today" class="btn-canvas-subtle">Today</button>
+              <button id="calendar-btn-next" class="btn-canvas-subtle" title="Next Month"><i class="fas fa-chevron-right"></i></button>
+              <h2 id="calendar-current-month">October 2025</h2>
+            </div>
+            <div class="calendar-options-group">
+              <div id="calendar-course-filters" class="calendar-course-filters">
+                <!-- Course filter checkboxes injected here -->
+              </div>
+              <select id="calendar-view-type-select">
+                <option value="month">Month View</option>
+                <option value="agenda">Agenda List</option>
+              </select>
+            </div>
+          </header>
+
+          <div id="calendar-grid-container" class="calendar-grid-container">
+            <div id="calendar-grid-header" class="calendar-grid-header">
+              <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <div id="calendar-days-grid" class="calendar-days-grid">
+              <!-- Calendar cells rendered here -->
+            </div>
+          </div>
+
+          <!-- Day Schedule Drawer -->
+          <div id="calendar-day-drawer" class="calendar-day-drawer hidden">
+            <div class="drawer-header">
+              <h3 id="drawer-day-title">October 14, 2025</h3>
+              <button id="drawer-btn-close" class="drawer-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="drawer-body">
+              <ul id="drawer-events-list" class="drawer-events-list">
+                <!-- Events rendered here -->
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- 6. Assignment Details & Submission Modal (#assignment-modal) -->
+    <div id="assignment-modal" class="canvas-modal-overlay hidden" role="dialog" aria-modal="true">
+      <div id="assignment-modal-backdrop" class="modal-backdrop"></div>
+      <div id="assignment-modal-card" class="modal-card">
+        
+        <header class="modal-header">
+          <div class="modal-title-group">
+            <span id="modal-assignment-course" class="modal-course-badge">CS 101</span>
+            <h3 id="modal-assignment-title">Problem Set 1</h3>
+          </div>
+          <button id="modal-btn-close" class="modal-close-btn" aria-label="Close modal"><i class="fas fa-times"></i></button>
+        </header>
+
+        <div class="modal-meta-bar">
+          <div class="meta-item">
+            <i class="fas fa-calendar-alt"></i> <strong>Due:</strong> <span id="modal-meta-due">Oct 5 at 11:59pm</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-award"></i> <strong>Points:</strong> <span id="modal-meta-points">50 pts</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-info-circle"></i> <strong>Status:</strong> <span id="modal-meta-status" class="status-badge status-unsubmitted">Not Submitted</span>
+          </div>
+        </div>
+
+        <div class="modal-body-scrollable">
+          <div id="modal-assignment-body" class="assignment-rich-description">
+            <!-- Rich HTML prompt instructions -->
+          </div>
+
+          <!-- Submission Form Section -->
+          <section id="modal-submission-section" class="submission-section-container">
+            <h4>Submit Assignment</h4>
+            
+            <div id="submission-tab-nav" class="submission-tab-nav">
+              <button id="tab-btn-text" class="tab-btn active"><i class="fas fa-font"></i> Text Entry</button>
+              <button id="tab-btn-file" class="tab-btn"><i class="fas fa-upload"></i> File Upload</button>
+              <button id="tab-btn-url" class="tab-btn"><i class="fas fa-link"></i> Website URL</button>
+            </div>
+
+            <form id="assignment-submission-form" onsubmit="handleAssignmentSubmit(event)">
+              
+              <!-- Tab 1: Text Entry -->
+              <div id="tab-content-text" class="submission-tab-pane active">
+                <label for="input-submission-text">Text Entry Content:</label>
+                <textarea id="input-submission-text" rows="6" placeholder="Type or paste your assignment response here..."></textarea>
+              </div>
+
+              <!-- Tab 2: File Upload -->
+              <div id="tab-content-file" class="submission-tab-pane">
+                <div id="drop-zone-area" class="drop-zone-area" onclick="document.getElementById('input-submission-file').click()">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  <p>Drag and drop files here, or <span>browse files</span></p>
+                  <span id="file-selected-name" class="file-selected-name">No file chosen</span>
+                </div>
+                <input type="file" id="input-submission-file" class="hidden-file-input" onchange="handleFileSelect(event)">
+              </div>
+
+              <!-- Tab 3: Website URL -->
+              <div id="tab-content-url" class="submission-tab-pane">
+                <label for="input-submission-url">Website URL (GitHub repo, live site, etc.):</label>
+                <input type="url" id="input-submission-url" placeholder="https://github.com/username/project">
+              </div>
+
+              <!-- Comments -->
+              <div class="submission-comments-group">
+                <label for="input-submission-comments">Comments (optional):</label>
+                <textarea id="input-submission-comments" rows="2" placeholder="Any comments for your instructor..."></textarea>
+              </div>
+
+              <div class="modal-footer-actions">
+                <button type="button" id="btn-modal-cancel" class="btn-canvas-subtle" onclick="closeAssignmentModal()">Cancel</button>
+                <button type="submit" id="btn-modal-submit" class="btn-canvas-primary">
+                  <i class="fas fa-paper-plane"></i> Submit Assignment
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <!-- Confetti Overlay Canvas -->
+        <canvas id="submission-confetti-canvas" class="confetti-canvas"></canvas>
+
+      </div>
+    </div>
+
+  </div><!-- /#app-container -->
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>

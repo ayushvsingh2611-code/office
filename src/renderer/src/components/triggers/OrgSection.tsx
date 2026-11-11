@@ -30,16 +30,17 @@ export function OrgSection({ onSummary }: { onSummary?: (s: string) => void }) {
     });
   }, [mirror]);
 
+  const apiKey = cfg?.apiKey ?? '';
   useEffect(() => {
-    onSummary?.(!cfg.apiKey.trim() ? 'no key' : cfg.enabled ? 'on' : 'off');
-  }, [cfg, onSummary]);
+    onSummary?.(!apiKey.trim() ? 'no key' : cfg?.enabled ? 'on' : 'off');
+  }, [cfg, apiKey, onSummary]);
 
   const apply = (next: OrgTriggerConfig, persist = true) => {
     mirror(next);
     if (persist) persistOrgTrigger(next);
   };
 
-  const hasKey = cfg.apiKey.trim().length > 0;
+  const hasKey = apiKey.trim().length > 0;
 
   return (
     <>

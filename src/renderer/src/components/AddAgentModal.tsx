@@ -9,6 +9,7 @@ import { OFFICE_CAST, DEFAULT_CHARACTER, type OfficeCharacterName } from '@/scen
 import { type AccentColorName } from '@/design/tokens';
 import type { HireManifest } from '@shared/hire';
 import { MCP_CATALOG } from '@shared/mcpCatalog';
+import { LYZR_AGENTS } from '@shared/lyzrAgents';
 import {
   OSS_LOCAL_PICKS,
   OSS_PROVIDER_PICKS,
@@ -78,14 +79,14 @@ const DESCRIPTION_TEMPLATES: { label: string; description: string; goal: string 
 // the exact JSON shape the importer accepts and ends with a fill-in section so the
 // user adds their own details (item 7). Kept in sync with the HireManifest schema
 // (src/shared/hire.ts) — provider allowlist is claude | codex | antigravity.
-const HIRE_PROMPT = `You are designing a "hire" — a ready-to-spawn AI agent for Panda Hive, an app that runs a team of CLI coding agents. Output ONE JSON object (a hire manifest) and nothing else.
+const HIRE_PROMPT = `You are designing a "hire" — a ready-to-spawn AI agent for AgentHive, an app that runs a team of CLI coding agents. Output ONE JSON object (a hire manifest) and nothing else.
 
 Make the agent genuinely useful: give it a sharp role, a concrete standing goal, and a description that makes it behave like an expert operator of its CLI engine (Claude Code, Codex, or Antigravity/Gemini). It should know how to use the terminal, read and edit files, run and inspect commands, lean on available skills and MCP tools, keep notes in memory, and work autonomously toward its goal without hand-holding.
 
 Return EXACTLY this shape (omit optional fields you don't need; keep the spec string verbatim):
 
 {
-  "spec": "panda-hive/hire@1",
+  "spec": "agenthive/hire@1",
   "name": "Jim",
   "description": "one-line role — what this agent is for",
   "goal": "standing directive injected on every prompt — specific and outcome-oriented",
@@ -217,6 +218,20 @@ export function AddAgentModal({ onClose, config, onConfigChange }: AddAgentModal
   // Note shown when the folder was auto-filled from the pasted session id.
   const [folderNote, setFolderNote] = useState<string | undefined>();
   const [externalWebhookUrl, setExternalWebhookUrl] = useState('');
+  const [lyzrAgentId, setLyzrAgentId] = useState('');
+  const [lyzrSessionId, setLyzrSessionId] = useState('');
+  const [lyzrApiKey, setLyzrApiKey] = useState('agk_Dk7bbrkB69KcmQtDQY95B91wjQuqHQKyIdSGA1xAXLk');
+
+  const pickLyzrPreset = (preset: (typeof LYZR_AGENTS)[number]) => {
+    setName(preset.name);
+    setCharacter(preset.character as any);
+    setAccent(preset.accent);
+    setDescription(preset.description);
+    setGoal(preset.goal);
+    setLyzrAgentId(preset.agentId);
+    setLyzrSessionId(preset.sessionId);
+    setLyzrApiKey(preset.apiKey);
+  };
   const [error, setError] = useState<string | undefined>();
   const [busy, setBusy] = useState(false);
   // Which config section the left sidebar index is showing.
@@ -331,7 +346,7 @@ export function AddAgentModal({ onClose, config, onConfigChange }: AddAgentModal
         character,
         accent,
         description: description.trim() || 'External AI Agent',
-        project: 'API / External',
+        project: lyzrAgentId ? 'Lyzr AI Studio' : 'API / External',
         tmuxTarget: '',
         cwd: cwd || '',
         goal: goal.trim() || undefined,
@@ -343,6 +358,14 @@ export function AddAgentModal({ onClose, config, onConfigChange }: AddAgentModal
         provider: 'external',
         recentTextTs: Date.now()
       };
+      if (lyzrAgentId.trim() && lyzrSessionId.trim()) {
+        agent.lyzr = {
+          userId: 'ayush.v.singh2611@gmail.com',
+          agentId: lyzrAgentId.trim(),
+          sessionId: lyzrSessionId.trim(),
+          apiKey: lyzrApiKey.trim() || undefined
+        };
+      }
       addAgent(agent);
       if (externalWebhookUrl.trim()) {
         void window.cth.registerExternalWebhook?.(id, externalWebhookUrl.trim());
@@ -824,17 +847,66 @@ export function AddAgentModal({ onClose, config, onConfigChange }: AddAgentModal
                         padding: '10px 12px',
                         background: 'var(--cth-bamboo-50, #f0f7f2)',
                         boxShadow: 'inset 0 0 0 1px var(--cth-bamboo-600, #225a38)',
-                        display: 'flex', flexDirection: 'column', gap: 6,
+                        display: 'flex', flexDirection: 'column', gap: 8,
                         marginTop: 4
                       }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
-                          <strong style={{ fontSize: 13, color: 'var(--cth-ink-900)' }}>Panda Hive External Agent Mode</strong>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
+                            <strong style={{ fontSize: 13, color: 'var(--cth-ink-900)' }}>External &amp; Lyzr AI Agent Mode</strong>
+                          </div>
+                          <span style={{ fontSize: 10, padding: '2px 6px', background: 'var(--cth-ink-900)', color: '#fff' }}>
+                            LYZR STUDIO
+                          </span>
                         </div>
                         <span style={{ fontSize: 12, color: 'var(--cth-ink-700)', lineHeight: '16px' }}>
-                          No local CLI or terminal required! This agent is powered by your custom outside agent (Python, LangChain, AutoGen, or API). It will appear on your office floor and accept events on port 3737.
+                          Connect custom outside agents (Lyzr Studio, Python, LangChain, or Webhook).
                         </span>
-                        <Row label="Your Agent Webhook URL (Optional)">
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                          <span style={{ fontSize: 11, fontWeight: 'bold', color: 'var(--cth-ink-800)' }}>
+                            Quick Fill Lyzr Studio Agent:
+                          </span>
+                          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                            {LYZR_AGENTS.map((la) => (
+                              <button
+                                key={la.id}
+                                type="button"
+                                onClick={() => pickLyzrPreset(la)}
+                                style={{
+                                  padding: '4px 8px',
+                                  fontSize: 11,
+                                  border: 'none',
+                                  background: lyzrAgentId === la.agentId ? 'var(--cth-mint-light)' : 'var(--cth-paper-100)',
+                                  boxShadow: 'inset 0 0 0 1px var(--cth-ink-300)',
+                                  cursor: 'pointer',
+                                  color: 'var(--cth-ink-900)',
+                                  borderRadius: 2
+                                }}
+                              >
+                                ⚡ {la.name} ({la.role})
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <Row label="Lyzr Agent ID (Optional)">
+                          <input
+                            value={lyzrAgentId}
+                            onChange={(e) => setLyzrAgentId(e.target.value)}
+                            placeholder="e.g. 6ae187ac320c9dc51fa777b3"
+                            style={inputStyle}
+                          />
+                        </Row>
+                        <Row label="Lyzr Session ID (Optional)">
+                          <input
+                            value={lyzrSessionId}
+                            onChange={(e) => setLyzrSessionId(e.target.value)}
+                            placeholder="e.g. 6ae187ac320c9dc51fa777b3-xae8k4d8"
+                            style={inputStyle}
+                          />
+                        </Row>
+                        <Row label="Webhook URL (Optional Alternative)">
                           <input
                             value={externalWebhookUrl}
                             onChange={(e) => setExternalWebhookUrl(e.target.value)}
@@ -842,9 +914,6 @@ export function AddAgentModal({ onClose, config, onConfigChange }: AddAgentModal
                             style={inputStyle}
                           />
                         </Row>
-                        <span style={{ fontSize: 11, color: 'var(--cth-ink-500)' }}>
-                          When set, tasks and messages sent to this agent will auto-POST to this webhook URL.
-                        </span>
                       </div>
                     )}
 

@@ -1,0 +1,33 @@
+{
+  "geminiLiveTool": {
+    "status": "PARTIALLY VERIFIED",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "toolCalls": [
+      "FetchUrl",
+      "FetchUrl"
+    ]
+  },
+  "groqLiveTool": {
+    "status": "VERIFIED",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "toolCalled": "GitStatus",
+    "turnsCount": 2,
+    "hasBranchInText": true
+  },
+  "failoverTool": {
+    "status": "VERIFIED",
+    "fallbackOccurred": true,
+    "fallbackProvider": "groq",
+    "model": "qwen/qwen3.8-27b",
+    "toolCallsExecuted": 1
+  },
+  "mcpLive": {
+    "status": "VERIFIED",
+    "toolsDiscovered": 3,
+    "sampleTool": "microsoft_docs_search",
+    "resultLength": 7095,
+    "available": true
+  }
+}

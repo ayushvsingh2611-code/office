@@ -111,14 +111,18 @@ export function IntegrationsRegistry() {
   const [note, setNote] = useState('');
 
   const flash = (msg: string) => { setNote(msg); setTimeout(() => setNote(''), 2400); };
-  const refresh = async () => setRecords(await integrationsClient.list());
+  const refresh = async () => {
+    const list = await integrationsClient.list();
+    setRecords(Array.isArray(list) ? list : []);
+  };
 
   useEffect(() => {
     let alive = true;
     (async () => {
       const [tpls, recs] = await Promise.all([integrationsClient.listTemplates(), integrationsClient.list()]);
       if (!alive) return;
-      setTemplates(tpls); setRecords(recs);
+      setTemplates(Array.isArray(tpls) ? tpls : []);
+      setRecords(Array.isArray(recs) ? recs : []);
     })();
     return () => { alive = false; };
   }, []);

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneDignostic - Modern Diagnostic Center & Health Checkups</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clinical: {
+                            navy: '#0A3981',
+                            teal: '#00A896',
+                            sky: '#0284C7',
+                            soft: '#E0F2FE',
+                            slate50: '#F8FAFC',
+                            dark: '#0F172A'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for medical icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col selection:bg-teal-500 selection:text-white">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-notification" class="fixed top-5 right-5 z-50 transform translate-y-[-200%] opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="flex items-center gap-3 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-xl border border-slate-700">
+            <span id="toast-icon" class="text-teal-400 text-lg"><i class="fa-solid fa-circle-check"></i></span>
+            <span id="toast-message" class="text-sm font-medium">Notification message here</span>
+        </div>
+    </div>
+
+    <!-- Header & Sticky Navigation -->
+    <header id="header-navbar" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" id="brand-logo" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-clinical-navy to-clinical-teal flex items-center justify-center text-white shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-heart-pulse text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-black tracking-tight text-clinical-navy">One<span class="text-clinical-teal">Dignostic</span></span>
+                        <span class="text-[10px] tracking-widest uppercase font-bold text-slate-400 -mt-1">Advanced Care Lab</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#tests-packages-section" id="nav-link-tests" class="text-sm font-semibold text-slate-600 hover:text-clinical-navy transition-colors">Tests & Packages</a>
+                    <a href="#centers-section" id="nav-link-centers" class="text-sm font-semibold text-slate-600 hover:text-clinical-navy transition-colors">Our Centers</a>
+                    <button id="nav-link-prescription" class="text-sm font-semibold text-slate-600 hover:text-clinical-navy transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-prescription text-clinical-teal"></i> Upload Rx
+                    </button>
+                    <button id="nav-link-reports" class="text-sm font-semibold text-slate-600 hover:text-clinical-navy transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-medical text-clinical-sky"></i> Track Report
+                    </button>
+                    <button id="nav-link-advisor" class="text-sm font-semibold text-slate-600 hover:text-clinical-teal transition-colors flex items-center gap-1.5 bg-teal-50 px-3 py-1.5 rounded-full border border-teal-100 hover:bg-teal-100">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Health Risk Quiz
+                    </button>
+                </nav>
+
+                <!-- Desktop Cart & Actions -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <button id="cart-btn-desktop" class="relative flex items-center gap-2.5 bg-clinical-navy text-white px-5 py-2.5 rounded-xl font-semibold shadow-md hover:bg-opacity-90 active:scale-95 transition-all">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span>Cart</span>
+                        <span id="cart-badge-desktop" class="absolute -top-2 -right-2 bg-clinical-teal text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold shadow">0</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex lg:hidden items-center gap-3">
+                    <button id="cart-btn-mobile" class="relative flex items-center justify-center w-10 h-10 bg-slate-100 rounded-xl text-slate-700 hover:bg-slate-200">
+                        <i class="fa-solid fa-cart-shopping text-sm"></i>
+                        <span id="cart-badge-mobile" class="absolute -top-1.5 -right-1.5 bg-clinical-teal text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                    </button>
+                    <button id="mobile-menu-toggle-btn" class="flex items-center justify-center w-10 h-10 bg-slate-100 rounded-xl text-slate-700 hover:bg-slate-200">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Drawer -->
+        <div id="mobile-nav-menu" class="lg:hidden hidden border-t border-slate-100 bg-white px-4 py-5 shadow-lg space-y-4">
+            <a href="#tests-packages-section" class="block text-base font-semibold text-slate-700 hover:text-clinical-navy py-1">Tests & Packages</a>
+            <a href="#centers-section" class="block text-base font-semibold text-slate-700 hover:text-clinical-navy py-1">Our Centers</a>
+            <button id="mobile-link-prescription" class="w-full text-left text-base font-semibold text-slate-700 hover:text-clinical-navy py-1 flex items-center gap-2">
+                <i class="fa-solid fa-file-prescription text-clinical-teal"></i> Upload Prescription
+            </button>
+            <button id="mobile-link-reports" class="w-full text-left text-base font-semibold text-slate-700 hover:text-clinical-navy py-1 flex items-center gap-2">
+                <i class="fa-solid fa-file-medical text-clinical-sky"></i> Track Patient Report
+            </button>
+            <button id="mobile-link-advisor" class="w-full text-left text-base font-semibold text-clinical-teal py-1 flex items-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Health Risk Advisor Quiz
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+
+        <!-- Hero Section -->
+        <section id="hero-section" class="relative bg-gradient-to-br from-slate-900 via-clinical-navy to-slate-900 text-white py-20 lg:py-28 overflow-hidden">
+            <!-- Decorative medical grid background overlay -->
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#00A896_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/15 text-teal-300 text-xs font-semibold tracking-wide uppercase">
+                            <i class="fa-solid fa-shield-halved"></i> NABL Accredited & ISO 9001:2015 Certified Lab
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                            Precision Diagnostics, <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-clinical-sky">Trusted Healthcare.</span>
+                        </h1>
+                        <p class="text-slate-300 text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                            Book accurate blood tests, advanced radiology scans, and comprehensive full body checkups with free home sample collection.
+                        </p>
+
+                        <!-- Hero Search Bar -->
+                        <div class="bg-white p-2 rounded-2xl shadow-2xl flex flex-col sm:flex-row items-center gap-2 max-w-xl mx-auto lg:mx-0 relative z-10">
+                            <div class="flex items-center gap-3 px-3 py-2 w-full">
+                                <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                                <input type="text" id="hero-search-input" placeholder="Search 50+ tests (e.g. CBC, Lipid, Vitamin D)..." class="w-full text-slate-800 placeholder-slate-400 bg-transparent text-sm focus:outline-none">
+                            </div>
+                            <button id="hero-search-btn" class="w-full sm:w-auto bg-clinical-teal text-white px-8 py-3.5 rounded-xl font-bold text-sm hover:bg-teal-600 active:scale-95 transition-all shadow-md shrink-0">
+                                Search Tests
+                            </button>
+                        </div>
+
+                        <!-- Hero Quick Actions -->
+                        <div class="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                            <button id="hero-btn-book-home" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-5 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-house-medical text-teal-300"></i> Free Home Collection
+                            </button>
+                            <button id="hero-btn-upload-rx" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-5 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-prescription-bottle-medical text-sky-300"></i> Upload Prescription
+                            </button>
+                            <button id="hero-btn-check-reports" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-5 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-file-waveform text-emerald-300"></i> Track Reports
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hero Stats / Trust Card -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-white/10 backdrop-blur-xl border border-white/15 p-8 rounded-3xl shadow-2xl space-y-6 relative">
+                            <div class="absolute -top-4 -right-4 bg-clinical-teal text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
+                                99.8% Accuracy
+                            </div>
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2.5">
+                                <i class="fa-solid fa-award text-amber-400"></i> Why OneDignostic?
+                            </h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white/5 p-4 rounded-2xl border border-white/10">
+                                    <div class="text-3xl font-black text-teal-300">1.2M+</div>
+                                    <div class="text-xs text-slate-300 mt-1 font-medium">Happy Patients Served</div>
+                                </div>
+                                <div class="bg-white/5 p-4 rounded-2xl border border-white/10">
+                                    <div class="text-3xl font-black text-sky-300">100+</div>
+                                    <div class="text-xs text-slate-300 mt-1 font-medium">Diagnostic Tests & Scans</div>
+                                 </div>
+                                <div class="bg-white/5 p-4 rounded-2xl border border-white/10">
+                                    <div class="text-3xl font-black text-emerald-300">6 Hrs</div>
+                                    <div class="text-xs text-slate-300 mt-1 font-medium">Express Report TAT</div>
+                                </div>
+                                <div class="bg-white/5 p-4 rounded-2xl border border-white/10">
+                                    <div class="text-3xl font-black text-amber-300">3</div>
+                                    <div class="text-xs text-slate-300 mt-1 font-medium">Super-Specialty Centers</div>
+                                </div>
+                            </div>
+                            <div id="hero-stat-accredited" class="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
+                                <span><i class="fa-solid fa-check text-teal-400 mr-1"></i> NABL Certified Labs</span>
+                                <span><i class="fa-solid fa-check text-teal-400 mr-1"></i> Barcoded Samples</span>
+                                <span><i class="fa-solid fa-check text-teal-400 mr-1"></i> MD Pathologists</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Test & Package Catalog Section -->
+        <section id="tests-packages-section" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                <span class="text-clinical-teal font-bold uppercase tracking-wider text-xs">Comprehensive Healthcare Catalog</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Explore Diagnostic Tests & Health Packages</h2>
+                <p class="text-slate-600 text-sm sm:text-base">Find individual laboratory tests or curated full body checkup packages designed for your age and health condition.</p>
+            </div>
+
+            <!-- Tab Switcher (Tests vs Packages) -->
+            <div class="flex justify-center mb-8">
+                <div class="bg-slate-200/80 p-1.5 rounded-2xl flex items-center gap-2">
+                    <button id="view-tab-tests" class="px-6 py-2.5 rounded-xl font-bold text-sm bg-white text-clinical-navy shadow-sm transition-all">
+                        Diagnostic Tests
+                    </button>
+                    <button id="view-tab-packages" class="px-6 py-2.5 rounded-xl font-bold text-sm text-slate-600 hover:text-clinical-navy transition-all">
+                        Health Checkup Packages
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search & Filters Bar -->
+            <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-sm border border-slate-200 mb-10 space-y-4">
+                <div class="flex flex-col md:flex-row items-center gap-4">
+                    <!-- Search Input -->
+                    <div class="relative flex-grow w-full">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="test-search-input" placeholder="Search by test name, symptom, or package (e.g. Thyroid, Diabetes)..." class="w-full bg-slate-50 border border-slate-200 rounded-2xl pl-11 pr-10 py-3.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal transition-all">
+                        <button id="clear-search-btn" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 hidden">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Category Pills Container -->
+                <div id="category-filters-container" class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+                    <!-- Dynamically rendered via app.js -->
+                </div>
+            </div>
+
+            <!-- Tests Grid Container -->
+            <div id="tests-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated test cards -->
+            </div>
+
+            <!-- Packages Grid Container (Hidden by default) -->
+            <div id="packages-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
+                <!-- Dynamically populated package cards -->
+            </div>
+
+            <!-- Catalog Empty State -->
+            <div id="catalog-empty-state" class="hidden text-center py-16 space-y-4 bg-white rounded-3xl border border-slate-200 shadow-sm mt-4">
+                <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-2xl mx-auto flex items-center justify-center text-2xl">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-800">No matching diagnostic tests or packages found</h3>
+                <p class="text-slate-500 text-sm max-w-md mx-auto">Try adjusting your search query or selecting a different clinical category.</p>
+                <button onclick="resetFilters()" class="bg-clinical-navy text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-opacity-90">
+                    Reset All Filters
+                </button>
+            </div>
+        </section>
+
+        <!-- Diagnostic Center Branches Section -->
+        <section id="centers-section" class="py-16 bg-white border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div class="space-y-3">
+                        <span class="text-clinical-teal font-bold uppercase tracking-wider text-xs">Our Laboratory Locations</span>
+                        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Diagnostic Center Branches</h2>
+                        <p class="text-slate-600 text-sm sm:text-base">Visit our state-of-the-art super-specialty centers equipped with 3.0T MRI, 128-Slice CT, and automated pathology.</p>
+                    </div>
+                    <div class="mt-6 md:mt-0">
+                        <select id="center-filter-city" class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 focus:outline-none focus:border-clinical-teal">
+                            <option value="all">All Cities</option>
+                            <option value="Metro Center">Metro Center</option>
+                            <option value="West Valley">West Valley</option>
+                            <option value="Northside">Northside</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Branches Grid -->
+                <div id="branches-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamically populated in app.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 space-y-3">
+                    <span class="text-clinical-teal font-bold uppercase tracking-wider text-xs">Got Questions?</span>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+                    <p class="text-slate-600 text-sm">Everything you need to know about sample collection, test reports, and fasting guidelines.</p>
+                </div>
+
+                <div id="faq-accordion" class="space-y-4">
+                    <!-- FAQ Items -->
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                        <button class="faq-toggle w-full px-6 py-4 text-left font-bold text-slate-800 flex items-center justify-between hover:bg-slate-50 transition-colors">
+                            <span>How does home sample collection work?</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4 text-sm text-slate-600 leading-relaxed">
+                            Once you book a test online, our certified phlebotomist will arrive at your home at the scheduled time slot. Samples are safely stored in temperature-controlled bio-boxes and transported to our NABL accredited central lab.
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                        <button class="faq-toggle w-full px-6 py-4 text-left font-bold text-slate-800 flex items-center justify-between hover:bg-slate-50 transition-colors">
+                            <span>Is fasting mandatory for all blood tests?</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4 text-sm text-slate-600 leading-relaxed">
+                            No, fasting is only required for specific tests like Fasting Blood Sugar (FBS), Lipid Profile, and Full Body Checkup packages (typically 10-12 hours). Individual tests like CBC, Thyroid (TSH), and Vitamin D do not require fasting.
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                        <button class="faq-toggle w-full px-6 py-4 text-left font-bold text-slate-800 flex items-center justify-between hover:bg-slate-50 transition-colors">
+                            <span>How and when will I receive my test reports?</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4 text-sm text-slate-600 leading-relaxed">
+                            Reports are typically ready within 6 to 24 hours depending on the test. You will receive an SMS/WhatsApp notification with a secure download link, and you can also check and download them anytime using the "Track Report" feature on our website.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-clinical-navy to-clinical-teal flex items-center justify-center text-white shadow-lg">
+                            <i class="fa-solid fa-heart-pulse text-lg"></i>
+                        </div>
+                        <span class="text-2xl font-black tracking-tight text-white">One<span class="text-clinical-teal">Dignostic</span></span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                        OneDignostic is a next-generation healthcare diagnostic center committed to providing clinical excellence, precise laboratory testing, and advanced imaging services.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#" class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-clinical-teal hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-clinical-teal hover:text-white transition-all"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-clinical-teal hover:text-white transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-clinical-teal hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-teal-400">Popular Tests</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#" onclick="openTestDetailModal('t-cbc-01')" class="hover:text-white transition-colors">Complete Blood Count</a></li>
+                        <li><a href="#" onclick="openTestDetailModal('t-lipid-02')" class="hover:text-white transition-colors">Lipid Profile Comprehensive</a></li>
+                        <li><a href="#" onclick="openTestDetailModal('t-hba1c-03')" class="hover:text-white transition-colors">HbA1c Blood Sugar</a></li>
+                        <li><a href="#" onclick="openTestDetailModal('t-thyroid-04')" class="hover:text-white transition-colors">Thyroid Panel (T3, T4, TSH)</a></li>
+                        <li><a href="#" onclick="openTestDetailModal('t-vitd-07')" class="hover:text-white transition-colors">Vitamin D 25-Hydroxy</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-teal-400">Health Packages</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#tests-packages-section" onclick="switchViewToPackages()" class="hover:text-white transition-colors">Basic Health Shield</a></li>
+                        <li><a href="#tests-packages-section" onclick="switchViewToPackages()" class="hover:text-white transition-colors">Active Executive Checkup</a></li>
+                        <li><a href="#tests-packages-section" onclick="switchViewToPackages()" class="hover:text-white transition-colors">Comprehensive Gold Body</a></li>
+                        <li><a href="#tests-packages-section" onclick="switchViewToPackages()" class="hover:text-white transition-colors">Senior Citizen Vital Care</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-teal-400">Contact & Support</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-clinical-teal"></i> +1 (800) 555-DIGNOS</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-clinical-teal"></i> support@onedignostic.com</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-clinical-teal"></i> Flagship Metro Center, US</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-clinical-teal"></i> Open 24/7 Helpline</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                <p>&copy; 2025 OneDignostic Healthcare Inc. All rights reserved.</p>
+                <div class="flex items-center gap-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-slate-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-300">Terms of Service</a>
+                    <a href="#" class="hover:text-slate-300">Accreditation Info</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MODALS & SLIDING DRAWERS ================= -->
+
+    <!-- Sliding Cart & Booking Drawer -->
+    <div id="cart-drawer-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-lg bg-white shadow-2xl z-50 flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+        <!-- Drawer Header -->
+        <div class="p-6 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-clinical-navy text-white flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-black text-slate-900">Your Booking Cart</h3>
+                    <p class="text-xs text-slate-500">Review tests and schedule collection</p>
+                </div>
+            </div>
+            <button id="cart-drawer-close-btn" class="w-10 h-10 rounded-xl bg-slate-200 text-slate-700 hover:bg-slate-300 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Scrollable Content -->
+        <div class="flex-grow overflow-y-auto p-6 space-y-6">
+            <!-- Cart Items Container -->
+            <div id="cart-items-container" class="space-y-4">
+                <!-- Dynamically populated cart items -->
+            </div>
+
+            <!-- Empty Cart Message -->
+            <div id="cart-empty-message" class="hidden text-center py-12 space-y-4">
+                <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-2xl mx-auto flex items-center justify-center text-2xl">
+                    <i class="fa-solid fa-cart-arrow-down"></i>
+                </div>
+                <h4 class="text-base font-bold text-slate-800">Your cart is currently empty</h4>
+                <p class="text-xs text-slate-500 max-w-xs mx-auto">Add diagnostic tests or checkup packages to proceed with booking.</p>
+            </div>
+
+            <!-- Service Type Selection (Home vs Center) -->
+            <div id="service-type-section" class="space-y-3 pt-4 border-t border-slate-200">
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">Choose Collection Type</label>
+                <div class="grid grid-cols-2 gap-3">
+                    <label class="flex items-center gap-3 p-3.5 rounded-2xl border-2 border-slate-200 cursor-pointer hover:border-clinical-teal has-[:checked]:border-clinical-teal has-[:checked]:bg-teal-50/50 transition-all">
+                        <input type="radio" name="serviceType" id="collection-type-home" value="home_collection" checked class="text-clinical-teal focus:ring-clinical-teal">
+                        <div class="text-xs">
+                            <span class="font-bold block text-slate-800">Home Collection</span>
+                            <span class="text-slate-500">Free over $60</span>
+                        </div>
+                    </label>
+                    <label class="flex items-center gap-3 p-3.5 rounded-2xl border-2 border-slate-200 cursor-pointer hover:border-clinical-teal has-[:checked]:border-clinical-teal has-[:checked]:bg-teal-50/50 transition-all">
+                        <input type="radio" name="serviceType" id="collection-type-center" value="center_visit" class="text-clinical-teal focus:ring-clinical-teal">
+                        <div class="text-xs">
+                            <span class="font-bold block text-slate-800">Center Visit</span>
+                            <span class="text-slate-500">$0 Collection Fee</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Center Select Wrapper (Shown if Center Visit) -->
+            <div id="center-select-wrapper" class="hidden space-y-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">Select Diagnostic Center Branch</label>
+                <select id="booking-center-select" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 focus:outline-none focus:border-clinical-teal">
+                    <!-- Populated in app.js -->
+                </select>
+            </div>
+
+            <!-- Patient Details Form -->
+            <div class="space-y-4 pt-4 border-t border-slate-200">
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">Patient & Schedule Details</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">Patient Full Name *</label>
+                        <input type="text" id="booking-patient-name" placeholder="e.g. John Doe" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">Age *</label>
+                        <input type="number" id="booking-patient-age" placeholder="e.g. 32" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">Gender *</label>
+                        <select id="booking-patient-gender" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">Mobile Phone (10 digits) *</label>
+                        <input type="tel" id="booking-patient-phone" placeholder="9876543210" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Email Address</label>
+                    <input type="email" id="booking-patient-email" placeholder="john@example.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                </div>
+
+                <div id="address-field-wrapper">
+                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Home Collection Street Address *</label>
+                    <textarea id="booking-address" rows="2" placeholder="House No, Street, Landmark..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div id="pincode-field-wrapper" class="sm:col-span-1">
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">PIN Code *</label>
+                        <input type="text" id="booking-pincode" placeholder="10001" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                    </div>
+                    <div class="sm:col-span-1">
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">Date *</label>
+                        <input type="date" id="booking-date-picker" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                    </div>
+                    <div class="sm:col-span-1">
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">Time Slot *</label>
+                        <select id="booking-slot-select" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                            <option value="07:00 AM - 09:00 AM">07:00 AM - 09:00 AM</option>
+                            <option value="09:00 AM - 11:00 AM">09:00 AM - 11:00 AM</option>
+                            <option value="11:00 AM - 01:00 PM">11:00 AM - 01:00 PM</option>
+                            <option value="04:00 PM - 07:00 PM">04:00 PM - 07:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Error Message Feedback -->
+            <div id="booking-error-msg" class="hidden bg-rose-50 border border-rose-200 text-rose-700 text-xs p-3 rounded-xl font-medium"></div>
+
+            <!-- Cart Summary Section -->
+            <div id="cart-summary-section" class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2 text-sm">
+                <div class="flex justify-between text-slate-600">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal-price" class="font-bold text-slate-800">$0.00</span>
+                </div>
+                <div class="flex justify-between text-slate-600">
+                    <span>Collection Fee</span>
+                    <span id="cart-collection-fee" class="font-bold text-slate-800">$15.00</span>
+                </div>
+                <div id="discount-row" class="flex justify-between text-emerald-600 hidden">
+                    <span>Package Savings</span>
+                    <span id="cart-discount-value" class="font-bold">-$0.00</span>
+                </div>
+                <div class="pt-2 border-t border-slate-200 flex justify-between text-base font-black text-slate-900">
+                    <span>Grand Total</span>
+                    <span id="cart-grand-total" class="text-clinical-teal">$0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawer Footer CTA -->
+        <div class="p-6 border-t border-slate-200 bg-slate-50">
+            <button id="booking-submit-btn" class="w-full bg-clinical-teal text-white py-4 rounded-xl font-black text-base hover:bg-teal-600 active:scale-95 transition-all shadow-lg shadow-teal-500/20">
+                Confirm Booking
+            </button>
+        </div>
+    </aside>
+
+    <!-- Test Detail Modal -->
+    <div id="test-detail-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative space-y-6 max-h-[90vh] overflow-y-auto">
+            <button id="test-detail-modal-close" class="absolute top-6 right-6 w-10 h-10 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="space-y-2">
+                <span id="test-detail-badge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-teal-50 text-clinical-teal">Fasting Required</span>
+                <h3 id="test-detail-title" class="text-2xl font-black text-slate-900">Complete Blood Count (CBC)</h3>
+            </div>
+
+            <p id="test-detail-description" class="text-sm text-slate-600 leading-relaxed">
+                Clinical description of the diagnostic test.
+            </p>
+
+            <div class="grid grid-cols-3 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center">
+                <div>
+                    <span class="block text-[10px] uppercase font-bold text-slate-400">Sample Type</span>
+                    <span id="test-detail-sample" class="text-xs font-bold text-slate-800 mt-1 block">Blood</span>
+                </div>
+                <div>
+                    <span class="block text-[10px] uppercase font-bold text-slate-400">Fasting</span>
+                    <span id="test-detail-fasting" class="text-xs font-bold text-slate-800 mt-1 block">10-12 Hours</span>
+                </div>
+                <div>
+                    <span class="block text-[10px] uppercase font-bold text-slate-400">Report TAT</span>
+                    <span id="test-detail-tat" class="text-xs font-bold text-slate-800 mt-1 block">Same Day (6 hrs)</span>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">Parameters Covered</h4>
+                <ul id="test-detail-parameters-list" class="grid grid-cols-2 gap-2 text-xs text-slate-700 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                    <!-- Dynamically populated -->
+                </ul>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-slate-200">
+                <div>
+                    <span id="test-detail-price" class="text-2xl font-black text-slate-900">$29</span>
+                    <span id="test-detail-mrp" class="text-sm text-slate-400 line-through ml-2">$50</span>
+                </div>
+                <button id="test-detail-add-btn" class="bg-clinical-teal text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-teal-600 active:scale-95 transition-all shadow-md">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Prescription Modal -->
+    <div id="upload-prescription-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative space-y-6 max-h-[90vh] overflow-y-auto">
+            <button id="prescription-modal-close" class="absolute top-6 right-6 w-10 h-10 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="space-y-1">
+                <h3 class="text-2xl font-black text-slate-900">Upload Doctor Prescription</h3>
+                <p class="text-xs text-slate-500">Upload your prescription and our expert health advisors will call you to book tests.</p>
+            </div>
+
+            <!-- Dropzone -->
+            <div id="prescription-dropzone" class="border-2 border-dashed border-slate-300 hover:border-clinical-teal bg-slate-50 rounded-2xl p-8 text-center cursor-pointer transition-all">
+                <input type="file" id="prescription-file-input" accept=".jpg,.jpeg,.png,.pdf" class="hidden">
+                <div class="space-y-3">
+                    <div class="w-12 h-12 rounded-full bg-teal-50 text-clinical-teal flex items-center justify-center mx-auto text-xl">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <div class="text-xs text-slate-600 font-medium">
+                        Drag & drop prescription image or PDF here, or <span class="text-clinical-teal underline font-bold">browse files</span>
+                    </div>
+                    <div class="text-[10px] text-slate-400">Supports JPG, PNG, PDF up to 10MB</div>
+                </div>
+            </div>
+
+            <!-- Preview Area -->
+            <div id="prescription-preview-area" class="hidden bg-slate-50 border border-slate-200 p-4 rounded-2xl flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-file-pdf text-rose-500 text-xl"></i>
+                    <span id="prescription-preview-name" class="text-xs font-bold text-slate-800">prescription.pdf</span>
+                </div>
+                <button id="prescription-remove-file" class="text-slate-400 hover:text-rose-500 text-sm">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Patient Name *</label>
+                    <input type="text" id="rx-patient-name" placeholder="Full name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Mobile Phone (10 digits) *</label>
+                    <input type="tel" id="rx-patient-phone" placeholder="9876543210" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Additional Symptoms / Notes</label>
+                    <textarea id="rx-patient-notes" rows="2" placeholder="Any specific instructions..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal"></textarea>
+                </div>
+            </div>
+
+            <button id="rx-submit-btn" class="w-full bg-clinical-teal text-white py-3.5 rounded-xl font-bold text-sm hover:bg-teal-600 active:scale-95 transition-all shadow-lg">
+                Submit Prescription & Callback Request
+            </button>
+
+            <!-- Success State -->
+            <div id="rx-success-state" class="hidden text-center py-6 space-y-3">
+                <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4 class="text-base font-bold text-slate-800">Prescription Uploaded Successfully!</h4>
+                <p class="text-xs text-slate-500">Our medical team has received your prescription. We will call you within 15 minutes to confirm booking.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Track Report Modal -->
+    <div id="report-tracker-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative space-y-6 max-h-[90vh] overflow-y-auto">
+            <button id="report-modal-close" class="absolute top-6 right-6 w-10 h-10 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="space-y-1">
+                <h3 class="text-2xl font-black text-slate-900">Track Patient Diagnostic Report</h3>
+                <p class="text-xs text-slate-500">Enter your registered 10-digit mobile number to lookup and download laboratory reports.</p>
+            </div>
+
+            <div class="space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">Registered Phone *</label>
+                        <input type="tel" id="report-search-phone" placeholder="e.g. 9876543210" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 mb-1">Report / Booking ID (Optional)</label>
+                        <input type="text" id="report-search-id" placeholder="e.g. REP-1001" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                    </div>
+                </div>
+                <button id="report-search-btn" class="w-full bg-clinical-navy text-white py-3.5 rounded-xl font-bold text-sm hover:bg-opacity-90 active:scale-95 transition-all shadow-md">
+                    Search Diagnostic Reports
+                </button>
+            </div>
+
+            <!-- Search Error -->
+            <div id="report-search-error" class="hidden bg-rose-50 border border-rose-200 text-rose-700 text-xs p-4 rounded-xl font-medium text-center">
+                No diagnostic reports found for this number. Please check the number or contact 24/7 helpdesk. (Demo: Try phone <span class="font-bold">9876543210</span>)
+            </div>
+
+            <!-- Report Results List -->
+            <div id="report-results-list" class="space-y-4">
+                <!-- Dynamically populated -->
+            </div>
+
+            <!-- Report Detail View -->
+            <div id="report-detail-view" class="hidden space-y-4 pt-4 border-t border-slate-200">
+                <!-- Detailed parameter view -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Health Risk Advisor Quiz Modal -->
+    <div id="health-advisor-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative space-y-6 max-h-[90vh] overflow-y-auto">
+            <button id="advisor-modal-close" class="absolute top-6 right-6 w-10 h-10 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="space-y-1">
+                <span class="text-clinical-teal font-bold uppercase tracking-wider text-xs">AI Health Assistant</span>
+                <h3 class="text-2xl font-black text-slate-900">Health Risk & Package Advisor</h3>
+                <p class="text-xs text-slate-500">Answer 2 quick questions to get personalized diagnostic test recommendations.</p>
+            </div>
+
+            <!-- Step 1 -->
+            <div id="advisor-step-1" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Select Age Group</label>
+                        <select id="advisor-age-select" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                            <option value="young">18 - 30 Years</option>
+                            <option value="adult" selected>31 - 45 Years</option>
+                            <option value="middle">46 - 60 Years</option>
+                            <option value="senior">60+ Years</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Select Gender</label>
+                        <select id="advisor-gender-select" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-clinical-teal">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-2">
+                    <label class="block text-xs font-semibold text-slate-700">Select any symptoms or risk factors:</label>
+                    <div class="space-y-2 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <label class="flex items-center gap-3 text-xs text-slate-700 cursor-pointer">
+                            <input type="checkbox" id="advisor-chk-fatigue" class="rounded text-clinical-teal focus:ring-clinical-teal w-4 h-4"> Constant fatigue or lack of energy
+                        </label>
+                        <label class="flex items-center gap-3 text-xs text-slate-700 cursor-pointer">
+                            <input type="checkbox" id="advisor-chk-diabetes" class="rounded text-clinical-teal focus:ring-clinical-teal w-4 h-4"> Family history of diabetes or high blood sugar
+                        </label>
+                        <label class="flex items-center gap-3 text-xs text-slate-700 cursor-pointer">
+                            <input type="checkbox" id="advisor-chk-cardiac" class="rounded text-clinical-teal focus:ring-clinical-teal w-4 h-4"> Occasional chest discomfort or high blood pressure
+                        </label>
+                        <label class="flex items-center gap-3 text-xs text-slate-700 cursor-pointer">
+                            <input type="checkbox" id="advisor-chk-smoking" class="rounded text-clinical-teal focus:ring-clinical-teal w-4 h-4"> High stress lifestyle / smoker
+                        </label>
+                        <label class="flex items-center gap-3 text-xs text-slate-700 cursor-pointer">
+                            <input type="checkbox" id="advisor-chk-joints" class="rounded text-clinical-teal focus:ring-clinical-teal w-4 h-4"> Joint pains or vitamin deficiency symptoms
+                        </label>
+                    </div>
+                </div>
+
+                <button id="advisor-submit-btn" class="w-full bg-clinical-teal text-white py-3.5 rounded-xl font-bold text-sm hover:bg-teal-600 active:scale-95 transition-all shadow-md">
+                    Find Recommended Tests & Packages
+                </button>
+            </div>
+
+            <!-- Advisor Results Area -->
+            <div id="advisor-results-area" class="hidden space-y-4">
+                <!-- Populated in app.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation Success Modal -->
+    <div id="booking-success-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative space-y-6 text-center">
+            <button id="booking-success-close" class="absolute top-6 right-6 w-10 h-10 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto text-3xl shadow-lg shadow-emerald-500/20">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="space-y-1">
+                <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Booking Confirmed Successfully</span>
+                <h3 class="text-2xl font-black text-slate-900">Appointment Scheduled</h3>
+                <p class="text-xs text-slate-500">We have sent confirmation details to your phone and email.</p>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-left space-y-2 text-xs">
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Booking Reference ID:</span>
+                    <span id="confirmed-booking-id" class="font-bold text-slate-800">OD-90218</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Patient Name:</span>
+                    <span id="confirmed-patient-name" class="font-bold text-slate-800">John Doe</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Service Type:</span>
+                    <span id="confirmed-service-type" class="font-bold text-slate-800">Home Sample Collection</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Scheduled Date & Slot:</span>
+                    <span id="confirmed-date-slot" class="font-bold text-slate-800">2025-05-10 | 07:00 AM - 09:00 AM</span>
+                </div>
+                <div class="pt-2 border-t border-slate-200 flex justify-between font-black text-sm">
+                    <span class="text-slate-900">Total Payable:</span>
+                    <span id="confirmed-total-paid" class="text-clinical-teal">$45.00</span>
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button id="print-booking-slip-btn" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-print"></i> Print Slip
+                </button>
+                <button onclick="closeBookingSuccessModal(); location.reload();" class="w-full bg-clinical-navy text-white py-3 rounded-xl font-bold text-sm hover:bg-opacity-90 transition-all">
+                    Done / Home
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

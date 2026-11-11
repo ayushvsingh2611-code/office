@@ -18,6 +18,17 @@ import { forceLayout, type Positions } from './memoryGraph/forceLayout';
  *
  *  All data comes from the existing preload bridge: store.agents + hiveLog +
  *  hiveMemory. No new IPC. Click an agent to jump to its memory; hover to peek. */
+const DEFAULT_OFFICE_AGENTS = [
+  { id: 'god', name: 'Michael', accent: 'mint' as const, isGod: true, character: 'michael' as const },
+  { id: 'lyzr-pm', name: 'Pam', accent: 'peach' as const, isGod: false, character: 'pam' as const },
+  { id: 'lyzr-architect', name: 'Oscar', accent: 'lemon' as const, isGod: false, character: 'oscar' as const },
+  { id: 'lyzr-frontend', name: 'Jim', accent: 'sky' as const, isGod: false, character: 'jim' as const },
+  { id: 'lyzr-backend', name: 'Stanley', accent: 'coral' as const, isGod: false, character: 'stanley' as const },
+  { id: 'lyzr-devops', name: 'Ryan', accent: 'lilac' as const, isGod: false, character: 'ryan' as const },
+  { id: 'lyzr-ba', name: 'Dwight', accent: 'lemon' as const, isGod: false, character: 'dwight' as const },
+  { id: 'lyzr-orchestrator', name: 'Andy', accent: 'mint' as const, isGod: false, character: 'andy' as const }
+];
+
 export function MemoryGraphPanel({
   godId,
   onJumpToMemory
@@ -26,6 +37,13 @@ export function MemoryGraphPanel({
   onJumpToMemory: (agentId: string) => void;
 }) {
   const agents = useStore((s) => s.agents);
+
+  const allAgents = useMemo(() => {
+    const map = new Map<string, any>();
+    DEFAULT_OFFICE_AGENTS.forEach((r) => map.set(r.id, { ...r, status: 'idle' }));
+    agents.forEach((a) => map.set(a.id, a));
+    return Array.from(map.values());
+  }, [agents]);
 
   const [log, setLog] = useState<MessageLogEntry[]>([]);
   const [showTopics, setShowTopics] = useState(false);
@@ -52,7 +70,7 @@ export function MemoryGraphPanel({
 
   useEffect(() => {
     if (!showTopics) return;
-    const missing = agents.map((a) => a.id).filter((id) => !(id in memories));
+    const missing = allAgents.map((a) => a.id).filter((id) => !(id in memories));
     if (missing.length === 0) return;
     setLoadingTopics(true);
     Promise.all(missing.map((id) => window.cth.hiveMemory(id).then(
@@ -62,12 +80,12 @@ export function MemoryGraphPanel({
       setMemories((m) => ({ ...m, ...Object.fromEntries(pairs) }));
       setLoadingTopics(false);
     });
-  }, [showTopics, agents, memories]);
+  }, [showTopics, allAgents, memories]);
 
   // ── graph model ──────────────────────────────────────────────────────────────
   const graph: GraphData = useMemo(
-    () => buildGraph(agents, log, { showTopics, memories }),
-    [agents, log, showTopics, memories]
+    () => buildGraph(allAgents, log, { showTopics, memories }),
+    [allAgents, log, showTopics, memories]
   );
 
   // ── canvas sizing ─────────────────────────────────────────────────────────────

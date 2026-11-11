@@ -14,6 +14,8 @@ export interface AgentCardProps {
   accent: AccentColorName;
   status: StatusKind;
   sleeping?: boolean;
+  onSleep?: () => void;
+  onWake?: () => void;
   /** This agent's pty, if it has one. Only used to notice that the USER has
    *  unsent text on its prompt — which holds the agent's queue, and otherwise
    *  looks identical to an idle agent with nothing to do. */
@@ -52,7 +54,7 @@ const fmtK = (n: number): string => `${Math.round(n / 1000)}k`;
  * and a slim gauge pinned to the bottom edge. Nothing overlaps anything.
  */
 export function AgentCard({
-  name, character, accent, status, sleeping, ptyId, project, action, progress = 0,
+  name, character, accent, status, sleeping, onSleep, onWake, ptyId, project, action, progress = 0,
   contextTokens, contextLimit, selected, isGod, onClick,
   doingCount = 0, onTaskNoteClick, draggable, note, onEditNote
 }: AgentCardProps) {
@@ -210,17 +212,21 @@ export function AgentCard({
                   eating the NAME instead. Truncation should land on the longest,
                   most redundant thing, not on the identity. */}
               {sleeping ? (
-                <span
-                  title="Sleeping — process suspended to save credits"
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); onWake?.(); }}
+                  title="Sleeping — click to WAKE UP"
                   style={{
                     fontFamily: 'var(--cth-font-display)', fontSize: 7, lineHeight: '11px',
                     background: 'var(--cth-lilac-light, #e8ddf5)', color: 'var(--cth-ink-900)',
                     boxShadow: 'inset 0 0 0 1px var(--cth-ink-300)',
-                    padding: '1px 4px 0', flexShrink: 0
+                    padding: '1px 4px 0', flexShrink: 0,
+                    border: 'none', cursor: 'pointer',
+                    display: 'inline-flex', alignItems: 'center', gap: 2
                   }}
                 >
-                  ZZZ 😴
-                </span>
+                  ZZZ 😴 ☀️
+                </button>
               ) : (
                 <PixelBadge status={typing ? 'typing' : status} style={{ flexShrink: 0 }} />
               )}
@@ -269,6 +275,40 @@ export function AgentCard({
                     }}
                   >{noteFirstLine}</span>
                 ) : <span style={{ flex: 1 }} />}
+
+                {/* Sleep / Wake toggle button */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (sleeping) {
+                      onWake?.();
+                    } else {
+                      onSleep?.();
+                    }
+                  }}
+                  title={sleeping ? "Click to wake up this agent" : "Put agent to sleep to save API credits & floor activity"}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 3,
+                    padding: '0 4px',
+                    height: 14,
+                    fontSize: 8.5,
+                    fontFamily: 'var(--cth-font-display)',
+                    lineHeight: '12px',
+                    border: '1px solid var(--cth-ink-300)',
+                    borderRadius: 2,
+                    background: sleeping ? 'var(--cth-lemon, #f6e05e)' : 'var(--cth-paper-100)',
+                    color: 'var(--cth-ink-900)',
+                    cursor: 'pointer',
+                    flexShrink: 0,
+                    boxShadow: '1px 1px 0 rgba(26,19,32,0.1)'
+                  }}
+                >
+                  {sleeping ? '☀️ WAKE' : '🌙 SLEEP'}
+                </button>
+
                 {onEditNote && (
                   <span
                     role="button"

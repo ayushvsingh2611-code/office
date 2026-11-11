@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApexSports — Premier League & Arena Hub</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="sports-theme">
+  <!-- Live Match Score Ticker -->
+  <div class="sports-ticker">
+    <div class="ticker-inner">
+      <span class="ticker-badge"><i class="fa-solid fa-satellite-dish animate-pulse"></i> LIVE SCORES</span>
+      <span class="ticker-dot">•</span>
+      <span>⚽ Premier League: <strong>Man City 2 - 1 Arsenal</strong> <small class="match-time">(78' Live)</small></span>
+      <span class="ticker-dot">•</span>
+      <span>🏏 T20 Super Cup: <strong>Mumbai 184/5</strong> vs <strong>Chennai 142/3 (15.4 ov)</strong></span>
+      <span class="ticker-dot">•</span>
+      <span>🏀 Pro League: <strong>Lakers 108 - 102 Warriors</strong> <small class="match-time">(Q4 1:45)</small></span>
+      <span class="ticker-dot">•</span>
+      <span>🏟️ AstroTurf Slots: <strong class="text-emerald-400">8 Slots Open Tonight</strong></span>
+    </div>
+  </div>
+
+  <!-- Primary Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-badge">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+        <div>
+          <h1>ApexSports<span class="brand-dot">.</span></h1>
+          <p class="brand-subtitle">League & Arena Management Hub</p>
+        </div>
+      </div>
+
+      <form id="search-form" class="search-box" role="search">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="search" id="site-search" name="q" placeholder="Search matches, tournaments, team rosters, turf slots..." autocomplete="off">
+        <button type="submit" class="search-btn">Search</button>
+      </form>
+
+      <div class="header-actions">
+        <button type="button" id="wishlist-button" class="action-btn saved-btn" title="Saved Matches">
+          <i class="fa-regular fa-bookmark"></i>
+          <span>Saved</span>
+        </button>
+        <button type="button" id="cart-button" class="action-btn passes-btn" title="Active Passes & Bookings">
+          <i class="fa-solid fa-ticket"></i>
+          <span>My Passes</span>
+          <span id="cart-count" class="badge">2</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Category Filter Navigation -->
+  <nav class="sports-nav" aria-label="Sports Categories">
+    <div class="sports-nav-scroll">
+      <button type="button" class="filter-btn active" data-category="all"><i class="fa-solid fa-layer-group"></i> All Hub</button>
+      <button type="button" class="filter-btn" data-category="matches"><i class="fa-solid fa-futbol"></i> Live Matches</button>
+      <button type="button" class="filter-btn" data-category="turf"><i class="fa-solid fa-calendar-check"></i> Turf Booking</button>
+      <button type="button" class="filter-btn" data-category="roster"><i class="fa-solid fa-users"></i> Team Rosters</button>
+      <button type="button" class="filter-btn" data-category="tournament"><i class="fa-solid fa-award"></i> Tournaments</button>
+      <button type="button" class="filter-btn" data-category="coaching"><i class="fa-solid fa-dumbbell"></i> Pro Academy</button>
+    </div>
+  </nav>
+
+  <!-- Main Content Layout -->
+  <main class="main-content">
+    <!-- Featured Match & Arena Overview Banner -->
+    <section class="overview-banner">
+      <div class="overview-left">
+        <span class="overview-tag"><i class="fa-solid fa-fire text-amber-400"></i> MATCHDAY 24 SHOWDOWN</span>
+        <h2>Arsenal FC vs Chelsea FC</h2>
+        <p>Live HD Stadium Telecast • Emirates Arena • Verified Referee Panel • Real-Time VAR Telemetry</p>
+        <div class="quick-stats-grid">
+          <div class="stat-card">
+            <span class="stat-num text-emerald-400">LIVE</span>
+            <span class="stat-label">Match Status</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">60,260</span>
+            <span class="stat-label">Stadium Attendance</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num text-cyan-400">8 Slots</span>
+            <span class="stat-label">AstroTurf Vacancy</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num text-amber-400">₹2.5L</span>
+            <span class="stat-label">Prize Pool</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-right">
+        <div class="derby-card">
+          <div class="derby-header">
+            <span class="derby-league"><i class="fa-solid fa-medal"></i> PREMIER LEAGUE</span>
+            <span class="status-pill status-live">KICKOFF 8:00 PM</span>
+          </div>
+          <div class="teams-versus">
+            <div class="team-side">
+              <div class="team-crest crest-red"><i class="fa-solid fa-shield"></i></div>
+              <span class="team-name">Arsenal</span>
+              <span class="team-form">W W D W</span>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="team-side">
+              <div class="team-crest crest-blue"><i class="fa-solid fa-shield-halved"></i></div>
+              <span class="team-name">Chelsea</span>
+              <span class="team-form">W L W W</span>
+            </div>
+          </div>
+          <div class="derby-footer">
+            <div class="odds-box">
+              <span class="odds-val">₹799</span>
+              <span class="odds-label">VIP Stadium Pass</span>
+            </div>
+            <button type="button" class="btn-book-pass" data-key="match-derby">Book Stadium Pass</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="catalog-section">
+      <div class="catalog-header">
+        <div>
+          <h3>Arena Fixtures, Team Rosters & Booking Hub</h3>
+          <p class="section-subtitle">Reserve sports turfs, access player telemetry, and book championship tickets</p>
+        </div>
+        <div class="live-indicator">
+          <span class="pulsing-dot"></span>
+          <span>Stadium Telemetry Online</span>
+        </div>
+      </div>
+
+      <div class="grid" id="product-catalog">
+        <!-- 1. Live Match Ticket -->
+        <div class="product-card" data-category="matches">
+          <span class="card-badge badge-live">LIVE DERBY</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=500&q=80" alt="Stadium Match" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="cat-tag"><i class="fa-solid fa-futbol"></i> Premier League</span>
+              <span class="sub-tag">Emirates Stadium</span>
+            </div>
+            <h4 class="product-title">London Super Derby: Arsenal vs Chelsea</h4>
+            <p class="product-desc">VIP lower-tier stadium admission with lounge hospitality, digital match programme, and live audio commentary.</p>
+            <div class="rating-strip">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.9</span>
+              <span class="review-count">(1,480 verified tickets)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹799</span>
+                <span class="price-label">VIP Pass</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="arsenal-chelsea">+ Book Ticket</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Turf Booking -->
+        <div class="product-card" data-category="turf">
+          <span class="card-badge badge-turf">FIFA-GRADE</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?auto=format&fit=crop&w=500&q=80" alt="AstroTurf Arena" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="cat-tag text-emerald-400"><i class="fa-solid fa-calendar-check"></i> Turf Court #2</span>
+              <span class="sub-tag">Slot: 8:00 - 9:00 PM</span>
+            </div>
+            <h4 class="product-title">7-a-side Floodlit AstroTurf Arena</h4>
+            <p class="product-desc">All-weather synthetic turf with pro LED floodlights, locker rooms, bibs, and match-grade footballs included.</p>
+            <div class="rating-strip">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.9</span>
+              <span class="review-count">(860 teams hosted)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹1,200</span>
+                <span class="price-label">per 60-min slot</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="turf-slot-2">+ Reserve Turf</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Team Roster -->
+        <div class="product-card" data-category="roster">
+          <span class="card-badge badge-roster">DIVISION 1</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=500&q=80" alt="Team Squad" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="cat-tag text-cyan-400"><i class="fa-solid fa-users"></i> Squad Roster</span>
+              <span class="sub-tag">24 Registered Players</span>
+            </div>
+            <h4 class="product-title">Manchester Titans FC — Pro Squad</h4>
+            <p class="product-desc">Complete squad lineup with player statistics, captaincy records, fitness ratings, and tactical formation charts.</p>
+            <div class="rating-strip">
+              <span class="stars"><i class="fa-solid fa-shield-halved"></i> Active</span>
+              <span class="review-count">Coach: M. Arteta</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">ACTIVE</span>
+                <span class="price-label">Squad Verified</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="titans-squad">View Lineup</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Tournament Registration -->
+        <div class="product-card" data-category="tournament">
+          <span class="card-badge badge-tourney">₹2.5L PRIZE</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=500&q=80" alt="Championship Trophy" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="cat-tag text-amber-400"><i class="fa-solid fa-award"></i> Knockout Cup</span>
+              <span class="sub-tag">32 Teams Cap</span>
+            </div>
+            <h4 class="product-title">National All-India Futsal Championship 2026</h4>
+            <p class="product-desc">Premier national knockout cup. Cash prizes, scout opportunities, official jerseys, and live YouTube streaming.</p>
+            <div class="rating-strip">
+              <span class="stars"><i class="fa-solid fa-star"></i> 5.0</span>
+              <span class="review-count">(24/32 slots booked)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹3,500</span>
+                <span class="price-label">per Team Entry</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="national-futsal">+ Register Team</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Pro Coaching Academy -->
+        <div class="product-card" data-category="coaching">
+          <span class="card-badge badge-academy">UEFA LICENSED</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=500&q=80" alt="Football Coaching" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="cat-tag text-purple-400"><i class="fa-solid fa-dumbbell"></i> Academy</span>
+              <span class="sub-tag">Age 8 - 18 Years</span>
+            </div>
+            <h4 class="product-title">Elite Youth Football Development Academy</h4>
+            <p class="product-desc">Structured drills covering technical agility, ball mastery, tactical awareness, and nutritional conditioning.</p>
+            <div class="rating-strip">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.9</span>
+              <span class="review-count">(320 young athletes)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹2,499</span>
+                <span class="price-label">Monthly Training</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="elite-academy">+ Enroll Athlete</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Player GPS & Telemetry -->
+        <div class="product-card" data-category="roster">
+          <span class="card-badge badge-telemetry">LIVE GPS</span>
+          <div class="card-image-box">
+            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=500&q=80" alt="Sports Telemetry" class="card-img" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="cat-tag text-rose-400"><i class="fa-solid fa-chart-line"></i> Performance</span>
+              <span class="sub-tag">34.2 km/h Peak Velocity</span>
+            </div>
+            <h4 class="product-title">Player GPS Performance & Heatmap Telemetry</h4>
+            <p class="product-desc">Real-time player tracking: distance covered (10.8 km), sprint bursts, heart rate zones, and spatial heatmaps.</p>
+            <div class="rating-strip">
+              <span class="stars text-emerald-400"><i class="fa-solid fa-circle-check"></i> Wearable Synced</span>
+              <span class="review-count">FIFA Approved</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹999</span>
+                <span class="price-label">Season Pass</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="player-telemetry">+ Activate Pass</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <i class="fa-solid fa-trophy"></i>
+        <span>ApexSports Arena Management Platform</span>
+      </div>
+      <p class="footer-copy">© 2026 ApexSports Hub. Real-time match scheduling, turf reservations, and team telemetry.</p>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

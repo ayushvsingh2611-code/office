@@ -121,19 +121,24 @@ export function SetupPanel({ onDone }: { onDone?: () => void } = {}) {
 
   const refresh = useCallback(async () => {
     setBusy(true);
-    try { setTools(await window.cth.toolsStatus()); }
+    try {
+      const res = await window.cth.toolsStatus();
+      setTools(Array.isArray(res) ? res : []);
+    }
     catch { setTools([]); }
     finally { setBusy(false); }
   }, []);
   useEffect(() => { void refresh(); }, [refresh]);
 
+  const safeTools = Array.isArray(tools) ? tools : [];
+
   // Only ESSENTIALS are handed to Michael. Installing all eight engine CLIs
   // because they happen to be listed would be a wild overreach of one click.
   const missingEssential = useMemo(
-    () => (tools ?? []).filter((t) => !t.found && t.essential),
-    [tools]
+    () => safeTools.filter((t) => !t.found && t.essential),
+    [safeTools]
   );
-  const readyCount = (tools ?? []).filter((t) => t.found).length;
+  const readyCount = safeTools.filter((t) => t.found).length;
 
   const askMichael = () => {
     if (missingEssential.length === 0) return;
@@ -152,7 +157,7 @@ export function SetupPanel({ onDone }: { onDone?: () => void } = {}) {
           <div style={{ fontSize: 12, color: 'var(--cth-ink-500)', marginTop: 2 }}>
             {tools === null
               ? 'Checking what is installed…'
-              : `${readyCount} of ${tools.length} ready${missingEssential.length ? ` · ${missingEssential.length} recommended missing` : ''}`}
+              : `${readyCount} of ${safeTools.length} ready${missingEssential.length ? ` · ${missingEssential.length} recommended missing` : ''}`}
           </div>
         </div>
         <PixelButton variant="ghost" size="md" onClick={() => void refresh()} disabled={busy}>
@@ -185,7 +190,7 @@ export function SetupPanel({ onDone }: { onDone?: () => void } = {}) {
       </div>
 
       {SECTIONS.map((section) => {
-        const rows = (tools ?? []).filter((t) => t.kind === section.kind);
+        const rows = safeTools.filter((t) => t.kind === section.kind);
         if (rows.length === 0) return null;
         return (
           <div key={section.kind} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>

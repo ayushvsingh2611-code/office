@@ -1,8 +1,8 @@
-# 🐼 Panda Hive — Complete Architecture & External Agent Guide
+# ⚡ AgentHive — Complete Architecture & External Agent Guide
 
-Welcome to **Panda Hive** — a local-first multi-agent harness where your AI agents are brought to life as animated pixel avatars on a living 2D office floor.
+Welcome to **AgentHive** — a local-first multi-agent harness where your AI agents are brought to life as animated pixel avatars on a living 2D office floor.
 
-Panda Hive is designed to allow you to bring **ANY external agent** (Python, LangChain, AutoGen, CrewAI, custom FastAPI, n8n, OpenAI Assistants, Ollama, etc.) and connect it to your office floor via a lightweight, zero-dependency local REST API & Webhook bridge.
+AgentHive is designed to allow you to bring **ANY external agent** (Python, LangChain, AutoGen, CrewAI, custom FastAPI, n8n, OpenAI Assistants, Ollama, etc.) and connect it to your office floor via a lightweight, zero-dependency local REST API & Webhook bridge.
 
 ---
 

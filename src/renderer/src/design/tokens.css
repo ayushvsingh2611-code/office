@@ -1,118 +1,145 @@
 ﻿/* ══════════════════════════════════════════════════════════════
-   PANDA HIVE — Design tokens v0.1.0
-   Brand palette: Bamboo Green + Warm Ivory + Forest Ink
-   Same token names as base so all components work without breaking.
+   AGENTHIVE — Design tokens v0.1.0
+   Authentic retro-light theme matching Command Center & Floor UI
    ══════════════════════════════════════════════════════════════ */
 :root {
-  /* Base — Warm ivory (Panda white coat) */
-  --cth-cream-50:  #FAFCF7;
-  --cth-cream-100: #F2F7ED;
-  --cth-cream-200: #E3EDD9;
-  --cth-cream-300: #C8DDB8;
-  --cth-paper-100: #F7FAF2;
-  --cth-paper-200: #EBF2E1;
+  /* Base — Clean crisp ivory / slate */
+  --cth-cream-50: #F8FAFC;
+  --cth-cream-100: #F1F5F9;
+  --cth-cream-200: #E2E8F0;
+  --cth-cream-300: #CBD5E1;
+  --cth-paper-100: #FFFFFF;
+  --cth-paper-200: #F8FAFC;
 
-  /* Ink — Forest dark green */
-  --cth-ink-900: #122016;
-  --cth-ink-700: #1E4027;
-  --cth-ink-500: #3A6647;
-  --cth-ink-300: #7FAD8A;
-  --cth-ink-100: #B8D4BE;
+  /* Ink — Neutral Charcoal / Slate */
+  --cth-ink-900: #0F172A;
+  --cth-ink-700: #334155;
+  --cth-ink-500: #64748B;
+  --cth-ink-300: #94A3B8;
+  --cth-ink-100: #CBD5E1;
 
   /* Accents */
-  --cth-coral: #E07070;       --cth-coral-light: #F7D9D9;
-  --cth-mint:  #2E9E5B;       --cth-mint-light:  #C8EDD8;
-  --cth-sky:   #3A8FA8;       --cth-sky-light:   #C4E0E9;
-  --cth-lemon: #C9A02A;       --cth-lemon-light: #F3E9C4;
-  --cth-lilac: #8A72C9;       --cth-lilac-light: #DED8F5;
-  --cth-peach: #D97B50;       --cth-peach-light: #F5DECE;
+  --cth-coral: #E11D48;
+  --cth-coral-light: #FFE4E6;
+  --cth-mint: #10B981;
+  --cth-mint-light: #D1FAE5;
+  --cth-sky: #0EA5E9;
+  --cth-sky-light: #E0F2FE;
+  --cth-lemon: #F59E0B;
+  --cth-lemon-light: #FEF3C7;
+  --cth-lilac: #8B5CF6;
+  --cth-lilac-light: #EDE9FE;
+  --cth-peach: #F97316;
+  --cth-peach-light: #FFEDD5;
 
-  /* Panda Hive brand accent */
-  --cth-panda-green:        #2E9E5B;
-  --cth-panda-green-light:  #C8EDD8;
-  --cth-panda-black:        #122016;
-  --cth-panda-accent:       #7EDB6A;
+  /* AgentHive brand accent */
+  --cth-panda-green: #10B981;
+  --cth-panda-green-light: #D1FAE5;
+  --cth-panda-black: #0F172A;
+  --cth-panda-accent: #10B981;
 
   /* Status */
-  --cth-status-idle:     #8AAD93;
-  --cth-status-thinking: #3A8FA8;
-  --cth-status-working:  #C9A02A;
-  --cth-status-waiting:  #5D7ED6;
-  --cth-status-blocked:  #D96060;
-  --cth-status-success:  #2E9E5B;
-  --cth-status-ghost:    #B8D4BE;
-  --cth-status-compacting: #8A72C9;
-  --cth-status-looping:    #D6803F;
-  --cth-status-typing:     #C9A02A;
+  --cth-status-idle: #64748B;
+  --cth-status-thinking: #0EA5E9;
+  --cth-status-working: #F59E0B;
+  --cth-status-waiting: #3B82F6;
+  --cth-status-blocked: #E11D48;
+  --cth-status-success: #10B981;
+  --cth-status-ghost: #94A3B8;
+  --cth-status-compacting: #8B5CF6;
+  --cth-status-looping: #F97316;
+  --cth-status-typing: #F59E0B;
 
   /* Spacing */
-  --cth-space-0: 0px;  --cth-space-1: 4px;  --cth-space-2: 8px;
-  --cth-space-3: 12px; --cth-space-4: 16px; --cth-space-5: 24px;
-  --cth-space-6: 32px; --cth-space-7: 48px; --cth-space-8: 64px;
+  --cth-space-0: 0px;
+  --cth-space-1: 4px;
+  --cth-space-2: 8px;
+  --cth-space-3: 12px;
+  --cth-space-4: 16px;
+  --cth-space-5: 24px;
+  --cth-space-6: 32px;
+  --cth-space-7: 48px;
+  --cth-space-8: 64px;
 
   /* Type */
   --cth-font-display: "Press Start 2P", monospace;
-  --cth-font-ui:      "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --cth-font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --cth-font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --cth-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   /* Type scale */
-  --cth-text-display-lg: 16px; --cth-text-display-md: 12px; --cth-text-display-sm: 8px;
-  --cth-text-body-lg:    16px; --cth-text-body-md:    14px; --cth-text-body-sm:    13px;
-  --cth-text-mono-md:    14px; --cth-text-mono-sm:    13px;
+  --cth-text-display-lg: 16px;
+  --cth-text-display-md: 12px;
+  --cth-text-display-sm: 8px;
+  --cth-text-body-lg: 16px;
+  --cth-text-body-md: 14px;
+  --cth-text-body-sm: 13px;
+  --cth-text-mono-md: 14px;
+  --cth-text-mono-sm: 13px;
 
   /* Line heights */
-  --cth-lh-display-lg: 24px; --cth-lh-display-md: 20px; --cth-lh-display-sm: 12px;
-  --cth-lh-body-lg:    24px; --cth-lh-body-md:    20px; --cth-lh-body-sm:    18px;
-  --cth-lh-mono:       20px;
+  --cth-lh-display-lg: 24px;
+  --cth-lh-display-md: 20px;
+  --cth-lh-display-sm: 12px;
+  --cth-lh-body-lg: 24px;
+  --cth-lh-body-md: 20px;
+  --cth-lh-body-sm: 18px;
+  --cth-lh-mono: 20px;
 
   /* Shadow */
-  --cth-shadow-hard: 3px 3px 0 rgba(18, 32, 22, 0.14);
+  --cth-shadow-hard: 3px 3px 0 rgba(15, 23, 42, 0.12);
 
   /* Panel borders */
-  --cth-panel-border:          inset 0 0 0 1px var(--cth-ink-300);
-  --cth-on-accent: #122016;
-  --cth-panel-border-inset:    inset 0 0 0 1px var(--cth-ink-100);
+  --cth-panel-border: inset 0 0 0 1px var(--cth-ink-300);
+  --cth-on-accent: #FFFFFF;
+  --cth-panel-border-inset: inset 0 0 0 1px var(--cth-ink-100);
   --cth-panel-border-terminal: inset 0 0 0 1px var(--cth-ink-300);
-  --cth-panel-border-dialog:   inset 0 0 0 1px var(--cth-ink-500);
+  --cth-panel-border-dialog: inset 0 0 0 1px var(--cth-ink-500);
 }
 
-/* Dark theme — Panda Black Patches */
+/* Dark theme — Slate Night */
 :root[data-cth-theme='dark'] {
-  --cth-cream-50:  #0D1F12;
-  --cth-cream-100: #122016;
-  --cth-cream-200: #1A3020;
-  --cth-cream-300: #243D2B;
-  --cth-paper-100: #101E15;
-  --cth-paper-200: #182A1E;
+  --cth-cream-50: #0B0F19;
+  --cth-cream-100: #0F172A;
+  --cth-cream-200: #1E293B;
+  --cth-cream-300: #334155;
+  --cth-paper-100: #0F172A;
+  --cth-paper-200: #1E293B;
 
-  --cth-ink-900: #E8F5E3;
-  --cth-ink-700: #B3CDB9;
-  --cth-ink-500: #7FAD8A;
-  --cth-ink-300: #4A7A52;
-  --cth-ink-100: #243D2B;
+  --cth-ink-900: #F8FAFC;
+  --cth-ink-700: #E2E8F0;
+  --cth-ink-500: #94A3B8;
+  --cth-ink-300: #64748B;
+  --cth-ink-100: #334155;
 
-  --cth-coral: #F08888;       --cth-mint:  #4DB86E;
-  --cth-sky:   #55A8C0;       --cth-lemon: #DEB848;
-  --cth-lilac: #A68EDF;       --cth-peach: #E99065;
+  --cth-coral: #F43F5E;
+  --cth-mint: #10B981;
+  --cth-sky: #38BDF8;
+  --cth-lemon: #FBBF24;
+  --cth-lilac: #A78BFA;
+  --cth-peach: #FB923C;
 
-  --cth-coral-light: #2C1818; --cth-mint-light:  #0E2A18;
-  --cth-sky-light:   #102530; --cth-lemon-light: #2A2008;
-  --cth-lilac-light: #201A38; --cth-peach-light: #2C1A10;
+  --cth-coral-light: #4C0519;
+  --cth-mint-light: #064E3B;
+  --cth-sky-light: #0C4A6E;
+  --cth-lemon-light: #451A03;
+  --cth-lilac-light: #2E1065;
+  --cth-peach-light: #431407;
 
-  --cth-panda-green:       #4DB86E;
-  --cth-panda-green-light: #0E2A18;
-  --cth-panda-accent:      #7EDB6A;
+  --cth-panda-green: #10B981;
+  --cth-panda-green-light: #064E3B;
+  --cth-panda-accent: #34D399;
 
-  --cth-status-idle:     #4A7A52;
-  --cth-status-thinking: #55A8C0;
-  --cth-status-working:  #DEB848;
-  --cth-status-waiting:  #6D8DD6;
-  --cth-status-blocked:  #E87878;
-  --cth-status-success:  #4DB86E;
-  --cth-status-ghost:    #3D5C44;
-  --cth-status-compacting: #A68EDF;
-  --cth-status-looping:    #D69055;
-  --cth-status-typing:     #CBAA4A;
+  --cth-status-idle: #64748B;
+  --cth-status-thinking: #38BDF8;
+  --cth-status-working: #FBBF24;
+  --cth-status-waiting: #60A5FA;
+  --cth-status-blocked: #F43F5E;
+  --cth-status-success: #10B981;
+  --cth-status-ghost: #475569;
+  --cth-status-compacting: #A78BFA;
+  --cth-status-looping: #FB923C;
+  --cth-status-typing: #FBBF24;
 
   --cth-shadow-hard: 4px 4px 0 rgba(0, 0, 0, 0.55);
+  --cth-on-accent: #FFFFFF;
 }

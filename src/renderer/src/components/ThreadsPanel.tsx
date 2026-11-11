@@ -27,8 +27,10 @@ const ACT_COLOR: Record<string, string> = {
 };
 
 function groupThreads(msgs: HiveMessage[]): Thread[] {
+  if (!Array.isArray(msgs)) return [];
   const by = new Map<string, HiveMessage[]>();
   for (const m of msgs) {
+    if (!m || !m.conversation) continue;
     const arr = by.get(m.conversation) ?? [];
     arr.push(m);
     by.set(m.conversation, arr);
@@ -39,8 +41,8 @@ function groupThreads(msgs: HiveMessage[]): Thread[] {
       return { conversation, subject: sorted[0]?.subject || '(no subject)', messages: sorted };
     })
     .sort((a, b) => {
-      const la = a.messages[a.messages.length - 1].created_at;
-      const lb = b.messages[b.messages.length - 1].created_at;
+      const la = a.messages[a.messages.length - 1]?.created_at ?? '';
+      const lb = b.messages[b.messages.length - 1]?.created_at ?? '';
       return la < lb ? 1 : -1; // newest activity first
     });
 }
@@ -56,7 +58,7 @@ export function ThreadsPanel({ agentId }: ThreadsPanelProps) {
     const load = async () => {
       try {
         const inbox = await window.cth.hiveInbox(agentId);
-        if (alive) setMessages(inbox);
+        if (alive && Array.isArray(inbox)) setMessages(inbox);
       } catch { /* keep last good state */ }
     };
     load();

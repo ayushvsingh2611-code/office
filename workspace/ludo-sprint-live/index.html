@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ludo Grand Master - Straw Hat Crew</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- #app-container: Master flex/grid wrapper -->
+  <div id="app-container">
+
+    <!-- #game-header: Header banner -->
+    <header id="game-header">
+      <div class="header-left">
+        <h1 id="game-title">🏴‍☠️ LUDO GRAND MASTER</h1>
+        <span class="subtitle">Straw Hat Edition</span>
+      </div>
+      <div class="header-controls">
+        <button id="btn-sound-toggle" class="btn-icon" title="Toggle Sound">🔊 Audio</button>
+        <button id="btn-rules-toggle" class="btn-icon" title="Game Rules">📜 Rules</button>
+        <button id="btn-reset-game" class="btn-secondary" title="Reset Current Game">🔄 Restart</button>
+        <button id="btn-new-game-modal" class="btn-primary" title="New Game Setup">⚙️ New Game</button>
+      </div>
+    </header>
+
+    <!-- Main Game Arena -->
+    <div class="game-arena">
+      
+      <!-- #control-panel: Side/bottom panel housing turn indicator, dice, and actions -->
+      <aside id="control-panel">
+        <div class="turn-status-card">
+          <div id="current-turn-badge" class="badge-red"></div>
+          <div class="turn-text-info">
+            <span class="turn-label">CURRENT TURN</span>
+            <h3 id="current-player-name">Red's Turn</h3>
+          </div>
+        </div>
+
+        <div id="turn-timer-bar">
+          <div id="turn-timer-progress"></div>
+        </div>
+
+        <p id="turn-instructions">Roll the dice to begin your turn!</p>
+
+        <!-- Dice Section -->
+        <div class="dice-section">
+          <div id="dice-stage">
+            <div id="dice-cube" class="face-1">
+              <div class="dice-face face-1"><span></span></div>
+              <div class="dice-face face-2"><span></span><span></span></div>
+              <div class="dice-face face-3"><span></span><span></span><span></span></div>
+              <div class="dice-face face-4"><span></span><span></span><span></span><span></span></div>
+              <div class="dice-face face-5"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="dice-face face-6"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+          <button id="btn-roll-dice" class="btn-roll">🎲 ROLL DICE</button>
+          <div class="dice-readout">Result: <span id="dice-result-value">-</span></div>
+        </div>
+
+        <!-- Activity Log Preview / Container -->
+        <section id="game-log-container">
+          <div class="log-header">
+            <h4>📜 Activity Log</h4>
+            <button id="btn-clear-log" class="btn-text">Clear</button>
+          </div>
+          <ul id="game-log-list">
+            <li class="log-item welcome">Welcome to Ludo Grand Master! Configure your game and roll the dice.</li>
+          </ul>
+        </section>
+      </aside>
+
+      <!-- #board-wrapper: Centered responsive wrapper maintaining 1:1 aspect ratio -->
+      <main id="board-wrapper">
+        <div id="ludo-board">
+          <!-- Yards -->
+          <div id="home-yard-red" class="yard red"></div>
+          <div id="home-yard-green" class="yard green"></div>
+          <div id="home-yard-yellow" class="yard yellow"></div>
+          <div id="home-yard-blue" class="yard blue"></div>
+
+          <!-- Center Goal -->
+          <div id="center-goal">
+            <div class="goal-triangle red"></div>
+            <div class="goal-triangle green"></div>
+            <div class="goal-triangle yellow"></div>
+            <div class="goal-triangle blue"></div>
+            <span class="goal-center-text">GOAL</span>
+          </div>
+
+          <!-- Tokens (16 total) -->
+          <!-- Red Tokens -->
+          <div id="token-red-0" class="ludo-token token-red" data-color="red" data-index="0">R1</div>
+          <div id="token-red-1" class="ludo-token token-red" data-color="red" data-index="1">R2</div>
+          <div id="token-red-2" class="ludo-token token-red" data-color="red" data-index="2">R3</div>
+          <div id="token-red-3" class="ludo-token token-red" data-color="red" data-index="3">R4</div>
+
+          <!-- Green Tokens -->
+          <div id="token-green-0" class="ludo-token token-green" data-color="green" data-index="0">G1</div>
+          <div id="token-green-1" class="ludo-token token-green" data-color="green" data-index="1">G2</div>
+          <div id="token-green-2" class="ludo-token token-green" data-color="green" data-index="2">G3</div>
+          <div id="token-green-3" class="ludo-token token-green" data-color="green" data-index="3">G4</div>
+
+          <!-- Yellow Tokens -->
+          <div id="token-yellow-0" class="ludo-token token-yellow" data-color="yellow" data-index="0">Y1</div>
+          <div id="token-yellow-1" class="ludo-token token-yellow" data-color="yellow" data-index="1">Y2</div>
+          <div id="token-yellow-2" class="ludo-token token-yellow" data-color="yellow" data-index="2">Y3</div>
+          <div id="token-yellow-3" class="ludo-token token-yellow" data-color="yellow" data-index="3">Y4</div>
+
+          <!-- Blue Tokens -->
+          <div id="token-blue-0" class="ludo-token token-blue" data-color="blue" data-index="0">B1</div>
+          <div id="token-blue-1" class="ludo-token token-blue" data-color="blue" data-index="1">B2</div>
+          <div id="token-blue-2" class="ludo-token token-blue" data-color="blue" data-index="2">B3</div>
+          <div id="token-blue-3" class="ludo-token token-blue" data-color="blue" data-index="3">B4</div>
+        </div>
+      </main>
+
+    </div>
+
+    <!-- #scoreboard-section: Container for live player scorecards -->
+    <section id="scoreboard-section">
+      <!-- Scorecard Red -->
+      <div id="scorecard-red" class="scorecard red">
+        <div class="scorecard-header">
+          <span class="dot red"></span>
+          <h4>Captain Red</h4>
+        </div>
+        <div class="scorecard-stats">
+          <div>Score: <span id="stat-red-score">0</span></div>
+          <div>Home: <span id="stat-red-home">0/4</span></div>
+          <div>Kills: <span id="stat-red-kills">0</span></div>
+          <div>Steps: <span id="stat-red-steps">0</span></div>
+        </div>
+      </div>
+
+      <!-- Scorecard Green -->
+      <div id="scorecard-green" class="scorecard green">
+        <div class="scorecard-header">
+          <span class="dot green"></span>
+          <h4>Navigator Green</h4>
+        </div>
+        <div class="scorecard-stats">
+          <div>Score: <span id="stat-green-score">0</span></div>
+          <div>Home: <span id="stat-green-home">0/4</span></div>
+          <div>Kills: <span id="stat-green-kills">0</span></div>
+          <div>Steps: <span id="stat-green-steps">0</span></div>
+        </div>
+      </div>
+
+      <!-- Scorecard Yellow -->
+      <div id="scorecard-yellow" class="scorecard yellow">
+        <div class="scorecard-header">
+          <span class="dot yellow"></span>
+          <h4>Sniper Yellow</h4>
+        </div>
+        <div class="scorecard-stats">
+          <div>Score: <span id="stat-yellow-score">0</span></div>
+          <div>Home: <span id="stat-yellow-home">0/4</span></div>
+          <div>Kills: <span id="stat-yellow-kills">0</span></div>
+          <div>Steps: <span id="stat-yellow-steps">0</span></div>
+        </div>
+      </div>
+
+      <!-- Scorecard Blue -->
+      <div id="scorecard-blue" class="scorecard blue">
+        <div class="scorecard-header">
+          <span class="dot blue"></span>
+          <h4>Cook Blue</h4>
+        </div>
+        <div class="scorecard-stats">
+          <div>Score: <span id="stat-blue-score">0</span></div>
+          <div>Home: <span id="stat-blue-home">0/4</span></div>
+          <div>Kills: <span id="stat-blue-kills">0</span></div>
+          <div>Steps: <span id="stat-blue-steps">0</span></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- #setup-modal: Game Setup & Configuration Modal -->
+  <div id="setup-modal" class="modal-overlay active">
+    <div class="modal-card">
+      <h2>🏴‍☠️ LUDO GRAND MASTER SETUP</h2>
+      <p class="modal-subtitle">Configure your Straw Hat crew and opponents before setting sail!</p>
+      
+      <div class="form-group">
+        <label for="setup-player-count">Player Count:</label>
+        <select id="setup-player-count">
+          <option value="2">2 Players (Red vs Yellow)</option>
+          <option value="3">3 Players (Red, Green, Yellow)</option>
+          <option value="4" selected>4 Players (All Crew)</option>
+        </select>
+      </div>
+
+      <div class="player-config-grid">
+        <div class="config-row red">
+          <span class="color-badge red">Red</span>
+          <select id="p-red-type">
+            <option value="human" selected>Human</option>
+            <option value="bot">AI Bot</option>
+          </select>
+        </div>
+        <div class="config-row green">
+          <span class="color-badge green">Green</span>
+          <select id="p-green-type">
+            <option value="human">Human</option>
+            <option value="bot" selected>AI Bot</option>
+          </select>
+        </div>
+        <div class="config-row yellow">
+          <span class="color-badge yellow">Yellow</span>
+          <select id="p-yellow-type">
+            <option value="human">Human</option>
+            <option value="bot" selected>AI Bot</option>
+          </select>
+        </div>
+        <div class="config-row blue">
+          <span class="color-badge blue">Blue</span>
+          <select id="p-blue-type">
+            <option value="human">Human</option>
+            <option value="bot" selected>AI Bot</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="btn-start-game" class="btn-primary btn-large">⛵ SET SAIL & PLAY!</button>
+    </div>
+  </div>
+
+  <!-- #winner-modal: Victory / Winner Modal -->
+  <div id="winner-modal" class="modal-overlay">
+    <div class="modal-card winner-card">
+      <h2 id="winner-name">🏆 Player RED Won!</h2>
+      <p class="modal-subtitle">The Grand Line conqueror has emerged victorious!</p>
+      
+      <div id="winner-podium" class="podium-container">
+        <!-- Filled dynamically -->
+      </div>
+
+      <div class="table-responsive">
+        <table id="winner-final-stats" class="stats-table">
+          <!-- Filled dynamically -->
+        </table>
+      </div>
+
+      <div class="modal-buttons">
+        <button id="btn-winner-play-again" class="btn-primary">🎮 Rematch</button>
+        <button id="btn-winner-close" class="btn-secondary">🔍 Inspect Board</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- #rules-modal: Rules & Help Modal -->
+  <div id="rules-modal" class="modal-overlay">
+    <div class="modal-card rules-card">
+      <h2>📜 Rules of Ludo Grand Master</h2>
+      <div class="rules-content">
+        <h3>1. Objective</h3>
+        <p>Navigate all 4 of your tokens from your yard, around the 52-tile common track, up your home stretch, and into the center goal.</p>
+        
+        <h3>2. Rolling & 6s</h3>
+        <p>Roll a 6 to bring a token out of your yard onto the start tile. Rolling a 6 grants you an <strong>extra bonus roll</strong>! However, rolling three 6s in a row forfeits your turn.</p>
+
+        <h3>3. Captures (Kills)</h3>
+        <p>Landing on a tile occupied by an opponent sends their token back to their yard (+150 pts & bonus roll!). Safe spots (marked with star/shields and start tiles) protect tokens from capture.</p>
+
+        <h3>4. Scoring Formula</h3>
+        <p>Score = (Goals × 500) + (Kills × 150) + (Steps × 2) + (Yard Exits × 20) + Roll 6 Bonus (+10).</p>
+      </div>
+      <button id="btn-close-rules" class="btn-primary">Got It!</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+[
+  {
+    "model": "gemini-3.5-flash-lite",
+    "apiAvailability": "AVAILABLE_200",
+    "freeTierQuota": "UNKNOWN",
+    "functionCalling": "SUPPORTED_CONFIRMED",
+    "contextWindow": "UNKNOWN",
+    "compatibility": "HIGH",
+    "status": "SUPPORTED",
+    "details": "Text response received (PANDA_HIVE_OK). Tool call generated successfully (testTool). "
+  },
+  {
+    "model": "gemini-3.1-flash-lite",
+    "apiAvailability": "AVAILABLE_200",
+    "freeTierQuota": "UNKNOWN",
+    "functionCalling": "SUPPORTED_CONFIRMED",
+    "contextWindow": "UNKNOWN",
+    "compatibility": "HIGH",
+    "status": "SUPPORTED",
+    "details": "Text response received (PANDA_HIVE_OK). Tool call generated successfully (testTool). "
+  },
+  {
+    "model": "gemini-3.6-flash",
+    "apiAvailability": "AVAILABLE_200",
+    "freeTierQuota": "UNKNOWN",
+    "functionCalling": "SUPPORTED_CONFIRMED",
+    "contextWindow": "UNKNOWN",
+    "compatibility": "HIGH",
+    "status": "SUPPORTED",
+    "details": "Text response received (PANDA_HIVE_OK). Tool call generated successfully (testTool). "
+  },
+  {
+    "model": "gemini-3-flash-preview",
+    "apiAvailability": "AVAILABLE_200",
+    "freeTierQuota": "UNKNOWN",
+    "functionCalling": "SUPPORTED_CONFIRMED",
+    "contextWindow": "UNKNOWN",
+    "compatibility": "HIGH",
+    "status": "SUPPORTED",
+    "details": "Text response received (PANDA_HIVE_OK). Tool call generated successfully (testTool). "
+  },
+  {
+    "model": "antigravity-preview-09-2026",
+    "apiAvailability": "HTTP_400",
+    "freeTierQuota": "UNKNOWN",
+    "functionCalling": "UNKNOWN",
+    "contextWindow": "UNKNOWN",
+    "compatibility": "UNKNOWN",
+    "status": "REQUIRES DIFFERENT API",
+    "details": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"This model only supports Interactions API.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
+  },
+  {
+    "model": "gemini-2.5-flash",
+    "apiAvailability": "NOT_FOUND_404",
+    "freeTierQuota": "UNKNOWN",
+    "functionCalling": "UNKNOWN",
+    "contextWindow": "UNKNOWN",
+    "compatibility": "UNKNOWN",
+    "status": "UNSUPPORTED",
+    "details": "Model ID not recognized by API endpoint (HTTP 404)."
+  },
+  {
+    "model": "gemini-2.5-flash-lite",
+    "apiAvailability": "NOT_FOUND_404",
+    "freeTierQuota": "UNKNOWN",
+    "functionCalling": "UNKNOWN",
+    "contextWindow": "UNKNOWN",
+    "compatibility": "UNKNOWN",
+    "status": "UNSUPPORTED",
+    "details": "Model ID not recognized by API endpoint (HTTP 404)."
+  },
+  {
+    "model": "gemini-2-flash",
+    "apiAvailability": "NOT_FOUND_404",
+    "freeTierQuota": "UNKNOWN",
+    "functionCalling": "UNKNOWN",
+    "contextWindow": "UNKNOWN",
+    "compatibility": "UNKNOWN",
+    "status": "UNSUPPORTED",
+    "details": "Model ID not recognized by API endpoint (HTTP 404)."
+  },
+  {
+    "model": "gemini-2-flash-lite",
+    "apiAvailability": "NOT_FOUND_404",
+    "freeTierQuota": "UNKNOWN",
+    "functionCalling": "UNKNOWN",
+    "contextWindow": "UNKNOWN",
+    "compatibility": "UNKNOWN",
+    "status": "UNSUPPORTED",
+    "details": "Model ID not recognized by API endpoint (HTTP 404)."
+  }
+]

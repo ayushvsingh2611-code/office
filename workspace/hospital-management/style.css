@@ -1,0 +1,133 @@
+:root {
+  --bg-main: #0b1329;
+  --bg-card: #132247;
+  --bg-card-hover: #1a2f60;
+  --header-bg: rgba(11, 19, 41, 0.94);
+  --border: rgba(255, 255, 255, 0.10);
+  --text-main: #ffffff;
+  --text-muted: #94a3b8;
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --accent-rose: #f43f5e;
+  --accent-emerald: #10b981;
+  --accent-cyan: #06b6d4;
+  --font: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body.health-theme { background-color: var(--bg-main); color: var(--text-main); font-family: var(--font); line-height: 1.5; min-height: 100vh; display: flex; flex-direction: column; }
+.emergency-ticker { background: linear-gradient(90deg, #991b1b 0%, #dc2626 50%, #991b1b 100%); color: #fff; font-size: 11.5px; font-weight: 700; padding: 6px 16px; text-align: center; }
+.ticker-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.ticker-badge { background: rgba(0, 0, 0, 0.3); padding: 2px 8px; border-radius: 4px; }
+.ticker-dot { opacity: 0.5; }
+.site-header { background: var(--header-bg); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 12px 24px; }
+.nav-container { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-badge { background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%); color: #fff; font-size: 18px; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 10px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); }
+.brand h1 { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+.brand-dot { color: var(--accent-rose); }
+.brand-subtitle { font-size: 11px; color: var(--text-muted); }
+.search-box { display: flex; align-items: center; background: #0f1c3d; border: 1px solid var(--border); border-radius: 12px; padding: 6px 14px; flex: 1; max-width: 520px; gap: 10px; }
+.search-icon { color: var(--text-muted); font-size: 14px; }
+.search-box input { background: transparent; border: none; outline: none; color: #fff; width: 100%; font-size: 13.5px; }
+.search-btn { background: var(--primary); color: #fff; border: none; padding: 5px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.header-actions { display: flex; align-items: center; gap: 12px; }
+.action-btn { background: #0f1c3d; color: #fff; border: 1px solid var(--border); padding: 8px 14px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+.action-btn.emergency-btn { background: rgba(239, 68, 68, 0.15); color: #f87171; border-color: rgba(239, 68, 68, 0.3); }
+.action-btn.appointment-btn { background: var(--primary); color: #fff; border-color: var(--primary); }
+.badge { background: #fff; color: #0284c7; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 800; }
+.department-strip { background: #080f24; border-bottom: 1px solid var(--border); padding: 10px 24px; }
+.department-scroll { max-width: 1280px; margin: 0 auto; display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+.filter-btn { background: #0f1c3d; color: var(--text-muted); border: 1px solid var(--border); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
+.filter-btn:hover, .filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.main-content { max-width: 1280px; margin: 0 auto; padding: 28px 24px; flex: 1; width: 100%; }
+.overview-banner { background: linear-gradient(135deg, #0f2452 0%, #0d1b3a 60%, #071024 100%); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 20px; padding: 32px; margin-bottom: 32px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; align-items: center; box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4); }
+@media (max-width: 900px) { .overview-banner { grid-template-columns: 1fr; } }
+.overview-tag { display: inline-block; background: rgba(14, 165, 233, 0.15); color: var(--accent-cyan); font-size: 11px; font-weight: 800; letter-spacing: 1px; padding: 5px 12px; border-radius: 8px; margin-bottom: 12px; }
+.overview-banner h2 { font-size: 28px; font-weight: 800; margin-bottom: 10px; }
+.overview-banner p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+.quick-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+@media (max-width: 600px) { .quick-stats-grid { grid-template-columns: repeat(2, 1fr); } }
+.stat-card { background: rgba(0, 0, 0, 0.25); border: 1px solid var(--border); padding: 12px 14px; border-radius: 12px; }
+.stat-num { display: block; font-size: 20px; font-weight: 800; color: #fff; }
+.stat-label { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+.vitals-highlight-card { background: #09132c; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 20px; }
+.vitals-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.patient-id { font-size: 10.5px; font-weight: 800; color: var(--primary); }
+.status-pill { font-size: 10.5px; font-weight: 800; padding: 4px 10px; border-radius: 20px; }
+.status-stable { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.3); }
+.vitals-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.vital-item { background: #0f1c3d; padding: 12px; border-radius: 10px; border: 1px solid var(--border); }
+.vital-name { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+.vital-val { font-size: 18px; font-weight: 800; color: #fff; }
+.vital-val small { font-size: 11px; color: var(--text-muted); }
+.catalog-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+.catalog-header h3 { font-size: 22px; font-weight: 800; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); }
+.live-indicator { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--accent-emerald); font-weight: 700; background: rgba(16, 185, 129, 0.1); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.25); }
+.pulsing-dot { width: 8px; height: 8px; background: var(--accent-emerald); border-radius: 50%; box-shadow: 0 0 8px var(--accent-emerald); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 24px; }
+.product-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5); border-color: rgba(14, 165, 233, 0.4); }
+.doctor-badge, .discount-pill, .feature-badge, .emergency-pill { position: absolute; top: 12px; left: 12px; z-index: 10; font-size: 10.5px; font-weight: 800; padding: 4px 10px; border-radius: 8px; }
+.doctor-badge { background: var(--primary); color: #fff; }
+.discount-pill { background: var(--accent-rose); color: #fff; }
+.feature-badge { background: #059669; color: #fff; }
+.emergency-pill { background: #dc2626; color: #fff; }
+.card-image-box { width: 100%; height: 180px; background: #081124; overflow: hidden; }
+.card-img { width: 100%; height: 100%; object-fit: cover; }
+.card-content { padding: 18px; display: flex; flex-direction: column; flex: 1; }
+.card-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.dept-tag { font-size: 11px; color: var(--accent-cyan); font-weight: 700; }
+.exp-tag { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+.product-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+.product-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px; flex: 1; line-height: 1.45; }
+.rating-strip { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 16px; }
+.stars { color: #fbbf24; font-weight: 700; }
+.patient-reviews { color: var(--text-muted); }
+.card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.fee-box { display: flex; flex-direction: column; }
+.price { font-size: 18px; font-weight: 800; color: #fff; }
+.fee-label, .mrp { font-size: 11px; color: var(--text-muted); }
+.mrp { text-decoration: line-through; }
+.btn-add-cart { background: rgba(14, 165, 233, 0.15); color: var(--primary); border: 1.5px solid var(--primary); padding: 6px 16px; border-radius: 8px; font-size: 12.5px; font-weight: 800; cursor: pointer; transition: all 0.2s; }
+.btn-add-cart:hover { background: var(--primary); color: #fff; }
+.site-footer { padding: 30px; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 12px; margin-top: auto; }
+
+/* ==========================================================
+ * PANDA HIVE DYNAMIC RUNTIME STYLING (Auto-Injected)
+ * ========================================================== */
+.ph-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+.ph-toast {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 12px 18px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  animation: phToastIn 0.25s ease-out;
+  transition: all 0.2s ease;
+}
+@keyframes phToastIn {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.ph-toast.ph-fade-out {
+  transform: translateY(8px);
+  opacity: 0;
+}

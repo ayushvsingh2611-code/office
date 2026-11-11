@@ -406,13 +406,11 @@ const DEFAULTS: HarnessConfig = {
   recentHives: [],
   registeredRepos: [],
   autoMode: true,
-  defaultCommand: 'claude',
-  godProvider: 'claude',
-  godModel: 'claude-opus-4-8',
-  // Global default model for every agent that hasn't picked one explicitly — wins
-  // over the role-based tiers (modelForRole) in the spawn handler, so all agents
-  // (incl. god) default to Fable 5. A per-agent model choice still overrides it.
-  defaultModel: 'claude-fable-5',
+  defaultCommand: 'agy',
+  godProvider: 'antigravity',
+  godModel: 'Gemini 3.8 Flash (High)',
+  // Global default model for every agent that hasn't picked one explicitly
+  defaultModel: 'Gemini 3.8 Flash (High)',
   // Seeded from the MCP catalog so the consent defaults never drift from it
   // (safe-readonly ON, write/secret OFF).
   mcpDefaults: defaultMcpDefaults(),
@@ -574,6 +572,18 @@ export function readConfig(): HarnessConfig {
   try {
     const raw = readFileSync(p, 'utf8');
     const parsed = JSON.parse(raw);
+    if (parsed.godProvider === 'claude' || !parsed.godProvider) {
+      parsed.godProvider = 'antigravity';
+      parsed.godModel = 'Gemini 3.8 Flash (High)';
+      parsed.defaultCommand = 'agy';
+    }
+    if (parsed.godModel === 'Gemini 3.1 Pro (High)') {
+      parsed.godModel = 'Gemini 3.8 Flash (High)';
+    }
+    if (parsed.officeTheme === 'siliconvalley') {
+      parsed.officeTheme = 'office';
+      parsed.tvShowOffices = false;
+    }
     return migrateTriggersV1(withTriggerDefaults({ ...DEFAULTS, ...parsed }));
   } catch {
     return withTriggerDefaults({ ...DEFAULTS });

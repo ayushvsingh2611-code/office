@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E Commerce — 10 Mins Superfast Delivery</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="zepto-theme">
+  <!-- Top Banner / Delivery Ticker -->
+  <div class="delivery-ticker">
+    <div class="ticker-content">
+      <span class="ticker-highlight"><i class="fa-solid fa-bolt"></i> 10 MINS SUPERFAST DELIVERY</span>
+      <span class="ticker-divider">•</span>
+      <span>Deliver to <strong>Indiranagar, Bengaluru (560038)</strong></span>
+      <span class="ticker-divider">•</span>
+      <span>Free delivery on orders above ₹149</span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-badge">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div>
+          <h1>E Commerce</h1>
+          <p class="delivery-sub">
+            <i class="fa-solid fa-location-dot"></i> Deliver to <strong>Indiranagar, Bengaluru ▾</strong>
+          </p>
+        </div>
+      </div>
+      <form id="search-form" class="search-box" role="search">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="search" id="site-search" name="q" placeholder="Search for 'milk', 'mango', 'chips', 'bread'..." autocomplete="off">
+        <button type="submit" class="search-btn">Search</button>
+      </form>
+      <div class="header-actions">
+        <button type="button" id="wishlist-button" class="action-btn" title="Saved Items">
+          <i class="fa-regular fa-heart"></i>
+          <span>Saved</span>
+        </button>
+        <button type="button" id="cart-button" class="action-btn cart-btn" title="View Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Cart</span>
+          <span id="cart-count" class="badge">1</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Horizontal Category Scroller -->
+  <nav class="category-strip" aria-label="Product categories">
+    <div class="category-scroll">
+      <button type="button" class="filter-btn active" data-category="all">
+        <i class="fa-solid fa-bolt"></i> All Items
+      </button>
+      <button type="button" class="filter-btn" data-category="fruits-veg">
+        <i class="fa-solid fa-apple-whole"></i> Fruits & Veggies
+      </button>
+      <button type="button" class="filter-btn" data-category="dairy">
+        <i class="fa-solid fa-cow"></i> Dairy, Bread & Eggs
+      </button>
+      <button type="button" class="filter-btn" data-category="snacks">
+        <i class="fa-solid fa-cookie"></i> Snacks & Munchies
+      </button>
+      <button type="button" class="filter-btn" data-category="drinks">
+        <i class="fa-solid fa-mug-hot"></i> Drinks & Cafe
+      </button>
+      <button type="button" class="filter-btn" data-category="sweets">
+        <i class="fa-solid fa-candy-cane"></i> Sweets & Treats
+      </button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <section class="promo-banner">
+      <div class="promo-content">
+        <span class="promo-tag"><i class="fa-solid fa-bolt"></i> INSTANT 10-MIN EXPRESS</span>
+        <h2>create e commerce website.</h2>
+        <p>Curated farm-fresh produce, daily essentials, and chef bakes delivered in 10 minutes flat.</p>
+        <div class="coupon-badge">
+          <i class="fa-solid fa-tag"></i> Use code <strong>ZEPTO50</strong> for 50% OFF up to ₹100
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-section">
+      <div class="catalog-header">
+        <div>
+          <h3>Express Fresh Catalog</h3>
+          <p class="section-subtitle">Real-time inventory ready at your nearest dark store</p>
+        </div>
+        <span class="time-badge"><i class="fa-solid fa-stopwatch"></i> Delivery in 8-10 Mins</span>
+      </div>
+
+      <div class="grid" id="product-catalog">
+        <!-- 1. Alphonso Mangoes -->
+        <div class="product-card" data-category="fruits-veg">
+          <span class="discount-pill">25% OFF</span>
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=400&q=80" alt="Ratnagiri Alphonso Mangoes" class="product-img" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="delivery-tag"><i class="fa-solid fa-stopwatch"></i> 8 MINS</span>
+              <span class="item-weight">1 kg (4 Pcs)</span>
+            </div>
+            <h4 class="product-title">Ratnagiri Alphonso Mangoes</h4>
+            <div class="rating-row">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.9</span>
+              <span class="reviews">(1,420)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹149</span>
+                <span class="mrp">₹199</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="mangoes">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Farm Fresh Milk -->
+        <div class="product-card" data-category="dairy">
+          <span class="discount-pill">10% OFF</span>
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=400&q=80" alt="Farm Fresh Toned Milk" class="product-img" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="delivery-tag"><i class="fa-solid fa-stopwatch"></i> 7 MINS</span>
+              <span class="item-weight">1 Liter Pouch</span>
+            </div>
+            <h4 class="product-title">Farm Fresh Toned Milk</h4>
+            <div class="rating-row">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.8</span>
+              <span class="reviews">(2,180)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹27</span>
+                <span class="mrp">₹30</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="milk">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Sourdough Loaf -->
+        <div class="product-card" data-category="dairy">
+          <span class="discount-pill">18% OFF</span>
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" alt="Artisan Whole Wheat Sourdough" class="product-img" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="delivery-tag"><i class="fa-solid fa-stopwatch"></i> 9 MINS</span>
+              <span class="item-weight">400g Loaf</span>
+            </div>
+            <h4 class="product-title">Artisan Whole Wheat Sourdough</h4>
+            <div class="rating-row">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.9</span>
+              <span class="reviews">(920)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹65</span>
+                <span class="mrp">₹80</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="bread">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Farm Eggs -->
+        <div class="product-card" data-category="dairy">
+          <span class="discount-pill">15% OFF</span>
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=400&q=80" alt="Farm Fresh Brown Eggs" class="product-img" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="delivery-tag"><i class="fa-solid fa-stopwatch"></i> 8 MINS</span>
+              <span class="item-weight">Pack of 6 Pcs</span>
+            </div>
+            <h4 class="product-title">Farm Fresh Brown Eggs</h4>
+            <div class="rating-row">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.7</span>
+              <span class="reviews">(1,840)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹55</span>
+                <span class="mrp">₹65</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="eggs">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Cold Brew Coffee -->
+        <div class="product-card" data-category="drinks">
+          <span class="discount-pill">19% OFF</span>
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=400&q=80" alt="Hazelnut Cold Brew Latte" class="product-img" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="delivery-tag"><i class="fa-solid fa-stopwatch"></i> 6 MINS</span>
+              <span class="item-weight">250ml Bottle</span>
+            </div>
+            <h4 class="product-title">Hazelnut Cold Brew Latte</h4>
+            <div class="rating-row">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.8</span>
+              <span class="reviews">(670)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹89</span>
+                <span class="mrp">₹110</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="coffee">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Imported Avocados -->
+        <div class="product-card" data-category="fruits-veg">
+          <span class="discount-pill">19% OFF</span>
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=400&q=80" alt="Premium Hass Avocados" class="product-img" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="delivery-tag"><i class="fa-solid fa-stopwatch"></i> 8 MINS</span>
+              <span class="item-weight">2 Pcs (Approx 350g)</span>
+            </div>
+            <h4 class="product-title">Premium Hass Avocados</h4>
+            <div class="rating-row">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.9</span>
+              <span class="reviews">(810)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹129</span>
+                <span class="mrp">₹160</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="avocados">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Potato Crisps -->
+        <div class="product-card" data-category="snacks">
+          <span class="discount-pill">20% OFF</span>
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=400&q=80" alt="Himalayan Salt Potato Crisps" class="product-img" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="delivery-tag"><i class="fa-solid fa-stopwatch"></i> 7 MINS</span>
+              <span class="item-weight">120g Pouch</span>
+            </div>
+            <h4 class="product-title">Himalayan Salt Potato Crisps</h4>
+            <div class="rating-row">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.6</span>
+              <span class="reviews">(1,120)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹40</span>
+                <span class="mrp">₹50</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="chips">+ ADD</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Fresh Strawberries -->
+        <div class="product-card" data-category="fruits-veg">
+          <span class="discount-pill">23% OFF</span>
+          <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=400&q=80" alt="Mahabaleshwar Fresh Strawberries" class="product-img" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="meta-row">
+              <span class="delivery-tag"><i class="fa-solid fa-stopwatch"></i> 9 MINS</span>
+              <span class="item-weight">250g Box</span>
+            </div>
+            <h4 class="product-title">Fresh Mahabaleshwar Strawberries</h4>
+            <div class="rating-row">
+              <span class="stars"><i class="fa-solid fa-star"></i> 4.9</span>
+              <span class="reviews">(950)</span>
+            </div>
+            <div class="card-footer">
+              <div class="price-box">
+                <span class="price">₹99</span>
+                <span class="mrp">₹130</span>
+              </div>
+              <button type="button" class="btn-add-cart" data-key="strawberries">+ ADD</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-title"><strong>E Commerce Express</strong> • Quick Commerce Re-imagined</p>
+      <p class="footer-sub">Lightning 10-minute doorstep delivery. 100% farm fresh, hygienic, and sanitized packaging.</p>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

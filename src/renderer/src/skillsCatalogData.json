@@ -1,0 +1,1766 @@
+[
+  {
+    "name": "docx",
+    "description": "Create and edit Microsoft Word documents with formatting, comments, and tracked changes",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/docx",
+    "category": "Document Skills",
+    "owner": "anthropics"
+  },
+  {
+    "name": "pdf",
+    "description": "Extract content from PDFs, split/merge documents, or create new ones",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/pdf",
+    "category": "Document Skills",
+    "owner": "anthropics"
+  },
+  {
+    "name": "pptx",
+    "description": "Generate and edit PowerPoint presentations",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/pptx",
+    "category": "Document Skills",
+    "owner": "anthropics"
+  },
+  {
+    "name": "xlsx",
+    "description": "Manipulate Excel files, formulas, tables, and charts",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/xlsx",
+    "category": "Document Skills",
+    "owner": "anthropics"
+  },
+  {
+    "name": "revealjs-skill",
+    "description": "Generate polished, professional presentations using the Reveal.js HTML presentation framework",
+    "url": "https://github.com/ryanbbrown/revealjs-skill/tree/main",
+    "category": "Document Skills",
+    "owner": "ryanbbrown"
+  },
+  {
+    "name": "algorithmic-art",
+    "description": "Create generative art using p5.js",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/algorithmic-art",
+    "category": "Creative & Design",
+    "owner": "anthropics"
+  },
+  {
+    "name": "canvas-design",
+    "description": "Render layout-based visual designs in PNG/PDF",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/canvas-design",
+    "category": "Creative & Design",
+    "owner": "anthropics"
+  },
+  {
+    "name": "slack-gif-creator",
+    "description": "Generate Slack-optimized animated GIFs",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/slack-gif-creator",
+    "category": "Creative & Design",
+    "owner": "anthropics"
+  },
+  {
+    "name": "brand-guidelines",
+    "description": "Apply company branding to outputs",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/brand-guidelines",
+    "category": "Creative & Design",
+    "owner": "anthropics"
+  },
+  {
+    "name": "theme-factory",
+    "description": "Create and apply visual themes for documents",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/theme-factory",
+    "category": "Creative & Design",
+    "owner": "anthropics"
+  },
+  {
+    "name": "nano-banana-image-generation",
+    "description": "Create images using Nano Banana Pro",
+    "url": "https://github.com/livelabs-ventures/nano-skills/tree/main/skills/nano-image-generator",
+    "category": "Creative & Design",
+    "owner": "livelabs-ventures"
+  },
+  {
+    "name": "frontend-slides",
+    "description": "Create animation-rich single-file HTML presentations with 12 visual styles and zero dependencies",
+    "url": "https://github.com/zarazhangrui/frontend-slides",
+    "category": "Creative & Design",
+    "owner": "zarazhangrui"
+  },
+  {
+    "name": "web-asset-generator",
+    "description": "Generate favicons, app icons, PWA manifests, and Open Graph images with WCAG contrast validation",
+    "url": "https://github.com/alonw0/web-asset-generator",
+    "category": "Creative & Design",
+    "owner": "alonw0"
+  },
+  {
+    "name": "color-expert",
+    "description": "Color science and accessibility expertise covering APCA/WCAG, palette systems, and color-space decisions",
+    "url": "https://github.com/meodai/skill.color-expert",
+    "category": "Creative & Design",
+    "owner": "meodai"
+  },
+  {
+    "name": "design-mobile-apps",
+    "description": "Design mobile app UI screens and implement Sleek designs in HTML, React Native, or SwiftUI",
+    "url": "https://github.com/designed-by-ai/skills/tree/main/skills/design-mobile-apps",
+    "category": "Creative & Design",
+    "owner": "designed-by-ai"
+  },
+  {
+    "name": "frontend-design",
+    "description": "Official Anthropic guidance for distinctive, intentional visual design — aesthetic direction, typography, and avoiding templated defaults",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
+    "category": "Creative & Design",
+    "owner": "anthropics"
+  },
+  {
+    "name": "web-design-guidelines",
+    "description": "Official Vercel skill that reviews UI code against Web Interface Guidelines for accessibility, interaction, and UX best practices",
+    "url": "https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines",
+    "category": "Creative & Design",
+    "owner": "vercel-labs"
+  },
+  {
+    "name": "emil-design-eng",
+    "description": "Emil Kowalski's design-engineering philosophy: UI polish, component design, animation decisions, and the invisible details that make software feel great",
+    "url": "https://github.com/emilkowalski/skills/tree/main/skills/emil-design-eng",
+    "category": "Creative & Design",
+    "owner": "emilkowalski"
+  },
+  {
+    "name": "code-review",
+    "description": "Two-axis review of changes since a fixed point — Standards (coding standards) and Spec (originating issue/PRD) — run in parallel sub-agents",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "claude-api",
+    "description": "Official Anthropic guidance for building, debugging, and optimizing Claude API applications, including tool use, prompt caching, batches, files, citations, and memory",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/claude-api",
+    "category": "Development & Code Tools",
+    "owner": "anthropics"
+  },
+  {
+    "name": "claude-skills-pro",
+    "description": "15 engineering-workflow skills (7-dimension code review, root-cause bug hunting, test generation with mutation check, zero-downtime DB migrations, security audit) — 7 free under MIT, CN handbook included",
+    "url": "https://github.com/Hahaknight/claude-skills-pro",
+    "category": "Development & Code Tools",
+    "owner": "hahaknight"
+  },
+  {
+    "name": "codebase-design",
+    "description": "Shared vocabulary for designing deep modules — lots of behaviour behind a small interface at a clean seam",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/codebase-design",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "diagnosing-bugs",
+    "description": "Disciplined diagnosis loop for hard bugs and performance regressions: reproduce, minimize, hypothesize, instrument, fix, and regression-test",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/diagnosing-bugs",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "domain-modeling",
+    "description": "Build and sharpen a project's domain model with ubiquitous language, glossary entries, and architectural decision records",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/domain-modeling",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "grill-with-docs",
+    "description": "Grilling workflow that pressure-tests plans against domain language and updates CONTEXT.md and ADRs",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "implement",
+    "description": "Implement a piece of work based on a spec or set of tickets, driving TDD internally per issue",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/implement",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "improve-codebase-architecture",
+    "description": "Find deepening opportunities in a codebase using shared domain language and architectural decisions",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/improve-codebase-architecture",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "prototype",
+    "description": "Build throwaway prototypes for logic or UI exploration before production implementation",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/prototype",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "research",
+    "description": "Delegate reading legwork to a background agent that investigates against primary sources and leaves a cited Markdown file",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/research",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "resolving-merge-conflicts",
+    "description": "Resolve in-progress git merge/rebase conflicts by understanding both changes' intent and preserving it",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/resolving-merge-conflicts",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "setup-matt-pocock-skills",
+    "description": "One-time repository setup for issue tracker, triage labels, and docs layout used by the engineering skill suite",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/setup-matt-pocock-skills",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "tdd",
+    "description": "Test-driven development workflow using a red-green-refactor loop and vertical slices",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "to-spec",
+    "description": "Turn the current conversation into a spec and publish it to the project issue tracker — synthesis, no interview",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/to-spec",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "to-tickets",
+    "description": "Break a plan, spec, or conversation into tracer-bullet tickets, each declaring its blocking edges",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/to-tickets",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "triage",
+    "description": "Triage work through a structured issue-state workflow with explicit roles",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/triage",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "wayfinder",
+    "description": "Plan huge multi-session work as a shared map of investigation tickets, resolving them one at a time until the route is clear",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/wayfinder",
+    "category": "Development & Code Tools",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "interview-me",
+    "description": "Interactive requirements interview loop to uncover hidden assumptions before implementation",
+    "url": "https://github.com/addyosmani/agent-skills/tree/main/skills/interview-me",
+    "category": "Development & Code Tools",
+    "owner": "addyosmani"
+  },
+  {
+    "name": "source-driven-development",
+    "description": "Ground implementation in primary sources and existing code reality before writing changes",
+    "url": "https://github.com/addyosmani/agent-skills/tree/main/skills/source-driven-development",
+    "category": "Development & Code Tools",
+    "owner": "addyosmani"
+  },
+  {
+    "name": "performance-optimization",
+    "description": "Diagnose and improve runtime, render, and bundle performance with systematic profiling",
+    "url": "https://github.com/addyosmani/agent-skills/tree/main/skills/performance-optimization",
+    "category": "Development & Code Tools",
+    "owner": "addyosmani"
+  },
+  {
+    "name": "code-review-and-quality",
+    "description": "Enforce production-grade review criteria, maintainability, and quality gates",
+    "url": "https://github.com/addyosmani/agent-skills/tree/main/skills/code-review-and-quality",
+    "category": "Development & Code Tools",
+    "owner": "addyosmani"
+  },
+  {
+    "name": "incremental-implementation",
+    "description": "Ship complex features as small validated slices to reduce risk and regressions",
+    "url": "https://github.com/addyosmani/agent-skills/tree/main/skills/incremental-implementation",
+    "category": "Development & Code Tools",
+    "owner": "addyosmani"
+  },
+  {
+    "name": "planning-and-task-breakdown",
+    "description": "Convert broad goals into sequenced, executable engineering tasks",
+    "url": "https://github.com/addyosmani/agent-skills/tree/main/skills/planning-and-task-breakdown",
+    "category": "Development & Code Tools",
+    "owner": "addyosmani"
+  },
+  {
+    "name": "swiftui-pro",
+    "description": "Advanced SwiftUI development patterns and implementation guidance for Apple platforms",
+    "url": "https://github.com/twostraws/SwiftUI-Agent-Skill/tree/main/swiftui-pro",
+    "category": "Development & Code Tools",
+    "owner": "twostraws"
+  },
+  {
+    "name": "swift-concurrency-pro",
+    "description": "Practical Swift Concurrency patterns for structured async code and correctness",
+    "url": "https://github.com/twostraws/Swift-Concurrency-Agent-Skill/tree/main/swift-concurrency-pro",
+    "category": "Development & Code Tools",
+    "owner": "twostraws"
+  },
+  {
+    "name": "react-components-stitch",
+    "description": "Generate robust React components using Stitch-oriented implementation patterns",
+    "url": "https://github.com/google-labs-code/stitch-skills/tree/main/skills/react-components",
+    "category": "Development & Code Tools",
+    "owner": "google-labs-code"
+  },
+  {
+    "name": "MCP Server",
+    "description": "Build Claude-compatible API connectors",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/mcp-builder",
+    "category": "Development & Code Tools",
+    "owner": "anthropics"
+  },
+  {
+    "name": "Changelog Generator",
+    "description": "Create changelogs from commit history",
+    "url": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/changelog-generator",
+    "category": "Development & Code Tools",
+    "owner": "composiohq"
+  },
+  {
+    "name": "using-git-worktrees",
+    "description": "Manage feature branches safely in isolated Git worktrees",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/using-git-worktrees",
+    "category": "Development & Code Tools",
+    "owner": "obra"
+  },
+  {
+    "name": "test-driven-development",
+    "description": "Write tests before implementation to drive development",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/test-driven-development",
+    "category": "Development & Code Tools",
+    "owner": "obra"
+  },
+  {
+    "name": "subagent-driven-development",
+    "description": "Use multiple Claude subagents to coordinate complex implementations",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/subagent-driven-development",
+    "category": "Development & Code Tools",
+    "owner": "obra"
+  },
+  {
+    "name": "executing-plans",
+    "description": "Execute structured plans with checkpoints and verification steps",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/executing-plans",
+    "category": "Development & Code Tools",
+    "owner": "obra"
+  },
+  {
+    "name": "finishing-a-development-branch",
+    "description": "Complete development branches with testing and review flow",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/finishing-a-development-branch",
+    "category": "Development & Code Tools",
+    "owner": "obra"
+  },
+  {
+    "name": "preserving-productive-tensions",
+    "description": "Manage architectural decisions by preserving competing viewpoints to balance innovation and stability",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/architecture/preserving-productive-tensions",
+    "category": "Development & Code Tools",
+    "owner": "obra"
+  },
+  {
+    "name": "web-artifacts-builder",
+    "description": "Create elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui)",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder",
+    "category": "Development & Code Tools",
+    "owner": "anthropics"
+  },
+  {
+    "name": "pypict-claude-skill",
+    "description": "Design comprehensive test cases using PICT (Pairwise Independent Combinatorial Testing) for optimized test suites",
+    "url": "https://github.com/omkamal/pypict-claude-skill",
+    "category": "Development & Code Tools",
+    "owner": "omkamal"
+  },
+  {
+    "name": "aws-skills",
+    "description": "AWS development with CDK best practices, cost optimization, and serverless/event-driven architecture patterns",
+    "url": "https://github.com/zxkane/aws-skills",
+    "category": "Development & Code Tools",
+    "owner": "zxkane"
+  },
+  {
+    "name": "move-code-quality-skill",
+    "description": "Analyzes Move language packages against the official Move Book Code Quality Checklist",
+    "url": "https://github.com/1NickPappas/move-code-quality-skill",
+    "category": "Development & Code Tools",
+    "owner": "1nickpappas"
+  },
+  {
+    "name": "audit-website",
+    "description": "Cli website auditing tool for seo, performance, security and 140+ other rules",
+    "url": "https://github.com/squirrelscan/skills/tree/main",
+    "category": "Development & Code Tools",
+    "owner": "squirrelscan"
+  },
+  {
+    "name": "stripe-best-practices",
+    "description": "Official Stripe skill for building correct integrations with payments, subscriptions, and webhooks",
+    "url": "https://github.com/stripe/ai/tree/main/skills/stripe-best-practices",
+    "category": "Development & Code Tools",
+    "owner": "stripe"
+  },
+  {
+    "name": "upgrade-stripe",
+    "description": "Official Stripe skill for safely upgrading SDK and API versions",
+    "url": "https://github.com/stripe/ai/tree/main/skills/upgrade-stripe",
+    "category": "Development & Code Tools",
+    "owner": "stripe"
+  },
+  {
+    "name": "expo-app-design",
+    "description": "Official Expo skill for designing and building Expo/React Native apps with best practices",
+    "url": "https://github.com/expo/skills",
+    "category": "Development & Code Tools",
+    "owner": "expo"
+  },
+  {
+    "name": "supabase-postgres",
+    "description": "Official Supabase skill for PostgreSQL best practices in Supabase projects",
+    "url": "https://github.com/supabase/agent-skills",
+    "category": "Development & Code Tools",
+    "owner": "supabase"
+  },
+  {
+    "name": "terraform-code-generation",
+    "description": "Official HashiCorp skill for generating and validating Terraform HCL code",
+    "url": "https://github.com/hashicorp/agent-skills/tree/main/terraform/code-generation",
+    "category": "Development & Code Tools",
+    "owner": "hashicorp"
+  },
+  {
+    "name": "terraform-module-generation",
+    "description": "Official HashiCorp skill for creating and refactoring Terraform modules",
+    "url": "https://github.com/hashicorp/agent-skills/tree/main/terraform/module-generation",
+    "category": "Development & Code Tools",
+    "owner": "hashicorp"
+  },
+  {
+    "name": "terraform-provider-development",
+    "description": "Official HashiCorp skill for developing custom Terraform providers",
+    "url": "https://github.com/hashicorp/agent-skills/tree/main/terraform/provider-development",
+    "category": "Development & Code Tools",
+    "owner": "hashicorp"
+  },
+  {
+    "name": "terraform-skill",
+    "description": "Comprehensive Terraform/OpenTofu best practices covering testing, modules, CI/CD, and 100+ patterns",
+    "url": "https://github.com/antonbabenko/terraform-skill",
+    "category": "Development & Code Tools",
+    "owner": "antonbabenko"
+  },
+  {
+    "name": "cloudflare-agents-sdk",
+    "description": "Official Cloudflare skill for building stateful AI agents with scheduling, RPC, and MCP on Workers",
+    "url": "https://github.com/cloudflare/skills/tree/main/skills/agents-sdk",
+    "category": "Development & Code Tools",
+    "owner": "cloudflare"
+  },
+  {
+    "name": "cloudflare-wrangler",
+    "description": "Official Cloudflare skill for deploying and managing Workers, KV, R2, D1, and Queues",
+    "url": "https://github.com/cloudflare/skills/tree/main/skills/wrangler",
+    "category": "Development & Code Tools",
+    "owner": "cloudflare"
+  },
+  {
+    "name": "cloudflare-web-perf",
+    "description": "Official Cloudflare skill for auditing Core Web Vitals and render-blocking resources",
+    "url": "https://github.com/cloudflare/skills/tree/main/skills/web-perf",
+    "category": "Development & Code Tools",
+    "owner": "cloudflare"
+  },
+  {
+    "name": "cloudflare-building-ai-agent",
+    "description": "Official Cloudflare skill for building full AI agents on Cloudflare's infrastructure",
+    "url": "https://github.com/cloudflare/skills/blob/main/commands/build-agent.md",
+    "category": "Development & Code Tools",
+    "owner": "cloudflare"
+  },
+  {
+    "name": "cloudflare-building-mcp-server",
+    "description": "Official Cloudflare skill for building and deploying MCP servers on Cloudflare Workers",
+    "url": "https://github.com/cloudflare/skills/blob/main/commands/build-mcp.md",
+    "category": "Development & Code Tools",
+    "owner": "cloudflare"
+  },
+  {
+    "name": "cloudflare-durable-objects",
+    "description": "Official Cloudflare skill for building stateful, globally consistent applications with Durable Objects",
+    "url": "https://github.com/cloudflare/skills/tree/main/skills/durable-objects",
+    "category": "Development & Code Tools",
+    "owner": "cloudflare"
+  },
+  {
+    "name": "cloudflare-sandbox-sdk",
+    "description": "Official Cloudflare skill for running untrusted code safely using Cloudflare's sandbox environment",
+    "url": "https://github.com/cloudflare/skills/tree/main/skills/sandbox-sdk",
+    "category": "Development & Code Tools",
+    "owner": "cloudflare"
+  },
+  {
+    "name": "cloudflare-workers-best-practices",
+    "description": "Official Cloudflare skill for Workers best practices covering performance, security, and deployment patterns",
+    "url": "https://github.com/cloudflare/skills/tree/main/skills/workers-best-practices",
+    "category": "Development & Code Tools",
+    "owner": "cloudflare"
+  },
+  {
+    "name": "netlify-functions",
+    "description": "Official Netlify skill for building serverless API endpoints and background tasks",
+    "url": "https://github.com/netlify/context-and-tools",
+    "category": "Development & Code Tools",
+    "owner": "netlify"
+  },
+  {
+    "name": "netlify-db",
+    "description": "Official Netlify skill for managed Postgres with deploy preview branching",
+    "url": "https://github.com/netlify/context-and-tools",
+    "category": "Development & Code Tools",
+    "owner": "netlify"
+  },
+  {
+    "name": "neon-postgres",
+    "description": "Official Neon skill for best practices with Neon Serverless Postgres",
+    "url": "https://github.com/neondatabase/agent-skills",
+    "category": "Development & Code Tools",
+    "owner": "neondatabase"
+  },
+  {
+    "name": "vercel-react",
+    "description": "Official Vercel skill for React best practices and patterns",
+    "url": "https://github.com/vercel-labs/agent-skills",
+    "category": "Development & Code Tools",
+    "owner": "vercel-labs"
+  },
+  {
+    "name": "next-best-practices",
+    "description": "Official Vercel skill for Next.js recommended patterns and best practices",
+    "url": "https://github.com/vercel-labs/next-skills",
+    "category": "Development & Code Tools",
+    "owner": "vercel-labs"
+  },
+  {
+    "name": "next-upgrade",
+    "description": "Official Vercel skill for upgrading Next.js projects to newer versions",
+    "url": "https://github.com/vercel-labs/next-skills",
+    "category": "Development & Code Tools",
+    "owner": "vercel-labs"
+  },
+  {
+    "name": "react-native-best-practices",
+    "description": "Official Callstack skill for React Native performance optimization patterns",
+    "url": "https://github.com/callstackincubator/agent-skills",
+    "category": "Development & Code Tools",
+    "owner": "callstackincubator"
+  },
+  {
+    "name": "better-auth",
+    "description": "Official Better Auth skill for authentication integration including OAuth, 2FA, and passkeys",
+    "url": "https://github.com/better-auth/skills",
+    "category": "Development & Code Tools",
+    "owner": "better-auth"
+  },
+  {
+    "name": "tinybird",
+    "description": "Official Tinybird skill for project guidelines covering datasources, pipes, endpoints, and SQL",
+    "url": "https://github.com/tinybirdco/tinybird-agent-skills",
+    "category": "Development & Code Tools",
+    "owner": "tinybirdco"
+  },
+  {
+    "name": "sanity",
+    "description": "Official Sanity skill for Sanity Studio, GROQ queries, and content workflows",
+    "url": "https://github.com/sanity-io/agent-toolkit",
+    "category": "Development & Code Tools",
+    "owner": "sanity-io"
+  },
+  {
+    "name": "clickhouse",
+    "description": "Official ClickHouse skill for analytics query best practices",
+    "url": "https://github.com/ClickHouse/agent-skills",
+    "category": "Development & Code Tools",
+    "owner": "clickhouse"
+  },
+  {
+    "name": "remotion-skill",
+    "description": "Official Remotion skill for programmatic video creation with React",
+    "url": "https://github.com/remotion-dev/skills",
+    "category": "Development & Code Tools",
+    "owner": "remotion-dev"
+  },
+  {
+    "name": "ios-simulator-skill",
+    "description": "21-script toolkit for iOS simulator automation with accessibility APIs and 96% token reduction",
+    "url": "https://github.com/conorluddy/ios-simulator-skill",
+    "category": "Development & Code Tools",
+    "owner": "conorluddy"
+  },
+  {
+    "name": "claude-d3js-skill",
+    "description": "Interactive data visualizations using D3.js with reference materials and patterns",
+    "url": "https://github.com/chrisvoncsefalvay/claude-d3js-skill",
+    "category": "Development & Code Tools",
+    "owner": "chrisvoncsefalvay"
+  },
+  {
+    "name": "playwright-skill",
+    "description": "General-purpose browser automation with Playwright for testing and web interaction",
+    "url": "https://github.com/lackeyjb/playwright-skill",
+    "category": "Development & Code Tools",
+    "owner": "lackeyjb"
+  },
+  {
+    "name": "claude-a11y-skill",
+    "description": "Comprehensive accessibility audits combining axe-core and eslint-plugin-jsx-a11y against WCAG 2.1",
+    "url": "https://github.com/airowe/claude-a11y-skill",
+    "category": "Development & Code Tools",
+    "owner": "airowe"
+  },
+  {
+    "name": "context-engineering-kit",
+    "description": "Advanced context engineering with multi-agent patterns, reflexion loops, and domain-driven development",
+    "url": "https://github.com/NeoLabHQ/context-engineering-kit",
+    "category": "Development & Code Tools",
+    "owner": "neolabhq"
+  },
+  {
+    "name": "compound-engineering-plugin",
+    "description": "Pragmatic engineering plugin with ideation, planning, execution, multi-agent review, and knowledge compounding",
+    "url": "https://github.com/EveryInc/compound-engineering-plugin",
+    "category": "Development & Code Tools",
+    "owner": "everyinc"
+  },
+  {
+    "name": "vscode-extension-builder",
+    "description": "Scaffolds, compiles, packages, and installs a working VS Code extension end-to-end from a single request — command extensions, color themes, and snippet packs",
+    "url": "https://github.com/SuryaPrakashPandurangi/vscode-extension-builder",
+    "category": "Development & Code Tools",
+    "owner": "suryaprakashpandurangi"
+  },
+  {
+    "name": "ponytail",
+    "description": "Forces the laziest solution that actually works — YAGNI, standard library before custom code, one line before fifty, with lite/full/ultra intensity levels",
+    "url": "https://github.com/DietrichGebert/ponytail/tree/main/skills/ponytail",
+    "category": "Development & Code Tools",
+    "owner": "dietrichgebert"
+  },
+  {
+    "name": "agent-browser",
+    "description": "Official Vercel browser automation CLI for AI agents — navigate pages, fill forms, click, screenshot, extract data, and test web apps",
+    "url": "https://github.com/vercel-labs/agent-browser/tree/main/skills/agent-browser",
+    "category": "Development & Code Tools",
+    "owner": "vercel-labs"
+  },
+  {
+    "name": "prisma-client-api",
+    "description": "Official Prisma reference for Client API queries, filters, operators, transactions, and client configuration",
+    "url": "https://github.com/prisma/skills/tree/main/prisma-client-api",
+    "category": "Development & Code Tools",
+    "owner": "prisma"
+  },
+  {
+    "name": "google-agents-cli-deploy",
+    "description": "Official Google skill for deploying ADK agents to Agent Runtime, Cloud Run, or GKE, with CI/CD, secrets, and Agent Gateway setup",
+    "url": "https://github.com/google/agents-cli/tree/main/skills/google-agents-cli-deploy",
+    "category": "Development & Code Tools",
+    "owner": "google"
+  },
+  {
+    "name": "microsoft-foundry",
+    "description": "Official Microsoft skill for building, deploying, evaluating, and managing Foundry agents, models, and resources end to end",
+    "url": "https://github.com/microsoft/azure-skills/tree/main/skills/microsoft-foundry",
+    "category": "Development & Code Tools",
+    "owner": "microsoft"
+  },
+  {
+    "name": "prompt-engineer",
+    "description": "Turns a request into a production-ready prompt with test cases and success criteria, and routes to a hook, skill, or subagent when a prompt is the wrong artifact",
+    "url": "https://github.com/AdrianAdem/prompt-engineer-skill",
+    "category": "Development & Code Tools",
+    "owner": "adrianadem"
+  },
+  {
+    "name": "orca-replay",
+    "description": "Answers questions about a past agent run from its recording rather than from memory — what it sent, ran and changed — and replays or forks that run. Reads traces over MCP; needs the orcareplay npm package",
+    "url": "https://github.com/Continuum-AI-Corp/OrcaReplay/tree/main/skills/orca-replay",
+    "category": "Development & Code Tools",
+    "owner": "continuum-ai-corp"
+  },
+  {
+    "name": "csv-data-summarizer",
+    "description": "Generate statistics and charts from CSVs",
+    "url": "https://github.com/coffeefuelbump/csv-data-summarizer-claude-skill",
+    "category": "Data & Analysis",
+    "owner": "coffeefuelbump"
+  },
+  {
+    "name": "root-cause-tracing",
+    "description": "Trace and diagnose the source of data or logic errors",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/debugging/root-cause-tracing",
+    "category": "Data & Analysis",
+    "owner": "obra"
+  },
+  {
+    "name": "postgres",
+    "description": "Execute safe read-only SQL queries against PostgreSQL databases with multi-connection support",
+    "url": "https://github.com/sanjay3290/ai-skills/tree/main/skills/postgres",
+    "category": "Data & Analysis",
+    "owner": "sanjay3290"
+  },
+  {
+    "name": "read-only-postgres",
+    "description": "Safe read-only PostgreSQL queries with multi-connection support and defense-in-depth security",
+    "url": "https://github.com/jawwadfirdousi/agent-skills",
+    "category": "Data & Analysis",
+    "owner": "jawwadfirdousi"
+  },
+  {
+    "name": "prompt-template-wizard",
+    "description": "Converts incomplete feature/bug requests into complete structured prompt templates",
+    "url": "https://github.com/jawwadfirdousi/agent-skills",
+    "category": "Data & Analysis",
+    "owner": "jawwadfirdousi"
+  },
+  {
+    "name": "monte-carlo-agent-toolkit",
+    "description": "Official data and agent observability skills for monitoring, triage, troubleshooting, and health checks",
+    "url": "https://github.com/monte-carlo-data/mc-agent-toolkit",
+    "category": "Data & Analysis",
+    "owner": "monte-carlo-data"
+  },
+  {
+    "name": "claude-scientific-skills",
+    "description": "125+ scientific skills for bioinformatics, cheminformatics, clinical research, and machine learning",
+    "url": "https://github.com/K-Dense-AI/claude-scientific-skills",
+    "category": "Scientific & Research Tools",
+    "owner": "k-dense-ai"
+  },
+  {
+    "name": "materials-simulation-skills",
+    "description": "Agent skills for computational materials science: numerical stability, time-stepping, linear solvers, and simulation validation",
+    "url": "https://github.com/HeshamFS/materials-simulation-skills",
+    "category": "Scientific & Research Tools",
+    "owner": "heshamfs"
+  },
+  {
+    "name": "extract-from-pdfs",
+    "description": "Extract structured data from scientific PDFs using Claude's vision with external validation against GBIF/WFO databases",
+    "url": "https://github.com/brunoasm/my_claude_skills",
+    "category": "Scientific & Research Tools",
+    "owner": "brunoasm"
+  },
+  {
+    "name": "phylo-from-buscos",
+    "description": "Phylogenomic workflows from genome assemblies using BUSCO single-copy orthologs",
+    "url": "https://github.com/brunoasm/my_claude_skills",
+    "category": "Scientific & Research Tools",
+    "owner": "brunoasm"
+  },
+  {
+    "name": "claude-mountaineering-skills",
+    "description": "Mountain route research aggregating 10+ sources including weather, avalanche forecasts, and hazard analysis",
+    "url": "https://github.com/dreamiurg/claude-mountaineering-skills",
+    "category": "Scientific & Research Tools",
+    "owner": "dreamiurg"
+  },
+  {
+    "name": "article-extractor",
+    "description": "Extract full content from web articles",
+    "url": "https://github.com/michalparkola/tapestry-skills-for-claude-code/tree/main/article-extractor",
+    "category": "Writing & Research",
+    "owner": "michalparkola"
+  },
+  {
+    "name": "Content Research Writer",
+    "description": "Research and refine written content with feedback",
+    "url": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/content-research-writer",
+    "category": "Writing & Research",
+    "owner": "composiohq"
+  },
+  {
+    "name": "internal-comms",
+    "description": "Draft formal internal comms and reports",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/internal-comms",
+    "category": "Writing & Research",
+    "owner": "anthropics"
+  },
+  {
+    "name": "writing-plans",
+    "description": "Create structured written plans with clear milestones",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/writing-plans",
+    "category": "Writing & Research",
+    "owner": "obra"
+  },
+  {
+    "name": "writing-skills",
+    "description": "Enhance instructional and technical writing quality",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/writing-skills",
+    "category": "Writing & Research",
+    "owner": "obra"
+  },
+  {
+    "name": "brainstorming",
+    "description": "Facilitate creative idea generation sessions",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/brainstorming",
+    "category": "Writing & Research",
+    "owner": "obra"
+  },
+  {
+    "name": "family-history-research",
+    "description": "Provides assistance with planning family history and genealogy research projects",
+    "url": "https://github.com/emaynard/claude-family-history-research-skill",
+    "category": "Writing & Research",
+    "owner": "emaynard"
+  },
+  {
+    "name": "avoid-ai-writing",
+    "description": "Audit and rewrite content to remove 21 categories of AI writing patterns with a 43-entry replacement table",
+    "url": "https://github.com/conorbronsdon/avoid-ai-writing",
+    "category": "Writing & Research",
+    "owner": "conorbronsdon"
+  },
+  {
+    "name": "non-fiction-book-factory",
+    "description": "Complete nonfiction book creation pipeline replicating traditional publishing infrastructure",
+    "url": "https://github.com/robertguss/claude-skills",
+    "category": "Writing & Research",
+    "owner": "robertguss"
+  },
+  {
+    "name": "ebook-factory",
+    "description": "Focused ebook creation pipeline for producing publication-ready digital books",
+    "url": "https://github.com/robertguss/claude-skills",
+    "category": "Writing & Research",
+    "owner": "robertguss"
+  },
+  {
+    "name": "academic-research-skills",
+    "description": "13-agent pipeline for rigorous academic research with Socratic guided mode and systematic review/PRISMA support",
+    "url": "https://github.com/Imbad0202/academic-research-skills",
+    "category": "Writing & Research",
+    "owner": "imbad0202"
+  },
+  {
+    "name": "academic-paper",
+    "description": "12-agent paper writing system with LaTeX output, visualization generation, revision coaching, and multi-format citation conversion",
+    "url": "https://github.com/Imbad0202/academic-research-skills/tree/main/academic-paper",
+    "category": "Writing & Research",
+    "owner": "imbad0202"
+  },
+  {
+    "name": "academic-paper-reviewer",
+    "description": "Multi-perspective peer review with 0-100 quality rubrics, Editor-in-Chief, 3 dynamic reviewers, and Devil's Advocate roles",
+    "url": "https://github.com/Imbad0202/academic-research-skills/tree/main/academic-paper-reviewer",
+    "category": "Writing & Research",
+    "owner": "imbad0202"
+  },
+  {
+    "name": "claude-scientific-writer",
+    "description": "Publication-ready scientific document generation with real-time research lookup, citation management, and 8-dimension ScholarEval review",
+    "url": "https://github.com/K-Dense-AI/claude-scientific-writer",
+    "category": "Writing & Research",
+    "owner": "k-dense-ai"
+  },
+  {
+    "name": "claude-blog",
+    "description": "Blog content creation ecosystem with 12 commands for writing, rewriting, SEO, schema markup, content repurposing, and editorial calendars",
+    "url": "https://github.com/AgriciDaniel/claude-blog",
+    "category": "Writing & Research",
+    "owner": "agricidaniel"
+  },
+  {
+    "name": "claude-email",
+    "description": "AI-powered email management with inbox triage, composition using copywriting frameworks (PAS, AIDA, BAB), deliverability audits, and automation sequences",
+    "url": "https://github.com/AgriciDaniel/claude-email",
+    "category": "Writing & Research",
+    "owner": "agricidaniel"
+  },
+  {
+    "name": "autoresearch",
+    "description": "Autonomous research orchestration using a two-loop architecture managing the full lifecycle from literature survey to paper writing",
+    "url": "https://github.com/Orchestra-Research/AI-research-SKILLs",
+    "category": "Writing & Research",
+    "owner": "orchestra-research"
+  },
+  {
+    "name": "writing-fragments",
+    "description": "Mine raw fragments through relentless grilling — pure explore mode with no structure imposed",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/in-progress/writing-fragments",
+    "category": "Writing & Research",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "writing-beats",
+    "description": "Assemble raw material into a journey of beats, grounding each term before a beat leans on it",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/in-progress/writing-beats",
+    "category": "Writing & Research",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "writing-shape",
+    "description": "Shape raw material into an article, paragraph by paragraph, from a pile of notes or fragments",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/in-progress/writing-shape",
+    "category": "Writing & Research",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "humanizer",
+    "description": "Rewrites AI-sounding text so it reads like a person wrote it, without changing what it says — based on Wikipedia's \"Signs of AI writing\"",
+    "url": "https://github.com/blader/humanizer",
+    "category": "Writing & Research",
+    "owner": "blader"
+  },
+  {
+    "name": "no-ai-slop",
+    "description": "Edits drafts into sharper, more human writing while preserving the writer's personal voice, removing 20+ patterns of AI slop",
+    "url": "https://github.com/petergyang/no-ai-slop/tree/main/skills/no-ai-slop",
+    "category": "Writing & Research",
+    "owner": "petergyang"
+  },
+  {
+    "name": "tapestry",
+    "description": "Build a linked knowledge graph from documents",
+    "url": "https://github.com/michalparkola/tapestry-skills-for-claude-code",
+    "category": "Learning & Knowledge",
+    "owner": "michalparkola"
+  },
+  {
+    "name": "ship-learn-next",
+    "description": "Recommend next steps based on feedback loops",
+    "url": "https://github.com/michalparkola/tapestry-skills-for-claude-code/tree/main/ship-learn-next",
+    "category": "Learning & Knowledge",
+    "owner": "michalparkola"
+  },
+  {
+    "name": "using-superpowers",
+    "description": "Learn and apply best practices for Superpowers workflows",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/using-superpowers",
+    "category": "Learning & Knowledge",
+    "owner": "obra"
+  },
+  {
+    "name": "sharing-skills",
+    "description": "Learn how to contribute new skills via pull requests",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/meta/sharing-skills",
+    "category": "Learning & Knowledge",
+    "owner": "obra"
+  },
+  {
+    "name": "collision-zone-thinking",
+    "description": "Combine unrelated concepts to find new creative or problem-solving connections",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/problem-solving/collision-zone-thinking",
+    "category": "Learning & Knowledge",
+    "owner": "obra"
+  },
+  {
+    "name": "inversion-exercise",
+    "description": "Flip assumptions to uncover hidden insights and constraints",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/problem-solving/inversion-exercise",
+    "category": "Learning & Knowledge",
+    "owner": "obra"
+  },
+  {
+    "name": "meta-pattern-recognition",
+    "description": "Identify patterns across domains to uncover universal principles",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/problem-solving/meta-pattern-recognition",
+    "category": "Learning & Knowledge",
+    "owner": "obra"
+  },
+  {
+    "name": "scale-game",
+    "description": "Stress-test ideas at extreme scales to expose hidden weaknesses or truths",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/problem-solving/scale-game",
+    "category": "Learning & Knowledge",
+    "owner": "obra"
+  },
+  {
+    "name": "simplification-cascades",
+    "description": "Reduce complexity by discovering insights that simplify multiple elements at once",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/problem-solving/simplification-cascades",
+    "category": "Learning & Knowledge",
+    "owner": "obra"
+  },
+  {
+    "name": "tracing-knowledge-lineages",
+    "description": "Track how ideas evolve across iterations and influences",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/research/tracing-knowledge-lineages",
+    "category": "Learning & Knowledge",
+    "owner": "obra"
+  },
+  {
+    "name": "think-deeply",
+    "description": "Prevents confirmatory answers by encouraging nuanced multi-perspective analysis for complex questions",
+    "url": "https://github.com/brunoasm/my_claude_skills",
+    "category": "Learning & Knowledge",
+    "owner": "brunoasm"
+  },
+  {
+    "name": "obsidian-markdown",
+    "description": "Structured markdown authoring and knowledge workflows optimized for Obsidian vaults",
+    "url": "https://github.com/kepano/obsidian-skills/tree/main/skills/obsidian-markdown",
+    "category": "Learning & Knowledge",
+    "owner": "kepano"
+  },
+  {
+    "name": "json-canvas",
+    "description": "Work with Obsidian JSON Canvas for visual knowledge mapping and linking",
+    "url": "https://github.com/kepano/obsidian-skills/tree/main/skills/json-canvas",
+    "category": "Learning & Knowledge",
+    "owner": "kepano"
+  },
+  {
+    "name": "teach",
+    "description": "Learn a concept over multiple sessions using the current directory as a stateful workspace with glossary, missions, and resources",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/productivity/teach",
+    "category": "Learning & Knowledge",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "teaching-skills",
+    "description": "University teaching-lifecycle suite for professors: course design, lessons, assessment, grading, and reflection (15 skills)",
+    "url": "https://github.com/YujxZJCN/teaching-skills",
+    "category": "Learning & Knowledge",
+    "owner": "yujxzjcn"
+  },
+  {
+    "name": "youtube-transcript",
+    "description": "Summarize YouTube transcripts",
+    "url": "https://github.com/michalparkola/tapestry-skills-for-claude-code/tree/main/youtube-transcript",
+    "category": "Media & Content",
+    "owner": "michalparkola"
+  },
+  {
+    "name": "claude-epub-skill",
+    "description": "Parse and analyze EPUB eBooks",
+    "url": "https://github.com/smerchek/claude-epub-skill",
+    "category": "Media & Content",
+    "owner": "smerchek"
+  },
+  {
+    "name": "Image Enhancer",
+    "description": "Improve resolution and clarity of screenshots",
+    "url": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/image-enhancer",
+    "category": "Media & Content",
+    "owner": "composiohq"
+  },
+  {
+    "name": "Video Downloader",
+    "description": "Download YouTube videos for use in Claude",
+    "url": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/video-downloader",
+    "category": "Media & Content",
+    "owner": "composiohq"
+  },
+  {
+    "name": "imagen",
+    "description": "Generate images using Google Gemini's image generation API for UI mockups, icons, and visual assets",
+    "url": "https://github.com/sanjay3290/ai-skills/tree/main/skills/imagen",
+    "category": "Media & Content",
+    "owner": "sanjay3290"
+  },
+  {
+    "name": "typefully",
+    "description": "Official Typefully skill for creating and scheduling social media content across X, LinkedIn, Threads, Bluesky, and Mastodon",
+    "url": "https://github.com/typefully/agent-skills",
+    "category": "Media & Content",
+    "owner": "typefully"
+  },
+  {
+    "name": "video-edit",
+    "description": "Smart router that matches video-editing intent to the right model in the RunComfy catalog — restyle, background swap, and packaging with identity and motion preservation",
+    "url": "https://github.com/genmedia-labs/skills/tree/main/video-edit",
+    "category": "Media & Content",
+    "owner": "genmedia-labs"
+  },
+  {
+    "name": "hyperframes",
+    "description": "HeyGen's agent-native HTML-to-video framework: CLI development loop with keyframes, capture, render, composition, and publishing skills",
+    "url": "https://github.com/heygen-com/hyperframes",
+    "category": "Media & Content",
+    "owner": "heygen-com"
+  },
+  {
+    "name": "ruxi-skill",
+    "description": "Turn any book into a playable visual novel where you play an overlooked side character, every branch cited back to the source text, output as a single playable HTML file",
+    "url": "https://github.com/swaylq/ruxi-skill",
+    "category": "Media & Content",
+    "owner": "swaylq"
+  },
+  {
+    "name": "socialclaw",
+    "description": "Social media scheduling and publishing for AI agents across X, LinkedIn, Instagram, Facebook Pages, TikTok, Discord, Telegram, YouTube, Reddit, WordPress, and Pinterest via one workspace API key",
+    "url": "https://github.com/ndesv21/socialclaw",
+    "category": "Media & Content",
+    "owner": "ndesv21"
+  },
+  {
+    "name": "agent-workflow-pack",
+    "description": "Package repeatable AI coding workflows into SKILL.md, templates, and verification checks",
+    "url": "https://github.com/MemoAsh/agent-workflow-pack/tree/main/skills/pr-review-workflow",
+    "category": "Collaboration & Project Management",
+    "owner": "memoash"
+  },
+  {
+    "name": "grill-me",
+    "description": "Structured questioning workflow to pressure-test plans and designs before execution",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me",
+    "category": "Collaboration & Project Management",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "handoff",
+    "description": "Generate concise handoff documentation so another agent can continue work seamlessly",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/productivity/handoff",
+    "category": "Collaboration & Project Management",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "grilling",
+    "description": "Grill the user relentlessly about a plan or design — one question at a time with a recommended answer",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling",
+    "category": "Collaboration & Project Management",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "loop-me",
+    "description": "Grill about specs for the workflows you want to build, using the current directory as a stateful workspace",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/in-progress/loop-me",
+    "category": "Collaboration & Project Management",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "Meeting Insights Analyzer",
+    "description": "Analyze meeting dynamics and communication patterns",
+    "url": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/meeting-insights-analyzer",
+    "category": "Collaboration & Project Management",
+    "owner": "composiohq"
+  },
+  {
+    "name": "Notion Integration Skills",
+    "description": "Official Notion connectors for Claude",
+    "url": "https://notiondevs.notion.site/Notion-Skills-for-Claude-28da4445d27180c7af1df7d8615723d0",
+    "category": "Collaboration & Project Management",
+    "owner": "other"
+  },
+  {
+    "name": "commands",
+    "description": "Manage and automate recurring project commands",
+    "url": "https://github.com/obra/superpowers",
+    "category": "Collaboration & Project Management",
+    "owner": "obra"
+  },
+  {
+    "name": "receiving-code-review",
+    "description": "Process and apply code review feedback",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/receiving-code-review",
+    "category": "Collaboration & Project Management",
+    "owner": "obra"
+  },
+  {
+    "name": "requesting-code-review",
+    "description": "Request and manage structured code reviews",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/requesting-code-review",
+    "category": "Collaboration & Project Management",
+    "owner": "obra"
+  },
+  {
+    "name": "dispatching-parallel-agents",
+    "description": "Coordinate multiple Claude subagents on shared tasks",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/dispatching-parallel-agents",
+    "category": "Collaboration & Project Management",
+    "owner": "obra"
+  },
+  {
+    "name": "remembering-conversations",
+    "description": "Recall facts, insights, and context from past Claude Code sessions",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/collaboration/remembering-conversations",
+    "category": "Collaboration & Project Management",
+    "owner": "obra"
+  },
+  {
+    "name": "git-pushing",
+    "description": "Automate git operations and repository interactions",
+    "url": "https://github.com/mhattingpete/claude-skills-marketplace/tree/main/engineering-workflow-plugin/skills/git-pushing",
+    "category": "Collaboration & Project Management",
+    "owner": "mhattingpete"
+  },
+  {
+    "name": "linear-claude-skill",
+    "description": "Manage Linear issues, projects, and teams with MCP tools and GraphQL fallbacks",
+    "url": "https://github.com/wrsmith108/linear-claude-skill",
+    "category": "Collaboration & Project Management",
+    "owner": "wrsmith108"
+  },
+  {
+    "name": "linear-cli-skill",
+    "description": "A skill teaching Claude how to use linear-CLI as an alternative to Linear MCP",
+    "url": "https://github.com/Valian/linear-cli-skill",
+    "category": "Collaboration & Project Management",
+    "owner": "valian"
+  },
+  {
+    "name": "review-implementing",
+    "description": "Evaluate code implementation plans and align with specs",
+    "url": "https://github.com/mhattingpete/claude-skills-marketplace/tree/main/engineering-workflow-plugin/skills/review-implementing",
+    "category": "Collaboration & Project Management",
+    "owner": "mhattingpete"
+  },
+  {
+    "name": "test-fixing",
+    "description": "Detect failing tests and propose patches or fixes",
+    "url": "https://github.com/mhattingpete/claude-skills-marketplace/tree/main/engineering-workflow-plugin/skills/test-fixing",
+    "category": "Collaboration & Project Management",
+    "owner": "mhattingpete"
+  },
+  {
+    "name": "product-manager-skills",
+    "description": "Senior PM agent with 6 knowledge domains, 12 templates, 30+ frameworks covering discovery, strategy, delivery, SaaS metrics, PM career coaching, and AI product craft",
+    "url": "https://github.com/Digidai/product-manager-skills",
+    "category": "Collaboration & Project Management",
+    "owner": "digidai"
+  },
+  {
+    "name": "read-only-gh-pr-review",
+    "description": "Safe read-only review of backend pull requests using GitHub CLI with local inspection",
+    "url": "https://github.com/jawwadfirdousi/agent-skills",
+    "category": "Collaboration & Project Management",
+    "owner": "jawwadfirdousi"
+  },
+  {
+    "name": "i-have-adhd",
+    "description": "Shapes agent output for ADHD readers: lead with the next action, number multi-step work, restate state across turns, and suppress tangents",
+    "url": "https://github.com/ayghri/i-have-adhd/tree/main/skills/i-have-adhd",
+    "category": "Collaboration & Project Management",
+    "owner": "ayghri"
+  },
+  {
+    "name": "yylo-skills",
+    "description": "Seven reusable agent skills for Claude Code, Codex, and Pi built around YYLO Ledger — operate task management, maintain wiki and workflow Records, capture provenance-bound evidence, plan implementation-sized tasks, execute one assigned task through validated delivery, and inspect the project before implementation",
+    "url": "https://github.com/yylo-dev/yylo-skills",
+    "category": "Collaboration & Project Management",
+    "owner": "yylo-dev"
+  },
+  {
+    "name": "copywriting",
+    "description": "Expert conversion copywriter skill that prioritizes clarity and business outcomes with proven frameworks",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/copywriting",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "seo-audit",
+    "description": "Technical and on-page SEO review for websites",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/seo-audit",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "ai-seo",
+    "description": "AI search engine optimization for visibility in AI-powered search results",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/ai-seo",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "programmatic-seo",
+    "description": "Scaled SEO page generation for large content operations",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/programmatic-seo",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "content-strategy",
+    "description": "Content planning and topic research for marketing teams",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/content-strategy",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "copy-editing",
+    "description": "Marketing copy review and refinement for quality and conversion",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/copy-editing",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "email-sequence",
+    "description": "Automated email flow development for welcome, nurture, and re-engagement series",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/emails",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "cold-email",
+    "description": "B2B outreach email sequence creation and optimization",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/cold-email",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "ad-creative",
+    "description": "Ad headline and creative generation for paid campaigns",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/ad-creative",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "ab-test-setup",
+    "description": "A/B testing and experiment planning for marketing campaigns",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/ab-testing",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "page-cro",
+    "description": "Marketing page conversion rate optimization",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/cro",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "pricing-strategy",
+    "description": "Pricing and monetization strategy for SaaS and products",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/pricing",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "launch-strategy",
+    "description": "Product launch planning and go-to-market strategy",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/launch",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "social-content",
+    "description": "Social media content creation across platforms",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/social",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "lead-magnets",
+    "description": "Lead magnet creation and optimization for list building",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/lead-magnets",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "referral-program",
+    "description": "Referral and affiliate program design and implementation",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/referrals",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "sales-enablement",
+    "description": "Sales collateral and pitch deck creation for B2B teams",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/sales-enablement",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "analytics-tracking",
+    "description": "Analytics setup and measurement implementation",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/analytics",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "marketing-psychology",
+    "description": "Behavioral science application to marketing copy and UX",
+    "url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/marketing-psychology",
+    "category": "Marketing & SEO",
+    "owner": "coreyhaines31"
+  },
+  {
+    "name": "seo-audit-full",
+    "description": "Deep technical and content SEO auditing workflow for comprehensive site/page analysis",
+    "url": "https://github.com/JeffLi1993/seo-audit-skill/tree/main/seo-audit-full",
+    "category": "Marketing & SEO",
+    "owner": "jeffli1993"
+  },
+  {
+    "name": "vibe-prospecting",
+    "description": "Live B2B company and contact data for natural-language lead-list building, prospect enrichment, executive discovery, and multi-step GTM workflows",
+    "url": "https://github.com/explorium-ai/vibeprospecting-plugin/blob/main/skills/vibe-prospecting/SKILL.md",
+    "category": "Marketing & SEO",
+    "owner": "explorium-ai"
+  },
+  {
+    "name": "reddit-automation",
+    "description": "Find Reddit threads where people are genuinely asking for what you offer, then draft honest, helpful replies with affiliation disclosure",
+    "url": "https://github.com/flowkit-labs/skills/tree/main/reddit-automation",
+    "category": "Marketing & SEO",
+    "owner": "flowkit-labs"
+  },
+  {
+    "name": "proficiently-claude-skills",
+    "description": "AI-powered job search, resume tailoring, and cover letter writing",
+    "url": "https://github.com/proficientlyjobs/proficiently-claude-skills",
+    "category": "Career & Job Search",
+    "owner": "proficientlyjobs"
+  },
+  {
+    "name": "claude-code-job-tailor",
+    "description": "Resume optimization system that analyzes job postings, ranks requirements, and generates tailored PDFs in under 60 seconds",
+    "url": "https://github.com/javiera-vasquez/claude-code-job-tailor",
+    "category": "Career & Job Search",
+    "owner": "javiera-vasquez"
+  },
+  {
+    "name": "resume-tailoring-skill",
+    "description": "AI-powered resume tailoring optimized for specific job descriptions while maintaining factual integrity",
+    "url": "https://github.com/varunr89/resume-tailoring-skill",
+    "category": "Career & Job Search",
+    "owner": "varunr89"
+  },
+  {
+    "name": "claude-resume-kit",
+    "description": "Extract experience once, generate tailored LaTeX resumes per JD with anti-fabrication controls and multi-perspective critique",
+    "url": "https://github.com/ARPeeketi/claude-resume-kit",
+    "category": "Career & Job Search",
+    "owner": "arpeeketi"
+  },
+  {
+    "name": "Resume-Builder",
+    "description": "AI-powered resume and cover letter generator with dual ATS + HR scoring for any profession",
+    "url": "https://github.com/jananthan30/Resume-Builder",
+    "category": "Career & Job Search",
+    "owner": "jananthan30"
+  },
+  {
+    "name": "ResumeSkills",
+    "description": "Resume optimization, ATS scoring, interview prep, and strategic job search skills collection",
+    "url": "https://github.com/Paramchoudhary/ResumeSkills",
+    "category": "Career & Job Search",
+    "owner": "paramchoudhary"
+  },
+  {
+    "name": "Trail of Bits Security Skills",
+    "description": "Security skills for static analysis with CodeQL/Semgrep, variant analysis, code auditing, and fix verification",
+    "url": "https://github.com/trailofbits/skills",
+    "category": "Security & Testing",
+    "owner": "trailofbits"
+  },
+  {
+    "name": "webapp-testing",
+    "description": "UI test automation using Playwright",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/webapp-testing",
+    "category": "Security & Testing",
+    "owner": "anthropics"
+  },
+  {
+    "name": "ffuf_claude_skill",
+    "description": "Fuzz test web apps with FFUF + Claude",
+    "url": "https://github.com/jthack/ffuf_claude_skill",
+    "category": "Security & Testing",
+    "owner": "jthack"
+  },
+  {
+    "name": "defense-in-depth",
+    "description": "Implement multi-layered testing and security best practices",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/debugging/defense-in-depth",
+    "category": "Security & Testing",
+    "owner": "obra"
+  },
+  {
+    "name": "systematic-debugging",
+    "description": "Structured debugging with hypothesis testing and validation",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/systematic-debugging",
+    "category": "Security & Testing",
+    "owner": "obra"
+  },
+  {
+    "name": "testing-anti-patterns",
+    "description": "Identify and prevent testing anti-patterns",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/testing/testing-anti-patterns",
+    "category": "Security & Testing",
+    "owner": "obra"
+  },
+  {
+    "name": "testing-skills-with-subagents",
+    "description": "Verify new skills using subagents and test cycles",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/meta/testing-skills-with-subagents",
+    "category": "Security & Testing",
+    "owner": "obra"
+  },
+  {
+    "name": "verification-before-completion",
+    "description": "Run verification checks before closing tasks",
+    "url": "https://github.com/obra/superpowers/tree/main/skills/verification-before-completion",
+    "category": "Security & Testing",
+    "owner": "obra"
+  },
+  {
+    "name": "condition-based-waiting",
+    "description": "Use logical conditions to control test flow timing",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/testing/condition-based-waiting",
+    "category": "Security & Testing",
+    "owner": "obra"
+  },
+  {
+    "name": "varlock-claude-skill",
+    "description": "Secure environment variable management ensuring secrets never appear in sessions, terminals, logs, or git commits",
+    "url": "https://github.com/wrsmith108/varlock-claude-skill",
+    "category": "Security & Testing",
+    "owner": "wrsmith108"
+  },
+  {
+    "name": "security-fuzzing",
+    "description": "Essential fuzzing payloads for SQL injection, command injection, NoSQL injection, and LDAP injection testing",
+    "url": "https://github.com/Eyadkelleh/awesome-claude-skills-security",
+    "category": "Security & Testing",
+    "owner": "eyadkelleh"
+  },
+  {
+    "name": "security-payloads",
+    "description": "Specialized attack payloads for XSS vectors, XXE, template injection, and file upload bypass testing",
+    "url": "https://github.com/Eyadkelleh/awesome-claude-skills-security",
+    "category": "Security & Testing",
+    "owner": "eyadkelleh"
+  },
+  {
+    "name": "llm-testing",
+    "description": "AI/ML security testing including bias detection, data leakage, alignment testing, and adversarial resistance",
+    "url": "https://github.com/Eyadkelleh/awesome-claude-skills-security",
+    "category": "Security & Testing",
+    "owner": "eyadkelleh"
+  },
+  {
+    "name": "accessibility-skills",
+    "description": "Accessibility guidance for accessible interfaces, including forms, keyboard use, color contrast, and light/dark modes",
+    "url": "https://github.com/mgifford/accessibility-skills",
+    "category": "Security & Testing",
+    "owner": "mgifford"
+  },
+  {
+    "name": "security-hardening",
+    "description": "Portable defensive security workflow covering secure design and review, OWASP, MCP security, prompt injection, incident response, and hardening",
+    "url": "https://github.com/imnotStealthy/security-hardening",
+    "category": "Security & Testing",
+    "owner": "imnotstealthy"
+  },
+  {
+    "name": "writing-great-skills",
+    "description": "Reference for writing and editing skills well — the vocabulary and principles that make a skill predictable",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/productivity/writing-great-skills",
+    "category": "Utility & Automation",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "git-guardrails-claude-code",
+    "description": "Install guardrails to block dangerous git commands before execution",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/misc/git-guardrails-claude-code",
+    "category": "Utility & Automation",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "setup-pre-commit",
+    "description": "Configure Husky pre-commit hooks with lint-staged, formatting, and quality checks",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/misc/setup-pre-commit",
+    "category": "Utility & Automation",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "file-organizer",
+    "description": "Clean up file structures, rename documents",
+    "url": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/file-organizer",
+    "category": "Utility & Automation",
+    "owner": "composiohq"
+  },
+  {
+    "name": "invoice-organizer",
+    "description": "Parse and categorize invoices",
+    "url": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/invoice-organizer",
+    "category": "Utility & Automation",
+    "owner": "composiohq"
+  },
+  {
+    "name": "raffle-winner-picker",
+    "description": "Pick winners using secure randomness",
+    "url": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/raffle-winner-picker",
+    "category": "Utility & Automation",
+    "owner": "composiohq"
+  },
+  {
+    "name": "skill-creator",
+    "description": "Build your own skill interactively",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/skill-creator",
+    "category": "Utility & Automation",
+    "owner": "anthropics"
+  },
+  {
+    "name": "template-skill",
+    "description": "A starting template for new skills",
+    "url": "https://github.com/anthropics/skills/tree/main/template",
+    "category": "Utility & Automation",
+    "owner": "anthropics"
+  },
+  {
+    "name": "gardening-skills-wiki",
+    "description": "Maintain the skills wiki, ensuring naming consistency and metadata quality",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/meta/gardening-skills-wiki",
+    "category": "Utility & Automation",
+    "owner": "obra"
+  },
+  {
+    "name": "pulling-updates-from-skills-repository",
+    "description": "Sync and pull the latest skill updates from repositories",
+    "url": "https://github.com/obra/superpowers-skills/tree/main/skills/meta/pulling-updates-from-skills-repository",
+    "category": "Utility & Automation",
+    "owner": "obra"
+  },
+  {
+    "name": "cc-devops-skills",
+    "description": "31 DevOps skills covering IaC, CI/CD, Kubernetes, observability, and scripting automation",
+    "url": "https://github.com/akin-ozer/cc-devops-skills",
+    "category": "Utility & Automation",
+    "owner": "akin-ozer"
+  },
+  {
+    "name": "opentelemetry-skills",
+    "description": "Instrumentation, telemetry-quality, collector, semantic-convention, and OTTL guidance for observable applications",
+    "url": "https://github.com/dash0hq/agent-skills",
+    "category": "Utility & Automation",
+    "owner": "dash0hq"
+  },
+  {
+    "name": "devops-claude-skills",
+    "description": "DevOps workflow skills for Terraform, K8s troubleshooting, AWS cost optimization, and GitOps",
+    "url": "https://github.com/ahmedasmar/devops-claude-skills",
+    "category": "Utility & Automation",
+    "owner": "ahmedasmar"
+  },
+  {
+    "name": "aws-well-architected-review",
+    "description": "Reusable playbooks for applying the AWS Well-Architected Framework to architecture reviews and improvement plans",
+    "url": "https://github.com/aws-samples/sample-well-architected-skills-and-steering",
+    "category": "Utility & Automation",
+    "owner": "aws-samples"
+  },
+  {
+    "name": "firecrawl-cli",
+    "description": "Official Firecrawl skill for scraping, crawling, searching, and mapping the web via CLI",
+    "url": "https://github.com/firecrawl/cli",
+    "category": "Utility & Automation",
+    "owner": "firecrawl"
+  },
+  {
+    "name": "hermes-tweet",
+    "description": "Native Hermes Agent plugin skill for X monitoring, account research, trend checks, and approval-gated social actions. Xquik is an independent third-party service. Not affiliated with X Corp. \"Twitter\" and \"X\" are trademarks of X Corp.",
+    "url": "https://github.com/Xquik-dev/hermes-tweet/blob/master/skills/hermes-tweet/SKILL.md",
+    "category": "Utility & Automation",
+    "owner": "xquik-dev"
+  },
+  {
+    "name": "replicate",
+    "description": "Official Replicate skill for discovering, comparing, and running AI models via API",
+    "url": "https://github.com/replicate/skills",
+    "category": "Utility & Automation",
+    "owner": "replicate"
+  },
+  {
+    "name": "agentsys",
+    "description": "36 workflow automation skills for profiling, code review, AI consultation, release management, and drift analysis",
+    "url": "https://github.com/avifenesh/agentsys",
+    "category": "Utility & Automation",
+    "owner": "avifenesh"
+  },
+  {
+    "name": "better-i18n",
+    "description": "Official i18n skill for internationalization best practices, translation workflows, and localization automation",
+    "url": "https://github.com/better-i18n/skills",
+    "category": "Utility & Automation",
+    "owner": "better-i18n"
+  },
+  {
+    "name": "migrate-to-shoehorn",
+    "description": "Migrate test assertions to @total-typescript/shoehorn patterns",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/misc/migrate-to-shoehorn",
+    "category": "Utility & Automation",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "scaffold-exercises",
+    "description": "Scaffold structured exercise directories with sections, problems, solutions, and explainers",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/misc/scaffold-exercises",
+    "category": "Utility & Automation",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "edit-article",
+    "description": "Assist with article editing and refinement workflows",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/personal/edit-article",
+    "category": "Utility & Automation",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "obsidian-vault",
+    "description": "Work with and organize notes in an Obsidian vault",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/personal/obsidian-vault",
+    "category": "Utility & Automation",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "obsidian-cli",
+    "description": "Use Obsidian CLI workflows to automate vault operations and content management",
+    "url": "https://github.com/kepano/obsidian-skills/tree/main/skills/obsidian-cli",
+    "category": "Utility & Automation",
+    "owner": "kepano"
+  },
+  {
+    "name": "wizard",
+    "description": "Generate an interactive bash wizard that walks a human through a manual procedure — opening URLs, capturing values, confirming each step",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/in-progress/wizard",
+    "category": "Utility & Automation",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "setup-ts-deep-modules",
+    "description": "Wire dependency-cruiser into a TypeScript repo so each package is a deep module with a small public surface",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/in-progress/setup-ts-deep-modules",
+    "category": "Utility & Automation",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "claude-handoff",
+    "description": "Hand the current conversation off to a fresh background agent that picks up the work immediately",
+    "url": "https://github.com/mattpocock/skills/tree/main/skills/in-progress/claude-handoff",
+    "category": "Utility & Automation",
+    "owner": "mattpocock"
+  },
+  {
+    "name": "find-skills",
+    "description": "Official Vercel skill that discovers and installs agent skills from the ecosystem when you ask \"is there a skill for X\"",
+    "url": "https://github.com/vercel-labs/skills/tree/main/skills/find-skills",
+    "category": "Utility & Automation",
+    "owner": "vercel-labs"
+  },
+  {
+    "name": "danshari-skill (断舍离.skill)",
+    "description": "Audits every skill you have installed and archives the ones your current model, harness, or MCP servers already cover — three-way triage, blind-test evidence before any removal, and one-command restore instead of rm",
+    "url": "https://github.com/swaylq/danshari-skill",
+    "category": "Utility & Automation",
+    "owner": "swaylq"
+  },
+  {
+    "name": "sijiao-skill (私教.skill)",
+    "description": "Distils any skill you want to learn into a stateful tutor — it remembers where you are, sets and grades exercises at your level, and schedules spaced review, with the ceiling honestly capped at competent",
+    "url": "https://github.com/swaylq/sijiao-skill",
+    "category": "Utility & Automation",
+    "owner": "swaylq"
+  }
+]

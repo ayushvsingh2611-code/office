@@ -264,14 +264,14 @@ export const AGENT_PROVIDER_PRESETS: AgentProviderPreset[] = [
     defaultCommand: 'kimi',
     commandGroups: [],
     // Kimi --auto handles every approval and does not stop to ask questions,
-    // matching Panda Hive's autonomous Claude/Codex default.
+    // matching AgentHive's autonomous Claude/Codex default.
     autoModeFlag: '--auto',
     autoFlag: '--auto',
     supportsModel: true,
     modelFlag: '--model',
     hiveAware: false,
     // Kimi's interactive TUI has no positional initial-prompt form. It supports
-    // lifecycle hooks, but Panda Hive does not yet install a Kimi hook bridge,
+    // lifecycle hooks, but AgentHive does not yet install a Kimi hook bridge,
     // so mail must bounce rather than being delivered with no drain path.
     canReceiveInbox: false
   },
@@ -288,7 +288,7 @@ export const AGENT_PROVIDER_PRESETS: AgentProviderPreset[] = [
     hookBridge: 'agy', // installAgyHooks() → ~/.gemini/.../hooks.json (translating shim)
     canReceiveInbox: true, // via the agy-hook bridge (Stop→drain); verified agy honors hook decisions
     initialPromptFlag: '-i', // agy --prompt-interactive: orient the session, then continue
-    recommendedOrchestratorModel: 'Gemini 3.1 Pro (High)', // agy takes the display-name label
+    recommendedOrchestratorModel: 'Gemini 3.8 Flash (High)', // agy takes the display-name label
     resumeFlag: '--conversation' // agy: resume a previous conversation by ID
   },
   {

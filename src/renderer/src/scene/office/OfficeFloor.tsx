@@ -83,13 +83,13 @@ const CHEER_MIN_BUSY_MS = 60_000;
 
 /** What an avatar mutters per errand, picked at random. */
 const ERRAND_THOUGHTS: Record<ErrandKind, readonly string[]> = {
-  water:     ['watering the plants 🌿', 'giving the plants a drink', 'they grow so fast'],
-  window:    ['letting some air in 🍃', 'a bit of fresh air', 'nice breeze today'],
+  water: ['watering the plants 🌿', 'giving the plants a drink', 'they grow so fast'],
+  window: ['letting some air in 🍃', 'a bit of fresh air', 'nice breeze today'],
   dispenser: ['getting some water 💧', 'hydration break', 'staying sharp'],
-  fridge:    ['anything good in the fridge?', 'who took my yogurt?', 'just looking…'],
-  shelf:     ['checking out the shelf 📚', 'anything new in here?', 'so much good stuff'],
-  bin:       ['out with the scrap paper 🗑️', 'desk cleanup day', 'tidying up a little'],
-  smoke:     ['the floor runs itself 🚬', 'boss break.', 'thinking big thoughts 🚬', 'I DECLARE… a break']
+  fridge: ['anything good in the fridge?', 'who took my yogurt?', 'just looking…'],
+  shelf: ['checking out the shelf 📚', 'anything new in here?', 'so much good stuff'],
+  bin: ['out with the scrap paper 🗑️', 'desk cleanup day', 'tidying up a little'],
+  smoke: ['the floor runs itself 🚬', 'boss break.', 'thinking big thoughts 🚬', 'I DECLARE… a break']
 };
 
 /** What workers blurt out when the boss walks by — performative excellence.
@@ -522,7 +522,7 @@ export function OfficeFloor() {
         const c = rt.character;
         const dest = phase === 'toMachine' ? MACHINE_STAND
           : phase === 'toSink' ? SINK_STAND
-          : TRAY_STAND;
+            : TRAY_STAND;
         c.walkToAndThen(dest, () => {
           if (!rt.run || rt.run.phase !== phase) return;
           c.faceDirection('up'); // every station faces its counter to the north
@@ -591,6 +591,171 @@ export function OfficeFloor() {
             case 'placing':
               if (run.timer >= 0.6) finishRun(rt);
               break;
+          }
+        }
+      };
+
+      // ─── Live Sprint State & Desk Locking ──────────────────────────────────
+      let isGroup1SprintActive = false;
+      let isGroup2SprintActive = false;
+
+      const checkTasks = () => {
+        const fetchTasks = window.cth?.agentHiveAllTasks ?? window.cth?.pandaHiveAllTasks;
+        fetchTasks?.().then((tasks) => {
+          if (Array.isArray(tasks)) {
+            const t1 = tasks.find((t) => t.group === 'group1');
+            const t2 = tasks.find((t) => t.group === 'group2');
+            isGroup1SprintActive = !!(t1 && t1.status !== 'COMPLETED' && t1.status !== 'FAILED');
+            isGroup2SprintActive = !!(t2 && t2.status !== 'COMPLETED' && t2.status !== 'FAILED');
+          }
+        }).catch(() => { });
+      };
+      checkTasks();
+
+      const onTaskUpdated = window.cth?.onAgentHiveTaskUpdated ?? window.cth?.onPandaHiveTaskUpdated;
+      const unsubTasks = onTaskUpdated?.((task) => {
+        if (task.group === 'group1') {
+          isGroup1SprintActive = task.status !== 'COMPLETED' && task.status !== 'FAILED';
+        } else if (task.group === 'group2') {
+          isGroup2SprintActive = task.status !== 'COMPLETED' && task.status !== 'FAILED';
+        }
+      });
+
+      // ─── Usopp's Dedicated Office Café Waiter Engine ───────────────────────
+      // Usopp regularly walks to the café counter, prepares a drink/snack,
+      // and serves it directly to the seated squad agents at their desks!
+      interface UsoppServiceState {
+        phase: 'idle' | 'walkingToCafe' | 'brewing' | 'walkingToAgent' | 'serving' | 'returning';
+        timer: number;
+        cooldown: number;
+        targetId?: string;
+        item: string;
+      }
+
+      const CAFE_ITEMS = [
+        '☕ Hot Black Coffee',
+        '🍵 Green Tea Latte',
+        '🍜 Pork Ramen',
+        '🍱 Pirate Bento Box',
+        '🧃 Tangerine Juice'
+      ];
+
+      const usoppService: UsoppServiceState = {
+        phase: 'idle',
+        timer: 0,
+        cooldown: 6,
+        item: '☕ Hot Black Coffee'
+      };
+
+      let usoppTargetIndex = 0;
+
+      const updateUsoppWaiter = (dt: number): void => {
+        let usoppRt: Runtime | undefined;
+        let usoppId: string | undefined;
+        for (const [id, rt] of runtimes) {
+          const a = agentById(id);
+          if (id === 'sh-usopp' || rt.charName === 'usopp' || a?.character === 'usopp' || a?.name.toLowerCase().includes('usopp')) {
+            usoppRt = rt;
+            usoppId = id;
+            break;
+          }
+        }
+        if (!usoppRt || !usoppId) return;
+
+        const uc = usoppRt.character;
+        usoppService.timer += dt;
+
+        if (usoppService.phase === 'idle') {
+          usoppService.cooldown -= dt;
+          if (usoppService.cooldown <= 0) {
+            const candidates: Array<{ id: string; rt: Runtime; seatTile: Tile; name: string }> = [];
+            for (const [id, rt] of runtimes) {
+              if (id !== usoppId && rt.seatIndex != null && seatTiles[rt.seatIndex]) {
+                const a = agentById(id);
+                candidates.push({
+                  id,
+                  rt,
+                  seatTile: seatTiles[rt.seatIndex],
+                  name: a?.name || rt.charName
+                });
+              }
+            }
+            if (candidates.length === 0) {
+              usoppService.cooldown = 10;
+              return;
+            }
+
+            const target = candidates[usoppTargetIndex % candidates.length];
+            usoppTargetIndex++;
+            usoppService.targetId = target.id;
+            usoppService.item = CAFE_ITEMS[Math.floor(Math.random() * CAFE_ITEMS.length)];
+            usoppService.phase = 'walkingToCafe';
+            usoppService.timer = 0;
+
+            const firstName = target.name.split(' ')[0];
+            uc.sitAtDesk(false);
+            uc.showThought(`Heading to Café for ${firstName}... ☕`);
+            uc.walkToAndThen(MACHINE_STAND, () => {
+              if (usoppService.phase !== 'walkingToCafe') return;
+              usoppService.phase = 'brewing';
+              usoppService.timer = 0;
+              uc.faceDirection('up');
+              uc.showThought(`Brewing ${usoppService.item}!`);
+              machineBusy = 2.4;
+            });
+          }
+        } else if (usoppService.phase === 'brewing') {
+          if (usoppService.timer >= 2.4) {
+            uc.setCarryingCup(true);
+            const targetRt = usoppService.targetId ? runtimes.get(usoppService.targetId) : undefined;
+            const targetSeat = targetRt && targetRt.seatIndex != null ? seatTiles[targetRt.seatIndex] : undefined;
+            if (!targetRt || !targetSeat) {
+              uc.setCarryingCup(false);
+              usoppService.phase = 'idle';
+              usoppService.cooldown = 15;
+              return;
+            }
+
+            usoppService.phase = 'walkingToAgent';
+            usoppService.timer = 0;
+            const targetAgent = usoppService.targetId ? agentById(usoppService.targetId) : undefined;
+            const targetName = (targetAgent?.name || targetRt.charName).split(' ')[0];
+            uc.showThought(`Delivering ${usoppService.item} to ${targetName}!`);
+
+            const destTile = { x: targetSeat.x, y: targetSeat.y + 1 };
+            uc.walkToAndThen(destTile, () => {
+              if (usoppService.phase !== 'walkingToAgent') return;
+              usoppService.phase = 'serving';
+              usoppService.timer = 0;
+              uc.faceDirection('up');
+              uc.showThought(`Here is your ${usoppService.item}, ${targetName}!`);
+
+              targetRt.character.showThought(`Arigato Usopp! Energy +100% ⚡`);
+              targetRt.character.cheer();
+              const pushFeed = useStore.getState().pushFeed;
+              if (usoppService.targetId) {
+                pushFeed?.(usoppService.targetId, `Received ${usoppService.item} from Usopp! Feeling energized!`);
+              }
+            });
+          }
+        } else if (usoppService.phase === 'serving') {
+          if (usoppService.timer >= 3.0) {
+            uc.setCarryingCup(false);
+            usoppService.phase = 'returning';
+            usoppService.timer = 0;
+            uc.showThought('All served! Heading back to Café desk...');
+            uc.walkToAndThen(TRAY_STAND, () => {
+              uc.hideThought();
+              usoppService.phase = 'idle';
+              usoppService.cooldown = 16;
+            });
+          }
+        } else if (usoppService.phase === 'walkingToCafe' || usoppService.phase === 'walkingToAgent' || usoppService.phase === 'returning') {
+          if (usoppService.timer > 20) {
+            uc.setCarryingCup(false);
+            uc.hideThought();
+            usoppService.phase = 'idle';
+            usoppService.cooldown = 10;
           }
         }
       };
@@ -724,6 +889,9 @@ export function OfficeFloor() {
 
       const breakEligible = (agent: Agent, rt: Runtime): boolean => {
         if (agent.isGod || rt.brk || rt.err || rt.run || rt.cupCarryHome) return false;
+        const isGroup1 = ['sh-nami', 'sh-zoro', 'sh-sanji'].includes(agent.id);
+        const isGroup2 = ['sh-robin', 'sh-shanks', 'sh-hancock'].includes(agent.id);
+        if ((isGroup1 && isGroup1SprintActive) || (isGroup2 && isGroup2SprintActive)) return false;
         if (agent.status !== 'idle' && agent.status !== 'success') return false;
         return !rt.character.isSitting();   // already parked at a desk → leave it
       };
@@ -1473,7 +1641,7 @@ export function OfficeFloor() {
         const c = rt.character;
         c.setBaseAlpha(agent.status === 'ghost' ? 0.5 : 1);
 
-        // Panda Hive: Sleep mode — agent process suspended to save credits & calm the floor
+        // AgentHive: Sleep mode — agent process suspended to save credits & calm the floor
         if (agent.sleeping) {
           c.setStatusGlyph('none');
           c.sitAtDesk(false);
@@ -1511,6 +1679,11 @@ export function OfficeFloor() {
           releaseRun(rt);
         }
 
+        // Squad sprint lock: agents stay seated at their desk until the group task completes
+        const isGroup1 = ['sh-nami', 'sh-zoro', 'sh-sanji'].includes(agent.id);
+        const isGroup2 = ['sh-robin', 'sh-shanks', 'sh-hancock'].includes(agent.id);
+        const groupSprintActive = (isGroup1 && isGroup1SprintActive) || (isGroup2 && isGroup2SprintActive);
+
         // A thought cloud above the head shows what the agent is doing RIGHT NOW
         // (its live `action`, e.g. "edit App.tsx"). Working → sit at the desk or station;
         // blocked → walk to the door and flash "!"; done/idle → wander.
@@ -1518,7 +1691,9 @@ export function OfficeFloor() {
           case 'working':
           case 'thinking':
             c.setStatusGlyph('none');
-            if (agent.currentStation === 'shelf') {
+            if (groupSprintActive) {
+              c.sitAtDesk(true);
+            } else if (agent.currentStation === 'shelf') {
               c.sitAtDesk(false);
               c.walkToTile({ x: 30, y: 20 });
             } else if (agent.currentStation === 'terminal') {
@@ -1536,12 +1711,10 @@ export function OfficeFloor() {
             c.showThought(liveActivity(agent), agent.carrying);
             break;
           case 'waiting':
-            // Parked at the desk awaiting god / another agent — not actively
-            // working (no focus glow) and NOT at the door (that's reserved for
-            // agents that need the human).
+            // Parked at the desk awaiting god / another agent
             c.setStatusGlyph('none');
-            c.sitAtDesk(false);
-            c.showThought(liveActivity(agent, 'waiting'), agent.carrying);
+            c.sitAtDesk(true);
+            c.showThought(liveActivity(agent, 'waiting for sprint turn...'), agent.carrying);
             break;
           case 'blocked':
             c.setStatusGlyph('blocked');
@@ -1564,7 +1737,7 @@ export function OfficeFloor() {
             break;
           case 'success':
             c.setStatusGlyph('success');
-            if (agent.isGod) { c.hideThought(); c.sitAtDesk(true); break; }
+            if (agent.isGod || groupSprintActive) { c.hideThought(); c.sitAtDesk(true); break; }
             c.startWandering();
             c.cheer();
             c.showThought(agent.action || CHEER_LINES[Math.floor(Math.random() * CHEER_LINES.length)]);
@@ -1577,10 +1750,12 @@ export function OfficeFloor() {
           case 'idle':
           default:
             c.setStatusGlyph('none');
-            // The god runs the floor from its desk; everyone else wanders when idle.
-            if (agent.isGod) { c.sitAtDesk(true); c.showThought(liveActivity(agent, 'running the floor')); }
+            // Group sprint agents and god stay at desks; others wander only when idle
+            if (agent.isGod || groupSprintActive) {
+              c.sitAtDesk(true);
+              c.showThought(liveActivity(agent, groupSprintActive ? 'squad desk: coding...' : 'running the floor'));
+            }
             else if (finishedWork) {
-              // Task done → a quick cheer on the spot, then back to roaming.
               c.startWandering();
               c.cheer();
               c.showThought(CHEER_LINES[Math.floor(Math.random() * CHEER_LINES.length)]);
@@ -1618,6 +1793,7 @@ export function OfficeFloor() {
         }
       });
       (app as any).__unsub = unsubscribe;
+      (app as any).__unsubTasks = unsubTasks;
 
       // Fly an envelope from a sender's desk to each recipient when the hive
       // routes a message. Endpoints are snapshotted at spawn, so the paper flies
@@ -1646,8 +1822,8 @@ export function OfficeFloor() {
       // this method) degrades to "no envelopes" rather than crashing the floor.
       const offMessage = window.cth.onHiveMessage
         ? window.cth.onHiveMessage((e) => {
-            for (const target of e.targets) spawnHandoff(e.from, target, e.act, e.needsHuman);
-          })
+          for (const target of e.targets) spawnHandoff(e.from, target, e.act, e.needsHuman);
+        })
         : () => { /* onHiveMessage unavailable — real handoffs disabled this session */ };
       // Demo path: with no live hive, the mock loop dispatches synthetic handoffs
       // so the animation is still visible. Clearly demo-only, fed by mockEvents.ts.
@@ -1707,6 +1883,7 @@ export function OfficeFloor() {
         }
         updateCafeteria(dt);
         updateCoffeeRuns(dt);
+        updateUsoppWaiter(dt);
         updateErrands(dt);
         updateBossAura(dt);
         updateDeskLife(dt);
@@ -1754,6 +1931,7 @@ export function OfficeFloor() {
         (a as any).__glRecovery?.();
         (a as any).__resize?.disconnect?.();
         try { (a as any).__unsub?.(); } catch { /* noop */ }
+        try { (a as any).__unsubTasks?.(); } catch { /* noop */ }
         try { (a as any).__offMessage?.(); } catch { /* noop */ }
         try { clearInterval((a as any).__taskBoardPoll); } catch { /* noop */ }
         safeDestroy(a);

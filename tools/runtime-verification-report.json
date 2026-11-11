@@ -1,0 +1,257 @@
+{
+  "agentsTested": [
+    {
+      "id": "sh-luffy",
+      "name": "Luffy (Captain & Orchestrator)",
+      "role": "Lead Orchestrator & Manager",
+      "durationMs": 5904,
+      "responseLength": 284,
+      "status": "VERIFIED",
+      "preview": "*Shishishi!* 🏴‍☠️ My current priority is to take your project requirements, break them down into 7 "
+    },
+    {
+      "id": "sh-hancock",
+      "name": "Hancock (Requirements & BA)",
+      "role": "Requirements & Business Analyst",
+      "durationMs": 3280,
+      "responseLength": 221,
+      "status": "VERIFIED",
+      "preview": "Hello! As Hancock, my current priority is to precisely define functional and non-functional requirem"
+    },
+    {
+      "id": "sh-shanks",
+      "name": "Shanks (System Architect)",
+      "role": "System Architect",
+      "durationMs": 3947,
+      "responseLength": 262,
+      "status": "VERIFIED",
+      "preview": "Yo! Main hoon Shanks, System Architect—meri current priority hai ek aisi bulletproof aur scalable ar"
+    },
+    {
+      "id": "sh-nami",
+      "name": "Nami (Data Architect)",
+      "role": "Data Architect",
+      "durationMs": 4284,
+      "responseLength": 223,
+      "status": "VERIFIED",
+      "preview": "Hello! As your Data Architect, my current priority is to design a robust data structure, define clea"
+    },
+    {
+      "id": "sh-franky",
+      "name": "Franky (UI Engineer)",
+      "role": "UI Engineer",
+      "durationMs": 5521,
+      "responseLength": 207,
+      "status": "VERIFIED",
+      "preview": "SUPER! Mera current priority Shanks aur Nami ke approved architecture ke mutabiq ekdum responsive la"
+    },
+    {
+      "id": "sh-usopp",
+      "name": "Usopp (Backend Engineer)",
+      "role": "Backend Engineer",
+      "durationMs": 4930,
+      "responseLength": 246,
+      "status": "VERIFIED",
+      "preview": "Captain! Mera current priority ek bulletproof, high-performance backend state engine aur robust API "
+    },
+    {
+      "id": "sh-brook",
+      "name": "Brook (Integrations & Content)",
+      "role": "Integrations & Content Specialist",
+      "durationMs": 671,
+      "responseLength": 187,
+      "status": "VERIFIED",
+      "preview": "My current priority is to analyze integration requirements and create clear, ready‑to‑use sample dat"
+    },
+    {
+      "id": "sh-jinbe",
+      "name": "Jinbe (Security Reviewer)",
+      "role": "Security Reviewer",
+      "durationMs": 3402,
+      "responseLength": 196,
+      "status": "VERIFIED",
+      "preview": "Namaste! Mera current priority application ke architecture, authentication, authorization, aur secre"
+    },
+    {
+      "id": "sh-chopper",
+      "name": "Chopper (Testing & Bug Fixing)",
+      "role": "Testing & Bug Fixing Engineer",
+      "durationMs": 1494,
+      "responseLength": 325,
+      "status": "VERIFIED",
+      "preview": "Yo! Main hoon Chopper, aapka Testing & Bug Fixing Engineer, aur mera current priority yeh hai ki mai"
+    },
+    {
+      "id": "sh-sanji",
+      "name": "Sanji (DevOps Engineer)",
+      "role": "DevOps Engineer",
+      "durationMs": 526,
+      "responseLength": 125,
+      "status": "VERIFIED",
+      "preview": "My current priority is to configure the project environment and prepare the Dockerfile for the upcom"
+    },
+    {
+      "id": "sh-zoro",
+      "name": "Zoro (Final Code Reviewer)",
+      "role": "Final Code Reviewer",
+      "durationMs": 5515,
+      "responseLength": 185,
+      "status": "VERIFIED",
+      "preview": "My current priority is to ruthlessly inspect every line of this codebase for architectural flaws, se"
+    },
+    {
+      "id": "sh-robin",
+      "name": "Robin (Documentation Specialist)",
+      "role": "Documentation Specialist",
+      "durationMs": 541,
+      "responseLength": 107,
+      "status": "VERIFIED",
+      "preview": "My current priority is to draft a clear, step‑by‑step installation guide for the project’s core comp"
+    }
+  ],
+  "keyRotationVerified": true,
+  "groqFallbackVerified": true,
+  "projectsGenerated": [
+    {
+      "domain": "hospital-management",
+      "title": "Hospital Management System (CarePulse)",
+      "durationSec": "131.9",
+      "files": [
+        "app.js",
+        "architecture.md",
+        "code-review.md",
+        "data-models.md",
+        "Dockerfile",
+        "engine-notes.md",
+        "index.html",
+        "integrations.md",
+        "project-plan.md",
+        "README.md",
+        "security-review.md",
+        "spec.md",
+        "sprint-plan.md",
+        "sprint-signoff.md",
+        "style.css",
+        "test-report.md",
+        "ui-design.md"
+      ],
+      "dir": "C:\\Users\\Ayush\\OneDrive\\Desktop\\AWS PROJECT\\workspace\\hospital-management"
+    },
+    {
+      "domain": "sports-management",
+      "title": "Sports Management Portal (ApexSports)",
+      "durationSec": "108.3",
+      "files": [
+        "app.js",
+        "architecture.md",
+        "code-review.md",
+        "data-models.md",
+        "Dockerfile",
+        "engine-notes.md",
+        "index.html",
+        "integrations.md",
+        "project-plan.md",
+        "README.md",
+        "security-review.md",
+        "spec.md",
+        "sprint-plan.md",
+        "sprint-signoff.md",
+        "style.css",
+        "test-report.md",
+        "ui-design.md"
+      ],
+      "dir": "C:\\Users\\Ayush\\OneDrive\\Desktop\\AWS PROJECT\\workspace\\sports-management"
+    },
+    {
+      "domain": "online-learning",
+      "title": "Online Learning Management System (EduFlow)",
+      "durationSec": "107.8",
+      "files": [
+        "app.js",
+        "architecture.md",
+        "code-review.md",
+        "data-models.md",
+        "Dockerfile",
+        "engine-notes.md",
+        "index.html",
+        "integrations.md",
+        "project-plan.md",
+        "README.md",
+        "security-review.md",
+        "spec.md",
+        "sprint-plan.md",
+        "sprint-signoff.md",
+        "style.css",
+        "test-report.md",
+        "ui-design.md"
+      ],
+      "dir": "C:\\Users\\Ayush\\OneDrive\\Desktop\\AWS PROJECT\\workspace\\online-learning"
+    }
+  ],
+  "verifications": [
+    {
+      "domain": "hospital-management",
+      "title": "Hospital Management System (CarePulse)",
+      "syntaxValid": false,
+      "forbiddenViolations": [],
+      "matchedKeywords": [
+        "patient",
+        "doctor",
+        "hospital",
+        "appointment",
+        "medical",
+        "clinic",
+        "icu"
+      ],
+      "domChecks": {
+        "buttonCount": 15,
+        "interactiveCount": 15,
+        "tabCount": 0,
+        "formCount": 1,
+        "modalCount": 0,
+        "storageKey": "STRAW_HAT_HOSPITAL_SYS_V1"
+      }
+    },
+    {
+      "domain": "sports-management",
+      "title": "Sports Management Portal (ApexSports)",
+      "syntaxValid": false,
+      "forbiddenViolations": [],
+      "matchedKeywords": [
+        "match",
+        "league",
+        "team",
+        "fixture",
+        "turf",
+        "player",
+        "arena"
+      ],
+      "domChecks": {
+        "buttonCount": 16,
+        "interactiveCount": 16,
+        "tabCount": 0,
+        "formCount": 1,
+        "modalCount": 0,
+        "storageKey": "ph_sports-management_state_v2"
+      }
+    },
+    {
+      "domain": "online-learning",
+      "title": "Online Learning Management System (EduFlow)",
+      "syntaxValid": false,
+      "forbiddenViolations": [],
+      "matchedKeywords": [
+        "course",
+        "learn"
+      ],
+      "domChecks": {
+        "buttonCount": 11,
+        "interactiveCount": 11,
+        "tabCount": 0,
+        "formCount": 1,
+        "modalCount": 0,
+        "storageKey": "ph_online-learning_state_v2"
+      }
+    }
+  ]
+}
