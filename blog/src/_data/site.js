@@ -2,34 +2,34 @@
 // Kevin's SEO_METADATA.md flows in here (site-level) and into each post's
 // frontmatter (per-page). Keep absolute origin in one place.
 export default {
-  name: "Munder Difflin",
-  blogName: "Munder Difflin Blog",
+  name: "AgentHive",
+  blogName: "AgentHive Blog",
   // Origin with no trailing slash; pathPrefix (/blog/) is applied by Eleventy.
-  origin: "https://munderdiffl.in",
-  baseUrl: "https://munderdiffl.in/blog/",
+  origin: "https://agenthive.local",
+  baseUrl: "https://agenthive.local/blog/",
   // Blog-index description (Kevin's SEO_METADATA.md §3.9).
   description:
-    "Guides, deep dives, and comparisons on running multi-agent Claude Code: orchestration, agent memory, automation, and the tooling landscape.",
+    "Guides, deep dives, and comparisons on running multi-agent AI: orchestration, agent memory, automation, and the tooling landscape.",
   tagline: "Notes from the office floor.",
   lang: "en",
   locale: "en_US",
   author: {
-    name: "Chaitanya Giri",
+    name: "Ayush Singh",
     twitter: "",
-    url: "https://munderdiffl.in",
+    url: "https://github.com/ayushvsingh2611-code/office",
   },
   // Home-page pillar anchors blog posts link UP to (SEO_METADATA.md §5.7).
   pillars: {
-    what: "https://munderdiffl.in/#what",
-    how: "https://munderdiffl.in/#how",
-    why: "https://munderdiffl.in/#why",
-    install: "https://munderdiffl.in/#install",
-    claude: "https://munderdiffl.in/#claude",
-    opensource: "https://munderdiffl.in/#opensource",
+    what: "https://agenthive.local/#what",
+    how: "https://agenthive.local/#how",
+    why: "https://agenthive.local/#why",
+    install: "https://agenthive.local/#install",
+    claude: "https://agenthive.local/#claude",
+    opensource: "https://agenthive.local/#opensource",
   },
   social: {
-    github: "https://github.com/chaitanyagiri/munder-difflin",
-    site: "https://munderdiffl.in",
+    github: "https://github.com/ayushvsingh2611-code/office",
+    site: "https://agenthive.local",
   },
   // Default OG image (absolute). Per-post `ogImage` overrides this.
   defaultOgImage: "https://munderdiffl.in/media/og.png",

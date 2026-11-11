@@ -2048,12 +2048,10 @@ if (process.defaultApp) {
   if (process.argv.length >= 2) {
     app.setAsDefaultProtocolClient('agenthive', process.execPath, [resolve(process.argv[1])]);
     app.setAsDefaultProtocolClient('pandahive', process.execPath, [resolve(process.argv[1])]);
-    app.setAsDefaultProtocolClient('munderdifflin', process.execPath, [resolve(process.argv[1])]);
   }
 } else {
   app.setAsDefaultProtocolClient('agenthive');
   app.setAsDefaultProtocolClient('pandahive');
-  app.setAsDefaultProtocolClient('munderdifflin');
 }
 
 // Deep links on Windows/Linux arrive as the argv of a SECOND process — take the
@@ -5019,7 +5017,7 @@ app.whenReady().then(() => {
   });
 
   // A cold-start deep link (Windows/Linux) rides in on OUR argv.
-  const startupHireLink = process.argv.find((a) => a.startsWith('pandahive://') || a.startsWith('munderdifflin://'));
+  const startupHireLink = process.argv.find((a) => a.startsWith('agenthive://') || a.startsWith('pandahive://') || a.startsWith('munderdifflin://'));
   if (startupHireLink) void handleHireLink(startupHireLink);
 
   // Hand every spawned agent the path to the Slack reply discovery file via the
