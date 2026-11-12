@@ -1,13 +1,11 @@
 // Global site config — single source of truth for SEO defaults.
-// Kevin's SEO_METADATA.md flows in here (site-level) and into each post's
-// frontmatter (per-page). Keep absolute origin in one place.
 export default {
   name: "AgentHive",
   blogName: "AgentHive Blog",
-  // Origin with no trailing slash; pathPrefix (/blog/) is applied by Eleventy.
-  origin: "https://agenthive.local",
-  baseUrl: "https://agenthive.local/blog/",
-  // Blog-index description (Kevin's SEO_METADATA.md §3.9).
+  // Relative paths for robust local & production hosting
+  origin: "",
+  baseUrl: "/blog/",
+  // Blog-index description
   description:
     "Guides, deep dives, and comparisons on running multi-agent AI: orchestration, agent memory, automation, and the tooling landscape.",
   tagline: "Notes from the office floor.",
@@ -18,33 +16,32 @@ export default {
     twitter: "",
     url: "https://github.com/ayushvsingh2611-code/office",
   },
-  // Home-page pillar anchors blog posts link UP to (SEO_METADATA.md §5.7).
+  // Home-page pillar anchors
   pillars: {
-    what: "https://agenthive.local/#what",
-    how: "https://agenthive.local/#how",
-    why: "https://agenthive.local/#why",
-    install: "https://agenthive.local/#install",
-    claude: "https://agenthive.local/#claude",
-    opensource: "https://agenthive.local/#opensource",
+    what: "/#what",
+    how: "/#how",
+    why: "/#why",
+    install: "/#install",
+    claude: "/#claude",
+    opensource: "/#opensource",
   },
   social: {
     github: "https://github.com/ayushvsingh2611-code/office",
-    site: "https://agenthive.local",
+    site: "/",
   },
-  // Default OG image (absolute). Per-post `ogImage` overrides this.
-  defaultOgImage: "https://munderdiffl.in/media/og.png",
-  themeColor: "#F5F2E8",
-  // Topic clusters (categories), aligned to Kevin's keyword taxonomy + the
-  // technical/non-technical split in BLOG_IDEAS.md. A post's `category` field
-  // picks one of these; the index/topics pages derive the live list from posts.
+  // Default OG image
+  defaultOgImage: "/media/og.png",
+  themeColor: "#0A0D14",
+  // Topic clusters (categories) matching full 294-post catalog
   clusters: [
-    { key: "guides", label: "Guides", kind: "technical" },
-    { key: "orchestration", label: "Orchestration", kind: "technical" },
-    { key: "memory", label: "Memory", kind: "technical" },
-    { key: "internals", label: "Internals", kind: "technical" },
-    { key: "concepts", label: "Concepts", kind: "non-technical" },
-    { key: "comparisons", label: "Comparisons", kind: "non-technical" },
-    { key: "use-cases", label: "Use Cases", kind: "non-technical" },
-    { key: "story", label: "Story", kind: "non-technical" },
+    { key: "comparisons", label: "Comparisons", count: 75, kind: "non-technical" },
+    { key: "guides", label: "Guides", count: 62, kind: "technical" },
+    { key: "concepts", label: "Concepts", count: 60, kind: "non-technical" },
+    { key: "news", label: "News", count: 36, kind: "non-technical" },
+    { key: "internals", label: "Internals", count: 19, kind: "technical" },
+    { key: "story", label: "Story", count: 19, kind: "non-technical" },
+    { key: "orchestration", label: "Orchestration", count: 9, kind: "technical" },
+    { key: "use-cases", label: "Use Cases", count: 9, kind: "non-technical" },
+    { key: "memory", label: "Memory", count: 5, kind: "technical" },
   ],
 };

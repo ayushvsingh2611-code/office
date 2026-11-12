@@ -1,16 +1,16 @@
 <nav id="nav">
-  <a class="brand" href="{{ site.origin }}" aria-label="Munder Difflin home">
-    <img class="brand-logo" src="{{ site.origin }}/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
+  <a class="brand" href="/" aria-label="AgentHive home">
+    <img class="brand-logo" src="/logo.png" width="1318" height="840" alt="AgentHive — Multi-Agent Harness & Autonomous Desktop Orchestration" />
   </a>
   <span class="spacer"></span>
   <div class="links">
-    <a href="{{ '/' | u }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Latest</a>
-    <a href="{{ '/topics/' | u }}"{% if '/topics/' in page.url %} aria-current="page"{% endif %}>Topics</a>
-    <a href="{{ '/about/' | u }}"{% if '/about/' in page.url %} aria-current="page"{% endif %}>About</a>
-    <a href="{{ site.origin }}">↗ Product</a>
+    <a href="/blog/"{% if page.url == '/' or page.url == '/blog/' %} aria-current="page"{% endif %}>Latest</a>
+    <a href="/blog/topics/"{% if '/topics/' in page.url %} aria-current="page"{% endif %}>Topics</a>
+    <a href="/blog/about/"{% if '/about/' in page.url %} aria-current="page"{% endif %}>About</a>
+    <a href="/">↗ Product</a>
   </div>
   <div class="nav-actions">
-    <a class="btn sm" href="{{ site.baseUrl }}feed.xml" aria-label="RSS feed">⤵ RSS</a>
-    <a class="btn sm primary" href="{{ site.origin }}/#install">⤓ Download</a>
+    <a class="btn sm" href="/blog/feed.xml" aria-label="RSS feed">⤵ RSS</a>
+    <a class="btn sm primary" href="/download.html">⤓ Download</a>
   </div>
 </nav>

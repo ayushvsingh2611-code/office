@@ -4,939 +4,939 @@
   build (agreed with Kevin, Option A): includes the marketing homepage plus every
   blog page so posts never orphan. Eleventy emits it under docs/blog/, then the
   postbuild step (scripts/postbuild.mjs) moves it to docs/sitemap.xml — which is
-  where robots.txt points (https://munderdiffl.in/sitemap.xml).
+  where robots.txt points (/sitemap.xml).
   Post <lastmod> uses real publish/update dates, not build time.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://agenthive.local/</loc>
+    <loc>/</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  <url><loc>https://agenthive.local/wall.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://agenthive.local/terms.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://agenthive.local/privacy.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://agenthive.local/blog/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://agenthive.local/blog/topics/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://agenthive.local/blog/about/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>/wall.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>/terms.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>/privacy.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>/blog/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>/blog/topics/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>/blog/about/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
   <url>
-    <loc>https://agenthive.local/blog/indian-open-source-ai-projects-vs-big-tech/</loc>
+    <loc>/blog/indian-open-source-ai-projects-vs-big-tech/</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/agents-ran-our-launch-week-analytics/</loc>
+    <loc>/blog/agents-ran-our-launch-week-analytics/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/an-agent-redesigned-this-blog/</loc>
+    <loc>/blog/an-agent-redesigned-this-blog/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/launching-munder-difflin-v0-4-4/</loc>
+    <loc>/blog/launching-munder-difflin-v0-4-4/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/number-five-on-product-hunt/</loc>
+    <loc>/blog/number-five-on-product-hunt/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/run-a-release-train-with-agents/</loc>
+    <loc>/blog/run-a-release-train-with-agents/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/seven-releases-in-eight-days/</loc>
+    <loc>/blog/seven-releases-in-eight-days/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/the-newline-that-silenced-windows-agents/</loc>
+    <loc>/blog/the-newline-that-silenced-windows-agents/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/turn-feedback-into-a-backlog-with-agents/</loc>
+    <loc>/blog/turn-feedback-into-a-backlog-with-agents/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/we-opened-a-discord/</loc>
+    <loc>/blog/we-opened-a-discord/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/what-reddit-told-us-about-munder-difflin/</loc>
+    <loc>/blog/what-reddit-told-us-about-munder-difflin/</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/whats-up-with-munder-difflin/</loc>
+    <loc>/blog/whats-up-with-munder-difflin/</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/why-our-auto-update-never-ran/</loc>
+    <loc>/blog/why-our-auto-update-never-ran/</loc>
     <lastmod>2026-08-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/launching-munder-difflin-v0-3-5/</loc>
+    <loc>/blog/launching-munder-difflin-v0-3-5/</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/qm-vs-munder-difflin/</loc>
+    <loc>/blog/qm-vs-munder-difflin/</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/command-center-guide/</loc>
+    <loc>/blog/command-center-guide/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/crewai-autogen-vs-a-local-agent-harness/</loc>
+    <loc>/blog/crewai-autogen-vs-a-local-agent-harness/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/github-copilot-cli-vs-claude-code-for-hive-work/</loc>
+    <loc>/blog/github-copilot-cli-vs-claude-code-for-hive-work/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/how-to-add-a-github-copilot-cli-agent/</loc>
+    <loc>/blog/how-to-add-a-github-copilot-cli-agent/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/how-to-hire-from-the-agent-gallery/</loc>
+    <loc>/blog/how-to-hire-from-the-agent-gallery/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/how-to-talk-to-your-orchestrator/</loc>
+    <loc>/blog/how-to-talk-to-your-orchestrator/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/how-to-use-the-built-in-monaco-ide/</loc>
+    <loc>/blog/how-to-use-the-built-in-monaco-ide/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/launching-munder-difflin-v0-3-3/</loc>
+    <loc>/blog/launching-munder-difflin-v0-3-3/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/loop-engineering-for-ai-agents/</loc>
+    <loc>/blog/loop-engineering-for-ai-agents/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/orca-vs-munder-difflin/</loc>
+    <loc>/blog/orca-vs-munder-difflin/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/review-agent-work-where-it-happens/</loc>
+    <loc>/blog/review-agent-work-where-it-happens/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/run-a-mixed-engine-office/</loc>
+    <loc>/blog/run-a-mixed-engine-office/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/tmux-and-scripts-vs-an-agent-harness/</loc>
+    <loc>/blog/tmux-and-scripts-vs-an-agent-harness/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/voice-as-a-control-plane-for-agent-fleets/</loc>
+    <loc>/blog/voice-as-a-control-plane-for-agent-fleets/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/what-is-an-agent-development-environment/</loc>
+    <loc>/blog/what-is-an-agent-development-environment/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/what-is-harness-engineering/</loc>
+    <loc>/blog/what-is-harness-engineering/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/your-first-hour-with-munder-difflin/</loc>
+    <loc>/blog/your-first-hour-with-munder-difflin/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/launching-munder-difflin-v0-3-2/</loc>
+    <loc>/blog/launching-munder-difflin-v0-3-2/</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/run-munder-difflin-on-a-mac-mini/</loc>
+    <loc>/blog/run-munder-difflin-on-a-mac-mini/</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/run-munder-difflin-on-open-models/</loc>
+    <loc>/blog/run-munder-difflin-on-open-models/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/launching-munder-difflin-v0-3-0/</loc>
+    <loc>/blog/launching-munder-difflin-v0-3-0/</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/hire-manifest-untrusted-input/</loc>
+    <loc>/blog/hire-manifest-untrusted-input/</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/launching-munder-difflin-v0-2-8/</loc>
+    <loc>/blog/launching-munder-difflin-v0-2-8/</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/shareable-agent-roles/</loc>
+    <loc>/blog/shareable-agent-roles/</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/deploy-a-blog-writer-agent/</loc>
+    <loc>/blog/deploy-a-blog-writer-agent/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/deploy-automated-pr-reviewer-agent/</loc>
+    <loc>/blog/deploy-automated-pr-reviewer-agent/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/run-ai-agent-hive-from-slack-setup/</loc>
+    <loc>/blog/run-ai-agent-hive-from-slack-setup/</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/the-clone-army-trap-mixed-swarm-vs-identical-agents/</loc>
+    <loc>/blog/the-clone-army-trap-mixed-swarm-vs-identical-agents/</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/trigger-ai-agents-from-github-webhook/</loc>
+    <loc>/blog/trigger-ai-agents-from-github-webhook/</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/why-cli-agents-are-powerful/</loc>
+    <loc>/blog/why-cli-agents-are-powerful/</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/launching-munder-difflin-v0-2-4/</loc>
+    <loc>/blog/launching-munder-difflin-v0-2-4/</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/munder-difflin-v0-2-4-feature-walkthrough/</loc>
+    <loc>/blog/munder-difflin-v0-2-4-feature-walkthrough/</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/launching-munder-difflin-v0-2-0/</loc>
+    <loc>/blog/launching-munder-difflin-v0-2-0/</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/one-prompt-automated-pr-review/</loc>
+    <loc>/blog/one-prompt-automated-pr-review/</loc>
     <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/does-the-june-2026-agent-sdk-change-affect-munder-difflin/</loc>
+    <loc>/blog/does-the-june-2026-agent-sdk-change-affect-munder-difflin/</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/best-ai-coding-agents/</loc>
+    <loc>/blog/best-ai-coding-agents/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/cline-vs-munder-difflin/</loc>
+    <loc>/blog/cline-vs-munder-difflin/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/compressing-agent-memory/</loc>
+    <loc>/blog/compressing-agent-memory/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/generative-engine-optimization-techniques/</loc>
+    <loc>/blog/generative-engine-optimization-techniques/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/how-to-install-and-use-munder-difflin/</loc>
+    <loc>/blog/how-to-install-and-use-munder-difflin/</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/mcp-security-tool-poisoning/</loc>
+    <loc>/blog/mcp-security-tool-poisoning/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/multi-agent-orchestration-patterns/</loc>
+    <loc>/blog/multi-agent-orchestration-patterns/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/the-multi-agent-cost-playbook/</loc>
+    <loc>/blog/the-multi-agent-cost-playbook/</loc>
     <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/agent-security-and-sandboxing/</loc>
+    <loc>/blog/agent-security-and-sandboxing/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/agents-rule-of-two/</loc>
+    <loc>/blog/agents-rule-of-two/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/architecture-two-planes-one-renderer/</loc>
+    <loc>/blog/architecture-two-planes-one-renderer/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/best-claude-code-multi-agent-tools/</loc>
+    <loc>/blog/best-claude-code-multi-agent-tools/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/building-reliable-ai-agents/</loc>
+    <loc>/blog/building-reliable-ai-agents/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/can-claude-code-agents-talk-to-each-other/</loc>
+    <loc>/blog/can-claude-code-agents-talk-to-each-other/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/claude-code-automation-while-you-sleep/</loc>
+    <loc>/blog/claude-code-automation-while-you-sleep/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/claude-code-git-worktrees-vs-hive/</loc>
+    <loc>/blog/claude-code-git-worktrees-vs-hive/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/claude-code-orchestration-tools-compared/</loc>
+    <loc>/blog/claude-code-orchestration-tools-compared/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/claude-squad-vs-munder-difflin/</loc>
+    <loc>/blog/claude-squad-vs-munder-difflin/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/context-engineering-for-ai-agents/</loc>
+    <loc>/blog/context-engineering-for-ai-agents/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/debugging-multi-agent-systems/</loc>
+    <loc>/blog/debugging-multi-agent-systems/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/do-more-with-less-model-routing/</loc>
+    <loc>/blog/do-more-with-less-model-routing/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/evaluating-ai-agent-reliability/</loc>
+    <loc>/blog/evaluating-ai-agent-reliability/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/file-based-coordination-vs-message-queues/</loc>
+    <loc>/blog/file-based-coordination-vs-message-queues/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/how-agents-remember-semantic-memory/</loc>
+    <loc>/blog/how-agents-remember-semantic-memory/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/how-ai-agents-verify-their-own-work/</loc>
+    <loc>/blog/how-ai-agents-verify-their-own-work/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/how-ai-answer-engines-choose-sources/</loc>
+    <loc>/blog/how-ai-answer-engines-choose-sources/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/human-in-the-loop-approving-ai-agents/</loc>
+    <loc>/blog/human-in-the-loop-approving-ai-agents/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/keep-agent-semantic-memory-clean/</loc>
+    <loc>/blog/keep-agent-semantic-memory-clean/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/local-first-ai-agent-orchestration/</loc>
+    <loc>/blog/local-first-ai-agent-orchestration/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/local-first-vs-cloud-agent-sdks/</loc>
+    <loc>/blog/local-first-vs-cloud-agent-sdks/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/long-running-agents-the-2026-shift/</loc>
+    <loc>/blog/long-running-agents-the-2026-shift/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/observability-for-agent-fleets/</loc>
+    <loc>/blog/observability-for-agent-fleets/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/open-source-ai-tools-on-purpose/</loc>
+    <loc>/blog/open-source-ai-tools-on-purpose/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/overnight-ai-coding-realistic-expectations/</loc>
+    <loc>/blog/overnight-ai-coding-realistic-expectations/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/prompt-caching-for-ai-agents/</loc>
+    <loc>/blog/prompt-caching-for-ai-agents/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/recovering-from-agent-failures/</loc>
+    <loc>/blog/recovering-from-agent-failures/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/scheduling-autonomous-agent-missions/</loc>
+    <loc>/blog/scheduling-autonomous-agent-missions/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/security-for-ai-coding-agents/</loc>
+    <loc>/blog/security-for-ai-coding-agents/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/small-team-ai-agents-playbook/</loc>
+    <loc>/blog/small-team-ai-agents-playbook/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/the-hook-shim-pattern/</loc>
+    <loc>/blog/the-hook-shim-pattern/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/the-lethal-trifecta-for-coding-agents/</loc>
+    <loc>/blog/the-lethal-trifecta-for-coding-agents/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/the-office-parody-behind-munder-difflin/</loc>
+    <loc>/blog/the-office-parody-behind-munder-difflin/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/trigger-ai-agents-from-slack/</loc>
+    <loc>/blog/trigger-ai-agents-from-slack/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/what-is-aeo-for-dev-tools/</loc>
+    <loc>/blog/what-is-aeo-for-dev-tools/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/whats-new-in-agentic-ai-june-2026/</loc>
+    <loc>/blog/whats-new-in-agentic-ai-june-2026/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/when-do-agents-need-an-agent-protocol/</loc>
+    <loc>/blog/when-do-agents-need-an-agent-protocol/</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/building-a-terminal-ui-xterm-node-pty/</loc>
+    <loc>/blog/building-a-terminal-ui-xterm-node-pty/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/building-an-ai-office-floor/</loc>
+    <loc>/blog/building-an-ai-office-floor/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/claude-code-hooks-explained/</loc>
+    <loc>/blog/claude-code-hooks-explained/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/claude-squad-alternative/</loc>
+    <loc>/blog/claude-squad-alternative/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/conductor-claude-code-alternative/</loc>
+    <loc>/blog/conductor-claude-code-alternative/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/crystal-claude-code-alternative/</loc>
+    <loc>/blog/crystal-claude-code-alternative/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/mcp-and-skills-in-a-hive/</loc>
+    <loc>/blog/mcp-and-skills-in-a-hive/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/node-pty-electron-real-terminals/</loc>
+    <loc>/blog/node-pty-electron-real-terminals/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/rendering-many-live-terminals-performance/</loc>
+    <loc>/blog/rendering-many-live-terminals-performance/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/vibe-kanban-alternative/</loc>
+    <loc>/blog/vibe-kanban-alternative/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/ai-agent-glossary/</loc>
+    <loc>/blog/ai-agent-glossary/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/from-one-terminal-to-a-team/</loc>
+    <loc>/blog/from-one-terminal-to-a-team/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/how-to-choose-a-multi-agent-tool/</loc>
+    <loc>/blog/how-to-choose-a-multi-agent-tool/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/human-in-the-loop-ai-agents/</loc>
+    <loc>/blog/human-in-the-loop-ai-agents/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/munder-difflin-faq/</loc>
+    <loc>/blog/munder-difflin-faq/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/run-an-office-of-ai-agents/</loc>
+    <loc>/blog/run-an-office-of-ai-agents/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/single-committer-git-pattern/</loc>
+    <loc>/blog/single-committer-git-pattern/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/visualizing-ai-agents-pixijs/</loc>
+    <loc>/blog/visualizing-ai-agents-pixijs/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/what-are-claude-code-agents/</loc>
+    <loc>/blog/what-are-claude-code-agents/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/why-local-first-matters-for-ai-agents/</loc>
+    <loc>/blog/why-local-first-matters-for-ai-agents/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/why-we-built-munder-difflin/</loc>
+    <loc>/blog/why-we-built-munder-difflin/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/append-only-event-log-agents/</loc>
+    <loc>/blog/append-only-event-log-agents/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/how-to-run-multiple-claude-code-agents/</loc>
+    <loc>/blog/how-to-run-multiple-claude-code-agents/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/atomic-file-mailboxes-for-agents/</loc>
+    <loc>/blog/atomic-file-mailboxes-for-agents/</loc>
     <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/how-the-god-orchestrator-works/</loc>
+    <loc>/blog/how-the-god-orchestrator-works/</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/coordinating-ai-coding-agents/</loc>
+    <loc>/blog/coordinating-ai-coding-agents/</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/claude-code-orchestration-guide/</loc>
+    <loc>/blog/claude-code-orchestration-guide/</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/give-claude-code-long-term-memory/</loc>
+    <loc>/blog/give-claude-code-long-term-memory/</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/markdown-first-agent-memory/</loc>
+    <loc>/blog/markdown-first-agent-memory/</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/semantic-memory-for-ai-agents/</loc>
+    <loc>/blog/semantic-memory-for-ai-agents/</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/manage-multiple-claude-code-sessions/</loc>
+    <loc>/blog/manage-multiple-claude-code-sessions/</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/claude-code-multi-agent-setup-tutorial/</loc>
+    <loc>/blog/claude-code-multi-agent-setup-tutorial/</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/claude-code-subagents-vs-multi-agent-harness/</loc>
+    <loc>/blog/claude-code-subagents-vs-multi-agent-harness/</loc>
     <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://agenthive.local/blog/what-is-a-multi-agent-harness/</loc>
+    <loc>/blog/what-is-a-multi-agent-harness/</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url><loc>https://agenthive.local/blog/topics/guides/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://agenthive.local/blog/topics/concepts/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://agenthive.local/blog/topics/internals/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://agenthive.local/blog/topics/comparisons/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://agenthive.local/blog/topics/story/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://agenthive.local/blog/topics/orchestration/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://agenthive.local/blog/topics/use-cases/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://agenthive.local/blog/topics/memory/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/multi-agent/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/claude-code/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/internals/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/guides/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/open-source/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/orchestration/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/concepts/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/comparisons/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/story/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/local-first/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/release/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/automation/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/use-cases/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/tools/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/getting-started/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/memory/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/workflow/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/human-in-the-loop/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/security/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/cost/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/mempalace/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/hive/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/observability/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/guardrails/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/electron/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/autonomous/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/git/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/mcp/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/architecture/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/reliability/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/cli-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/voice/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/ide/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/terminals/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/debugging/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/model-routing/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/agentic-ai/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/aeo/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/seo/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/engines/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/launch/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/god/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/messaging/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/faq/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/concurrency/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/pixijs/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/visualization/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/xtermjs/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/hooks/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/skills/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/node-pty/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/performance/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/prompt-caching/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/slack/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/protocols/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/tutorial/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/codex/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/code-review/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/agent-design/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/windows/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/community/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/subagents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/markdown/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/coordination/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/event-log/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/glossary/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/privacy/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/game-dev/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/error-handling/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/context-engineering/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/evaluation/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/ai-search/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/cloud-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/long-running-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/trends/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/trust/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/prompt-injection/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/coding-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/hitl/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/brand/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/the-office/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/munder-difflin/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/devrel/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/industry/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/interoperability/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/ai-coding-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/cline/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/geo/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/video/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/content/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/setup/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/github/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/webhooks/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/command-injection/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/ssrf/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/mac-mini/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/ollama/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/lm-studio/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/byok/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/realtime/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/command-center/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/kanban/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/crewai/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/autogen/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/langgraph/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/copilot-cli/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/github-copilot/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/talk-mode/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/copilot/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/autonomy/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/orca/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/monaco-ide/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/tmux/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/git-worktrees/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/ade/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/tooling-landscape/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/harness-engineering/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/onboarding/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/research/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/design/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/eleventy/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/meta/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/product-hunt/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/changelog/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/postmortem/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/feedback/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/product/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/discord/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/reddit/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/india/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://agenthive.local/blog/tags/ai-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/topics/guides/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>/blog/topics/concepts/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>/blog/topics/internals/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>/blog/topics/comparisons/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>/blog/topics/story/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>/blog/topics/orchestration/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>/blog/topics/use-cases/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>/blog/topics/memory/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>/blog/tags/multi-agent/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/claude-code/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/internals/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/guides/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/open-source/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/orchestration/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/concepts/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/comparisons/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/story/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/local-first/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/release/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/automation/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/use-cases/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/tools/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/getting-started/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/memory/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/workflow/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/human-in-the-loop/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/security/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/cost/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/mempalace/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/hive/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/observability/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/guardrails/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/electron/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/autonomous/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/git/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/mcp/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/architecture/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/reliability/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/cli-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/voice/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/ide/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/terminals/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/debugging/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/model-routing/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/agentic-ai/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/aeo/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/seo/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/engines/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/launch/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/god/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/messaging/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/faq/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/concurrency/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/pixijs/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/visualization/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/xtermjs/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/hooks/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/skills/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/node-pty/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/performance/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/prompt-caching/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/slack/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/protocols/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/tutorial/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/codex/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/code-review/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/agent-design/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/windows/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/community/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/subagents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/markdown/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/coordination/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/event-log/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/glossary/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/privacy/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/game-dev/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/error-handling/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/context-engineering/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/evaluation/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/ai-search/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/cloud-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/long-running-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/trends/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/trust/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/prompt-injection/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/coding-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/hitl/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/brand/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/the-office/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/munder-difflin/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/devrel/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/industry/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/interoperability/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/ai-coding-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/cline/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/geo/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/video/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/content/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/setup/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/github/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/webhooks/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/command-injection/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/ssrf/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/mac-mini/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/ollama/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/lm-studio/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/byok/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/realtime/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/command-center/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/kanban/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/crewai/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/autogen/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/langgraph/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/copilot-cli/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/github-copilot/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/talk-mode/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/copilot/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/autonomy/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/orca/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/monaco-ide/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/tmux/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/git-worktrees/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/ade/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/tooling-landscape/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/harness-engineering/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/onboarding/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/research/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/design/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/eleventy/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/meta/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/product-hunt/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/changelog/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/postmortem/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/feedback/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/product/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/discord/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/reddit/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/india/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>/blog/tags/ai-agents/</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
 </urlset>
