@@ -3,18 +3,59 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Topics &amp; Clusters (294 Posts) — AgentHive Blog</title>
-<meta name="description" content="Explore all 10 topic clusters in the AgentHive blog catalog: Comparisons (75), Guides (62), Concepts (60), News (36), Internals (19), Story (19), Orchestration (9), Use-Cases (9), Memory (5)." />
+<title>Topics — Munder Difflin Blog</title>
+<meta name="description" content="Browse the Munder Difflin blog by topic cluster — guides, engineering deep-dives, agentic-coding notes, and product dispatches." />
 <link rel="canonical" href="/blog/topics/" />
 
 <link rel="icon" type="image/png" href="/logo.png" />
 <link rel="apple-touch-icon" href="/logo.png" />
 <meta name="theme-color" content="#0A0D14" />
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="AgentHive Blog" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Topics — Munder Difflin Blog" />
+<meta property="og:description" content="Browse the Munder Difflin blog by topic cluster — guides, engineering deep-dives, agentic-coding notes, and product dispatches." />
+<meta property="og:url" content="/blog/topics/" />
+<meta property="og:image" content="/media/og.png" />
+<meta property="og:locale" content="en_US" />
+
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Topics — Munder Difflin Blog" />
+<meta name="twitter:description" content="Browse the Munder Difflin blog by topic cluster — guides, engineering deep-dives, agentic-coding notes, and product dispatches." />
+<meta name="twitter:image" content="/media/og.png" />
+
 <link rel="alternate" type="application/atom+xml" title="AgentHive Blog" href="/blog/feed.xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/blog/assets/blog-press.css" />
+
+<script>
+  // Anonymous blog analytics (PostHog) — same posture as the main site and the
+  // app's TELEMETRY.md: public write-only token ('' = inert), anonymous-only
+  // (person_profiles 'never'), no autocapture/recording, DNT respected.
+  (function () {
+    var PH_KEY = 'phc_qJzsokwcbtTGHemnvywR3nSqivNNgMjHeNVEWkZNydFB';
+    if (!PH_KEY || navigator.doNotTrack === '1') return;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://us-assets.i.posthog.com/static/array.js';
+    s.onload = function () {
+      if (!window.posthog) return;
+      window.posthog.init(PH_KEY, {
+        api_host: 'https://us.i.posthog.com',
+        person_profiles: 'never',
+        autocapture: false,
+        disable_session_recording: true,
+        respect_dnt: true
+      });
+    };
+    document.head.appendChild(s);
+  })();
+</script>
 </head>
 <body class="theme-press">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -25,7 +66,7 @@
   <span class="spacer"></span>
   <div class="links">
     <a href="/blog/">Latest</a>
-    <a href="/blog/topics/">Topics</a>
+    <a href="/blog/topics/" aria-current="page">Topics</a>
     <a href="/blog/about/">About</a>
     <a href="/">↗ Product</a>
   </div>
@@ -35,192 +76,364 @@
   </div>
 </nav>
 
-<header class="page-head wrap" id="main">
-  <p class="eyebrow">Taxonomy</p>
-  <h1>Blog <span class="hl">Topics.</span></h1>
-  <p class="lead">All 294 articles categorized into 10 structured engineering clusters.</p>
+<main id="main">
 
-  <div class="filters" role="navigation" aria-label="Topics">
-    <a class="chip" aria-current="page" href="/blog/">All<span class="ct">294</span></a>
-    <a class="chip" href="/blog/topics/comparisons/">comparisons<span class="ct">75</span></a>
-    <a class="chip" href="/blog/topics/guides/">guides<span class="ct">62</span></a>
-    <a class="chip" href="/blog/topics/concepts/">concepts<span class="ct">60</span></a>
-    <a class="chip" href="/blog/topics/news/">news<span class="ct">36</span></a>
-    <a class="chip" href="/blog/topics/internals/">internals<span class="ct">19</span></a>
-    <a class="chip" href="/blog/topics/story/">story<span class="ct">19</span></a>
-    <a class="chip" href="/blog/topics/orchestration/">orchestration<span class="ct">9</span></a>
-    <a class="chip" href="/blog/topics/use-cases/">use-cases<span class="ct">9</span></a>
-    <a class="chip" href="/blog/topics/memory/">memory<span class="ct">5</span></a>
-  </div>
+<header class="page-head wrap">
+  <p class="eyebrow">Browse by cluster</p>
+  <h1>Topics</h1>
+  <p class="lead">Everything we write, grouped into clusters. Technical guides and engineering
+  deep-dives on the left; the human side of running an agent office on the right.</p>
 </header>
 
 <section class="wrap">
   <div class="post-grid">
-    <article class="card t-comparisons">
-  <a class="thumb t-comparisons" href="/blog/topics/comparisons/" aria-hidden="true" tabindex="-1">
-    <span class="thumb-ph"><em class="ph-glyph" aria-hidden="true">✶</em><span>COMPARISONS</span></span>
-  </a>
-  <div class="body">
-    <div class="meta">
-      <span>Topic Cluster</span>
-      <span class="dot" aria-hidden="true">·</span>
-      <span>75 Posts</span>
-    </div>
-    <h3><a href="/blog/topics/comparisons/">Comparisons (75)</a></h3>
-    <p class="dek">Latest: Top 10 Indian open source projects that are giving US big tech a tough time</p>
-    <div class="foot">
-      <span class="tag kind">comparisons</span>
-      <a class="more" href="/blog/topics/comparisons/">Browse 75 posts →</a>
-    </div>
+    
+    <a class="card" href="/blog/topics/guides/" style="text-decoration:none">
+      <span class="thumb t-guides" aria-hidden="true">GUIDES</span>
+      <div class="body">
+        <h3 style="color:var(--ink)">guides</h3>
+        <p class="dek">34 posts.</p>
+        <div class="foot"><span class="more">View topic →</span></div>
+      </div>
+    </a>
+    
+    <a class="card" href="/blog/topics/concepts/" style="text-decoration:none">
+      <span class="thumb t-concepts" aria-hidden="true">CONCEPTS</span>
+      <div class="body">
+        <h3 style="color:var(--ink)">concepts</h3>
+        <p class="dek">21 posts.</p>
+        <div class="foot"><span class="more">View topic →</span></div>
+      </div>
+    </a>
+    
+    <a class="card" href="/blog/topics/internals/" style="text-decoration:none">
+      <span class="thumb t-internals" aria-hidden="true">INTERNALS</span>
+      <div class="body">
+        <h3 style="color:var(--ink)">internals</h3>
+        <p class="dek">18 posts.</p>
+        <div class="foot"><span class="more">View topic →</span></div>
+      </div>
+    </a>
+    
+    <a class="card" href="/blog/topics/comparisons/" style="text-decoration:none">
+      <span class="thumb t-comparisons" aria-hidden="true">COMPARISONS</span>
+      <div class="body">
+        <h3 style="color:var(--ink)">comparisons</h3>
+        <p class="dek">18 posts.</p>
+        <div class="foot"><span class="more">View topic →</span></div>
+      </div>
+    </a>
+    
+    <a class="card" href="/blog/topics/story/" style="text-decoration:none">
+      <span class="thumb t-story" aria-hidden="true">STORY</span>
+      <div class="body">
+        <h3 style="color:var(--ink)">story</h3>
+        <p class="dek">16 posts.</p>
+        <div class="foot"><span class="more">View topic →</span></div>
+      </div>
+    </a>
+    
+    <a class="card" href="/blog/topics/orchestration/" style="text-decoration:none">
+      <span class="thumb t-orchestration" aria-hidden="true">ORCHESTRATION</span>
+      <div class="body">
+        <h3 style="color:var(--ink)">orchestration</h3>
+        <p class="dek">9 posts.</p>
+        <div class="foot"><span class="more">View topic →</span></div>
+      </div>
+    </a>
+    
+    <a class="card" href="/blog/topics/use-cases/" style="text-decoration:none">
+      <span class="thumb t-use-cases" aria-hidden="true">USE-CASES</span>
+      <div class="body">
+        <h3 style="color:var(--ink)">use-cases</h3>
+        <p class="dek">9 posts.</p>
+        <div class="foot"><span class="more">View topic →</span></div>
+      </div>
+    </a>
+    
+    <a class="card" href="/blog/topics/memory/" style="text-decoration:none">
+      <span class="thumb t-memory" aria-hidden="true">MEMORY</span>
+      <div class="body">
+        <h3 style="color:var(--ink)">memory</h3>
+        <p class="dek">5 posts.</p>
+        <div class="foot"><span class="more">View topic →</span></div>
+      </div>
+    </a>
+    
   </div>
-</article>
-<article class="card t-guides">
-  <a class="thumb t-guides" href="/blog/topics/guides/" aria-hidden="true" tabindex="-1">
-    <span class="thumb-ph"><em class="ph-glyph" aria-hidden="true">✶</em><span>GUIDES</span></span>
-  </a>
-  <div class="body">
-    <div class="meta">
-      <span>Topic Cluster</span>
-      <span class="dot" aria-hidden="true">·</span>
-      <span>62 Posts</span>
-    </div>
-    <h3><a href="/blog/topics/guides/">Guides (62)</a></h3>
-    <p class="dek">Latest: How to Install AgentHive 0.5.6: A Beginner&#x27;s Guide From Zero to a Working Office</p>
-    <div class="foot">
-      <span class="tag kind">guides</span>
-      <a class="more" href="/blog/topics/guides/">Browse 62 posts →</a>
-    </div>
+
+  
+  <div class="filters" style="padding-top:36px">
+    <span class="eyebrow" style="align-self:center">Tags</span>
+    
+    <a class="chip" href="/blog/tags/multi-agent/">Multi-Agent<span class="ct">85</span></a>
+    
+    <a class="chip" href="/blog/tags/claude-code/">Claude Code<span class="ct">45</span></a>
+    
+    <a class="chip" href="/blog/tags/internals/">Internals<span class="ct">25</span></a>
+    
+    <a class="chip" href="/blog/tags/guides/">Guides<span class="ct">23</span></a>
+    
+    <a class="chip" href="/blog/tags/open-source/">Open Source<span class="ct">23</span></a>
+    
+    <a class="chip" href="/blog/tags/orchestration/">Orchestration<span class="ct">19</span></a>
+    
+    <a class="chip" href="/blog/tags/concepts/">Concepts<span class="ct">18</span></a>
+    
+    <a class="chip" href="/blog/tags/comparisons/">Comparisons<span class="ct">18</span></a>
+    
+    <a class="chip" href="/blog/tags/story/">Story<span class="ct">17</span></a>
+    
+    <a class="chip" href="/blog/tags/local-first/">Local-First<span class="ct">13</span></a>
+    
+    <a class="chip" href="/blog/tags/release/">Release<span class="ct">13</span></a>
+    
+    <a class="chip" href="/blog/tags/automation/">Automation<span class="ct">12</span></a>
+    
+    <a class="chip" href="/blog/tags/use-cases/">Use Cases<span class="ct">10</span></a>
+    
+    <a class="chip" href="/blog/tags/tools/">Tools<span class="ct">10</span></a>
+    
+    <a class="chip" href="/blog/tags/getting-started/">Getting Started<span class="ct">9</span></a>
+    
+    <a class="chip" href="/blog/tags/memory/">Memory<span class="ct">8</span></a>
+    
+    <a class="chip" href="/blog/tags/workflow/">Workflow<span class="ct">7</span></a>
+    
+    <a class="chip" href="/blog/tags/human-in-the-loop/">Human-in-the-Loop<span class="ct">7</span></a>
+    
+    <a class="chip" href="/blog/tags/security/">Security<span class="ct">7</span></a>
+    
+    <a class="chip" href="/blog/tags/cost/">Cost<span class="ct">7</span></a>
+    
+    <a class="chip" href="/blog/tags/mempalace/">MemPalace<span class="ct">6</span></a>
+    
+    <a class="chip" href="/blog/tags/hive/">Hive<span class="ct">6</span></a>
+    
+    <a class="chip" href="/blog/tags/observability/">Observability<span class="ct">5</span></a>
+    
+    <a class="chip" href="/blog/tags/guardrails/">Guardrails<span class="ct">5</span></a>
+    
+    <a class="chip" href="/blog/tags/electron/">Electron<span class="ct">5</span></a>
+    
+    <a class="chip" href="/blog/tags/autonomous/">Autonomous<span class="ct">5</span></a>
+    
+    <a class="chip" href="/blog/tags/git/">Git<span class="ct">4</span></a>
+    
+    <a class="chip" href="/blog/tags/mcp/">MCP<span class="ct">4</span></a>
+    
+    <a class="chip" href="/blog/tags/architecture/">Architecture<span class="ct">4</span></a>
+    
+    <a class="chip" href="/blog/tags/reliability/">Reliability<span class="ct">4</span></a>
+    
+    <a class="chip" href="/blog/tags/cli-agents/">CLI Agents<span class="ct">4</span></a>
+    
+    <a class="chip" href="/blog/tags/voice/">Voice<span class="ct">4</span></a>
+    
+    <a class="chip" href="/blog/tags/ide/">IDE<span class="ct">4</span></a>
+    
+    <a class="chip" href="/blog/tags/terminals/">Terminals<span class="ct">3</span></a>
+    
+    <a class="chip" href="/blog/tags/debugging/">Debugging<span class="ct">3</span></a>
+    
+    <a class="chip" href="/blog/tags/model-routing/">Model Routing<span class="ct">3</span></a>
+    
+    <a class="chip" href="/blog/tags/agentic-ai/">Agentic AI<span class="ct">3</span></a>
+    
+    <a class="chip" href="/blog/tags/aeo/">AEO<span class="ct">3</span></a>
+    
+    <a class="chip" href="/blog/tags/seo/">SEO<span class="ct">3</span></a>
+    
+    <a class="chip" href="/blog/tags/engines/">Engines<span class="ct">3</span></a>
+    
+    <a class="chip" href="/blog/tags/launch/">Launch<span class="ct">3</span></a>
+    
+    <a class="chip" href="/blog/tags/god/">GOD<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/messaging/">Messaging<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/faq/">FAQ<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/concurrency/">Concurrency<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/pixijs/">Pixi.js<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/visualization/">Visualization<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/xtermjs/">xterm.js<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/hooks/">Hooks<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/skills/">Skills<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/node-pty/">node-pty<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/performance/">Performance<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/prompt-caching/">Prompt Caching<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/slack/">Slack<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/protocols/">Protocols<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/tutorial/">Tutorial<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/codex/">Codex<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/code-review/">Code Review<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/agent-design/">Agent Design<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/windows/">Windows<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/community/">Community<span class="ct">2</span></a>
+    
+    <a class="chip" href="/blog/tags/subagents/">Subagents<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/markdown/">Markdown<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/coordination/">Coordination<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/event-log/">Event Log<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/glossary/">Glossary<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/privacy/">Privacy<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/game-dev/">Game Dev<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/error-handling/">Error Handling<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/context-engineering/">Context Engineering<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/evaluation/">Evaluation<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/ai-search/">AI Search<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/cloud-agents/">Cloud Agents<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/long-running-agents/">Long-Running Agents<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/trends/">Trends<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/trust/">Trust<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/prompt-injection/">Prompt Injection<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/coding-agents/">Coding Agents<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/hitl/">HITL<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/brand/">Brand<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/the-office/">The Office<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/munder-difflin/">Munder Difflin<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/devrel/">DevRel<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/industry/">Industry<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/interoperability/">Interoperability<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/ai-coding-agents/">AI Coding Agents<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/cline/">Cline<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/geo/">GEO<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/video/">Video<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/content/">Content<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/setup/">Setup<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/github/">GitHub<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/webhooks/">Webhooks<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/command-injection/">Command Injection<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/ssrf/">SSRF<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/mac-mini/">Mac Mini<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/ollama/">Ollama<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/lm-studio/">LM Studio<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/byok/">BYOK<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/realtime/">Realtime<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/command-center/">Command Center<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/kanban/">Kanban<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/crewai/">CrewAI<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/autogen/">AutoGen<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/langgraph/">LangGraph<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/copilot-cli/">Copilot CLI<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/github-copilot/">GitHub Copilot<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/talk-mode/">Talk Mode<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/copilot/">Copilot<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/autonomy/">Autonomy<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/orca/">Orca<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/monaco-ide/">Monaco IDE<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/tmux/">tmux<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/git-worktrees/">Git Worktrees<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/ade/">ADE<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/tooling-landscape/">Tooling Landscape<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/harness-engineering/">Harness Engineering<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/onboarding/">Onboarding<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/research/">Research<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/design/">Design<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/eleventy/">Eleventy<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/meta/">Meta<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/product-hunt/">Product Hunt<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/changelog/">Changelog<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/postmortem/">Postmortem<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/feedback/">Feedback<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/product/">Product<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/discord/">Discord<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/reddit/">Reddit<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/india/">India<span class="ct">1</span></a>
+    
+    <a class="chip" href="/blog/tags/ai-agents/">AI Agents<span class="ct">1</span></a>
+    
   </div>
-</article>
-<article class="card t-concepts">
-  <a class="thumb t-concepts" href="/blog/topics/concepts/" aria-hidden="true" tabindex="-1">
-    <span class="thumb-ph"><em class="ph-glyph" aria-hidden="true">✶</em><span>CONCEPTS</span></span>
-  </a>
-  <div class="body">
-    <div class="meta">
-      <span>Topic Cluster</span>
-      <span class="dot" aria-hidden="true">·</span>
-      <span>60 Posts</span>
-    </div>
-    <h3><a href="/blog/topics/concepts/">Concepts (60)</a></h3>
-    <p class="dek">Latest: What Is Instinct AI? Access, Privacy and 6 Alternatives You Can Use Now (Oct 2026)</p>
-    <div class="foot">
-      <span class="tag kind">concepts</span>
-      <a class="more" href="/blog/topics/concepts/">Browse 60 posts →</a>
-    </div>
-  </div>
-</article>
-<article class="card t-news">
-  <a class="thumb t-news" href="/blog/topics/news/" aria-hidden="true" tabindex="-1">
-    <span class="thumb-ph"><em class="ph-glyph" aria-hidden="true">✶</em><span>NEWS</span></span>
-  </a>
-  <div class="body">
-    <div class="meta">
-      <span>Topic Cluster</span>
-      <span class="dot" aria-hidden="true">·</span>
-      <span>36 Posts</span>
-    </div>
-    <h3><a href="/blog/topics/news/">News (36)</a></h3>
-    <p class="dek">Latest: Agent Tools Today, 10 Nov 2026: Claude Fable 5.2, an Opus 5.5 Nerf Thread, Orca&#x27;s Phone Agents Tab</p>
-    <div class="foot">
-      <span class="tag kind">news</span>
-      <a class="more" href="/blog/topics/news/">Browse 36 posts →</a>
-    </div>
-  </div>
-</article>
-<article class="card t-internals">
-  <a class="thumb t-internals" href="/blog/topics/internals/" aria-hidden="true" tabindex="-1">
-    <span class="thumb-ph"><em class="ph-glyph" aria-hidden="true">✶</em><span>INTERNALS</span></span>
-  </a>
-  <div class="body">
-    <div class="meta">
-      <span>Topic Cluster</span>
-      <span class="dot" aria-hidden="true">·</span>
-      <span>19 Posts</span>
-    </div>
-    <h3><a href="/blog/topics/internals/">Internals (19)</a></h3>
-    <p class="dek">Latest: The Spend Counter That Went Back to Zero</p>
-    <div class="foot">
-      <span class="tag kind">internals</span>
-      <a class="more" href="/blog/topics/internals/">Browse 19 posts →</a>
-    </div>
-  </div>
-</article>
-<article class="card t-story">
-  <a class="thumb t-story" href="/blog/topics/story/" aria-hidden="true" tabindex="-1">
-    <span class="thumb-ph"><em class="ph-glyph" aria-hidden="true">✶</em><span>STORY</span></span>
-  </a>
-  <div class="body">
-    <div class="meta">
-      <span>Topic Cluster</span>
-      <span class="dot" aria-hidden="true">·</span>
-      <span>19 Posts</span>
-    </div>
-    <h3><a href="/blog/topics/story/">Story (19)</a></h3>
-    <p class="dek">Latest: AgentHive 0.5.3: Stapler Listens, And It Listens Locally</p>
-    <div class="foot">
-      <span class="tag kind">story</span>
-      <a class="more" href="/blog/topics/story/">Browse 19 posts →</a>
-    </div>
-  </div>
-</article>
-<article class="card t-orchestration">
-  <a class="thumb t-orchestration" href="/blog/topics/orchestration/" aria-hidden="true" tabindex="-1">
-    <span class="thumb-ph"><em class="ph-glyph" aria-hidden="true">✶</em><span>ORCHESTRATION</span></span>
-  </a>
-  <div class="body">
-    <div class="meta">
-      <span>Topic Cluster</span>
-      <span class="dot" aria-hidden="true">·</span>
-      <span>9 Posts</span>
-    </div>
-    <h3><a href="/blog/topics/orchestration/">Orchestration (9)</a></h3>
-    <p class="dek">Latest: Deploy a PR Reviewer That Never Sleeps — In About One Prompt</p>
-    <div class="foot">
-      <span class="tag kind">orchestration</span>
-      <a class="more" href="/blog/topics/orchestration/">Browse 9 posts →</a>
-    </div>
-  </div>
-</article>
-<article class="card t-use-cases">
-  <a class="thumb t-use-cases" href="/blog/topics/use-cases/" aria-hidden="true" tabindex="-1">
-    <span class="thumb-ph"><em class="ph-glyph" aria-hidden="true">✶</em><span>USE CASES</span></span>
-  </a>
-  <div class="body">
-    <div class="meta">
-      <span>Topic Cluster</span>
-      <span class="dot" aria-hidden="true">·</span>
-      <span>9 Posts</span>
-    </div>
-    <h3><a href="/blog/topics/use-cases/">Use Cases (9)</a></h3>
-    <p class="dek">Latest: Our Agents Ran Our Launch-Week Analytics</p>
-    <div class="foot">
-      <span class="tag kind">use-cases</span>
-      <a class="more" href="/blog/topics/use-cases/">Browse 9 posts →</a>
-    </div>
-  </div>
-</article>
-<article class="card t-memory">
-  <a class="thumb t-memory" href="/blog/topics/memory/" aria-hidden="true" tabindex="-1">
-    <span class="thumb-ph"><em class="ph-glyph" aria-hidden="true">✶</em><span>MEMORY</span></span>
-  </a>
-  <div class="body">
-    <div class="meta">
-      <span>Topic Cluster</span>
-      <span class="dot" aria-hidden="true">·</span>
-      <span>5 Posts</span>
-    </div>
-    <h3><a href="/blog/topics/memory/">Memory (5)</a></h3>
-    <p class="dek">Latest: How AI Agents Remember: Semantic Memory in a Hive</p>
-    <div class="foot">
-      <span class="tag kind">memory</span>
-      <a class="more" href="/blog/topics/memory/">Browse 5 posts →</a>
-    </div>
-  </div>
-</article>
-  </div>
+  
 </section>
 
+
+</main>
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-top">
@@ -243,5 +456,32 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // sticky-nav border on scroll
+  (function () {
+    var nav = document.getElementById('nav');
+    if (!nav) return;
+    var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  // YouTube click-to-load: thumbnail button → youtube-nocookie iframe
+  (function () {
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.yt-load');
+      if (!btn) return;
+      var box = btn.closest('.yt');
+      var id = box && box.getAttribute('data-yt');
+      if (!id) return;
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1';
+      frame.title = box.getAttribute('data-title') || 'YouTube video';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      frame.setAttribute('allowfullscreen', '');
+      box.replaceChildren(frame);
+    });
+  })();
+</script>
+
 </body>
 </html>
