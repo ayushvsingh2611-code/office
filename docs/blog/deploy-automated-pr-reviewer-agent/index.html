@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Deploy a PR Reviewer That Never Sleeps — In About One Prompt — AgentHive Engineering Hub</title>
-<meta name="description" content="A how-to for standing up a fully automated PR-reviewing agent in AgentHive — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue." />
+<title>Deploy a PR Reviewer That Never Sleeps — In About One Prompt — AgentHive Blog</title>
+<meta name="description" content="A how-to for standing up a fully automated PR-reviewing agent in Munder Difflin — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue." />
 <link rel="canonical" href="https://agenthive.local/blog/deploy-automated-pr-reviewer-agent/" />
 
 <link rel="icon" type="image/png" href="https://agenthive.local/logo.png" />
@@ -12,15 +12,15 @@
 <meta name="theme-color" content="#F5F2E8" />
 
 <!-- Open Graph -->
-<meta property="og:site_name" content="AgentHive Engineering Hub" />
+<meta property="og:site_name" content="AgentHive Blog" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Deploy a PR Reviewer That Never Sleeps — In About One Prompt — AgentHive Engineering Hub" />
-<meta property="og:description" content="A how-to for standing up a fully automated PR-reviewing agent in AgentHive — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue." />
+<meta property="og:title" content="Deploy a PR Reviewer That Never Sleeps — In About One Prompt — AgentHive Blog" />
+<meta property="og:description" content="A how-to for standing up a fully automated PR-reviewing agent in Munder Difflin — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue." />
 <meta property="og:url" content="https://agenthive.local/blog/deploy-automated-pr-reviewer-agent/" />
-<meta property="og:image" content="https://agenthive.local/media/og.png" />
+<meta property="og:image" content="https://munderdiffl.in/media/og.png" />
 <meta property="og:locale" content="en_US" />
 <meta property="article:published_time" content="2026-06-10T00:00:00.000Z" />
-<meta property="article:author" content="Ayush Singh" />
+<meta property="article:author" content="Chaitanya Giri" />
 <meta property="article:tag" content="Orchestration" />
 <meta property="article:tag" content="Automation" />
 <meta property="article:tag" content="Code Review" />
@@ -30,11 +30,11 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Deploy a PR Reviewer That Never Sleeps — In About One Prompt — AgentHive Engineering Hub" />
-<meta name="twitter:description" content="A how-to for standing up a fully automated PR-reviewing agent in AgentHive — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue." />
-<meta name="twitter:image" content="https://agenthive.local/media/og.png" />
+<meta name="twitter:title" content="Deploy a PR Reviewer That Never Sleeps — In About One Prompt — AgentHive Blog" />
+<meta name="twitter:description" content="A how-to for standing up a fully automated PR-reviewing agent in Munder Difflin — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue." />
+<meta name="twitter:image" content="https://munderdiffl.in/media/og.png" />
 
-<link rel="alternate" type="application/atom+xml" title="AgentHive Engineering Hub" href="https://agenthive.local/blog/feed.xml" />
+<link rel="alternate" type="application/atom+xml" title="AgentHive Blog" href="https://agenthive.local/blog/feed.xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
@@ -45,14 +45,14 @@
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Deploy a PR Reviewer That Never Sleeps — In About One Prompt",
-  "description": "A how-to for standing up a fully automated PR-reviewing agent in AgentHive — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue.",
-  "image": ["https://agenthive.local/media/og.png"],
+  "description": "A how-to for standing up a fully automated PR-reviewing agent in Munder Difflin — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue.",
+  "image": ["https://munderdiffl.in/media/og.png"],
   "datePublished": "2026-06-10T00:00:00.000Z",
   "dateModified": "2026-08-20T00:00:00.000Z",
-  "author": { "@type": "Person", "name": "Ayush Singh" },
+  "author": { "@type": "Person", "name": "Chaitanya Giri" },
   "publisher": {
     "@type": "Organization",
-    "name": "AgentHive",
+    "name": "Munder Difflin",
     "logo": { "@type": "ImageObject", "url": "https://agenthive.local/logo.png" }
   },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://agenthive.local/blog/deploy-automated-pr-reviewer-agent/" },
@@ -79,10 +79,10 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "How do you deploy an automated PR reviewer in AgentHive?", "acceptedAnswer": { "@type": "Answer", "text": "You brief Michael, the orchestrator, in plain English: give him a review objective, point him at the repo and its open PRs/issues, and ask him to post reviews back and escalate anything serious. He spins up a dedicated PR Reviewer agent, runs the first pass, and registers a recurring mission in the Triggers tab so new PRs get reviewed on a cadence. No YAML, no webhook, no per-seat SaaS subscription." } },
+    { "@type": "Question", "name": "How do you deploy an automated PR reviewer in Munder Difflin?", "acceptedAnswer": { "@type": "Answer", "text": "You brief Michael, the orchestrator, in plain English: give him a review objective, point him at the repo and its open PRs/issues, and ask him to post reviews back and escalate anything serious. He spins up a dedicated PR Reviewer agent, runs the first pass, and registers a recurring mission in the Triggers tab so new PRs get reviewed on a cadence. No YAML, no webhook, no per-seat SaaS subscription." } },
     { "@type": "Question", "name": "Does the reviewer read the actual code or just the PR description?", "acceptedAnswer": { "@type": "Answer", "text": "The actual code. The PR Reviewer agent is a real CLI agent — any of the ten supported engines, Claude Code being the usual pick — with filesystem and git access to the checked-out repo, so it reviews diffs and issues against the released source, not just the summary text in the PR. That's what lets it verify a claimed bug is real before it escalates." } },
     { "@type": "Question", "name": "Will it spam every PR with low-value comments?", "acceptedAnswer": { "@type": "Answer", "text": "It doesn't have to. Because the reviewer reads shared hive memory and the full set of open issues at once, it can consolidate duplicate reports into one signal and only escalate findings that are verified and high-impact. In a recent run it collapsed 22 duplicate/breaker firings down to two real findings before pinging a human." } },
-    { "@type": "Question", "name": "Is this a cloud service?", "acceptedAnswer": { "@type": "Answer", "text": "No. AgentHive is a local-first desktop app. The reviewer runs on your machine using the CLI subscriptions you already pay for, and the scheduler that re-fires it lives in the app process — so it reviews while the app is open, and catches up on overdue ticks at next launch." } }
+    { "@type": "Question", "name": "Is this a cloud service?", "acceptedAnswer": { "@type": "Answer", "text": "No. Munder Difflin is a local-first desktop app. The reviewer runs on your machine using the CLI subscriptions you already pay for, and the scheduler that re-fires it lives in the app process — so it reviews while the app is open, and catches up on overdue ticks at next launch." } }
     
   ]
 }
@@ -116,8 +116,8 @@
 <body class="theme-press">
 <a class="skip-link" href="#main">Skip to content</a>
 <nav id="nav">
-  <a class="brand" href="https://agenthive.local" aria-label="AgentHive home">
-    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+  <a class="brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
   </a>
   <span class="spacer"></span>
   <div class="links">
@@ -142,10 +142,10 @@
       <a href="/blog/topics/orchestration/">Orchestration</a>
     </nav>
     <h1>Deploy a PR Reviewer That Never Sleeps — In About One Prompt</h1>
-    <p class="dek">A how-to for standing up a fully automated PR-reviewing agent in AgentHive — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue.</p>
+    <p class="dek">A how-to for standing up a fully automated PR-reviewing agent in Munder Difflin — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue.</p>
     <div class="byline">
-      <span class="av" aria-hidden="true">AS</span>
-      <strong>Ayush Singh</strong>
+      <span class="av" aria-hidden="true">CG</span>
+      <strong>Chaitanya Giri</strong>
       <span class="dot" aria-hidden="true">·</span>
       <time datetime="2026-06-10">Jun 10, 2026</time>
       <span class="dot" aria-hidden="true">·</span>
@@ -158,11 +158,11 @@
 
   <div class="post-wrap wrap">
     <div class="prose">
-      <div class="callout tldr"><span class="ic">TL;DR</span><p>You can stand up a <strong>fully automated PR-reviewing agent</strong> in AgentHive in about one prompt: give it an objective, point it at your repo and open PRs, and let it review against the <em>real source</em>, post comments, and escalate only what matters. Ours recently triaged <strong>5 new bug reports against the v0.2.4 release, consolidated 22 duplicate breaker firings into clean signal</strong>, and surfaced a HIGH-severity Windows-terminal regression plus a 3-issue lifecycle bug cluster sharing one root cause — all verified against source, with fixes specified and a human pinged. That triage became the v0.2.5 patch queue. Here's how to deploy your own.</p></div>
+      <div class="callout tldr"><span class="ic">TL;DR</span><p>You can stand up a <strong>fully automated PR-reviewing agent</strong> in Munder Difflin in about one prompt: give it an objective, point it at your repo and open PRs, and let it review against the <em>real source</em>, post comments, and escalate only what matters. Ours recently triaged <strong>5 new bug reports against the v0.2.4 release, consolidated 22 duplicate breaker firings into clean signal</strong>, and surfaced a HIGH-severity Windows-terminal regression plus a 3-issue lifecycle bug cluster sharing one root cause — all verified against source, with fixes specified and a human pinged. That triage became the v0.2.5 patch queue. Here's how to deploy your own.</p></div>
 <p>Every team that ships open source hits the same wall: the issues and PRs arrive faster than anyone can read them, and most of the noise is duplicates of the same two real bugs. The SaaS review bots help — but they read the PR <em>description</em>, charge per seat, and don’t understand the rest of your backlog.</p>
 <p>We built ours differently, and we run it on ourselves. This is a how-to for deploying the same thing: a <strong>PR Reviewer agent</strong> that lives in your hive, reads your actual diff and source, de-dupes the noise, and only taps a human when something is genuinely worth a human. Then a case study of what that looks like on a real, messy day.</p>
 <h2 id="what-pr-reviewer-agent-actually-means-here" tabindex="-1">What “PR Reviewer agent” actually means here <a class="anchor" href="#what-pr-reviewer-agent-actually-means-here" aria-hidden="true">#</a></h2>
-<p>In AgentHive, an agent isn’t a chat window — it’s a real CLI (any of the ten supported engines, from Claude Code to Codex to OpenCode) running on your machine with filesystem and git access, plugged into the hive’s shared inbox and memory. So a “PR Reviewer” is just a worker you’ve given one job: watch the repo, review what comes in, and report back. Since v0.4.4 you can also hand it an installed <strong>skill</strong> — a review checklist it re-reads on every pass, so your severity bar and house rules survive across sessions.</p>
+<p>In Munder Difflin, an agent isn’t a chat window — it’s a real CLI (any of the ten supported engines, from Claude Code to Codex to OpenCode) running on your machine with filesystem and git access, plugged into the hive’s shared inbox and memory. So a “PR Reviewer” is just a worker you’ve given one job: watch the repo, review what comes in, and report back. Since v0.4.4 you can also hand it an installed <strong>skill</strong> — a review checklist it re-reads on every pass, so your severity bar and house rules survive across sessions.</p>
 <p>That framing matters because of what it unlocks:</p>
 <ul>
 <li><strong>It reads the real source, not the summary.</strong> When a PR claims “fixes the Windows usage meter,” the agent can open the reconciler, trace the path-encoding logic, and confirm the fix — instead of trusting the PR title.</li>
@@ -171,7 +171,7 @@
 </ul>
 <figure class="fig fig-inline"><img src="/blog/assets/media/deploy-automated-pr-reviewer-agent/note-1.png" alt="Hand-drawn sketch from “Deploy a PR Reviewer That Never Sleeps — In About One Prompt”" loading="lazy" decoding="async" /></figure>
 <h2 id="deploying-it-the-one-prompt-version" tabindex="-1">Deploying it: the one-prompt version <a class="anchor" href="#deploying-it-the-one-prompt-version" aria-hidden="true">#</a></h2>
-<p>You don’t configure this. You brief it. Open AgentHive, select Michael, and describe the outcome the way you’d brief a coworker:</p>
+<p>You don’t configure this. You brief it. Open Munder Difflin, select Michael, and describe the outcome the way you’d brief a coworker:</p>
 <blockquote>
 <p><em>Stand up a PR Reviewer for our GitHub repo. Review the open PRs and any new bug-report issues against the released source — verify each claim in the actual code, post a review comment on each, consolidate duplicates into one finding, and ping me directly for anything HIGH severity. Then check for new ones every hour and do the same.</em></p>
 </blockquote>
@@ -213,7 +213,7 @@
 <h2 id="deploy-yours" tabindex="-1">Deploy yours <a class="anchor" href="#deploy-yours" aria-hidden="true">#</a></h2>
 <p>If you maintain a repo with more inbound than time, this is roughly a five-minute setup and zero ongoing babysitting:</p>
 <ol>
-<li><a href="https://agenthive.local/#install">Download AgentHive</a> — free, open source, local-first, macOS/Windows/Linux (and yes, <a href="/blog/launching-munder-difflin-v0-4-4/">Windows is first-class as of v0.4.4</a>).</li>
+<li><a href="https://munderdiffl.in/#install">Download Munder Difflin</a> — free, open source, local-first, macOS/Windows/Linux (and yes, <a href="/blog/launching-munder-difflin-v0-4-4/">Windows is first-class as of v0.4.4</a>).</li>
 <li>Add a CLI agent on whichever engine subscription you already have — the app supports ten, and <strong>Settings → Prerequisites</strong> confirms which binaries it can see.</li>
 <li>Brief Michael with the prompt above, swapping in your repo and your escalation bar.</li>
 <li>Leave it running on a second monitor and let new PRs get reviewed on the hour.</li>
@@ -226,7 +226,7 @@
         <h2 id="faq">FAQ</h2>
         
         <div class="qa">
-          <p class="q">How do you deploy an automated PR reviewer in AgentHive?</p>
+          <p class="q">How do you deploy an automated PR reviewer in Munder Difflin?</p>
           <p class="a">You brief Michael, the orchestrator, in plain English: give him a review objective, point him at the repo and its open PRs/issues, and ask him to post reviews back and escalate anything serious. He spins up a dedicated PR Reviewer agent, runs the first pass, and registers a recurring mission in the Triggers tab so new PRs get reviewed on a cadence. No YAML, no webhook, no per-seat SaaS subscription.</p>
         </div>
         
@@ -242,7 +242,7 @@
         
         <div class="qa">
           <p class="q">Is this a cloud service?</p>
-          <p class="a">No. AgentHive is a local-first desktop app. The reviewer runs on your machine using the CLI subscriptions you already pay for, and the scheduler that re-fires it lives in the app process — so it reviews while the app is open, and catches up on overdue ticks at next launch.</p>
+          <p class="a">No. Munder Difflin is a local-first desktop app. The reviewer runs on your machine using the CLI subscriptions you already pay for, and the scheduler that re-fires it lives in the app process — so it reviews while the app is open, and catches up on overdue ticks at next launch.</p>
         </div>
         
       </section>
@@ -333,8 +333,8 @@
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-top">
-      <a class="foot-brand brand" href="https://agenthive.local" aria-label="AgentHive home">
-        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+      <a class="foot-brand brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
       </a>
       <div class="foot-links">
         <a href="/blog/">Latest</a>
@@ -342,11 +342,11 @@
         <a href="/blog/about/">About</a>
         <a href="https://agenthive.local/blog/feed.xml">RSS</a>
         <a href="https://github.com/ayushvsingh2611-code/office">GitHub</a>
-        <a href="https://agenthive.local">agenthive.local ↗</a>
+        <a href="https://agenthive.local">munderdiffl.in ↗</a>
       </div>
     </div>
     <div class="foot-meta">
-      © 2026 AgentHive · Local-first · MIT-licensed ·
+      © 2026 Munder Difflin · Local-first · MIT-licensed ·
       Built on <a href="https://agenthive.local">Electron, React, Pixi.js, xterm.js &amp; node-pty</a>.
       Run an office of agents while you sleep.
     </div>

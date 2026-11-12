@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Inside the GOD Orchestrator: Routing, Adjudication, Escalation — AgentHive Engineering Hub</title>
+<title>Inside the GOD Orchestrator: Routing, Adjudication, Escalation — AgentHive Blog</title>
 <meta name="description" content="A deep dive into the Claude Code orchestrator: how a GOD agent reads requests, routes work, adjudicates routine traffic, and escalates the critical few." />
 <link rel="canonical" href="https://agenthive.local/blog/how-the-god-orchestrator-works/" />
 
@@ -12,15 +12,15 @@
 <meta name="theme-color" content="#F5F2E8" />
 
 <!-- Open Graph -->
-<meta property="og:site_name" content="AgentHive Engineering Hub" />
+<meta property="og:site_name" content="AgentHive Blog" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Inside the GOD Orchestrator: Routing, Adjudication, Escalation — AgentHive Engineering Hub" />
+<meta property="og:title" content="Inside the GOD Orchestrator: Routing, Adjudication, Escalation — AgentHive Blog" />
 <meta property="og:description" content="A deep dive into the Claude Code orchestrator: how a GOD agent reads requests, routes work, adjudicates routine traffic, and escalates the critical few." />
 <meta property="og:url" content="https://agenthive.local/blog/how-the-god-orchestrator-works/" />
-<meta property="og:image" content="https://agenthive.local/media/og.png" />
+<meta property="og:image" content="https://munderdiffl.in/media/og.png" />
 <meta property="og:locale" content="en_US" />
 <meta property="article:published_time" content="2026-05-30T00:00:00.000Z" />
-<meta property="article:author" content="Ayush Singh" />
+<meta property="article:author" content="Chaitanya Giri" />
 <meta property="article:tag" content="Orchestration" />
 <meta property="article:tag" content="GOD" />
 <meta property="article:tag" content="Multi-Agent" />
@@ -29,11 +29,11 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Inside the GOD Orchestrator: Routing, Adjudication, Escalation — AgentHive Engineering Hub" />
+<meta name="twitter:title" content="Inside the GOD Orchestrator: Routing, Adjudication, Escalation — AgentHive Blog" />
 <meta name="twitter:description" content="A deep dive into the Claude Code orchestrator: how a GOD agent reads requests, routes work, adjudicates routine traffic, and escalates the critical few." />
-<meta name="twitter:image" content="https://agenthive.local/media/og.png" />
+<meta name="twitter:image" content="https://munderdiffl.in/media/og.png" />
 
-<link rel="alternate" type="application/atom+xml" title="AgentHive Engineering Hub" href="https://agenthive.local/blog/feed.xml" />
+<link rel="alternate" type="application/atom+xml" title="AgentHive Blog" href="https://agenthive.local/blog/feed.xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
@@ -45,13 +45,13 @@
   "@type": "BlogPosting",
   "headline": "Inside the GOD Orchestrator: Routing, Adjudication, Escalation",
   "description": "A deep dive into the Claude Code orchestrator: how a GOD agent reads requests, routes work, adjudicates routine traffic, and escalates the critical few.",
-  "image": ["https://agenthive.local/media/og.png"],
+  "image": ["https://munderdiffl.in/media/og.png"],
   "datePublished": "2026-05-30T00:00:00.000Z",
   "dateModified": "2026-05-30T00:00:00.000Z",
-  "author": { "@type": "Person", "name": "Ayush Singh" },
+  "author": { "@type": "Person", "name": "Chaitanya Giri" },
   "publisher": {
     "@type": "Organization",
-    "name": "AgentHive",
+    "name": "Munder Difflin",
     "logo": { "@type": "ImageObject", "url": "https://agenthive.local/logo.png" }
   },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://agenthive.local/blog/how-the-god-orchestrator-works/" },
@@ -114,8 +114,8 @@
 <body class="theme-press">
 <a class="skip-link" href="#main">Skip to content</a>
 <nav id="nav">
-  <a class="brand" href="https://agenthive.local" aria-label="AgentHive home">
-    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+  <a class="brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
   </a>
   <span class="spacer"></span>
   <div class="links">
@@ -142,8 +142,8 @@
     <h1>Inside the GOD Orchestrator: Routing, Adjudication, Escalation</h1>
     <p class="dek">A deep dive into the Claude Code orchestrator: how a GOD agent reads requests, routes work, adjudicates routine traffic, and escalates the critical few.</p>
     <div class="byline">
-      <span class="av" aria-hidden="true">AS</span>
-      <strong>Ayush Singh</strong>
+      <span class="av" aria-hidden="true">CG</span>
+      <strong>Chaitanya Giri</strong>
       <span class="dot" aria-hidden="true">·</span>
       <time datetime="2026-05-30">May 30, 2026</time>
       <span class="dot" aria-hidden="true">·</span>
@@ -163,7 +163,7 @@ single-committer git, and a human-approval queue). Its four jobs: keep the <stro
 <strong>route</strong> work, <strong>adjudicate</strong> routine inter-agent traffic, and
 <strong>escalate</strong> only the critical few to you.</p></div>
 <p>Every multi-agent system eventually needs one agent in charge — not to do the work, but to decide who
-does. In AgentHive that’s the <strong>GOD orchestrator</strong>. This is a deep dive into how it actually
+does. In Munder Difflin that’s the <strong>GOD orchestrator</strong>. This is a deep dive into how it actually
 works: the split between intelligence and mechanism, the four jobs it owns, and the rules that keep it
 from looping or going rogue.</p>
 <h2 id="intelligence-vs-mechanism" tabindex="-1">Intelligence vs. mechanism <a class="anchor" href="#intelligence-vs-mechanism" aria-hidden="true">#</a></h2>
@@ -291,8 +291,8 @@ off your plate.</p>
 room, naturally), with a reserved desk. It boots with the hive and runs alongside the workers as just
 another <code>claude</code> process — a special one.</p>
 <hr>
-<p>AgentHive’s <a href="https://agenthive.local/#how">GOD orchestrator</a> routes, adjudicates, and escalates for a whole hive of Claude Code
-agents — on your own machine, with a full audit trail. <a href="https://agenthive.local/#install">Download AgentHive</a>
+<p>Munder Difflin’s <a href="https://munderdiffl.in/#how">GOD orchestrator</a> routes, adjudicates, and escalates for a whole hive of Claude Code
+agents — on your own machine, with a full audit trail. <a href="https://munderdiffl.in/#install">Download Munder Difflin</a>
 to put one in charge of your floor; it’s free and open source.</p>
 
 
@@ -353,7 +353,7 @@ to put one in charge of your floor; it’s free and open source.</p>
       <span>7 min</span>
     </div>
     <h3><a href="/blog/deploy-automated-pr-reviewer-agent/">Deploy a PR Reviewer That Never Sleeps — In About One Prompt</a></h3>
-    <p class="dek">A how-to for standing up a fully automated PR-reviewing agent in AgentHive — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue.</p>
+    <p class="dek">A how-to for standing up a fully automated PR-reviewing agent in Munder Difflin — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue.</p>
     <div class="foot">
       <span class="tag kind">Orchestration</span>
       <a class="more" href="/blog/deploy-automated-pr-reviewer-agent/" aria-label="Read: Deploy a PR Reviewer That Never Sleeps — In About One Prompt">Read →</a>
@@ -403,8 +403,8 @@ to put one in charge of your floor; it’s free and open source.</p>
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-top">
-      <a class="foot-brand brand" href="https://agenthive.local" aria-label="AgentHive home">
-        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+      <a class="foot-brand brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
       </a>
       <div class="foot-links">
         <a href="/blog/">Latest</a>
@@ -412,11 +412,11 @@ to put one in charge of your floor; it’s free and open source.</p>
         <a href="/blog/about/">About</a>
         <a href="https://agenthive.local/blog/feed.xml">RSS</a>
         <a href="https://github.com/ayushvsingh2611-code/office">GitHub</a>
-        <a href="https://agenthive.local">agenthive.local ↗</a>
+        <a href="https://agenthive.local">munderdiffl.in ↗</a>
       </div>
     </div>
     <div class="foot-meta">
-      © 2026 AgentHive · Local-first · MIT-licensed ·
+      © 2026 Munder Difflin · Local-first · MIT-licensed ·
       Built on <a href="https://agenthive.local">Electron, React, Pixi.js, xterm.js &amp; node-pty</a>.
       Run an office of agents while you sleep.
     </div>

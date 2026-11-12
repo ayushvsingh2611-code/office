@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GitHub Copilot CLI vs Claude Code as Hive Workers — AgentHive Engineering Hub</title>
+<title>GitHub Copilot CLI vs Claude Code as Hive Workers — AgentHive Blog</title>
 <meta name="description" content="How GitHub Copilot CLI and Claude Code behave as agent engines inside a multi-agent harness: hooks, inbox mail, orchestration, session lifecycle — and why the right answer is to run both." />
 <link rel="canonical" href="https://agenthive.local/blog/github-copilot-cli-vs-claude-code-for-hive-work/" />
 
@@ -12,15 +12,15 @@
 <meta name="theme-color" content="#F5F2E8" />
 
 <!-- Open Graph -->
-<meta property="og:site_name" content="AgentHive Engineering Hub" />
+<meta property="og:site_name" content="AgentHive Blog" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="GitHub Copilot CLI vs Claude Code as Hive Workers — AgentHive Engineering Hub" />
+<meta property="og:title" content="GitHub Copilot CLI vs Claude Code as Hive Workers — AgentHive Blog" />
 <meta property="og:description" content="How GitHub Copilot CLI and Claude Code behave as agent engines inside a multi-agent harness: hooks, inbox mail, orchestration, session lifecycle — and why the right answer is to run both." />
 <meta property="og:url" content="https://agenthive.local/blog/github-copilot-cli-vs-claude-code-for-hive-work/" />
-<meta property="og:image" content="https://agenthive.local/media/og.png" />
+<meta property="og:image" content="https://munderdiffl.in/media/og.png" />
 <meta property="og:locale" content="en_US" />
 <meta property="article:published_time" content="2026-07-03T00:00:00.000Z" />
-<meta property="article:author" content="Ayush Singh" />
+<meta property="article:author" content="Chaitanya Giri" />
 <meta property="article:tag" content="Comparisons" />
 <meta property="article:tag" content="Claude Code" />
 <meta property="article:tag" content="Copilot CLI" />
@@ -30,11 +30,11 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="GitHub Copilot CLI vs Claude Code as Hive Workers — AgentHive Engineering Hub" />
+<meta name="twitter:title" content="GitHub Copilot CLI vs Claude Code as Hive Workers — AgentHive Blog" />
 <meta name="twitter:description" content="How GitHub Copilot CLI and Claude Code behave as agent engines inside a multi-agent harness: hooks, inbox mail, orchestration, session lifecycle — and why the right answer is to run both." />
-<meta name="twitter:image" content="https://agenthive.local/media/og.png" />
+<meta name="twitter:image" content="https://munderdiffl.in/media/og.png" />
 
-<link rel="alternate" type="application/atom+xml" title="AgentHive Engineering Hub" href="https://agenthive.local/blog/feed.xml" />
+<link rel="alternate" type="application/atom+xml" title="AgentHive Blog" href="https://agenthive.local/blog/feed.xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
@@ -46,13 +46,13 @@
   "@type": "BlogPosting",
   "headline": "GitHub Copilot CLI vs Claude Code as Hive Workers",
   "description": "How GitHub Copilot CLI and Claude Code behave as agent engines inside a multi-agent harness: hooks, inbox mail, orchestration, session lifecycle — and why the right answer is to run both.",
-  "image": ["https://agenthive.local/media/og.png"],
+  "image": ["https://munderdiffl.in/media/og.png"],
   "datePublished": "2026-07-03T00:00:00.000Z",
   "dateModified": "2026-07-03T00:00:00.000Z",
-  "author": { "@type": "Person", "name": "Ayush Singh" },
+  "author": { "@type": "Person", "name": "Chaitanya Giri" },
   "publisher": {
     "@type": "Organization",
-    "name": "AgentHive",
+    "name": "Munder Difflin",
     "logo": { "@type": "ImageObject", "url": "https://agenthive.local/logo.png" }
   },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://agenthive.local/blog/github-copilot-cli-vs-claude-code-for-hive-work/" },
@@ -80,11 +80,11 @@
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "Can GitHub Copilot CLI work as an agent in a multi-agent system?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, with a specific shape. Copilot CLI's documented programmatic mode (copilot -p) executes one prompt and exits after completion, which makes it excellent for dispatched, self-contained tasks: hand it a scoped job, it runs autonomously with --allow-all-tools and --no-ask-user, returns a result, and terminates. What it can't do in that mode is stay resident and react to incoming messages, because there is no long-lived process to deliver them to." } },
-    { "@type": "Question", "name": "Why is Claude Code better suited to long-lived hive work?", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code exposes lifecycle hooks that an external harness can attach to. In AgentHive, those hooks let the harness see every turn, gate actions for human approval, steer mid-run, and — critically — drain the agent's inbox at the end of each turn via the Stop hook, so a Claude worker picks up new mail without being respawned. That persistent, observable lifecycle is what makes it eligible to be a worker that converses, or the GOD orchestrator itself." } },
-    { "@type": "Question", "name": "What happens when you send a message to a Copilot CLI worker in AgentHive?", "acceptedAnswer": { "@type": "Answer", "text": "It doesn't silently disappear — it bounces to the GOD orchestrator. Because Copilot's print mode exits per turn, there's no resident process with a hook bridge to drain an inbox, so the provider is registered with canReceiveInbox set to false and routed mail is redirected to the orchestrator, which can re-dispatch the work as a fresh Copilot task or hand it to a hive-aware worker." } },
-    { "@type": "Question", "name": "Does GitHub Copilot CLI have hooks of its own?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Copilot CLI supports hooks defined in JSON files (in .github/hooks/ per repo or ~/.copilot/hooks/ personally), including sessionStart and sessionEnd events, plus MCP servers and custom instructions. AgentHive's v0.3.3 integration doesn't bridge those into the hive yet — it drives the documented print mode, where the process exits after each prompt — so within the harness a Copilot worker is non-hive-aware by design." } },
+    { "@type": "Question", "name": "Why is Claude Code better suited to long-lived hive work?", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code exposes lifecycle hooks that an external harness can attach to. In Munder Difflin, those hooks let the harness see every turn, gate actions for human approval, steer mid-run, and — critically — drain the agent's inbox at the end of each turn via the Stop hook, so a Claude worker picks up new mail without being respawned. That persistent, observable lifecycle is what makes it eligible to be a worker that converses, or the GOD orchestrator itself." } },
+    { "@type": "Question", "name": "What happens when you send a message to a Copilot CLI worker in Munder Difflin?", "acceptedAnswer": { "@type": "Answer", "text": "It doesn't silently disappear — it bounces to the GOD orchestrator. Because Copilot's print mode exits per turn, there's no resident process with a hook bridge to drain an inbox, so the provider is registered with canReceiveInbox set to false and routed mail is redirected to the orchestrator, which can re-dispatch the work as a fresh Copilot task or hand it to a hive-aware worker." } },
+    { "@type": "Question", "name": "Does GitHub Copilot CLI have hooks of its own?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Copilot CLI supports hooks defined in JSON files (in .github/hooks/ per repo or ~/.copilot/hooks/ personally), including sessionStart and sessionEnd events, plus MCP servers and custom instructions. Munder Difflin's v0.3.3 integration doesn't bridge those into the hive yet — it drives the documented print mode, where the process exits after each prompt — so within the harness a Copilot worker is non-hive-aware by design." } },
     { "@type": "Question", "name": "How is Copilot CLI billed compared to Claude Code?", "acceptedAnswer": { "@type": "Answer", "text": "Copilot CLI authenticates with your existing GitHub Copilot login and consumes premium requests from your Copilot plan — GitHub documents one premium request per prompt on the default model, multiplied by the model's rate for others. Claude Code runs on your Anthropic plan or API key. Practically, that means a mixed hive spreads work across two subscriptions you may already be paying for." } },
-    { "@type": "Question", "name": "Should I pick one engine or mix them?", "acceptedAnswer": { "@type": "Answer", "text": "Mix them. Use Claude Code for the orchestrator and long-lived workers that need to receive mail, converse across turns, and run under hook-driven guardrails. Use Copilot CLI workers for burst work: scoped, self-contained tasks dispatched by the orchestrator that finish in one shot. AgentHive lets you choose the engine per hire, so this is a per-agent decision, not a platform decision." } }
+    { "@type": "Question", "name": "Should I pick one engine or mix them?", "acceptedAnswer": { "@type": "Answer", "text": "Mix them. Use Claude Code for the orchestrator and long-lived workers that need to receive mail, converse across turns, and run under hook-driven guardrails. Use Copilot CLI workers for burst work: scoped, self-contained tasks dispatched by the orchestrator that finish in one shot. Munder Difflin lets you choose the engine per hire, so this is a per-agent decision, not a platform decision." } }
     
   ]
 }
@@ -118,8 +118,8 @@
 <body class="theme-press">
 <a class="skip-link" href="#main">Skip to content</a>
 <nav id="nav">
-  <a class="brand" href="https://agenthive.local" aria-label="AgentHive home">
-    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+  <a class="brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
   </a>
   <span class="spacer"></span>
   <div class="links">
@@ -146,8 +146,8 @@
     <h1>GitHub Copilot CLI vs Claude Code as Hive Workers</h1>
     <p class="dek">How GitHub Copilot CLI and Claude Code behave as agent engines inside a multi-agent harness: hooks, inbox mail, orchestration, session lifecycle — and why the right answer is to run both.</p>
     <div class="byline">
-      <span class="av" aria-hidden="true">AS</span>
-      <strong>Ayush Singh</strong>
+      <span class="av" aria-hidden="true">CG</span>
+      <strong>Chaitanya Giri</strong>
       <span class="dot" aria-hidden="true">·</span>
       <time datetime="2026-07-03">Jul 3, 2026</time>
       <span class="dot" aria-hidden="true">·</span>
@@ -160,8 +160,8 @@
 
   <div class="post-wrap wrap">
     <div class="prose">
-      <div class="callout tldr"><span class="ic">TL;DR</span><p>Inside a multi-agent harness, the engine question isn't "which CLI writes better code" — it's <strong>what lifecycle the process exposes</strong>. <strong>Claude Code</strong> runs as a long-lived session with native hooks, so AgentHive can gate it, steer it, <strong>drain its inbox on the Stop hook</strong>, and even make it the GOD orchestrator. <strong>GitHub Copilot CLI</strong> (new in v0.3.3) runs in its documented print mode — <code>copilot -p</code> — which <strong>exits after every prompt</strong>: brilliant for dispatched, self-contained tasks on your existing Copilot subscription, but with no resident process to receive mail, routed messages <strong>bounce to the orchestrator</strong> instead. Verdict: <strong>mix them</strong> — Claude as orchestrator and long-lived workers, Copilot for burst tasks.</p></div>
-<p>AgentHive v0.3.3 added GitHub Copilot CLI as its seventh agent engine — the project’s first community-contributed provider (<a href="https://github.com/ayushvsingh2611-code/office/pull/101">PR #101</a> by @anxkhn). That makes a comparison suddenly practical rather than theoretical: you can hire a Claude Code worker and a Copilot worker onto the same floor and watch them behave differently. This post is about <em>that</em> difference — not “which model is smarter,” but how each CLI behaves as a <strong>worker inside a hive</strong>.</p>
+      <div class="callout tldr"><span class="ic">TL;DR</span><p>Inside a multi-agent harness, the engine question isn't "which CLI writes better code" — it's <strong>what lifecycle the process exposes</strong>. <strong>Claude Code</strong> runs as a long-lived session with native hooks, so Munder Difflin can gate it, steer it, <strong>drain its inbox on the Stop hook</strong>, and even make it the GOD orchestrator. <strong>GitHub Copilot CLI</strong> (new in v0.3.3) runs in its documented print mode — <code>copilot -p</code> — which <strong>exits after every prompt</strong>: brilliant for dispatched, self-contained tasks on your existing Copilot subscription, but with no resident process to receive mail, routed messages <strong>bounce to the orchestrator</strong> instead. Verdict: <strong>mix them</strong> — Claude as orchestrator and long-lived workers, Copilot for burst tasks.</p></div>
+<p>Munder Difflin v0.3.3 added GitHub Copilot CLI as its seventh agent engine — the project’s first community-contributed provider (<a href="https://github.com/chaitanyagiri/munder-difflin/pull/101">PR #101</a> by @anxkhn). That makes a comparison suddenly practical rather than theoretical: you can hire a Claude Code worker and a Copilot worker onto the same floor and watch them behave differently. This post is about <em>that</em> difference — not “which model is smarter,” but how each CLI behaves as a <strong>worker inside a hive</strong>.</p>
 <p>Both are genuinely good tools. The differences below are lifecycle differences, and lifecycle is what a harness cares about.</p>
 <h2 id="the-thing-a-harness-actually-needs-from-an-engine" tabindex="-1">The thing a harness actually needs from an engine <a class="anchor" href="#the-thing-a-harness-actually-needs-from-an-engine" aria-hidden="true">#</a></h2>
 <p>A <a href="/blog/what-is-a-multi-agent-harness/">multi-agent harness</a> wraps real CLI processes and coordinates them: routing messages between inboxes, gating destructive actions, tracking turns, waking idle agents when mail arrives. To do all that, it needs answers from the engine to three questions:</p>
@@ -173,7 +173,7 @@
 <p>Claude Code and Copilot CLI give very different answers — and neither answer is wrong. They’re different shapes for different jobs.</p>
 <figure class="fig fig-inline"><img src="/blog/assets/media/github-copilot-cli-vs-claude-code-for-hive-work/note-1.png" alt="Hand-drawn sketch from “GitHub Copilot CLI vs Claude Code as Hive Workers”" loading="lazy" decoding="async" /></figure>
 <h2 id="claude-code-the-hive-aware-resident" tabindex="-1">Claude Code: the hive-aware resident <a class="anchor" href="#claude-code-the-hive-aware-resident" aria-hidden="true">#</a></h2>
-<p>Claude Code runs as a persistent interactive session in its pseudo-terminal, and it exposes native hooks — external commands fired at lifecycle points. AgentHive leans on those hard:</p>
+<p>Claude Code runs as a persistent interactive session in its pseudo-terminal, and it exposes native hooks — external commands fired at lifecycle points. Munder Difflin leans on those hard:</p>
 <ul>
 <li><strong>Turn-end inbox drain.</strong> When a Claude worker finishes a turn, the Stop hook fires and the harness checks the agent’s mailbox. If mail is waiting, the agent drains it <em>in the same session</em> — no respawn, no lost context. This is what makes a worker conversational: other agents can message it and it will actually respond.</li>
 <li><strong>Hook-driven guardrails.</strong> The human-in-the-loop gate, mid-run steering, and graceful stop are all driven through Claude Code hook returns — you can intervene without killing the session.</li>
@@ -181,16 +181,16 @@
 </ul>
 <p>If you want the deeper treatment of driving Claude Code as a coordinated fleet, see the <a href="/blog/claude-code-orchestration-guide/">Claude Code orchestration guide</a>.</p>
 <h2 id="github-copilot-cli-the-burst-specialist" tabindex="-1">GitHub Copilot CLI: the burst specialist <a class="anchor" href="#github-copilot-cli-the-burst-specialist" aria-hidden="true">#</a></h2>
-<p>GitHub Copilot CLI is GitHub’s terminal agent, and its docs describe two modes: an interactive session, and a <strong>programmatic mode</strong> built for scripting — per GitHub’s own reference, <code>-p</code> will “execute a prompt programmatically (exits after completion).” That exit-per-turn behavior is the documented design, and AgentHive drives it exactly as documented. The spawn shape from the v0.3.3 changelog:</p>
+<p>GitHub Copilot CLI is GitHub’s terminal agent, and its docs describe two modes: an interactive session, and a <strong>programmatic mode</strong> built for scripting — per GitHub’s own reference, <code>-p</code> will “execute a prompt programmatically (exits after completion).” That exit-per-turn behavior is the documented design, and Munder Difflin drives it exactly as documented. The spawn shape from the v0.3.3 changelog:</p>
 <pre><code>copilot -p &quot;&lt;prompt&gt;&quot; -s --allow-all-tools --no-ask-user [--model &lt;id&gt;]
 </code></pre>
-<p>Piece by piece: <code>-p</code> passes the task, <code>-s</code> (silent) outputs only the agent response, <code>--allow-all-tools</code> auto-approves tool use (GitHub notes it’s required for programmatic runs — and in AgentHive these auto-approval flags are gated by the floor’s auto-mode toggle, like every other engine), and <code>--no-ask-user</code> disables clarifying questions so the run is fully autonomous. There’s a model picker (Claude Sonnet 4.5 by default, GPT-5.4, or <code>auto</code>) and best-effort <code>--resume</code> session continuity.</p>
+<p>Piece by piece: <code>-p</code> passes the task, <code>-s</code> (silent) outputs only the agent response, <code>--allow-all-tools</code> auto-approves tool use (GitHub notes it’s required for programmatic runs — and in Munder Difflin these auto-approval flags are gated by the floor’s auto-mode toggle, like every other engine), and <code>--no-ask-user</code> disables clarifying questions so the run is fully autonomous. There’s a model picker (Claude Sonnet 4.5 by default, GPT-5.4, or <code>auto</code>) and best-effort <code>--resume</code> session continuity.</p>
 <p>Two things make Copilot workers genuinely attractive:</p>
 <ul>
 <li><strong>It’s on your existing subscription.</strong> Copilot CLI authenticates with your GitHub Copilot login — no new API key. GitHub bills it in premium requests (one per prompt on the default model, times the model’s multiplier), drawing from the allowance you may already have.</li>
 <li><strong>Exit-per-turn is a feature for dispatched work.</strong> A scoped task arrives, the process runs it to completion with no residual state, and terminates cleanly. For burst tasks, that’s exactly what you want.</li>
 </ul>
-<p>The honest limitation: with no resident process between turns, there’s nothing to deliver inbox mail <em>to</em>. So in AgentHive, Copilot’s provider is registered non-hive-aware (<code>canReceiveInbox: false</code>), and routed mail <strong>bounces to the GOD orchestrator</strong> instead of silently dropping. The orchestrator can then re-dispatch it as a fresh Copilot task or hand it to a hive-aware worker.</p>
+<p>The honest limitation: with no resident process between turns, there’s nothing to deliver inbox mail <em>to</em>. So in Munder Difflin, Copilot’s provider is registered non-hive-aware (<code>canReceiveInbox: false</code>), and routed mail <strong>bounces to the GOD orchestrator</strong> instead of silently dropping. The orchestrator can then re-dispatch it as a fresh Copilot task or hand it to a hive-aware worker.</p>
 <p>To be fair to Copilot CLI: the tool itself is more extensible than the print-mode integration uses. GitHub ships its own hooks system (JSON files in <code>.github/hooks/</code> or <code>~/.copilot/hooks/</code>, with <code>sessionStart</code>/<code>sessionEnd</code> events), MCP server support, and custom instructions. A deeper bridge is conceivable; v0.3.3 ships the documented, honest version.</p>
 <figure class="fig fig-inline"><img src="/blog/assets/media/github-copilot-cli-vs-claude-code-for-hive-work/note-2.png" alt="Hand-drawn sketch from “GitHub Copilot CLI vs Claude Code as Hive Workers”" loading="lazy" decoding="async" /></figure>
 <h2 id="verdict-dont-pick-mix" tabindex="-1">Verdict: don’t pick — mix <a class="anchor" href="#verdict-dont-pick-mix" aria-hidden="true">#</a></h2>
@@ -236,10 +236,10 @@
 </tr>
 </tbody>
 </table>
-<p>Because AgentHive makes the engine a per-hire choice, this isn’t an either/or. The pattern that works: <strong>Claude Code as the orchestrator and your long-lived workers</strong> — the agents that need to receive messages, hold context across turns, and run under hook-driven approval gates — and <strong>Copilot CLI workers for burst tasks</strong> the orchestrator dispatches: a scoped refactor, a test-writing pass, a one-shot investigation. Different engines for different roles is the general lesson of mixed fleets, and it also spreads cost across two subscriptions you likely already pay for.</p>
+<p>Because Munder Difflin makes the engine a per-hire choice, this isn’t an either/or. The pattern that works: <strong>Claude Code as the orchestrator and your long-lived workers</strong> — the agents that need to receive messages, hold context across turns, and run under hook-driven approval gates — and <strong>Copilot CLI workers for burst tasks</strong> the orchestrator dispatches: a scoped refactor, a test-writing pass, a one-shot investigation. Different engines for different roles is the general lesson of mixed fleets, and it also spreads cost across two subscriptions you likely already pay for.</p>
 <p>For everything else in the release — including the built-in Monaco IDE — see the <a href="/blog/launching-munder-difflin-v0-3-3/">v0.3.3 launch post</a>.</p>
 <h2 id="try-both-on-one-floor" tabindex="-1">Try both on one floor <a class="anchor" href="#try-both-on-one-floor" aria-hidden="true">#</a></h2>
-<p>Hire a Claude worker and a Copilot worker side by side and watch the difference yourself — <a href="https://github.com/ayushvsingh2611-code/office/releases/latest">download AgentHive</a> (free, MIT, local-first), and if it’s useful, <a href="https://github.com/ayushvsingh2611-code/office">a GitHub star</a> helps more people find it.</p>
+<p>Hire a Claude worker and a Copilot worker side by side and watch the difference yourself — <a href="https://github.com/chaitanyagiri/munder-difflin/releases/latest">download Munder Difflin</a> (free, MIT, local-first), and if it’s useful, <a href="https://github.com/chaitanyagiri/munder-difflin">a GitHub star</a> helps more people find it.</p>
 <p>Sources: <a href="https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference">GitHub Docs — Copilot CLI command reference</a>;
 <a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/automate-copilot-cli/run-cli-programmatically">GitHub Docs — Running Copilot CLI programmatically</a>;
 <a href="https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli">GitHub Docs — About Copilot CLI</a>;
@@ -258,17 +258,17 @@
         
         <div class="qa">
           <p class="q">Why is Claude Code better suited to long-lived hive work?</p>
-          <p class="a">Claude Code exposes lifecycle hooks that an external harness can attach to. In AgentHive, those hooks let the harness see every turn, gate actions for human approval, steer mid-run, and — critically — drain the agent&#39;s inbox at the end of each turn via the Stop hook, so a Claude worker picks up new mail without being respawned. That persistent, observable lifecycle is what makes it eligible to be a worker that converses, or the GOD orchestrator itself.</p>
+          <p class="a">Claude Code exposes lifecycle hooks that an external harness can attach to. In Munder Difflin, those hooks let the harness see every turn, gate actions for human approval, steer mid-run, and — critically — drain the agent&#39;s inbox at the end of each turn via the Stop hook, so a Claude worker picks up new mail without being respawned. That persistent, observable lifecycle is what makes it eligible to be a worker that converses, or the GOD orchestrator itself.</p>
         </div>
         
         <div class="qa">
-          <p class="q">What happens when you send a message to a Copilot CLI worker in AgentHive?</p>
+          <p class="q">What happens when you send a message to a Copilot CLI worker in Munder Difflin?</p>
           <p class="a">It doesn&#39;t silently disappear — it bounces to the GOD orchestrator. Because Copilot&#39;s print mode exits per turn, there&#39;s no resident process with a hook bridge to drain an inbox, so the provider is registered with canReceiveInbox set to false and routed mail is redirected to the orchestrator, which can re-dispatch the work as a fresh Copilot task or hand it to a hive-aware worker.</p>
         </div>
         
         <div class="qa">
           <p class="q">Does GitHub Copilot CLI have hooks of its own?</p>
-          <p class="a">Yes. Copilot CLI supports hooks defined in JSON files (in .github/hooks/ per repo or ~/.copilot/hooks/ personally), including sessionStart and sessionEnd events, plus MCP servers and custom instructions. AgentHive&#39;s v0.3.3 integration doesn&#39;t bridge those into the hive yet — it drives the documented print mode, where the process exits after each prompt — so within the harness a Copilot worker is non-hive-aware by design.</p>
+          <p class="a">Yes. Copilot CLI supports hooks defined in JSON files (in .github/hooks/ per repo or ~/.copilot/hooks/ personally), including sessionStart and sessionEnd events, plus MCP servers and custom instructions. Munder Difflin&#39;s v0.3.3 integration doesn&#39;t bridge those into the hive yet — it drives the documented print mode, where the process exits after each prompt — so within the harness a Copilot worker is non-hive-aware by design.</p>
         </div>
         
         <div class="qa">
@@ -278,7 +278,7 @@
         
         <div class="qa">
           <p class="q">Should I pick one engine or mix them?</p>
-          <p class="a">Mix them. Use Claude Code for the orchestrator and long-lived workers that need to receive mail, converse across turns, and run under hook-driven guardrails. Use Copilot CLI workers for burst work: scoped, self-contained tasks dispatched by the orchestrator that finish in one shot. AgentHive lets you choose the engine per hire, so this is a per-agent decision, not a platform decision.</p>
+          <p class="a">Mix them. Use Claude Code for the orchestrator and long-lived workers that need to receive mail, converse across turns, and run under hook-driven guardrails. Use Copilot CLI workers for burst work: scoped, self-contained tasks dispatched by the orchestrator that finish in one shot. Munder Difflin lets you choose the engine per hire, so this is a per-agent decision, not a platform decision.</p>
         </div>
         
       </section>
@@ -311,6 +311,22 @@
       <h2>Related in Comparisons</h2>
       <div class="post-grid">
         <article class="card t-comparisons">
+  <a class="thumb t-comparisons" href="/blog/indian-open-source-ai-projects-vs-big-tech/" aria-hidden="true" tabindex="-1"><img src="/blog/assets/media/best-ai-coding-agents/hero.png" alt="" loading="lazy" decoding="async" /></a>
+  <div class="body">
+    <div class="meta">
+      <time datetime="2026-09-25">Sep 25, 2026</time>
+      <span class="dot" aria-hidden="true"></span>
+      <span>6 min</span>
+    </div>
+    <h3><a href="/blog/indian-open-source-ai-projects-vs-big-tech/">Top 10 Indian open source projects that are giving US big tech a tough time</a></h3>
+    <p class="dek">Ten open source AI projects from Indian developers, each lined up against the big tech product it takes on. Laya vs Jev, AgentHive vs Muse and Grok Bot.</p>
+    <div class="foot">
+      <span class="tag kind">Comparisons</span>
+      <a class="more" href="/blog/indian-open-source-ai-projects-vs-big-tech/" aria-label="Read: Top 10 Indian open source projects that are giving US big tech a tough time">Read →</a>
+    </div>
+  </div>
+</article>
+<article class="card t-comparisons">
   <a class="thumb t-comparisons" href="/blog/qm-vs-munder-difflin/" aria-hidden="true" tabindex="-1"><img src="/blog/assets/media/qm-vs-munder-difflin/hero.png" alt="" loading="lazy" decoding="async" /></a>
   <div class="body">
     <div class="meta">
@@ -318,11 +334,11 @@
       <span class="dot" aria-hidden="true"></span>
       <span>3 min</span>
     </div>
-    <h3><a href="/blog/qm-vs-munder-difflin/">qm vs AgentHive: YC&#39;s Multiplayer Harness or a Local-First Agent Office?</a></h3>
-    <p class="dek">An honest comparison of YC&#39;s qm and AgentHive: both orchestrate fleets of CLI coding agents with security postures, scheduled background work, and Slack — one as a headless multiplayer harness for teams, one as a local-first desktop office with real terminals, voice, and a built-in IDE.</p>
+    <h3><a href="/blog/qm-vs-munder-difflin/">qm vs Munder Difflin: YC&#39;s Multiplayer Harness or a Local-First Agent Office?</a></h3>
+    <p class="dek">An honest comparison of YC&#39;s qm and Munder Difflin: both orchestrate fleets of CLI coding agents with security postures, scheduled background work, and Slack — one as a headless multiplayer harness for teams, one as a local-first desktop office with real terminals, voice, and a built-in IDE.</p>
     <div class="foot">
       <span class="tag kind">Comparisons</span>
-      <a class="more" href="/blog/qm-vs-munder-difflin/" aria-label="Read: qm vs AgentHive: YC&#39;s Multiplayer Harness or a Local-First Agent Office?">Read →</a>
+      <a class="more" href="/blog/qm-vs-munder-difflin/" aria-label="Read: qm vs Munder Difflin: YC&#39;s Multiplayer Harness or a Local-First Agent Office?">Read →</a>
     </div>
   </div>
 </article>
@@ -342,22 +358,6 @@
     </div>
   </div>
 </article>
-<article class="card t-comparisons">
-  <a class="thumb t-comparisons" href="/blog/orca-vs-munder-difflin/" aria-hidden="true" tabindex="-1"><img src="/blog/assets/media/orca-vs-munder-difflin/hero.png" alt="" loading="lazy" decoding="async" /></a>
-  <div class="body">
-    <div class="meta">
-      <time datetime="2026-07-03">Jul 3, 2026</time>
-      <span class="dot" aria-hidden="true"></span>
-      <span>5 min</span>
-    </div>
-    <h3><a href="/blog/orca-vs-munder-difflin/">Orca vs AgentHive: Agent IDE or Agent Office?</a></h3>
-    <p class="dek">Orca is a YC-backed Agent IDE for driving coding agents side by side in isolated worktrees. AgentHive is an agent office that runs itself. An honest comparison of the two — and when each one is the right pick.</p>
-    <div class="foot">
-      <span class="tag kind">Comparisons</span>
-      <a class="more" href="/blog/orca-vs-munder-difflin/" aria-label="Read: Orca vs AgentHive: Agent IDE or Agent Office?">Read →</a>
-    </div>
-  </div>
-</article>
 
       </div>
     </section>
@@ -369,8 +369,8 @@
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-top">
-      <a class="foot-brand brand" href="https://agenthive.local" aria-label="AgentHive home">
-        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+      <a class="foot-brand brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
       </a>
       <div class="foot-links">
         <a href="/blog/">Latest</a>
@@ -378,11 +378,11 @@
         <a href="/blog/about/">About</a>
         <a href="https://agenthive.local/blog/feed.xml">RSS</a>
         <a href="https://github.com/ayushvsingh2611-code/office">GitHub</a>
-        <a href="https://agenthive.local">agenthive.local ↗</a>
+        <a href="https://agenthive.local">munderdiffl.in ↗</a>
       </div>
     </div>
     <div class="foot-meta">
-      © 2026 AgentHive · Local-first · MIT-licensed ·
+      © 2026 Munder Difflin · Local-first · MIT-licensed ·
       Built on <a href="https://agenthive.local">Electron, React, Pixi.js, xterm.js &amp; node-pty</a>.
       Run an office of agents while you sleep.
     </div>

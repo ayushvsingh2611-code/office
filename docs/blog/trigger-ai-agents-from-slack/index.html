@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Trigger Your AI Agent Hive from Slack — AgentHive Engineering Hub</title>
+<title>Trigger Your AI Agent Hive from Slack — AgentHive Blog</title>
 <meta name="description" content="Trigger an AI agent hive from Slack: a local webhook verifies each message and drops it into your orchestrator&#39;s queue as a task — no server to host." />
 <link rel="canonical" href="https://agenthive.local/blog/trigger-ai-agents-from-slack/" />
 
@@ -12,15 +12,15 @@
 <meta name="theme-color" content="#F5F2E8" />
 
 <!-- Open Graph -->
-<meta property="og:site_name" content="AgentHive Engineering Hub" />
+<meta property="og:site_name" content="AgentHive Blog" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Trigger Your AI Agent Hive from Slack — AgentHive Engineering Hub" />
+<meta property="og:title" content="Trigger Your AI Agent Hive from Slack — AgentHive Blog" />
 <meta property="og:description" content="Trigger an AI agent hive from Slack: a local webhook verifies each message and drops it into your orchestrator&#39;s queue as a task — no server to host." />
 <meta property="og:url" content="https://agenthive.local/blog/trigger-ai-agents-from-slack/" />
-<meta property="og:image" content="https://agenthive.local/media/og.png" />
+<meta property="og:image" content="https://munderdiffl.in/media/og.png" />
 <meta property="og:locale" content="en_US" />
 <meta property="article:published_time" content="2026-06-04T00:00:00.000Z" />
-<meta property="article:author" content="Ayush Singh" />
+<meta property="article:author" content="Chaitanya Giri" />
 <meta property="article:tag" content="Guides" />
 <meta property="article:tag" content="Automation" />
 <meta property="article:tag" content="Slack" />
@@ -29,11 +29,11 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Trigger Your AI Agent Hive from Slack — AgentHive Engineering Hub" />
+<meta name="twitter:title" content="Trigger Your AI Agent Hive from Slack — AgentHive Blog" />
 <meta name="twitter:description" content="Trigger an AI agent hive from Slack: a local webhook verifies each message and drops it into your orchestrator&#39;s queue as a task — no server to host." />
-<meta name="twitter:image" content="https://agenthive.local/media/og.png" />
+<meta name="twitter:image" content="https://munderdiffl.in/media/og.png" />
 
-<link rel="alternate" type="application/atom+xml" title="AgentHive Engineering Hub" href="https://agenthive.local/blog/feed.xml" />
+<link rel="alternate" type="application/atom+xml" title="AgentHive Blog" href="https://agenthive.local/blog/feed.xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
@@ -45,13 +45,13 @@
   "@type": "BlogPosting",
   "headline": "Trigger Your AI Agent Hive from Slack",
   "description": "Trigger an AI agent hive from Slack: a local webhook verifies each message and drops it into your orchestrator's queue as a task — no server to host.",
-  "image": ["https://agenthive.local/media/og.png"],
+  "image": ["https://munderdiffl.in/media/og.png"],
   "datePublished": "2026-06-04T00:00:00.000Z",
   "dateModified": "2026-06-04T00:00:00.000Z",
-  "author": { "@type": "Person", "name": "Ayush Singh" },
+  "author": { "@type": "Person", "name": "Chaitanya Giri" },
   "publisher": {
     "@type": "Organization",
-    "name": "AgentHive",
+    "name": "Munder Difflin",
     "logo": { "@type": "ImageObject", "url": "https://agenthive.local/logo.png" }
   },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://agenthive.local/blog/trigger-ai-agents-from-slack/" },
@@ -78,7 +78,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Can you trigger AI agents from Slack?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. AgentHive can run a small local webhook that listens to a Slack channel and turns each message into a task in the orchestrator's queue. You type in Slack, and an agent picks the work up — without opening the app or sitting at your machine." } },
+    { "@type": "Question", "name": "Can you trigger AI agents from Slack?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Munder Difflin can run a small local webhook that listens to a Slack channel and turns each message into a task in the orchestrator's queue. You type in Slack, and an agent picks the work up — without opening the app or sitting at your machine." } },
     { "@type": "Question", "name": "Is a Slack-to-agent webhook secure?", "acceptedAnswer": { "@type": "Answer", "text": "It's built to be. Every request is verified with an HMAC over the raw body using your Slack signing secret, compared in constant time, with a five-minute replay-timestamp guard and a body-size cap checked before anything else. Anything that fails gets a 403. The local handler is the security boundary, not the public tunnel." } },
     { "@type": "Question", "name": "Do I need to host a public server to trigger agents from Slack?", "acceptedAnswer": { "@type": "Answer", "text": "No. The webhook runs on your own machine. A best-effort local tunnel gives Slack a public URL to reach that local port, so there's nothing to deploy or keep online — and if the tunnel can't start, your local handler still runs." } }
     
@@ -114,8 +114,8 @@
 <body class="theme-press">
 <a class="skip-link" href="#main">Skip to content</a>
 <nav id="nav">
-  <a class="brand" href="https://agenthive.local" aria-label="AgentHive home">
-    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+  <a class="brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
   </a>
   <span class="spacer"></span>
   <div class="links">
@@ -142,8 +142,8 @@
     <h1>Trigger Your AI Agent Hive from Slack</h1>
     <p class="dek">Trigger an AI agent hive from Slack: a local webhook verifies each message and drops it into your orchestrator&#39;s queue as a task — no server to host.</p>
     <div class="byline">
-      <span class="av" aria-hidden="true">AS</span>
-      <strong>Ayush Singh</strong>
+      <span class="av" aria-hidden="true">CG</span>
+      <strong>Chaitanya Giri</strong>
       <span class="dot" aria-hidden="true">·</span>
       <time datetime="2026-06-04">Jun 4, 2026</time>
       <span class="dot" aria-hidden="true">·</span>
@@ -156,7 +156,7 @@
 
   <div class="post-wrap wrap">
     <div class="prose">
-      <div class="callout tldr"><span class="ic">TL;DR</span><p>AgentHive v0.1.7 can <strong>trigger your
+      <div class="callout tldr"><span class="ic">TL;DR</span><p>Munder Difflin v0.1.7 can <strong>trigger your
 agent hive from Slack</strong>: a tiny local webhook listens to a channel, <strong>verifies every
 request</strong> with your Slack signing secret (HMAC + replay guard, 403 on anything suspicious), and
 drops the message into the orchestrator's queue as a task. The server runs <em>on your machine</em>; a
@@ -164,7 +164,7 @@ best-effort tunnel just gives Slack a doorbell to ring. You get a remote trigger
 — start work from your phone, no servers to host.</p></div>
 <p>Most of the time you drive your agents from the app. But sometimes the work starts somewhere else — a
 teammate drops a request in a channel, or you’re away from your desk and want to kick off a long run
-from your phone. AgentHive’s Slack integration (shipped in v0.1.7) closes that gap: a message in a
+from your phone. Munder Difflin’s Slack integration (shipped in v0.1.7) closes that gap: a message in a
 watched Slack channel becomes a task in your hive’s queue. Here’s how it works, and why it stays true
 to a local-first design.</p>
 <h2 id="what-trigger-from-slack-actually-does" tabindex="-1">What “trigger from Slack” actually does <a class="anchor" href="#what-trigger-from-slack-actually-does" aria-hidden="true">#</a></h2>
@@ -239,9 +239,9 @@ and the secret is never logged.</p>
 <p><strong>Do I need a public server?</strong> No. The webhook runs locally and a best-effort tunnel gives Slack a URL
 to reach it — nothing to host, and the local handler runs even if the tunnel doesn’t.</p>
 <hr>
-<p>AgentHive turns a Slack channel into a remote control for a hive that still lives entirely on your
-machine — <a href="https://agenthive.local/#how">orchestrated by GOD</a>, verified at the edge, queued like any
-other task. <a href="https://agenthive.local/#install">Download AgentHive</a> to drive your agents from chat;
+<p>Munder Difflin turns a Slack channel into a remote control for a hive that still lives entirely on your
+machine — <a href="https://munderdiffl.in/#how">orchestrated by GOD</a>, verified at the edge, queued like any
+other task. <a href="https://munderdiffl.in/#install">Download Munder Difflin</a> to drive your agents from chat;
 it’s free and open source.</p>
 
 
@@ -251,7 +251,7 @@ it’s free and open source.</p>
         
         <div class="qa">
           <p class="q">Can you trigger AI agents from Slack?</p>
-          <p class="a">Yes. AgentHive can run a small local webhook that listens to a Slack channel and turns each message into a task in the orchestrator&#39;s queue. You type in Slack, and an agent picks the work up — without opening the app or sitting at your machine.</p>
+          <p class="a">Yes. Munder Difflin can run a small local webhook that listens to a Slack channel and turns each message into a task in the orchestrator&#39;s queue. You type in Slack, and an agent picks the work up — without opening the app or sitting at your machine.</p>
         </div>
         
         <div class="qa">
@@ -288,7 +288,7 @@ it’s free and open source.</p>
 
   <footer class="post-foot wrap"><div class="prevnext">
       <a class="pn prev" href="/blog/what-is-aeo-for-dev-tools/"><span class="k">← Older</span><span class="t">AEO for Dev Tools: Getting Cited by ChatGPT and Claude</span></a>
-      <a class="pn next" href="/blog/the-office-parody-behind-munder-difflin/"><span class="k">Newer →</span><span class="t">The Office Parody Behind AgentHive (and Why It Helps)</span></a>
+      <a class="pn next" href="/blog/the-office-parody-behind-munder-difflin/"><span class="k">Newer →</span><span class="t">The Office Parody Behind Munder Difflin (and Why It Helps)</span></a>
     </div>
     <section class="related">
       <h2>Related in Guides</h2>
@@ -302,7 +302,7 @@ it’s free and open source.</p>
       <span>5 min</span>
     </div>
     <h3><a href="/blog/command-center-guide/">The Command Center: Kanban, Fleet, and Budgets in One Place</a></h3>
-    <p class="dek">A guide to AgentHive&#39;s Command Center — the task kanban, live fleet monitoring, per-agent budgets and cost telemetry — and when to watch the board instead of the floor.</p>
+    <p class="dek">A guide to Munder Difflin&#39;s Command Center — the task kanban, live fleet monitoring, per-agent budgets and cost telemetry — and when to watch the board instead of the floor.</p>
     <div class="foot">
       <span class="tag kind">Guides</span>
       <a class="more" href="/blog/command-center-guide/" aria-label="Read: The Command Center: Kanban, Fleet, and Budgets in One Place">Read →</a>
@@ -334,7 +334,7 @@ it’s free and open source.</p>
       <span>5 min</span>
     </div>
     <h3><a href="/blog/how-to-hire-from-the-agent-gallery/">How to Hire From the Agent Gallery</a></h3>
-    <p class="dek">A practical guide to AgentHive&#39;s Agent Gallery: browse six off-the-shelf hires, import one from a link or file, review the pre-filled manifest, customize identity, workspace, engine, and briefing — then spawn it yourself.</p>
+    <p class="dek">A practical guide to Munder Difflin&#39;s Agent Gallery: browse six off-the-shelf hires, import one from a link or file, review the pre-filled manifest, customize identity, workspace, engine, and briefing — then spawn it yourself.</p>
     <div class="foot">
       <span class="tag kind">Guides</span>
       <a class="more" href="/blog/how-to-hire-from-the-agent-gallery/" aria-label="Read: How to Hire From the Agent Gallery">Read →</a>
@@ -352,8 +352,8 @@ it’s free and open source.</p>
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-top">
-      <a class="foot-brand brand" href="https://agenthive.local" aria-label="AgentHive home">
-        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+      <a class="foot-brand brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
       </a>
       <div class="foot-links">
         <a href="/blog/">Latest</a>
@@ -361,11 +361,11 @@ it’s free and open source.</p>
         <a href="/blog/about/">About</a>
         <a href="https://agenthive.local/blog/feed.xml">RSS</a>
         <a href="https://github.com/ayushvsingh2611-code/office">GitHub</a>
-        <a href="https://agenthive.local">agenthive.local ↗</a>
+        <a href="https://agenthive.local">munderdiffl.in ↗</a>
       </div>
     </div>
     <div class="foot-meta">
-      © 2026 AgentHive · Local-first · MIT-licensed ·
+      © 2026 Munder Difflin · Local-first · MIT-licensed ·
       Built on <a href="https://agenthive.local">Electron, React, Pixi.js, xterm.js &amp; node-pty</a>.
       Run an office of agents while you sleep.
     </div>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Run AgentHive Locally on a Mac Mini — AgentHive Engineering Hub</title>
-<meta name="description" content="A step-by-step guide to running a whole AgentHive hive offline on an Apple Silicon Mac Mini — how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint." />
+<title>Run Munder Difflin Locally on a Mac Mini — AgentHive Blog</title>
+<meta name="description" content="A step-by-step guide to running a whole Munder Difflin hive offline on an Apple Silicon Mac Mini — how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint." />
 <link rel="canonical" href="https://agenthive.local/blog/run-munder-difflin-on-a-mac-mini/" />
 
 <link rel="icon" type="image/png" href="https://agenthive.local/logo.png" />
@@ -12,15 +12,15 @@
 <meta name="theme-color" content="#F5F2E8" />
 
 <!-- Open Graph -->
-<meta property="og:site_name" content="AgentHive Engineering Hub" />
+<meta property="og:site_name" content="AgentHive Blog" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Run AgentHive Locally on a Mac Mini — AgentHive Engineering Hub" />
-<meta property="og:description" content="A step-by-step guide to running a whole AgentHive hive offline on an Apple Silicon Mac Mini — how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint." />
+<meta property="og:title" content="Run Munder Difflin Locally on a Mac Mini — AgentHive Blog" />
+<meta property="og:description" content="A step-by-step guide to running a whole Munder Difflin hive offline on an Apple Silicon Mac Mini — how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint." />
 <meta property="og:url" content="https://agenthive.local/blog/run-munder-difflin-on-a-mac-mini/" />
-<meta property="og:image" content="https://agenthive.local/media/og.png" />
+<meta property="og:image" content="https://munderdiffl.in/media/og.png" />
 <meta property="og:locale" content="en_US" />
 <meta property="article:published_time" content="2026-06-22T00:00:00.000Z" />
-<meta property="article:author" content="Ayush Singh" />
+<meta property="article:author" content="Chaitanya Giri" />
 <meta property="article:tag" content="Guides" />
 <meta property="article:tag" content="Local-First" />
 <meta property="article:tag" content="Mac Mini" />
@@ -31,11 +31,11 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Run AgentHive Locally on a Mac Mini — AgentHive Engineering Hub" />
-<meta name="twitter:description" content="A step-by-step guide to running a whole AgentHive hive offline on an Apple Silicon Mac Mini — how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint." />
-<meta name="twitter:image" content="https://agenthive.local/media/og.png" />
+<meta name="twitter:title" content="Run Munder Difflin Locally on a Mac Mini — AgentHive Blog" />
+<meta name="twitter:description" content="A step-by-step guide to running a whole Munder Difflin hive offline on an Apple Silicon Mac Mini — how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint." />
+<meta name="twitter:image" content="https://munderdiffl.in/media/og.png" />
 
-<link rel="alternate" type="application/atom+xml" title="AgentHive Engineering Hub" href="https://agenthive.local/blog/feed.xml" />
+<link rel="alternate" type="application/atom+xml" title="AgentHive Blog" href="https://agenthive.local/blog/feed.xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
@@ -45,15 +45,15 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Run AgentHive Locally on a Mac Mini",
-  "description": "A step-by-step guide to running a whole AgentHive hive offline on an Apple Silicon Mac Mini — how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint.",
-  "image": ["https://agenthive.local/media/og.png"],
+  "headline": "Run Munder Difflin Locally on a Mac Mini",
+  "description": "A step-by-step guide to running a whole Munder Difflin hive offline on an Apple Silicon Mac Mini — how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint.",
+  "image": ["https://munderdiffl.in/media/og.png"],
   "datePublished": "2026-06-22T00:00:00.000Z",
   "dateModified": "2026-06-22T00:00:00.000Z",
-  "author": { "@type": "Person", "name": "Ayush Singh" },
+  "author": { "@type": "Person", "name": "Chaitanya Giri" },
   "publisher": {
     "@type": "Organization",
-    "name": "AgentHive",
+    "name": "Munder Difflin",
     "logo": { "@type": "ImageObject", "url": "https://agenthive.local/logo.png" }
   },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://agenthive.local/blog/run-munder-difflin-on-a-mac-mini/" },
@@ -70,7 +70,7 @@
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://agenthive.local/" },
     { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://agenthive.local/blog/" },
-    { "@type": "ListItem", "position": 3, "name": "Run AgentHive Locally on a Mac Mini", "item": "https://agenthive.local/blog/run-munder-difflin-on-a-mac-mini/" }
+    { "@type": "ListItem", "position": 3, "name": "Run Munder Difflin Locally on a Mac Mini", "item": "https://agenthive.local/blog/run-munder-difflin-on-a-mac-mini/" }
   ]
 }
 </script>
@@ -80,9 +80,9 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Can a Mac Mini run a AgentHive hive offline?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. An Apple Silicon Mac Mini runs the model locally through Ollama or LM Studio, and AgentHive points OpenCode and Crush at that local OpenAI-compatible endpoint (in v0.3.1 pi reaches models through a third-party provider key rather than a local server). The hive's control plane (router, scheduler, mailboxes, audit log) is already local-first, so once the model is local there is no cloud dependency at all." } },
+    { "@type": "Question", "name": "Can a Mac Mini run a Munder Difflin hive offline?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. An Apple Silicon Mac Mini runs the model locally through Ollama or LM Studio, and Munder Difflin points OpenCode and Crush at that local OpenAI-compatible endpoint (in v0.3.1 pi reaches models through a third-party provider key rather than a local server). The hive's control plane (router, scheduler, mailboxes, audit log) is already local-first, so once the model is local there is no cloud dependency at all." } },
     { "@type": "Question", "name": "How much RAM does the Mac Mini need for local AI agents?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on the model size, not the agent count — every worker shares one local model server. As a rule of thumb on Apple Silicon's unified memory: 16GB comfortably runs 7–8B models, 24GB runs up to ~14B, 32GB up to ~32B (tight), and 48–64GB (M4 Pro) runs a 70B-class model quantized to 4-bit. See the RAM-tier table below." } },
-    { "@type": "Question", "name": "Ollama or LM Studio — which should I use on a Mac Mini?", "acceptedAnswer": { "@type": "Answer", "text": "Either works; both expose an OpenAI-compatible server that AgentHive's engines can target. Ollama is a lightweight CLI/daemon (great for headless, always-on hives); LM Studio is a GUI with a model browser and a one-click local server. You can even run both and point different engines at different ports." } },
+    { "@type": "Question", "name": "Ollama or LM Studio — which should I use on a Mac Mini?", "acceptedAnswer": { "@type": "Answer", "text": "Either works; both expose an OpenAI-compatible server that Munder Difflin's engines can target. Ollama is a lightweight CLI/daemon (great for headless, always-on hives); LM Studio is a GUI with a model browser and a one-click local server. You can even run both and point different engines at different ports." } },
     { "@type": "Question", "name": "Which open-source models run best on each engine?", "acceptedAnswer": { "@type": "Answer", "text": "All three engines — OpenCode, Crush, and pi — select models in `provider/model` form. For the fully-local path, OpenCode and Crush point at a local OpenAI-compatible endpoint, so the same locally-served model works across both; in v0.3.1 pi runs through a third-party provider key instead. For the exact, version-verified model slugs and per-RAM-tier picks, see the open-source model catalog linked below — that's the single source of truth we keep current." } }
     
   ]
@@ -117,8 +117,8 @@
 <body class="theme-press">
 <a class="skip-link" href="#main">Skip to content</a>
 <nav id="nav">
-  <a class="brand" href="https://agenthive.local" aria-label="AgentHive home">
-    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+  <a class="brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
   </a>
   <span class="spacer"></span>
   <div class="links">
@@ -142,11 +142,11 @@
       <span>/</span>
       <a href="/blog/topics/guides/">Guides</a>
     </nav>
-    <h1>Run AgentHive Locally on a Mac Mini</h1>
-    <p class="dek">A step-by-step guide to running a whole AgentHive hive offline on an Apple Silicon Mac Mini — how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint.</p>
+    <h1>Run Munder Difflin Locally on a Mac Mini</h1>
+    <p class="dek">A step-by-step guide to running a whole Munder Difflin hive offline on an Apple Silicon Mac Mini — how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint.</p>
     <div class="byline">
-      <span class="av" aria-hidden="true">AS</span>
-      <strong>Ayush Singh</strong>
+      <span class="av" aria-hidden="true">CG</span>
+      <strong>Chaitanya Giri</strong>
       <span class="dot" aria-hidden="true">·</span>
       <time datetime="2026-06-22">Jun 22, 2026</time>
       <span class="dot" aria-hidden="true">·</span>
@@ -155,12 +155,12 @@
     </div>
   </header>
 
-  <div class="hero-wrap wrap"><figure class="fig fig-hero"><img src="/blog/assets/media/run-munder-difflin-on-a-mac-mini/hero.png" alt="Illustration: Run AgentHive Locally on a Mac Mini" loading="lazy" decoding="async" /></figure></div>
+  <div class="hero-wrap wrap"><figure class="fig fig-hero"><img src="/blog/assets/media/run-munder-difflin-on-a-mac-mini/hero.png" alt="Illustration: Run Munder Difflin Locally on a Mac Mini" loading="lazy" decoding="async" /></figure></div>
 
   <div class="post-wrap wrap">
     <div class="prose">
       <div class="callout tldr"><span class="ic">TL;DR</span><p>A <strong>Mac Mini</strong> with Apple
-Silicon can run an entire <strong>AgentHive</strong> hive <em>offline</em>. Serve an open-source
+Silicon can run an entire <strong>Munder Difflin</strong> hive <em>offline</em>. Serve an open-source
 model locally with <strong>Ollama</strong> or <strong>LM Studio</strong>, size the model to your
 <strong>unified memory</strong> (16GB → ~7–8B, 24GB → ~14B, 32GB → ~32B, 48–64GB → 70B-class at 4-bit),
 then point <a href="/blog/why-cli-agents-are-powerful/">OpenCode and Crush</a> at the local endpoint via
@@ -168,7 +168,7 @@ then point <a href="/blog/why-cli-agents-are-powerful/">OpenCode and Crush</a> a
 <a href="/blog/local-first-ai-agent-orchestration/">already local-first</a>, so nothing leaves the box.</p></div>
 <p>It’s one thing to run a single local model in a chat window. It’s another to put a whole <em>team</em> of
 agents to work on your own hardware, with no API bill and no data leaving the room. That’s the promise
-of running AgentHive on a Mac Mini: the <a href="/blog/local-first-ai-agent-orchestration/">orchestration is already
+of running Munder Difflin on a Mac Mini: the <a href="/blog/local-first-ai-agent-orchestration/">orchestration is already
 local-first</a> — the message router, scheduler, mailboxes, and
 git audit log are all processes on your machine — so the only remaining cloud dependency is the model
 call itself. Move that local, and the hive is fully offline.</p>
@@ -292,7 +292,7 @@ Crush (more on that in Step 3).</p>
 </table>
 <p>These picks are drawn from the model families our open-source model catalog tracks — the single source of
 truth we keep version-current.
-The companion guide, <a href="/blog/run-munder-difflin-on-open-models/">running AgentHive on open
+The companion guide, <a href="/blog/run-munder-difflin-on-open-models/">running Munder Difflin on open
 models</a>, pairs each tier with the same picks and adds the third-party-provider route.</p>
 <div class="callout"><span class="ic">⚠️</span><p><strong>What a Mac Mini <em>can't</em> run
 locally.</strong> The frontier open-weight flagships — <strong>Kimi K2.x</strong> (~1&nbsp;trillion
@@ -301,10 +301,10 @@ gigabytes, far past any Mac Mini. To use those, skip the local server and point 
 open-source-model provider (OpenRouter, Groq, DeepInfra, and friends) with an API key — covered in the
 <a href="/blog/run-munder-difflin-on-open-models/">open-models guide</a>. For a genuinely local GLM,
 <code>glm-4.7-flash</code> (~30B) is the Mac-friendly member of the family.</p></div>
-<figure class="fig fig-inline"><img src="/blog/assets/media/run-munder-difflin-on-a-mac-mini/note-1.png" alt="Hand-drawn sketch from “Run AgentHive Locally on a Mac Mini”" loading="lazy" decoding="async" /></figure>
+<figure class="fig fig-inline"><img src="/blog/assets/media/run-munder-difflin-on-a-mac-mini/note-1.png" alt="Hand-drawn sketch from “Run Munder Difflin Locally on a Mac Mini”" loading="lazy" decoding="async" /></figure>
 <h2 id="step-2-install-a-local-model-server" tabindex="-1">Step 2 — Install a local model server <a class="anchor" href="#step-2-install-a-local-model-server" aria-hidden="true">#</a></h2>
 <p>You have two solid options. Both expose an <strong>OpenAI-compatible HTTP endpoint</strong>, which is exactly what
-AgentHive’s engines target.</p>
+Munder Difflin’s engines target.</p>
 <h3 id="option-a-ollama-lightweight-headless-friendly" tabindex="-1">Option A — Ollama (lightweight, headless-friendly) <a class="anchor" href="#option-a-ollama-lightweight-headless-friendly" aria-hidden="true">#</a></h3>
 <pre class="language-bash"><code class="language-bash"><span class="token comment"># Install (Homebrew) and start the daemon</span>
 brew <span class="token function">install</span> ollama
@@ -322,7 +322,7 @@ start the <strong>Local Server</strong> (the “Developer” / server tab). LM S
 Studio on :1234 — and point different engines at different ports if you want to compare models side by
 side across your workers.</p></div>
 <h2 id="step-3-wire-each-cli-engine-to-the-local-endpoint" tabindex="-1">Step 3 — Wire each CLI engine to the local endpoint <a class="anchor" href="#step-3-wire-each-cli-engine-to-the-local-endpoint" aria-hidden="true">#</a></h2>
-<p>AgentHive runs each agent on a pluggable <a href="/blog/why-cli-agents-are-powerful/">CLI engine</a>. All three engines select models in <strong><code>provider/model</code></strong> form, but for the fully-local path it’s <strong>two</strong> —
+<p>Munder Difflin runs each agent on a pluggable <a href="/blog/why-cli-agents-are-powerful/">CLI engine</a>. All three engines select models in <strong><code>provider/model</code></strong> form, but for the fully-local path it’s <strong>two</strong> —
 OpenCode and Crush — that wire a local OpenAI-compatible endpoint in v0.3.1, so the same locally-served
 model works across both. (pi reaches models through a third-party provider key in this release — see its
 note below.) The fastest path
@@ -351,7 +351,7 @@ Studio, use <code>base_url: &quot;http://localhost:1234/v1&quot;</code>, <code>a
 then select <code>lmstudio/&lt;model-id&gt;</code>.</p>
 <h3 id="opencode" tabindex="-1">OpenCode <a class="anchor" href="#opencode" aria-hidden="true">#</a></h3>
 <p>OpenCode reaches a local model through a custom OpenAI-compatible provider (the <code>@ai-sdk/openai-compatible</code>
-adapter with <code>options.baseURL</code>). In AgentHive, set the OpenCode base URL in Settings → AI Engines to
+adapter with <code>options.baseURL</code>). In Munder Difflin, set the OpenCode base URL in Settings → AI Engines to
 your local server and choose the model in <code>provider/model</code> form; the harness supplies the engine config.</p>
 <h3 id="pi" tabindex="-1">pi <a class="anchor" href="#pi" aria-hidden="true">#</a></h3>
 <p>A heads-up specific to <strong>v0.3.1</strong>: pi’s local-endpoint field is <strong>reserved.</strong> This release wires a local
@@ -368,9 +368,9 @@ Once a model is served locally, each engine names it slightly differently: OpenC
 points at a third-party <code>provider/model</code> slug instead, per the note above.) The exact slugs for
 every tier live in the <a href="/blog/run-munder-difflin-on-open-models/">open-source model catalog</a>,
 kept in one place so they don't drift.</p></div>
-<figure class="fig fig-inline"><img src="/blog/assets/media/run-munder-difflin-on-a-mac-mini/note-2.png" alt="Hand-drawn sketch from “Run AgentHive Locally on a Mac Mini”" loading="lazy" decoding="async" /></figure>
+<figure class="fig fig-inline"><img src="/blog/assets/media/run-munder-difflin-on-a-mac-mini/note-2.png" alt="Hand-drawn sketch from “Run Munder Difflin Locally on a Mac Mini”" loading="lazy" decoding="async" /></figure>
 <h2 id="step-4-run-the-hive-offline" tabindex="-1">Step 4 — Run the hive offline <a class="anchor" href="#step-4-run-the-hive-offline" aria-hidden="true">#</a></h2>
-<p>With a model served locally and the engines pointed at it, the rest of AgentHive is already
+<p>With a model served locally and the engines pointed at it, the rest of Munder Difflin is already
 local-first. Spin up your workers from the <a href="/blog/how-to-install-and-use-munder-difflin/">Agent Gallery or Add Agent</a>,
 give the hive a goal, and let it run. The <a href="/blog/atomic-file-mailboxes-for-agents/">message router</a> moves
 work between agents through file mailboxes, the scheduler fires tasks on local timers, and git records
@@ -391,7 +391,7 @@ accordingly if total isolation is the goal.</li>
 </ul>
 <h2 id="where-to-go-next" tabindex="-1">Where to go next <a class="anchor" href="#where-to-go-next" aria-hidden="true">#</a></h2>
 <ul>
-<li>The companion guide, <a href="/blog/run-munder-difflin-on-open-models/">run AgentHive on open models</a>,
+<li>The companion guide, <a href="/blog/run-munder-difflin-on-open-models/">run Munder Difflin on open models</a>,
 covers running fully local <em>or</em> through a third-party open-source provider, and pairs each RAM tier
 with a concrete model pick.</li>
 <li>For the <em>why</em> behind keeping it all on your machine, see <a href="/blog/why-local-first-matters-for-ai-agents/">why local-first matters for AI
@@ -406,8 +406,8 @@ Difflin</a>.</li>
         <h2 id="faq">FAQ</h2>
         
         <div class="qa">
-          <p class="q">Can a Mac Mini run a AgentHive hive offline?</p>
-          <p class="a">Yes. An Apple Silicon Mac Mini runs the model locally through Ollama or LM Studio, and AgentHive points OpenCode and Crush at that local OpenAI-compatible endpoint (in v0.3.1 pi reaches models through a third-party provider key rather than a local server). The hive&#39;s control plane (router, scheduler, mailboxes, audit log) is already local-first, so once the model is local there is no cloud dependency at all.</p>
+          <p class="q">Can a Mac Mini run a Munder Difflin hive offline?</p>
+          <p class="a">Yes. An Apple Silicon Mac Mini runs the model locally through Ollama or LM Studio, and Munder Difflin points OpenCode and Crush at that local OpenAI-compatible endpoint (in v0.3.1 pi reaches models through a third-party provider key rather than a local server). The hive&#39;s control plane (router, scheduler, mailboxes, audit log) is already local-first, so once the model is local there is no cloud dependency at all.</p>
         </div>
         
         <div class="qa">
@@ -417,7 +417,7 @@ Difflin</a>.</li>
         
         <div class="qa">
           <p class="q">Ollama or LM Studio — which should I use on a Mac Mini?</p>
-          <p class="a">Either works; both expose an OpenAI-compatible server that AgentHive&#39;s engines can target. Ollama is a lightweight CLI/daemon (great for headless, always-on hives); LM Studio is a GUI with a model browser and a one-click local server. You can even run both and point different engines at different ports.</p>
+          <p class="a">Either works; both expose an OpenAI-compatible server that Munder Difflin&#39;s engines can target. Ollama is a lightweight CLI/daemon (great for headless, always-on hives); LM Studio is a GUI with a model browser and a one-click local server. You can even run both and point different engines at different ports.</p>
         </div>
         
         <div class="qa">
@@ -448,8 +448,8 @@ Difflin</a>.</li>
   </div>
 
   <footer class="post-foot wrap"><div class="prevnext">
-      <a class="pn prev" href="/blog/run-munder-difflin-on-open-models/"><span class="k">← Older</span><span class="t">Run AgentHive on Open-Source Models — Fully Local or via a Third-Party Provider</span></a>
-      <a class="pn next" href="/blog/launching-munder-difflin-v0-3-2/"><span class="k">Newer →</span><span class="t">Launching AgentHive v0.3.2: Talk to Michael, a Realtime Voice Orchestrator</span></a>
+      <a class="pn prev" href="/blog/run-munder-difflin-on-open-models/"><span class="k">← Older</span><span class="t">Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider</span></a>
+      <a class="pn next" href="/blog/launching-munder-difflin-v0-3-2/"><span class="k">Newer →</span><span class="t">Launching Munder Difflin v0.3.2: Talk to Michael, a Realtime Voice Orchestrator</span></a>
     </div>
     <section class="related">
       <h2>Related in Guides</h2>
@@ -463,7 +463,7 @@ Difflin</a>.</li>
       <span>5 min</span>
     </div>
     <h3><a href="/blog/command-center-guide/">The Command Center: Kanban, Fleet, and Budgets in One Place</a></h3>
-    <p class="dek">A guide to AgentHive&#39;s Command Center — the task kanban, live fleet monitoring, per-agent budgets and cost telemetry — and when to watch the board instead of the floor.</p>
+    <p class="dek">A guide to Munder Difflin&#39;s Command Center — the task kanban, live fleet monitoring, per-agent budgets and cost telemetry — and when to watch the board instead of the floor.</p>
     <div class="foot">
       <span class="tag kind">Guides</span>
       <a class="more" href="/blog/command-center-guide/" aria-label="Read: The Command Center: Kanban, Fleet, and Budgets in One Place">Read →</a>
@@ -495,7 +495,7 @@ Difflin</a>.</li>
       <span>5 min</span>
     </div>
     <h3><a href="/blog/how-to-hire-from-the-agent-gallery/">How to Hire From the Agent Gallery</a></h3>
-    <p class="dek">A practical guide to AgentHive&#39;s Agent Gallery: browse six off-the-shelf hires, import one from a link or file, review the pre-filled manifest, customize identity, workspace, engine, and briefing — then spawn it yourself.</p>
+    <p class="dek">A practical guide to Munder Difflin&#39;s Agent Gallery: browse six off-the-shelf hires, import one from a link or file, review the pre-filled manifest, customize identity, workspace, engine, and briefing — then spawn it yourself.</p>
     <div class="foot">
       <span class="tag kind">Guides</span>
       <a class="more" href="/blog/how-to-hire-from-the-agent-gallery/" aria-label="Read: How to Hire From the Agent Gallery">Read →</a>
@@ -513,8 +513,8 @@ Difflin</a>.</li>
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-top">
-      <a class="foot-brand brand" href="https://agenthive.local" aria-label="AgentHive home">
-        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+      <a class="foot-brand brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
       </a>
       <div class="foot-links">
         <a href="/blog/">Latest</a>
@@ -522,11 +522,11 @@ Difflin</a>.</li>
         <a href="/blog/about/">About</a>
         <a href="https://agenthive.local/blog/feed.xml">RSS</a>
         <a href="https://github.com/ayushvsingh2611-code/office">GitHub</a>
-        <a href="https://agenthive.local">agenthive.local ↗</a>
+        <a href="https://agenthive.local">munderdiffl.in ↗</a>
       </div>
     </div>
     <div class="foot-meta">
-      © 2026 AgentHive · Local-first · MIT-licensed ·
+      © 2026 Munder Difflin · Local-first · MIT-licensed ·
       Built on <a href="https://agenthive.local">Electron, React, Pixi.js, xterm.js &amp; node-pty</a>.
       Run an office of agents while you sleep.
     </div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Shareable Agent Roles: A Portable Format for Hiring AI Coworkers — AgentHive Engineering Hub</title>
+<title>Shareable Agent Roles: A Portable Format for Hiring AI Coworkers — AgentHive Blog</title>
 <meta name="description" content="Why agent roles should be portable: what a hire manifest encodes, how one-click hiring stays safe, and how The Hiring Fair turns tacit setup into a shareable artifact." />
 <link rel="canonical" href="https://agenthive.local/blog/shareable-agent-roles/" />
 
@@ -12,15 +12,15 @@
 <meta name="theme-color" content="#F5F2E8" />
 
 <!-- Open Graph -->
-<meta property="og:site_name" content="AgentHive Engineering Hub" />
+<meta property="og:site_name" content="AgentHive Blog" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Shareable Agent Roles: A Portable Format for Hiring AI Coworkers — AgentHive Engineering Hub" />
+<meta property="og:title" content="Shareable Agent Roles: A Portable Format for Hiring AI Coworkers — AgentHive Blog" />
 <meta property="og:description" content="Why agent roles should be portable: what a hire manifest encodes, how one-click hiring stays safe, and how The Hiring Fair turns tacit setup into a shareable artifact." />
 <meta property="og:url" content="https://agenthive.local/blog/shareable-agent-roles/" />
-<meta property="og:image" content="https://agenthive.local/media/og.png" />
+<meta property="og:image" content="https://munderdiffl.in/media/og.png" />
 <meta property="og:locale" content="en_US" />
 <meta property="article:published_time" content="2026-06-15T00:00:00.000Z" />
-<meta property="article:author" content="Ayush Singh" />
+<meta property="article:author" content="Chaitanya Giri" />
 <meta property="article:tag" content="Concepts" />
 <meta property="article:tag" content="Multi-Agent" />
 <meta property="article:tag" content="Open Source" />
@@ -29,11 +29,11 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Shareable Agent Roles: A Portable Format for Hiring AI Coworkers — AgentHive Engineering Hub" />
+<meta name="twitter:title" content="Shareable Agent Roles: A Portable Format for Hiring AI Coworkers — AgentHive Blog" />
 <meta name="twitter:description" content="Why agent roles should be portable: what a hire manifest encodes, how one-click hiring stays safe, and how The Hiring Fair turns tacit setup into a shareable artifact." />
-<meta name="twitter:image" content="https://agenthive.local/media/og.png" />
+<meta name="twitter:image" content="https://munderdiffl.in/media/og.png" />
 
-<link rel="alternate" type="application/atom+xml" title="AgentHive Engineering Hub" href="https://agenthive.local/blog/feed.xml" />
+<link rel="alternate" type="application/atom+xml" title="AgentHive Blog" href="https://agenthive.local/blog/feed.xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
@@ -45,13 +45,13 @@
   "@type": "BlogPosting",
   "headline": "Shareable Agent Roles: A Portable Format for Hiring AI Coworkers",
   "description": "Why agent roles should be portable: what a hire manifest encodes, how one-click hiring stays safe, and how The Hiring Fair turns tacit setup into a shareable artifact.",
-  "image": ["https://agenthive.local/media/og.png"],
+  "image": ["https://munderdiffl.in/media/og.png"],
   "datePublished": "2026-06-15T00:00:00.000Z",
   "dateModified": "2026-06-15T00:00:00.000Z",
-  "author": { "@type": "Person", "name": "Ayush Singh" },
+  "author": { "@type": "Person", "name": "Chaitanya Giri" },
   "publisher": {
     "@type": "Organization",
-    "name": "AgentHive",
+    "name": "Munder Difflin",
     "logo": { "@type": "ImageObject", "url": "https://agenthive.local/logo.png" }
   },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://agenthive.local/blog/shareable-agent-roles/" },
@@ -82,7 +82,7 @@
     { "@type": "Question", "name": "Why should agent roles be portable at all?", "acceptedAnswer": { "@type": "Answer", "text": "Because a good role is real, hard-won configuration work — the right provider and model, the right flags, a sharp goal prompt, sane capabilities and a token budget — and today that knowledge is trapped in one person's setup or buried in prose. Portability turns that tacit knowledge into an artifact you can share, fork, and improve, the same move package registries made for code libraries." } },
     { "@type": "Question", "name": "If I import a role from a link, does it start running on its own?", "acceptedAnswer": { "@type": "Answer", "text": "No. Import never spawns anything. It only pre-fills the Add-Agent modal behind an explicit 'imported' banner. You review every field and you click spawn. A role you got from the internet is inert data until a human acts on it — the human is always the spawn gate." } },
     { "@type": "Question", "name": "How is a role manifest different from just sharing a prompt?", "acceptedAnswer": { "@type": "Answer", "text": "A prompt is one ingredient. A hire manifest is the whole recipe: which provider runs it, the model, the command flags, the goal, the capability tags, and the budget — mapped 1:1 onto the fields the app's Add-Agent flow already uses. It's the difference between a sentence in a README and a job description you can hand to anyone's office." } },
-    { "@type": "Question", "name": "What is The Hiring Fair?", "acceptedAnswer": { "@type": "Answer", "text": "A static community gallery at agenthive.local/hires — no login, no trackers, MIT-licensed. It's stocked with ready-made roles from the cast: Pam writes docs, Dwight enforces QA, Jim reviews PRs, Creed audits security, Angela audits the office's own token spend, Stanley does the migrations nobody wants. Each card has a Claude Code / Antigravity / Codex toggle and function filters. Browse, hire, review, spawn." } },
+    { "@type": "Question", "name": "What is The Hiring Fair?", "acceptedAnswer": { "@type": "Answer", "text": "A static community gallery at munderdiffl.in/hires — no login, no trackers, MIT-licensed. It's stocked with ready-made roles from the cast: Pam writes docs, Dwight enforces QA, Jim reviews PRs, Creed audits security, Angela audits the office's own token spend, Stanley does the migrations nobody wants. Each card has a Claude Code / Antigravity / Codex toggle and function filters. Browse, hire, review, spawn." } },
     { "@type": "Question", "name": "Can I submit my own roles to The Hiring Fair today?", "acceptedAnswer": { "@type": "Answer", "text": "Not yet. Today, curation is a maintainer commit — there is deliberately no public write or submission pipeline. A community submission queue needs its own review-and-trust design, so we scoped it out of this first release rather than ship it half-built." } }
     
   ]
@@ -117,8 +117,8 @@
 <body class="theme-press">
 <a class="skip-link" href="#main">Skip to content</a>
 <nav id="nav">
-  <a class="brand" href="https://agenthive.local" aria-label="AgentHive home">
-    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+  <a class="brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
   </a>
   <span class="spacer"></span>
   <div class="links">
@@ -145,8 +145,8 @@
     <h1>Shareable Agent Roles: A Portable Format for Hiring AI Coworkers</h1>
     <p class="dek">Why agent roles should be portable: what a hire manifest encodes, how one-click hiring stays safe, and how The Hiring Fair turns tacit setup into a shareable artifact.</p>
     <div class="byline">
-      <span class="av" aria-hidden="true">AS</span>
-      <strong>Ayush Singh</strong>
+      <span class="av" aria-hidden="true">CG</span>
+      <strong>Chaitanya Giri</strong>
       <span class="dot" aria-hidden="true">·</span>
       <time datetime="2026-06-15">Jun 15, 2026</time>
       <span class="dot" aria-hidden="true">·</span>
@@ -159,7 +159,7 @@
 
   <div class="post-wrap wrap">
     <div class="prose">
-      <div class="callout tldr"><span class="ic">TL;DR</span><p>A well-configured agent <strong>role</strong> is real work — the right provider, model, flags, goal prompt, capabilities, and budget — and today that knowledge is trapped in one person's setup. AgentHive v0.2.8 makes a role a <strong>portable artifact</strong>: a small JSON manifest we call a <strong>hire</strong> (a job description as a file). You hire from a <strong>link</strong> or a <strong>file</strong>, and the Add-Agent modal opens <em>pre-filled</em> — but <strong>import never spawns anything</strong>; you review every field and you press spawn. Browse ready-made roles at <strong>The Hiring Fair</strong> (<a href="https://agenthive.local/hires/">agenthive.local/hires</a>). The thesis: portable roles create a community growth loop, the way package registries did for libraries.</p></div>
+      <div class="callout tldr"><span class="ic">TL;DR</span><p>A well-configured agent <strong>role</strong> is real work — the right provider, model, flags, goal prompt, capabilities, and budget — and today that knowledge is trapped in one person's setup. Munder Difflin v0.2.8 makes a role a <strong>portable artifact</strong>: a small JSON manifest we call a <strong>hire</strong> (a job description as a file). You hire from a <strong>link</strong> or a <strong>file</strong>, and the Add-Agent modal opens <em>pre-filled</em> — but <strong>import never spawns anything</strong>; you review every field and you press spawn. Browse ready-made roles at <strong>The Hiring Fair</strong> (<a href="https://munderdiffl.in/hires/">munderdiffl.in/hires</a>). The thesis: portable roles create a community growth loop, the way package registries did for libraries.</p></div>
 <p>There’s a moment, the first time you open a fresh agent floor, where the hard part isn’t running an agent — it’s <em>configuring</em> one. Which provider? Which model? What flags? And the question that actually stalls people: what is this thing’s <em>job</em>? Writing a role from a blank box is a steep first step, and it’s the step that stands between a curious newcomer and watching a single agent do a single useful thing.</p>
 <p>This post is about a small idea with an outsized payoff: <strong>make an agent role a portable artifact</strong> — something you can hand to someone, the way you’d hand them a file. In v0.2.8 we shipped that idea as <strong>Shareable Hires</strong>, and a gallery to share them in, called <strong>The Hiring Fair</strong>. Here’s why portable roles matter, what the format encodes, and the trust design that makes “hire from a link” both easy and safe.</p>
 <h2 id="the-problem-a-good-role-is-tacit-knowledge" tabindex="-1">The problem: a good role is tacit knowledge <a class="anchor" href="#the-problem-a-good-role-is-tacit-knowledge" aria-hidden="true">#</a></h2>
@@ -204,7 +204,7 @@
 <p>A few properties make that guarantee real rather than aspirational: there’s <strong>no executable in the format</strong> — a manifest names a provider preset, and the actual binary always comes from your own local install, never the file (<code>provider: &quot;custom&quot;</code> is rejected outright). The import is <strong>validated and bounded</strong>, so a malformed or oversized manifest is refused, not trusted. The mechanics of treating a downloaded manifest as untrusted input — the validation, the bounds, the threat model — get their own <a href="/blog/hire-manifest-untrusted-input/">security deep-dive</a>; here the takeaway is the principle. <strong>Portability and safety aren’t in tension</strong> as long as import is data-only and a human owns the spawn. You can share a role freely <em>because</em> sharing it can’t, by construction, run anything.</p>
 <figure class="fig fig-inline"><img src="/blog/assets/media/shareable-agent-roles/note-2.png" alt="Hand-drawn sketch from “Shareable Agent Roles: A Portable Format for Hiring AI Coworkers”" loading="lazy" decoding="async" /></figure>
 <h2 id="the-hiring-fair-a-gallery-of-ready-made-roles" tabindex="-1">The Hiring Fair: a gallery of ready-made roles <a class="anchor" href="#the-hiring-fair-a-gallery-of-ready-made-roles" aria-hidden="true">#</a></h2>
-<p>Portable roles are more fun when there’s somewhere to get them. <strong>The Hiring Fair</strong> is a static community gallery at <a href="https://agenthive.local/hires/">agenthive.local/hires</a> — no login, no trackers, MIT-licensed — stocked with roles from the cast:</p>
+<p>Portable roles are more fun when there’s somewhere to get them. <strong>The Hiring Fair</strong> is a static community gallery at <a href="https://munderdiffl.in/hires/">munderdiffl.in/hires</a> — no login, no trackers, MIT-licensed — stocked with roles from the cast:</p>
 <ul>
 <li><strong>Pam</strong> writes docs.</li>
 <li><strong>Dwight</strong> enforces QA (relentlessly).</li>
@@ -218,16 +218,16 @@
 <h2 id="why-it-matters-a-registry-for-roles" tabindex="-1">Why it matters: a registry for roles <a class="anchor" href="#why-it-matters-a-registry-for-roles" aria-hidden="true">#</a></h2>
 <p>Here’s the thesis. Once a role is a portable artifact, something compounding happens — a <strong>community growth loop</strong>. The best-tuned roles can be shared, then forked, then improved, then shared again. The person who finally nails the “security auditor” prompt doesn’t keep that win to themselves and doesn’t bury it in a blog post; they export a hire, and everyone downstream starts from their best version instead of from a blank box. Good configuration stops being a thing each person rediscovers and becomes a thing the community <em>accumulates</em>.</p>
 <p>This is the same move package registries made for code. Before npm or PyPI, reusing a library meant copying files and re-reading install instructions; the registry turned “here’s how you set it up” into “here’s the artifact, take it.” Shareable Hires does that for agent <em>roles</em>. “Hire Pam” becomes the easy on-ramp that “write a system prompt” never was — and the floor that the <a href="/blog/how-the-god-orchestrator-works/">GOD orchestrator</a> coordinates can fill up with proven coworkers instead of guesses.</p>
-<p>It also fits the broader bet behind AgentHive: <strong>local-first, open-source, you own your floor.</strong> The roles are MIT, the gallery has no login or trackers, the binary that runs an agent is always your own, and the human is always the one who hits spawn. Portability here doesn’t mean handing control to a cloud — it means handing a <em>file</em> to a person, who stays in charge of what they do with it. (For why we <a href="/blog/why-we-built-munder-difflin/">built it this way</a> in the first place, the origin story has the rest.)</p>
+<p>It also fits the broader bet behind Munder Difflin: <strong>local-first, open-source, you own your floor.</strong> The roles are MIT, the gallery has no login or trackers, the binary that runs an agent is always your own, and the human is always the one who hits spawn. Portability here doesn’t mean handing control to a cloud — it means handing a <em>file</em> to a person, who stays in charge of what they do with it. (For why we <a href="/blog/why-we-built-munder-difflin/">built it this way</a> in the first place, the origin story has the rest.)</p>
 <h2 id="go-browse-the-hiring-fair" tabindex="-1">Go browse The Hiring Fair <a class="anchor" href="#go-browse-the-hiring-fair" aria-hidden="true">#</a></h2>
-<p>The fastest way to feel the idea is to use it. Open <a href="https://agenthive.local/hires/">The Hiring Fair</a>, pick a role that matches something on your plate, flip it to your provider, and hire it — then read every field in the modal before you spawn, because that review step is the whole point.</p>
+<p>The fastest way to feel the idea is to use it. Open <a href="https://munderdiffl.in/hires/">The Hiring Fair</a>, pick a role that matches something on your plate, flip it to your provider, and hire it — then read every field in the modal before you spawn, because that review step is the whole point.</p>
 <ul>
-<li><a href="/blog/launching-munder-difflin-v0-2-8/">Launching AgentHive v0.2.8: Shareable Hires</a> — the release.</li>
+<li><a href="/blog/launching-munder-difflin-v0-2-8/">Launching Munder Difflin v0.2.8: Shareable Hires</a> — the release.</li>
 <li><a href="/blog/hire-manifest-untrusted-input/">The hire manifest as untrusted input</a> — the security deep-dive on the trust model.</li>
 <li><a href="/blog/how-the-god-orchestrator-works/">Inside the GOD orchestrator</a> — who coordinates the roles you hire.</li>
 <li><a href="/blog/the-clone-army-trap-mixed-swarm-vs-identical-agents/">The clone army trap</a> — why a <em>mix</em> of well-chosen roles beats ten identical agents.</li>
-<li><a href="/blog/why-we-built-munder-difflin/">Why we built AgentHive</a> — the origin story.</li>
-<li><a href="https://github.com/ayushvsingh2611-code/office/blob/main/CHANGELOG.md">CHANGELOG</a> — everything that shipped.</li>
+<li><a href="/blog/why-we-built-munder-difflin/">Why we built Munder Difflin</a> — the origin story.</li>
+<li><a href="https://github.com/chaitanyagiri/munder-difflin/blob/main/CHANGELOG.md">CHANGELOG</a> — everything that shipped.</li>
 </ul>
 
 
@@ -257,7 +257,7 @@
         
         <div class="qa">
           <p class="q">What is The Hiring Fair?</p>
-          <p class="a">A static community gallery at agenthive.local/hires — no login, no trackers, MIT-licensed. It&#39;s stocked with ready-made roles from the cast: Pam writes docs, Dwight enforces QA, Jim reviews PRs, Creed audits security, Angela audits the office&#39;s own token spend, Stanley does the migrations nobody wants. Each card has a Claude Code / Antigravity / Codex toggle and function filters. Browse, hire, review, spawn.</p>
+          <p class="a">A static community gallery at munderdiffl.in/hires — no login, no trackers, MIT-licensed. It&#39;s stocked with ready-made roles from the cast: Pam writes docs, Dwight enforces QA, Jim reviews PRs, Creed audits security, Angela audits the office&#39;s own token spend, Stanley does the migrations nobody wants. Each card has a Claude Code / Antigravity / Codex toggle and function filters. Browse, hire, review, spawn.</p>
         </div>
         
         <div class="qa">
@@ -289,7 +289,7 @@
 
   <footer class="post-foot wrap"><div class="prevnext">
       <a class="pn prev" href="/blog/deploy-a-blog-writer-agent/"><span class="k">← Older</span><span class="t">Deploy a Blog-Writer Agent: The One That Wrote This Post</span></a>
-      <a class="pn next" href="/blog/launching-munder-difflin-v0-2-8/"><span class="k">Newer →</span><span class="t">Launching AgentHive v0.2.8: Shareable Hires</span></a>
+      <a class="pn next" href="/blog/launching-munder-difflin-v0-2-8/"><span class="k">Newer →</span><span class="t">Launching Munder Difflin v0.2.8: Shareable Hires</span></a>
     </div>
     <section class="related">
       <h2>Related in Concepts</h2>
@@ -319,7 +319,7 @@
       <span>4 min</span>
     </div>
     <h3><a href="/blog/review-agent-work-where-it-happens/">Review Agent Work Where It Happens</a></h3>
-    <p class="dek">AI agents produce diffs faster than humans can review them, and alt-tabbing to an external editor breaks supervision flow. The case for review-in-place: AgentHive&#39;s built-in Monaco IDE puts a CHANGES rail and side-by-side diffs vs HEAD right on the office floor.</p>
+    <p class="dek">AI agents produce diffs faster than humans can review them, and alt-tabbing to an external editor breaks supervision flow. The case for review-in-place: Munder Difflin&#39;s built-in Monaco IDE puts a CHANGES rail and side-by-side diffs vs HEAD right on the office floor.</p>
     <div class="foot">
       <span class="tag kind">Concepts</span>
       <a class="more" href="/blog/review-agent-work-where-it-happens/" aria-label="Read: Review Agent Work Where It Happens">Read →</a>
@@ -335,7 +335,7 @@
       <span>5 min</span>
     </div>
     <h3><a href="/blog/voice-as-a-control-plane-for-agent-fleets/">Voice Is a Control Plane, Not a Gimmick</a></h3>
-    <p class="dek">Voice is a terrible way to write code and a great way to run a fleet. Why low-bandwidth commands over high-bandwidth work is the right split — with AgentHive&#39;s Talk mode (echo-back confirmation, spend caps, michael-voice attribution) as the case study.</p>
+    <p class="dek">Voice is a terrible way to write code and a great way to run a fleet. Why low-bandwidth commands over high-bandwidth work is the right split — with Munder Difflin&#39;s Talk mode (echo-back confirmation, spend caps, michael-voice attribution) as the case study.</p>
     <div class="foot">
       <span class="tag kind">Concepts</span>
       <a class="more" href="/blog/voice-as-a-control-plane-for-agent-fleets/" aria-label="Read: Voice Is a Control Plane, Not a Gimmick">Read →</a>
@@ -353,8 +353,8 @@
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-top">
-      <a class="foot-brand brand" href="https://agenthive.local" aria-label="AgentHive home">
-        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
+      <a class="foot-brand brand" href="https://agenthive.local" aria-label="Munder Difflin home">
+        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
       </a>
       <div class="foot-links">
         <a href="/blog/">Latest</a>
@@ -362,11 +362,11 @@
         <a href="/blog/about/">About</a>
         <a href="https://agenthive.local/blog/feed.xml">RSS</a>
         <a href="https://github.com/ayushvsingh2611-code/office">GitHub</a>
-        <a href="https://agenthive.local">agenthive.local ↗</a>
+        <a href="https://agenthive.local">munderdiffl.in ↗</a>
       </div>
     </div>
     <div class="foot-meta">
-      © 2026 AgentHive · Local-first · MIT-licensed ·
+      © 2026 Munder Difflin · Local-first · MIT-licensed ·
       Built on <a href="https://agenthive.local">Electron, React, Pixi.js, xterm.js &amp; node-pty</a>.
       Run an office of agents while you sleep.
     </div>
