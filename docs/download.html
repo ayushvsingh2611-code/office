@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Download AgentHive — Autonomous AI Agent Workforce for Mac, Windows & Linux</title>
+<meta name="description" content="Download AgentHive v0.5.7 for macOS, Windows, and Linux. Free and open source local-first multi-agent harness with Dual Sprint, Living Café, and full privacy." />
+<link rel="canonical" href="https://agenthive.local/download.html" />
+<link rel="icon" type="image/svg+xml" href="./logo.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="./logo.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<meta property="og:title" content="Download AgentHive v0.5.7" />
+<meta property="og:description" content="Run a self-coordinating hive of autonomous coding and research agents locally on your computer." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#0A0D14" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+  (function () {
+    var t;
+    try { t = localStorage.getItem('mdf_theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0A0D14;
+    --bg-2: #0D111A;
+    --surface: #121722;
+    --surface-2: #182030;
+    --surface-3: #20293D;
+    --border: #232B3A;
+    --border-strong: #303B52;
+    --ink: #E9EDF5;
+    --muted: #A7B0C0;
+    --faint: #717A8C;
+    --accent: #00F2FE;
+    --accent-2: #4FACFE;
+    --accent-ink: #051424;
+    --accent-soft: rgba(0, 242, 254, 0.12);
+    --accent-line: rgba(0, 242, 254, 0.38);
+    --violet: #8B5CF6;
+    --emerald: #10B981;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --maxw: 1160px;
+    --pad-x: 24px;
+    --font-display: "Space Grotesk", "Inter", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+    --bg: #F8FAFC;
+    --bg-2: #F1F5F9;
+    --surface: #FFFFFF;
+    --surface-2: #F8FAFC;
+    --surface-3: #E2E8F0;
+    --border: #E2E8F0;
+    --border-strong: #CBD5E1;
+    --ink: #0F172A;
+    --muted: #475569;
+    --faint: #64748B;
+    --accent: #0284C7;
+    --accent-2: #0369A1;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(2, 132, 199, 0.1);
+    --accent-line: rgba(2, 132, 199, 0.35);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10, 13, 20, 0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  [data-theme="light"] nav { background: rgba(248, 250, 252, 0.88); }
+  .nav-in {
+    max-width: var(--maxw); margin: 0 auto; padding: 14px var(--pad-x);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink);
+    font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; letter-spacing: 0.05em;
+  }
+  .brand-badge {
+    background: linear-gradient(135deg, var(--accent), var(--violet));
+    color: #fff; font-size: 0.65rem; padding: 2px 7px; border-radius: 6px; font-weight: 700;
+  }
+  .nav-links { display: flex; align-items: center; gap: 18px; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.92rem; font-weight: 500; }
+  .nav-links a:hover { color: var(--ink); }
+  .theme-toggle {
+    background: transparent; border: 1px solid var(--border); border-radius: 8px;
+    padding: 6px 10px; cursor: pointer; color: var(--ink); display: flex; align-items: center;
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 10px 18px; border-radius: var(--radius-sm); font-weight: 600;
+    text-decoration: none; font-size: 0.92rem; cursor: pointer; transition: all 160ms ease;
+  }
+  .btn.primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: var(--accent-ink); border: none; box-shadow: 0 4px 18px var(--accent-soft);
+  }
+  .btn.primary:hover { transform: translateY(-1px); filter: brightness(1.08); }
+  .btn.outline {
+    background: var(--surface-2); border: 1px solid var(--border-strong); color: var(--ink);
+  }
+  .btn.outline:hover { background: var(--surface-3); }
+
+  /* Hero */
+  .hero-dl {
+    padding: 64px 0 48px; text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad-x); }
+  .kicker {
+    display: inline-block; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.15em; color: var(--accent); margin-bottom: 12px; text-transform: uppercase;
+  }
+  h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.15; margin-bottom: 16px; }
+  .lead { font-size: 1.15rem; color: var(--muted); max-width: 680px; margin: 0 auto 36px; }
+
+  /* OS Cards Grid */
+  .os-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 24px;
+    margin-top: 24px; text-align: left;
+  }
+  .os-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px; position: relative; transition: border-color 200ms ease, transform 200ms ease;
+  }
+  .os-card.recommended {
+    border-color: var(--accent); box-shadow: 0 8px 32px var(--accent-soft);
+  }
+  .os-card:hover { transform: translateY(-2px); border-color: var(--border-strong); }
+  .os-icon { font-size: 2.2rem; margin-bottom: 14px; display: inline-block; }
+  .os-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; margin-bottom: 6px; }
+  .os-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 20px; }
+  .os-card .btn { width: 100%; padding: 12px 20px; margin-bottom: 12px; }
+  .os-specs {
+    font-family: var(--font-mono); font-size: 0.76rem; color: var(--faint);
+    border-top: 1px solid var(--border); padding-top: 14px;
+  }
+
+  /* Changelog Section */
+  .cl-section { padding: 64px 0 80px; }
+  .cl-head { margin-bottom: 36px; }
+  .cl-entry {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 32px; margin-bottom: 28px;
+  }
+  .cl-badge {
+    display: inline-block; font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700;
+    background: var(--accent-soft); color: var(--accent); padding: 4px 10px; border-radius: 6px;
+    margin-bottom: 12px;
+  }
+  .cl-title { font-family: var(--font-display); font-size: 1.45rem; font-weight: 700; margin-bottom: 8px; }
+  .cl-date { font-family: var(--font-mono); font-size: 0.82rem; color: var(--faint); margin-bottom: 18px; }
+  .cl-body ul { padding-left: 20px; margin-bottom: 16px; color: var(--muted); font-size: 0.95rem; }
+  .cl-body li { margin-bottom: 8px; }
+  .cl-body strong { color: var(--ink); }
+
+  /* Verification */
+  .verify-box {
+    background: var(--surface-2); border: 1px dashed var(--border-strong); border-radius: var(--radius);
+    padding: 24px; margin-top: 40px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted);
+  }
+  .verify-box code { color: var(--accent); }
+
+  footer {
+    border-top: 1px solid var(--border); background: var(--bg-2); padding: 36px 0;
+  }
+  .foot-in {
+    max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad-x);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    font-size: 0.88rem; color: var(--faint);
+  }
+  .foot-in a { color: var(--muted); text-decoration: none; }
+  .foot-in a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="/">
+      <img src="./logo.png" alt="AgentHive logo" width="32" height="32" />
+      <span>AGENTHIVE</span>
+      <span class="brand-badge">v0.5.7</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#capabilities">Features</a>
+      <a href="/download.html" style="color:var(--accent);">Download</a>
+      <a href="/blog/">Engineering Hub</a>
+      <a href="/wall.html">Founders' Wall</a>
+      <a href="https://github.com/ayushvsingh2611-code/office" target="_blank" rel="noopener">GitHub</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌓</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero-dl">
+  <div class="wrap">
+    <span class="kicker">OFFICIAL RELEASES · LOCAL-FIRST</span>
+    <h1>Run AgentHive on your machine.</h1>
+    <p class="lead">
+      Autonomous AI agent workforce with Straw Hat crew architecture, Dual Sprint velocity, and Living Café collaboration. MIT licensed, 100% private, zero cloud telemetry.
+    </p>
+
+    <div class="os-grid">
+      <!-- Windows -->
+      <div class="os-card" id="cardWin">
+        <span class="os-icon">🪟</span>
+        <h2 class="os-title">Windows</h2>
+        <p class="os-sub">Windows 10 / 11 (64-bit x64)</p>
+        <a class="btn primary" href="https://github.com/ayushvsingh2611-code/office/releases/download/v0.5.7/AgentHive-Setup-0.5.7.exe">
+          <span>⤓</span> Download .exe (Installer)
+        </a>
+        <div class="os-specs">
+          Version 0.5.7 · 98 MB · NSIS Installer
+        </div>
+      </div>
+
+      <!-- macOS -->
+      <div class="os-card" id="cardMac">
+        <span class="os-icon">🍎</span>
+        <h2 class="os-title">macOS Universal</h2>
+        <p class="os-sub">Apple Silicon (M1-M4) &amp; Intel x64</p>
+        <a class="btn primary" href="https://github.com/ayushvsingh2611-code/office/releases/download/v0.5.7/AgentHive-0.5.7-mac-universal.dmg">
+          <span>⤓</span> Download .dmg (Universal)
+        </a>
+        <div class="os-specs">
+          macOS 11.0 Big Sur or later · 104 MB
+        </div>
+      </div>
+
+      <!-- Linux -->
+      <div class="os-card" id="cardLinux">
+        <span class="os-icon">🐧</span>
+        <h2 class="os-title">Linux</h2>
+        <p class="os-sub">x86_64 AppImage (All Distributions)</p>
+        <a class="btn primary" href="https://github.com/ayushvsingh2611-code/office/releases/download/v0.5.7/AgentHive-0.5.7-linux-x86_64.AppImage">
+          <span>⤓</span> Download .AppImage
+        </a>
+        <div class="os-specs">
+          glibc 2.31+ · Ubuntu, Debian, Fedora, Arch · 102 MB
+        </div>
+      </div>
+    </div>
+
+    <div class="verify-box">
+      <strong>Verify Checksum (SHA-256):</strong><br/>
+      Windows: <code>sha256sum AgentHive-Setup-0.5.7.exe</code><br/>
+      macOS: <code>shasum -a 256 AgentHive-0.5.7-mac-universal.dmg</code><br/>
+      Source Code: <a href="https://github.com/ayushvsingh2611-code/office" style="color:var(--accent);">github.com/ayushvsingh2611-code/office</a>
+    </div>
+  </div>
+</header>
+
+<section class="cl-section">
+  <div class="wrap">
+    <div class="cl-head">
+      <span class="kicker">VERSION HISTORY &amp; CHANGELOG</span>
+      <h2>What's new in AgentHive</h2>
+      <p style="color:var(--muted); margin-top:6px;">Every release ships with complete transparency. All changes are verified locally.</p>
+    </div>
+
+    <!-- v0.5.7 -->
+    <article class="cl-entry">
+      <span class="cl-badge">LATEST RELEASE · v0.5.7</span>
+      <h3 class="cl-title">Performance Tuning, Security Guardrails &amp; Canvas Polish</h3>
+      <div class="cl-date">November 2026 · Built by Ayush Singh</div>
+      <div class="cl-body">
+        <ul>
+          <li><strong>Multi-Terminal Stream Stabilization:</strong> Eliminated dropped token packets across concurrent agent terminals when running 5+ agents in parallel.</li>
+          <li><strong>Memory Leak Patch:</strong> Resolved Pixi.js Canvas texture recycling in the floor office view during 24/7 continuous operation.</li>
+          <li><strong>Prompt Injection &amp; Execution Guardrails:</strong> Enhanced local sandbox filters preventing rogue scripts from traversing outside assigned Git worktrees.</li>
+          <li><strong>Playwright Autonomous Verification:</strong> Agents can now launch headless Chrome to self-verify rendered DOM before opening pull requests.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- v0.5.6 -->
+    <article class="cl-entry">
+      <span class="cl-badge">v0.5.6</span>
+      <h3 class="cl-title">Agent Scheduling, Slack Webhook Bridge &amp; Hotkeys</h3>
+      <div class="cl-date">October 2026</div>
+      <div class="cl-body">
+        <ul>
+          <li><strong>Cron &amp; Recurring Schedules:</strong> Run nightly refactors, bug triages, and PR reviews while your computer is locked.</li>
+          <li><strong>Slack Bridge:</strong> Trigger agents directly from a designated Slack channel with encrypted responses routed back to your laptop.</li>
+          <li><strong>Temp Agents:</strong> Spin up disposable single-task sub-agents that self-destruct once their pull request is committed.</li>
+          <li><strong>Custom Keyboard Shortcuts:</strong> Universal hotkey manager for quick terminal focus and floor navigation.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- v0.5.5 -->
+    <article class="cl-entry">
+      <span class="cl-badge">v0.5.5</span>
+      <h3 class="cl-title">Living Café, Local Model Fallbacks (Ollama) &amp; Token Budgets</h3>
+      <div class="cl-date">September 2026</div>
+      <div class="cl-body">
+        <ul>
+          <li><strong>The Living Café:</strong> An autonomous break-room where agents deliberate, share cross-repo knowledge, and align on architecture before code execution.</li>
+          <li><strong>Offline LLM Support:</strong> Native auto-discovery for Ollama and LM Studio endpoints for 100% air-gapped agent swarms.</li>
+          <li><strong>Floor Token Budgeting:</strong> Real-time token consumption tracking per seat with hard velocity limits and circuit breakers.</li>
+          <li><strong>Global Fuzzy Search:</strong> Fast fuzzy indexing across all agent memory files and active workspace branches.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- v0.5.4 -->
+    <article class="cl-entry">
+      <span class="cl-badge">v0.5.4</span>
+      <h3 class="cl-title">Dual Sprint Execution &amp; Git Worktree Isolation</h3>
+      <div class="cl-date">August 2026</div>
+      <div class="cl-body">
+        <ul>
+          <li><strong>Dual Sprint Velocity:</strong> Parallel pair-programming architecture with Franky (Tools &amp; Infrastructure) and Luffy (Core Logic).</li>
+          <li><strong>Automatic Git Worktree Management:</strong> Each agent runs inside an isolated Git worktree branch, eliminating file conflicts.</li>
+          <li><strong>Visual 3-Way Merge Resolver:</strong> Conflict resolution interface designed specifically for concurrent agent changes.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- v0.5.3 -->
+    <article class="cl-entry">
+      <span class="cl-badge">v0.5.3</span>
+      <h3 class="cl-title">The Hive Nexus Companion HUD &amp; Stealth Mode</h3>
+      <div class="cl-date">July 2026</div>
+      <div class="cl-body">
+        <ul>
+          <li><strong>The Hive Nexus:</strong> Floating radial action companion with quick voice dictation and visual screen snip.</li>
+          <li><strong>Stealth Mode ("Leave Invisible"):</strong> 1-click window hiding from Zoom, Google Meet, and OBS screen share.</li>
+          <li><strong>Technical Dictionary:</strong> Speech recognition understands 126 programming and DevOps terms natively.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- v0.5.2 -->
+    <article class="cl-entry">
+      <span class="cl-badge">v0.5.2</span>
+      <h3 class="cl-title">Initial Public Release: The Straw Hat Crew Multi-Agent Harness</h3>
+      <div class="cl-date">June 2026</div>
+      <div class="cl-body">
+        <ul>
+          <li><strong>Multi-PTY Session Architecture:</strong> Wraps Claude Code, Codex, Kimi, and custom CLI agents into an always-on office floor.</li>
+          <li><strong>Shared MemPalace:</strong> Local vector and markdown long-term memory that survives reboots.</li>
+          <li><strong>E2E Encrypted Agent-to-Agent Messaging:</strong> Clones communicate securely peer-to-peer on your local network.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <span>© 2026 AgentHive — Created by Ayush Singh · Free &amp; Open Source (MIT)</span>
+    <div style="display:flex; gap:18px;">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/wall.html">Founders' Wall</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="https://github.com/ayushvsingh2611-code/office" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Simple OS auto-detection
+  (function() {
+    var ua = navigator.userAgent.toLowerCase();
+    var win = document.getElementById('cardWin');
+    var mac = document.getElementById('cardMac');
+    var linux = document.getElementById('cardLinux');
+    if (ua.indexOf('win') !== -1 && win) {
+      win.classList.add('recommended');
+    } else if (ua.indexOf('mac') !== -1 && mac) {
+      mac.classList.add('recommended');
+    } else if (ua.indexOf('linux') !== -1 && linux) {
+      linux.classList.add('recommended');
+    }
+  })();
+
+  // Theme toggle
+  (function () {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      var next = cur === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('mdf_theme', next); } catch (e) {}
+    });
+  })();
+</script>
+
+</body>
+</html>

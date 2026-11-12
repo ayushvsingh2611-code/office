@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Recovering From Agent Failures: Resilience Patterns for a Hive — Munder Difflin Blog</title>
+<title>Recovering From Agent Failures: Resilience Patterns for a Hive — AgentHive Engineering Hub</title>
 <meta name="description" content="How multi-agent systems survive partial failure: retry with stale-lock recovery, poison-message quarantine, hop-cap circuit breaking, idempotent handling." />
-<link rel="canonical" href="https://munderdiffl.in/blog/recovering-from-agent-failures/" />
+<link rel="canonical" href="https://agenthive.local/blog/recovering-from-agent-failures/" />
 
-<link rel="icon" type="image/png" href="https://munderdiffl.in/logo.png" />
-<link rel="apple-touch-icon" href="https://munderdiffl.in/logo.png" />
+<link rel="icon" type="image/png" href="https://agenthive.local/logo.png" />
+<link rel="apple-touch-icon" href="https://agenthive.local/logo.png" />
 <meta name="theme-color" content="#F5F2E8" />
 
 <!-- Open Graph -->
-<meta property="og:site_name" content="Munder Difflin Blog" />
+<meta property="og:site_name" content="AgentHive Engineering Hub" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Recovering From Agent Failures: Resilience Patterns for a Hive — Munder Difflin Blog" />
+<meta property="og:title" content="Recovering From Agent Failures: Resilience Patterns for a Hive — AgentHive Engineering Hub" />
 <meta property="og:description" content="How multi-agent systems survive partial failure: retry with stale-lock recovery, poison-message quarantine, hop-cap circuit breaking, idempotent handling." />
-<meta property="og:url" content="https://munderdiffl.in/blog/recovering-from-agent-failures/" />
-<meta property="og:image" content="https://munderdiffl.in/media/og.png" />
+<meta property="og:url" content="https://agenthive.local/blog/recovering-from-agent-failures/" />
+<meta property="og:image" content="https://agenthive.local/media/og.png" />
 <meta property="og:locale" content="en_US" />
 <meta property="article:published_time" content="2026-06-04T00:00:00.000Z" />
-<meta property="article:author" content="Chaitanya Giri" />
+<meta property="article:author" content="Ayush Singh" />
 <meta property="article:tag" content="Internals" />
 <meta property="article:tag" content="Concurrency" />
 <meta property="article:tag" content="Multi-Agent" />
@@ -29,11 +29,11 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Recovering From Agent Failures: Resilience Patterns for a Hive — Munder Difflin Blog" />
+<meta name="twitter:title" content="Recovering From Agent Failures: Resilience Patterns for a Hive — AgentHive Engineering Hub" />
 <meta name="twitter:description" content="How multi-agent systems survive partial failure: retry with stale-lock recovery, poison-message quarantine, hop-cap circuit breaking, idempotent handling." />
-<meta name="twitter:image" content="https://munderdiffl.in/media/og.png" />
+<meta name="twitter:image" content="https://agenthive.local/media/og.png" />
 
-<link rel="alternate" type="application/atom+xml" title="Munder Difflin Blog" href="https://munderdiffl.in/blog/feed.xml" />
+<link rel="alternate" type="application/atom+xml" title="AgentHive Engineering Hub" href="https://agenthive.local/blog/feed.xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
@@ -45,20 +45,20 @@
   "@type": "BlogPosting",
   "headline": "Recovering From Agent Failures: Resilience Patterns for a Hive",
   "description": "How multi-agent systems survive partial failure: retry with stale-lock recovery, poison-message quarantine, hop-cap circuit breaking, idempotent handling.",
-  "image": ["https://munderdiffl.in/media/og.png"],
+  "image": ["https://agenthive.local/media/og.png"],
   "datePublished": "2026-06-04T00:00:00.000Z",
   "dateModified": "2026-06-04T00:00:00.000Z",
-  "author": { "@type": "Person", "name": "Chaitanya Giri" },
+  "author": { "@type": "Person", "name": "Ayush Singh" },
   "publisher": {
     "@type": "Organization",
-    "name": "Munder Difflin",
-    "logo": { "@type": "ImageObject", "url": "https://munderdiffl.in/logo.png" }
+    "name": "AgentHive",
+    "logo": { "@type": "ImageObject", "url": "https://agenthive.local/logo.png" }
   },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://munderdiffl.in/blog/recovering-from-agent-failures/" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://agenthive.local/blog/recovering-from-agent-failures/" },
   "keywords": "recovering from agent failures, multi-agent resilience, ai agent failure recovery, idempotent agent messaging, fault tolerance ai agents",
   "articleSection": "Internals",
   "inLanguage": "en-US",
-  "url": "https://munderdiffl.in/blog/recovering-from-agent-failures/"
+  "url": "https://agenthive.local/blog/recovering-from-agent-failures/"
 }
 </script>
 <script type="application/ld+json">
@@ -66,9 +66,9 @@
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://munderdiffl.in/" },
-    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://munderdiffl.in/blog/" },
-    { "@type": "ListItem", "position": 3, "name": "Recovering From Agent Failures: Resilience Patterns for a Hive", "item": "https://munderdiffl.in/blog/recovering-from-agent-failures/" }
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://agenthive.local/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://agenthive.local/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Recovering From Agent Failures: Resilience Patterns for a Hive", "item": "https://agenthive.local/blog/recovering-from-agent-failures/" }
   ]
 }
 </script>
@@ -114,19 +114,19 @@
 <body class="theme-press">
 <a class="skip-link" href="#main">Skip to content</a>
 <nav id="nav">
-  <a class="brand" href="https://munderdiffl.in" aria-label="Munder Difflin home">
-    <img class="brand-logo" src="https://munderdiffl.in/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
+  <a class="brand" href="https://agenthive.local" aria-label="AgentHive home">
+    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
   </a>
   <span class="spacer"></span>
   <div class="links">
     <a href="/blog/">Latest</a>
     <a href="/blog/topics/">Topics</a>
     <a href="/blog/about/">About</a>
-    <a href="https://munderdiffl.in">↗ Product</a>
+    <a href="https://agenthive.local">↗ Product</a>
   </div>
   <div class="nav-actions">
-    <a class="btn sm" href="https://munderdiffl.in/blog/feed.xml" aria-label="RSS feed">⤵ RSS</a>
-    <a class="btn sm primary" href="https://munderdiffl.in/#install">⤓ Download</a>
+    <a class="btn sm" href="https://agenthive.local/blog/feed.xml" aria-label="RSS feed">⤵ RSS</a>
+    <a class="btn sm primary" href="https://agenthive.local/#install">⤓ Download</a>
   </div>
 </nav>
 
@@ -142,8 +142,8 @@
     <h1>Recovering From Agent Failures: Resilience Patterns for a Hive</h1>
     <p class="dek">How multi-agent systems survive partial failure: retry with stale-lock recovery, poison-message quarantine, hop-cap circuit breaking, idempotent handling.</p>
     <div class="byline">
-      <span class="av" aria-hidden="true">CG</span>
-      <strong>Chaitanya Giri</strong>
+      <span class="av" aria-hidden="true">AS</span>
+      <strong>Ayush Singh</strong>
       <span class="dot" aria-hidden="true">·</span>
       <time datetime="2026-06-04">Jun 4, 2026</time>
       <span class="dot" aria-hidden="true">·</span>
@@ -254,7 +254,7 @@ resilience and debuggability come from the same record.</p>
 agents into a system you can trust to run unattended. Build them in once, at the
 <a href="/#how">orchestration layer</a>, and every agent inherits them for free.</p>
 <p>Want to see these patterns in a hive you can actually watch recover? You can
-<a href="/#install">download Munder Difflin</a> free — it’s open source, and the whole coordination layer is right
+<a href="/#install">download AgentHive</a> free — it’s open source, and the whole coordination layer is right
 there to read.</p>
 
 
@@ -331,7 +331,7 @@ there to read.</p>
       <span>5 min</span>
     </div>
     <h3><a href="/blog/why-our-auto-update-never-ran/">Our Auto-Update Never Ran Once: A CommonJS Export That Vanished Into an ESM Namespace</a></h3>
-    <p class="dek">Munder Difflin shipped auto-update in v0.3.4 and it silently never worked in a single packaged build. The cause was one destructuring assignment across the CommonJS/ESM boundary — and a catch block that threw the evidence away. Here&#39;s how we found it, and what v0.3.7 changes.</p>
+    <p class="dek">AgentHive shipped auto-update in v0.3.4 and it silently never worked in a single packaged build. The cause was one destructuring assignment across the CommonJS/ESM boundary — and a catch block that threw the evidence away. Here&#39;s how we found it, and what v0.3.7 changes.</p>
     <div class="foot">
       <span class="tag kind">Internals</span>
       <a class="more" href="/blog/why-our-auto-update-never-ran/" aria-label="Read: Our Auto-Update Never Ran Once: A CommonJS Export That Vanished Into an ESM Namespace">Read →</a>
@@ -347,7 +347,7 @@ there to read.</p>
       <span>12 min</span>
     </div>
     <h3><a href="/blog/hire-manifest-untrusted-input/">Treating a Hire Manifest as Untrusted Input</a></h3>
-    <p class="dek">A shareable agent-config manifest is attacker input. How Munder Difflin&#39;s import pipeline stays inert: no auto-spawn, default-deny flags, and an SSRF-safe bounded fetch.</p>
+    <p class="dek">A shareable agent-config manifest is attacker input. How AgentHive&#39;s import pipeline stays inert: no auto-spawn, default-deny flags, and an SSRF-safe bounded fetch.</p>
     <div class="foot">
       <span class="tag kind">Internals</span>
       <a class="more" href="/blog/hire-manifest-untrusted-input/" aria-label="Read: Treating a Hire Manifest as Untrusted Input">Read →</a>
@@ -365,21 +365,21 @@ there to read.</p>
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-top">
-      <a class="foot-brand brand" href="https://munderdiffl.in" aria-label="Munder Difflin home">
-        <img class="brand-logo" src="https://munderdiffl.in/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
+      <a class="foot-brand brand" href="https://agenthive.local" aria-label="AgentHive home">
+        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
       </a>
       <div class="foot-links">
         <a href="/blog/">Latest</a>
         <a href="/blog/topics/">Topics</a>
         <a href="/blog/about/">About</a>
-        <a href="https://munderdiffl.in/blog/feed.xml">RSS</a>
-        <a href="https://github.com/chaitanyagiri/munder-difflin">GitHub</a>
-        <a href="https://munderdiffl.in">munderdiffl.in ↗</a>
+        <a href="https://agenthive.local/blog/feed.xml">RSS</a>
+        <a href="https://github.com/ayushvsingh2611-code/office">GitHub</a>
+        <a href="https://agenthive.local">agenthive.local ↗</a>
       </div>
     </div>
     <div class="foot-meta">
-      © 2026 Munder Difflin · Local-first · MIT-licensed ·
-      Built on <a href="https://munderdiffl.in">Electron, React, Pixi.js, xterm.js &amp; node-pty</a>.
+      © 2026 AgentHive · Local-first · MIT-licensed ·
+      Built on <a href="https://agenthive.local">Electron, React, Pixi.js, xterm.js &amp; node-pty</a>.
       Run an office of agents while you sleep.
     </div>
   </div>

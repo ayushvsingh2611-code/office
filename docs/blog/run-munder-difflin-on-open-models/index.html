@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider — Munder Difflin Blog</title>
-<meta name="description" content="Munder Difflin runs your agent floor on open-weight models — gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi — fully local (Ollama/LM Studio/vLLM), through a third-party OSS provider, or on the model-maker&#39;s own CLI. Here&#39;s the wiring, current as of v0.4.4." />
-<link rel="canonical" href="https://munderdiffl.in/blog/run-munder-difflin-on-open-models/" />
+<title>Run AgentHive on Open-Source Models — Fully Local or via a Third-Party Provider — AgentHive Engineering Hub</title>
+<meta name="description" content="AgentHive runs your agent floor on open-weight models — gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi — fully local (Ollama/LM Studio/vLLM), through a third-party OSS provider, or on the model-maker&#39;s own CLI. Here&#39;s the wiring, current as of v0.4.4." />
+<link rel="canonical" href="https://agenthive.local/blog/run-munder-difflin-on-open-models/" />
 
-<link rel="icon" type="image/png" href="https://munderdiffl.in/logo.png" />
-<link rel="apple-touch-icon" href="https://munderdiffl.in/logo.png" />
+<link rel="icon" type="image/png" href="https://agenthive.local/logo.png" />
+<link rel="apple-touch-icon" href="https://agenthive.local/logo.png" />
 <meta name="theme-color" content="#F5F2E8" />
 
 <!-- Open Graph -->
-<meta property="og:site_name" content="Munder Difflin Blog" />
+<meta property="og:site_name" content="AgentHive Engineering Hub" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider — Munder Difflin Blog" />
-<meta property="og:description" content="Munder Difflin runs your agent floor on open-weight models — gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi — fully local (Ollama/LM Studio/vLLM), through a third-party OSS provider, or on the model-maker&#39;s own CLI. Here&#39;s the wiring, current as of v0.4.4." />
-<meta property="og:url" content="https://munderdiffl.in/blog/run-munder-difflin-on-open-models/" />
-<meta property="og:image" content="https://munderdiffl.in/media/og.png" />
+<meta property="og:title" content="Run AgentHive on Open-Source Models — Fully Local or via a Third-Party Provider — AgentHive Engineering Hub" />
+<meta property="og:description" content="AgentHive runs your agent floor on open-weight models — gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi — fully local (Ollama/LM Studio/vLLM), through a third-party OSS provider, or on the model-maker&#39;s own CLI. Here&#39;s the wiring, current as of v0.4.4." />
+<meta property="og:url" content="https://agenthive.local/blog/run-munder-difflin-on-open-models/" />
+<meta property="og:image" content="https://agenthive.local/media/og.png" />
 <meta property="og:locale" content="en_US" />
 <meta property="article:published_time" content="2026-06-22T00:00:00.000Z" />
-<meta property="article:author" content="Chaitanya Giri" />
+<meta property="article:author" content="Ayush Singh" />
 <meta property="article:tag" content="Guides" />
 <meta property="article:tag" content="Local-First" />
 <meta property="article:tag" content="Open Source" />
@@ -30,11 +30,11 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider — Munder Difflin Blog" />
-<meta name="twitter:description" content="Munder Difflin runs your agent floor on open-weight models — gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi — fully local (Ollama/LM Studio/vLLM), through a third-party OSS provider, or on the model-maker&#39;s own CLI. Here&#39;s the wiring, current as of v0.4.4." />
-<meta name="twitter:image" content="https://munderdiffl.in/media/og.png" />
+<meta name="twitter:title" content="Run AgentHive on Open-Source Models — Fully Local or via a Third-Party Provider — AgentHive Engineering Hub" />
+<meta name="twitter:description" content="AgentHive runs your agent floor on open-weight models — gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi — fully local (Ollama/LM Studio/vLLM), through a third-party OSS provider, or on the model-maker&#39;s own CLI. Here&#39;s the wiring, current as of v0.4.4." />
+<meta name="twitter:image" content="https://agenthive.local/media/og.png" />
 
-<link rel="alternate" type="application/atom+xml" title="Munder Difflin Blog" href="https://munderdiffl.in/blog/feed.xml" />
+<link rel="alternate" type="application/atom+xml" title="AgentHive Engineering Hub" href="https://agenthive.local/blog/feed.xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
@@ -44,22 +44,22 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider",
-  "description": "Munder Difflin runs your agent floor on open-weight models — gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi — fully local (Ollama/LM Studio/vLLM), through a third-party OSS provider, or on the model-maker's own CLI. Here's the wiring, current as of v0.4.4.",
-  "image": ["https://munderdiffl.in/media/og.png"],
+  "headline": "Run AgentHive on Open-Source Models — Fully Local or via a Third-Party Provider",
+  "description": "AgentHive runs your agent floor on open-weight models — gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi — fully local (Ollama/LM Studio/vLLM), through a third-party OSS provider, or on the model-maker's own CLI. Here's the wiring, current as of v0.4.4.",
+  "image": ["https://agenthive.local/media/og.png"],
   "datePublished": "2026-06-22T00:00:00.000Z",
   "dateModified": "2026-08-20T00:00:00.000Z",
-  "author": { "@type": "Person", "name": "Chaitanya Giri" },
+  "author": { "@type": "Person", "name": "Ayush Singh" },
   "publisher": {
     "@type": "Organization",
-    "name": "Munder Difflin",
-    "logo": { "@type": "ImageObject", "url": "https://munderdiffl.in/logo.png" }
+    "name": "AgentHive",
+    "logo": { "@type": "ImageObject", "url": "https://agenthive.local/logo.png" }
   },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://munderdiffl.in/blog/run-munder-difflin-on-open-models/" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://agenthive.local/blog/run-munder-difflin-on-open-models/" },
   "keywords": "run ai agents on open source models, local llm coding agent, ollama coding agent, openrouter coding agent, gpt-oss, byok open models, opencode crush pi, qwen cli agent",
   "articleSection": "Guides",
   "inLanguage": "en-US",
-  "url": "https://munderdiffl.in/blog/run-munder-difflin-on-open-models/"
+  "url": "https://agenthive.local/blog/run-munder-difflin-on-open-models/"
 }
 </script>
 <script type="application/ld+json">
@@ -67,9 +67,9 @@
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://munderdiffl.in/" },
-    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://munderdiffl.in/blog/" },
-    { "@type": "ListItem", "position": 3, "name": "Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider", "item": "https://munderdiffl.in/blog/run-munder-difflin-on-open-models/" }
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://agenthive.local/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://agenthive.local/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Run AgentHive on Open-Source Models — Fully Local or via a Third-Party Provider", "item": "https://agenthive.local/blog/run-munder-difflin-on-open-models/" }
   ]
 }
 </script>
@@ -79,7 +79,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Can Munder Difflin run entirely on open-source models?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The OpenCode, Crush, and pi engines all support bring-your-own-key (BYOK) and local models, and the Qwen and Kimi CLIs are first-class engines whose flagship models are open-weight. You can run every agent — workers and Michael himself — on open models like gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, or Kimi: fully local on your own hardware, or through a third-party OSS provider with your own API key." } },
+    { "@type": "Question", "name": "Can AgentHive run entirely on open-source models?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The OpenCode, Crush, and pi engines all support bring-your-own-key (BYOK) and local models, and the Qwen and Kimi CLIs are first-class engines whose flagship models are open-weight. You can run every agent — workers and Michael himself — on open models like gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, or Kimi: fully local on your own hardware, or through a third-party OSS provider with your own API key." } },
     { "@type": "Question", "name": "What's the difference between running local and using a third-party provider?", "acceptedAnswer": { "@type": "Answer", "text": "Local (Ollama, LM Studio, vLLM) runs the weights on your own machine — fully private, no per-token bill, but bounded by your RAM and GPU. A third-party OSS provider (OpenRouter, Groq, Together, Fireworks, DeepInfra) hosts the same open weights on their hardware and you pay per token with your own key — no local hardware limit, so you can reach the 100B–1T-parameter frontier models a laptop can't hold." } },
     { "@type": "Question", "name": "Which open model should I pick for the orchestrator seat?", "acceptedAnswer": { "@type": "Answer", "text": "Michael does the reasoning and long-context coordination, so give him a strong model: locally, gpt-oss-120b or Llama 3.3 70B on a 64–96 GB machine; via a provider, DeepSeek-V4-Flash, GLM-4.6, or Kimi-K2.6 on OpenRouter. Small local models (8B and under) are fine for routine workers but underpowered for orchestration." } },
     { "@type": "Question", "name": "Do I need a different model id for each engine?", "acceptedAnswer": { "@type": "Answer", "text": "No — the upstream model id is the same. All three BYOK engines use a provider/model slug; only the provider prefix and how the key or base-URL is wired differ. For local models, OpenCode uses local/<id> while Crush uses ollama/<id>." } }
@@ -116,19 +116,19 @@
 <body class="theme-press">
 <a class="skip-link" href="#main">Skip to content</a>
 <nav id="nav">
-  <a class="brand" href="https://munderdiffl.in" aria-label="Munder Difflin home">
-    <img class="brand-logo" src="https://munderdiffl.in/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
+  <a class="brand" href="https://agenthive.local" aria-label="AgentHive home">
+    <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
   </a>
   <span class="spacer"></span>
   <div class="links">
     <a href="/blog/">Latest</a>
     <a href="/blog/topics/">Topics</a>
     <a href="/blog/about/">About</a>
-    <a href="https://munderdiffl.in">↗ Product</a>
+    <a href="https://agenthive.local">↗ Product</a>
   </div>
   <div class="nav-actions">
-    <a class="btn sm" href="https://munderdiffl.in/blog/feed.xml" aria-label="RSS feed">⤵ RSS</a>
-    <a class="btn sm primary" href="https://munderdiffl.in/#install">⤓ Download</a>
+    <a class="btn sm" href="https://agenthive.local/blog/feed.xml" aria-label="RSS feed">⤵ RSS</a>
+    <a class="btn sm primary" href="https://agenthive.local/#install">⤓ Download</a>
   </div>
 </nav>
 
@@ -141,11 +141,11 @@
       <span>/</span>
       <a href="/blog/topics/guides/">Guides</a>
     </nav>
-    <h1>Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider</h1>
-    <p class="dek">Munder Difflin runs your agent floor on open-weight models — gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi — fully local (Ollama/LM Studio/vLLM), through a third-party OSS provider, or on the model-maker&#39;s own CLI. Here&#39;s the wiring, current as of v0.4.4.</p>
+    <h1>Run AgentHive on Open-Source Models — Fully Local or via a Third-Party Provider</h1>
+    <p class="dek">AgentHive runs your agent floor on open-weight models — gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi — fully local (Ollama/LM Studio/vLLM), through a third-party OSS provider, or on the model-maker&#39;s own CLI. Here&#39;s the wiring, current as of v0.4.4.</p>
     <div class="byline">
-      <span class="av" aria-hidden="true">CG</span>
-      <strong>Chaitanya Giri</strong>
+      <span class="av" aria-hidden="true">AS</span>
+      <strong>Ayush Singh</strong>
       <span class="dot" aria-hidden="true">·</span>
       <time datetime="2026-06-22">Jun 22, 2026</time>
       <span class="dot" aria-hidden="true">·</span>
@@ -154,12 +154,12 @@
     </div>
   </header>
 
-  <div class="hero-wrap wrap"><figure class="fig fig-hero"><img src="/blog/assets/media/run-munder-difflin-on-open-models/hero.png" alt="Illustration: Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider" loading="lazy" decoding="async" /></figure></div>
+  <div class="hero-wrap wrap"><figure class="fig fig-hero"><img src="/blog/assets/media/run-munder-difflin-on-open-models/hero.png" alt="Illustration: Run AgentHive on Open-Source Models — Fully Local or via a Third-Party Provider" loading="lazy" decoding="async" /></figure></div>
 
   <div class="post-wrap wrap">
     <div class="prose">
-      <div class="callout tldr"><span class="ic">TL;DR</span><p><strong>Munder Difflin runs entirely on open models.</strong> Three routes: <strong>fully local</strong> (Ollama / LM Studio / vLLM on your own machine — private, no per-token bill, bounded by RAM), a <strong>third-party OSS provider</strong> (OpenRouter, Groq, Together, Fireworks, DeepInfra — their hardware, your key, reaching frontier 100B–1T models a laptop can't hold), or the <strong>model-maker's own CLI</strong> — the Qwen and Kimi engines are first-class hires whose flagship models are open-weight. The BYOK engines (<strong>OpenCode</strong>, <strong>Crush</strong>, <strong>pi</strong>) all use a <code>provider/model</code> slug; keys and local base-URLs live in <strong>Settings → AI Engines</strong>, and <strong>Settings → Prerequisites</strong> tells you which engine binaries the app can actually see.</p></div>
-<p>Munder Difflin started as a harness for the closed frontier CLIs — Claude Code, Codex, Antigravity. Useful, but it tied your agent floor to a handful of vendors and their pricing. That’s long since broken open: of the <strong>ten engines</strong> the app now ships — Claude Code, Antigravity, Codex, Grok, Kimi, Qwen, OpenCode, Crush, pi, and GitHub Copilot CLI — three (<a href="https://opencode.ai">OpenCode</a>, <a href="https://charm.land">Crush</a>, <a href="https://pi.dev">pi</a>) were built from the start to point at <em>any</em> model, and two more (Qwen, Kimi) are the model-makers’ own CLIs for families whose weights are public.</p>
+      <div class="callout tldr"><span class="ic">TL;DR</span><p><strong>AgentHive runs entirely on open models.</strong> Three routes: <strong>fully local</strong> (Ollama / LM Studio / vLLM on your own machine — private, no per-token bill, bounded by RAM), a <strong>third-party OSS provider</strong> (OpenRouter, Groq, Together, Fireworks, DeepInfra — their hardware, your key, reaching frontier 100B–1T models a laptop can't hold), or the <strong>model-maker's own CLI</strong> — the Qwen and Kimi engines are first-class hires whose flagship models are open-weight. The BYOK engines (<strong>OpenCode</strong>, <strong>Crush</strong>, <strong>pi</strong>) all use a <code>provider/model</code> slug; keys and local base-URLs live in <strong>Settings → AI Engines</strong>, and <strong>Settings → Prerequisites</strong> tells you which engine binaries the app can actually see.</p></div>
+<p>AgentHive started as a harness for the closed frontier CLIs — Claude Code, Codex, Antigravity. Useful, but it tied your agent floor to a handful of vendors and their pricing. That’s long since broken open: of the <strong>ten engines</strong> the app now ships — Claude Code, Antigravity, Codex, Grok, Kimi, Qwen, OpenCode, Crush, pi, and GitHub Copilot CLI — three (<a href="https://opencode.ai">OpenCode</a>, <a href="https://charm.land">Crush</a>, <a href="https://pi.dev">pi</a>) were built from the start to point at <em>any</em> model, and two more (Qwen, Kimi) are the model-makers’ own CLIs for families whose weights are public.</p>
 <p>That means you can run an entire office of agents on models anyone can download. There are two honest ways to do it, and they trade off differently. This guide walks both, then shows the exact wiring for each engine — current as of <strong>v0.4.4</strong>. (For the why-bother, see <a href="/blog/why-local-first-matters-for-ai-agents/">why local-first matters for AI agents</a> and <a href="/blog/why-cli-agents-are-powerful/">why CLI agents are so powerful</a>.)</p>
 <h2 id="two-routes-your-hardware-or-someone-elses" tabindex="-1">Two routes: your hardware, or someone else’s <a class="anchor" href="#two-routes-your-hardware-or-someone-elses" aria-hidden="true">#</a></h2>
 <p>“Open source models” is one phrase covering two very different setups. Pick by what you’re optimizing for.</p>
@@ -204,7 +204,7 @@
 </tr>
 </tbody>
 </table>
-<p>You don’t have to choose globally — Munder Difflin sets the engine and model <em>per agent</em>. A common pattern: a strong provider-hosted model in the orchestrator seat, and cheap local workers for the routine majority. That’s exactly the <a href="/blog/do-more-with-less-model-routing/">capability-routing</a> idea, now with open weights on both ends.</p>
+<p>You don’t have to choose globally — AgentHive sets the engine and model <em>per agent</em>. A common pattern: a strong provider-hosted model in the orchestrator seat, and cheap local workers for the routine majority. That’s exactly the <a href="/blog/do-more-with-less-model-routing/">capability-routing</a> idea, now with open weights on both ends.</p>
 <p>And route three, for the least wiring of all: <strong>hire the model-maker’s own CLI.</strong> The Qwen and Kimi engines are first-class in the Add-Agent dialog — their vendor CLIs, their auth, no slug to compose — and Qwen3 and Kimi K2.6 are open-weight families. If all you want is “an open-model worker on my floor, now,” that’s one dropdown.</p>
 <h2 id="how-the-three-byok-engines-name-a-model" tabindex="-1">How the three BYOK engines name a model <a class="anchor" href="#how-the-three-byok-engines-name-a-model" aria-hidden="true">#</a></h2>
 <p>One thing to internalize before any wiring: <strong>OpenCode, Crush, and pi all use the same <code>provider/model</code> slug form.</strong> The <em>model</em> part is just the upstream’s id (e.g. <code>openai/gpt-oss-120b</code>, <code>qwen3:30b-a3b</code>). The <em>provider</em> prefix resolves one of two ways:</p>
@@ -240,9 +240,9 @@
 </tbody>
 </table>
 <p>Default endpoints are the usual ones: Ollama <code>http://localhost:11434/v1</code>, LM Studio <code>http://127.0.0.1:1234/v1</code>, vLLM whatever you exposed (often <code>:8000/v1</code>). You set these in the app — no shell exports required.</p>
-<figure class="fig fig-inline"><img src="/blog/assets/media/run-munder-difflin-on-open-models/note-1.png" alt="Hand-drawn sketch from “Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider”" loading="lazy" decoding="async" /><figcaption>Same model id everywhere — only the prefix changes: local/ on OpenCode, ollama/ on Crush, provider/ for BYOK.</figcaption></figure>
+<figure class="fig fig-inline"><img src="/blog/assets/media/run-munder-difflin-on-open-models/note-1.png" alt="Hand-drawn sketch from “Run AgentHive on Open-Source Models — Fully Local or via a Third-Party Provider”" loading="lazy" decoding="async" /><figcaption>Same model id everywhere — only the prefix changes: local/ on OpenCode, ollama/ on Crush, provider/ for BYOK.</figcaption></figure>
 <h2 id="path-a-fully-local-ollama-lm-studio-vllm" tabindex="-1">Path A — fully local (Ollama / LM Studio / vLLM) <a class="anchor" href="#path-a-fully-local-ollama-lm-studio-vllm" aria-hidden="true">#</a></h2>
-<p>Three steps: pull a model, tell Munder Difflin where it lives, pick it for an agent.</p>
+<p>Three steps: pull a model, tell AgentHive where it lives, pick it for an agent.</p>
 <p><strong>1. Pull a model.</strong> With <a href="https://ollama.com">Ollama</a> installed, grab one sized to your RAM:</p>
 <pre class="language-bash"><code class="language-bash">ollama pull gpt-oss:20b        <span class="token comment"># 14 GB — runs on a 16 GB Mac, the safe default</span>
 ollama pull qwen3:30b-a3b      <span class="token comment"># 19 GB — fast MoE generalist, 32 GB</span>
@@ -374,7 +374,7 @@ ollama serve                   <span class="token comment"># exposes the OpenAI-
 </table>
 <p>Prefer a model maker’s own API? Those work too: DeepSeek (<code>deepseek/deepseek-v4-flash</code>, <code>DEEPSEEK_API_KEY</code>), Mistral (<code>mistral/...</code>, <code>MISTRAL_API_KEY</code>), <a href="http://Z.ai">Z.ai</a> for GLM, Moonshot for Kimi. On Groq, stick to gpt-oss and <code>llama-3.3-70b-versatile</code>. The full slug-by-slug table, with citations, lives in the project’s open-model catalog (the single source of truth this post and the Mac Mini guide both cite).</p>
 <p>One honest fix from v0.4.4 worth knowing: OpenCode used to preselect a BYOK slug <strong>and silently fall back</strong> to a different model when the key was absent — while every surface kept reporting the model it had asked for. That’s gone. If a key is missing now, you find out; you never unknowingly run a model you didn’t pick.</p>
-<figure class="fig fig-inline"><img src="/blog/assets/media/run-munder-difflin-on-open-models/note-2.png" alt="Hand-drawn sketch from “Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider”" loading="lazy" decoding="async" /><figcaption>One key, the whole frontier: paste it once in Settings, and the write-only broker injects it per spawn — never into plaintext config.</figcaption></figure>
+<figure class="fig fig-inline"><img src="/blog/assets/media/run-munder-difflin-on-open-models/note-2.png" alt="Hand-drawn sketch from “Run AgentHive on Open-Source Models — Fully Local or via a Third-Party Provider”" loading="lazy" decoding="async" /><figcaption>One key, the whole frontier: paste it once in Settings, and the write-only broker injects it per spawn — never into plaintext config.</figcaption></figure>
 <h2 id="per-engine-cheat-sheet" tabindex="-1">Per-engine cheat-sheet <a class="anchor" href="#per-engine-cheat-sheet" aria-hidden="true">#</a></h2>
 <p>You rarely touch these directly — the AI Engines panel writes them — but here’s what each engine does under the hood, so the model field makes sense.</p>
 <p><strong>OpenCode</strong> is OpenAI-SDK native and knows most providers out of the box. BYOK is just the env var; local is a custom provider named <code>local</code>. Slugs: <code>openrouter/openai/gpt-oss-120b</code>, <code>local/qwen3:30b-a3b</code>.</p>
@@ -385,8 +385,8 @@ ollama serve                   <span class="token comment"># exposes the OpenAI-
 <p><strong>Qwen and Kimi</strong> are the zero-wiring route: vendor CLIs as first-class engines. Sign in the way each CLI wants and hire away — no slugs, no base-URLs.</p>
 <p>All the BYOK engines are orchestrator-eligible, so you can put an open model in Michael’s seat, not just the workers’. Give the seat a strong one — <code>gpt-oss:120b</code> or <code>llama3.3:70b</code> locally (64–96 GB), or a frontier provider model like <code>openrouter/deepseek/deepseek-v4-flash</code>. Sub-8B models are great workers but thin for orchestration.</p>
 <h2 id="the-bottom-line" tabindex="-1">The bottom line <a class="anchor" href="#the-bottom-line" aria-hidden="true">#</a></h2>
-<p>Open weights turn Munder Difflin from “a harness for three vendors’ CLIs” into “a harness for the whole open ecosystem.” Run it <strong>fully local</strong> when privacy and fixed cost matter and your RAM can hold the model; run it on a <strong>third-party provider</strong> when you want frontier quality or no local hardware at all; hire the <strong>vendor CLI</strong> when you want zero wiring — and mix all three across your floor, agent by agent. The setup is two fields in <strong>Settings → AI Engines</strong> and a pick in Add-Agent, with <strong>Settings → Prerequisites</strong> confirming every engine binary the app can see.</p>
-<p>That’s the promise kept: a virtual office of CLI agents on your own computer, running on models whose weights anyone can read. <a href="https://munderdiffl.in/#install">Download Munder Difflin</a> — free, open source, local-first — and point your favorite open model at it. (On a Mac and want the hardware-by-RAM walkthrough? Read the <a href="/blog/run-munder-difflin-on-a-mac-mini/">Mac Mini setup guide</a>.)</p>
+<p>Open weights turn AgentHive from “a harness for three vendors’ CLIs” into “a harness for the whole open ecosystem.” Run it <strong>fully local</strong> when privacy and fixed cost matter and your RAM can hold the model; run it on a <strong>third-party provider</strong> when you want frontier quality or no local hardware at all; hire the <strong>vendor CLI</strong> when you want zero wiring — and mix all three across your floor, agent by agent. The setup is two fields in <strong>Settings → AI Engines</strong> and a pick in Add-Agent, with <strong>Settings → Prerequisites</strong> confirming every engine binary the app can see.</p>
+<p>That’s the promise kept: a virtual office of CLI agents on your own computer, running on models whose weights anyone can read. <a href="https://agenthive.local/#install">Download AgentHive</a> — free, open source, local-first — and point your favorite open model at it. (On a Mac and want the hardware-by-RAM walkthrough? Read the <a href="/blog/run-munder-difflin-on-a-mac-mini/">Mac Mini setup guide</a>.)</p>
 
 
       
@@ -394,7 +394,7 @@ ollama serve                   <span class="token comment"># exposes the OpenAI-
         <h2 id="faq">FAQ</h2>
         
         <div class="qa">
-          <p class="q">Can Munder Difflin run entirely on open-source models?</p>
+          <p class="q">Can AgentHive run entirely on open-source models?</p>
           <p class="a">Yes. The OpenCode, Crush, and pi engines all support bring-your-own-key (BYOK) and local models, and the Qwen and Kimi CLIs are first-class engines whose flagship models are open-weight. You can run every agent — workers and Michael himself — on open models like gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, or Kimi: fully local on your own hardware, or through a third-party OSS provider with your own API key.</p>
         </div>
         
@@ -436,8 +436,8 @@ ollama serve                   <span class="token comment"># exposes the OpenAI-
   </div>
 
   <footer class="post-foot wrap"><div class="prevnext">
-      <a class="pn prev" href="/blog/launching-munder-difflin-v0-3-0/"><span class="k">← Older</span><span class="t">Launching Munder Difflin v0.3.0: Selectable Engines, Integrations &amp; Slack-Spawned Workers</span></a>
-      <a class="pn next" href="/blog/run-munder-difflin-on-a-mac-mini/"><span class="k">Newer →</span><span class="t">Run Munder Difflin Locally on a Mac Mini</span></a>
+      <a class="pn prev" href="/blog/launching-munder-difflin-v0-3-0/"><span class="k">← Older</span><span class="t">Launching AgentHive v0.3.0: Selectable Engines, Integrations &amp; Slack-Spawned Workers</span></a>
+      <a class="pn next" href="/blog/run-munder-difflin-on-a-mac-mini/"><span class="k">Newer →</span><span class="t">Run AgentHive Locally on a Mac Mini</span></a>
     </div>
     <section class="related">
       <h2>Related in Guides</h2>
@@ -451,7 +451,7 @@ ollama serve                   <span class="token comment"># exposes the OpenAI-
       <span>5 min</span>
     </div>
     <h3><a href="/blog/command-center-guide/">The Command Center: Kanban, Fleet, and Budgets in One Place</a></h3>
-    <p class="dek">A guide to Munder Difflin&#39;s Command Center — the task kanban, live fleet monitoring, per-agent budgets and cost telemetry — and when to watch the board instead of the floor.</p>
+    <p class="dek">A guide to AgentHive&#39;s Command Center — the task kanban, live fleet monitoring, per-agent budgets and cost telemetry — and when to watch the board instead of the floor.</p>
     <div class="foot">
       <span class="tag kind">Guides</span>
       <a class="more" href="/blog/command-center-guide/" aria-label="Read: The Command Center: Kanban, Fleet, and Budgets in One Place">Read →</a>
@@ -483,7 +483,7 @@ ollama serve                   <span class="token comment"># exposes the OpenAI-
       <span>5 min</span>
     </div>
     <h3><a href="/blog/how-to-hire-from-the-agent-gallery/">How to Hire From the Agent Gallery</a></h3>
-    <p class="dek">A practical guide to Munder Difflin&#39;s Agent Gallery: browse six off-the-shelf hires, import one from a link or file, review the pre-filled manifest, customize identity, workspace, engine, and briefing — then spawn it yourself.</p>
+    <p class="dek">A practical guide to AgentHive&#39;s Agent Gallery: browse six off-the-shelf hires, import one from a link or file, review the pre-filled manifest, customize identity, workspace, engine, and briefing — then spawn it yourself.</p>
     <div class="foot">
       <span class="tag kind">Guides</span>
       <a class="more" href="/blog/how-to-hire-from-the-agent-gallery/" aria-label="Read: How to Hire From the Agent Gallery">Read →</a>
@@ -501,21 +501,21 @@ ollama serve                   <span class="token comment"># exposes the OpenAI-
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-top">
-      <a class="foot-brand brand" href="https://munderdiffl.in" aria-label="Munder Difflin home">
-        <img class="brand-logo" src="https://munderdiffl.in/logo.png" width="1318" height="840" alt="Munder Difflin, Inc. — Multi-Agent Harness" />
+      <a class="foot-brand brand" href="https://agenthive.local" aria-label="AgentHive home">
+        <img class="brand-logo" src="https://agenthive.local/logo.png" width="1318" height="840" alt="AgentHive, Inc. — Multi-Agent Harness" />
       </a>
       <div class="foot-links">
         <a href="/blog/">Latest</a>
         <a href="/blog/topics/">Topics</a>
         <a href="/blog/about/">About</a>
-        <a href="https://munderdiffl.in/blog/feed.xml">RSS</a>
-        <a href="https://github.com/chaitanyagiri/munder-difflin">GitHub</a>
-        <a href="https://munderdiffl.in">munderdiffl.in ↗</a>
+        <a href="https://agenthive.local/blog/feed.xml">RSS</a>
+        <a href="https://github.com/ayushvsingh2611-code/office">GitHub</a>
+        <a href="https://agenthive.local">agenthive.local ↗</a>
       </div>
     </div>
     <div class="foot-meta">
-      © 2026 Munder Difflin · Local-first · MIT-licensed ·
-      Built on <a href="https://munderdiffl.in">Electron, React, Pixi.js, xterm.js &amp; node-pty</a>.
+      © 2026 AgentHive · Local-first · MIT-licensed ·
+      Built on <a href="https://agenthive.local">Electron, React, Pixi.js, xterm.js &amp; node-pty</a>.
       Run an office of agents while you sleep.
     </div>
   </div>

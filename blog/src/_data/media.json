@@ -12,13 +12,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/agent-security-and-sandboxing/note-1.png",
-        "alt": "Hand-drawn sketch from “Running AI Agents Safely: Permission Modes and Sandboxing”",
+        "alt": "Hand-drawn sketch from \u201cRunning AI Agents Safely: Permission Modes and Sandboxing\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/agent-security-and-sandboxing/note-2.png",
-        "alt": "Hand-drawn sketch from “Running AI Agents Safely: Permission Modes and Sandboxing”",
+        "alt": "Hand-drawn sketch from \u201cRunning AI Agents Safely: Permission Modes and Sandboxing\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -31,19 +31,19 @@
     "hero": {
       "file": "assets/media/agents-ran-our-launch-week-analytics/hero.png",
       "alt": "Illustration: Our Agents Ran Our Launch-Week Analytics",
-      "prompt": "Hero image for a blog post titled \"Our Agents Ran Our Launch-Week Analytics\". The post is about: Ten Reddit threads, 501 comments, a Product Hunt page, GitHub traffic and PostHog funnels — read, cross-referenced, and reported by a hive of agents. The workflow, and how to point it at your own launch.",
+      "prompt": "Hero image for a blog post titled \"Our Agents Ran Our Launch-Week Analytics\". The post is about: Ten Reddit threads, 501 comments, a Product Hunt page, GitHub traffic and PostHog funnels \u2014 read, cross-referenced, and reported by a hive of agents. The workflow, and how to point it at your own launch.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/agents-ran-our-launch-week-analytics/note-1.png",
-        "alt": "Hand-drawn sketch from “Our Agents Ran Our Launch-Week Analytics”",
+        "alt": "Hand-drawn sketch from \u201cOur Agents Ran Our Launch-Week Analytics\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/agents-ran-our-launch-week-analytics/note-2.png",
-        "alt": "Hand-drawn sketch from “Our Agents Ran Our Launch-Week Analytics”",
+        "alt": "Hand-drawn sketch from \u201cOur Agents Ran Our Launch-Week Analytics\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -56,19 +56,19 @@
     "hero": {
       "file": "assets/media/agents-rule-of-two/hero.png",
       "alt": "Illustration: The Agents Rule of Two: A Simple Safety Rule for Coding Agents",
-      "prompt": "Hero image for a blog post titled \"The Agents Rule of Two: A Simple Safety Rule for Coding Agents\". The post is about: Meta's Agents Rule of Two for coding agents: don't let one session combine untrusted input, private data, and external reach at once — or supervise.",
+      "prompt": "Hero image for a blog post titled \"The Agents Rule of Two: A Simple Safety Rule for Coding Agents\". The post is about: Meta's Agents Rule of Two for coding agents: don't let one session combine untrusted input, private data, and external reach at once \u2014 or supervise.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/agents-rule-of-two/note-1.png",
-        "alt": "Hand-drawn sketch from “The Agents Rule of Two: A Simple Safety Rule for Coding Agents”",
+        "alt": "Hand-drawn sketch from \u201cThe Agents Rule of Two: A Simple Safety Rule for Coding Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/agents-rule-of-two/note-2.png",
-        "alt": "Hand-drawn sketch from “The Agents Rule of Two: A Simple Safety Rule for Coding Agents”",
+        "alt": "Hand-drawn sketch from \u201cThe Agents Rule of Two: A Simple Safety Rule for Coding Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -81,19 +81,19 @@
     "hero": {
       "file": "assets/media/ai-agent-glossary/hero.png",
       "alt": "Illustration: The AI Coding Agent Glossary: Harness, Orchestrator, Hive, Subagent",
-      "prompt": "Hero image for a blog post titled \"The AI Coding Agent Glossary: Harness, Orchestrator, Hive, Subagent\". The post is about: Plain-English definitions of the AI coding agent terms everyone trips over — harness, orchestrator, hive, subagent, agent memory — each in one line.",
+      "prompt": "Hero image for a blog post titled \"The AI Coding Agent Glossary: Harness, Orchestrator, Hive, Subagent\". The post is about: Plain-English definitions of the AI coding agent terms everyone trips over \u2014 harness, orchestrator, hive, subagent, agent memory \u2014 each in one line.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/ai-agent-glossary/note-1.png",
-        "alt": "Hand-drawn sketch from “The AI Coding Agent Glossary: Harness, Orchestrator, Hive, Subagent”",
+        "alt": "Hand-drawn sketch from \u201cThe AI Coding Agent Glossary: Harness, Orchestrator, Hive, Subagent\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/ai-agent-glossary/note-2.png",
-        "alt": "Hand-drawn sketch from “The AI Coding Agent Glossary: Harness, Orchestrator, Hive, Subagent”",
+        "alt": "Hand-drawn sketch from \u201cThe AI Coding Agent Glossary: Harness, Orchestrator, Hive, Subagent\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -112,13 +112,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/an-agent-redesigned-this-blog/note-1.png",
-        "alt": "Hand-drawn sketch from “An Agent Redesigned the Blog You're Reading”",
+        "alt": "Hand-drawn sketch from \u201cAn Agent Redesigned the Blog You're Reading\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/an-agent-redesigned-this-blog/note-2.png",
-        "alt": "Hand-drawn sketch from “An Agent Redesigned the Blog You're Reading”",
+        "alt": "Hand-drawn sketch from \u201cAn Agent Redesigned the Blog You're Reading\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -137,13 +137,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/append-only-event-log-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “An Append-Only Event Log for a Hive of Agents”",
+        "alt": "Hand-drawn sketch from \u201cAn Append-Only Event Log for a Hive of Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/append-only-event-log-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “An Append-Only Event Log for a Hive of Agents”",
+        "alt": "Hand-drawn sketch from \u201cAn Append-Only Event Log for a Hive of Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -162,13 +162,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/architecture-two-planes-one-renderer/note-1.png",
-        "alt": "Hand-drawn sketch from “Munder Difflin's Architecture: Two Data Planes, One Renderer”",
+        "alt": "Hand-drawn sketch from \u201cMunder Difflin's Architecture: Two Data Planes, One Renderer\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/architecture-two-planes-one-renderer/note-2.png",
-        "alt": "Hand-drawn sketch from “Munder Difflin's Architecture: Two Data Planes, One Renderer”",
+        "alt": "Hand-drawn sketch from \u201cMunder Difflin's Architecture: Two Data Planes, One Renderer\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -181,19 +181,19 @@
     "hero": {
       "file": "assets/media/atomic-file-mailboxes-for-agents/hero.png",
       "alt": "Illustration: Atomic File Mailboxes: How Agents Message Each Other",
-      "prompt": "Hero image for a blog post titled \"Atomic File Mailboxes: How Agents Message Each Other\". The post is about: Can Claude Code agents talk to each other? Yes — the outbox-router-inbox design that lets agents message safely using plain files and atomic renames.",
+      "prompt": "Hero image for a blog post titled \"Atomic File Mailboxes: How Agents Message Each Other\". The post is about: Can Claude Code agents talk to each other? Yes \u2014 the outbox-router-inbox design that lets agents message safely using plain files and atomic renames.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/atomic-file-mailboxes-for-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Atomic File Mailboxes: How Agents Message Each Other”",
+        "alt": "Hand-drawn sketch from \u201cAtomic File Mailboxes: How Agents Message Each Other\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/atomic-file-mailboxes-for-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Atomic File Mailboxes: How Agents Message Each Other”",
+        "alt": "Hand-drawn sketch from \u201cAtomic File Mailboxes: How Agents Message Each Other\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -206,19 +206,19 @@
     "hero": {
       "file": "assets/media/best-ai-coding-agents/hero.png",
       "alt": "Illustration: The Best AI Coding Agents in 2026: A Field Guide",
-      "prompt": "Hero image for a blog post titled \"The Best AI Coding Agents in 2026: A Field Guide\". The post is about: A fair 2026 field guide to the best AI coding agents — Cursor, Aider, Cline, Devin, Copilot — by category, plus where a local multi-agent hive fits.",
+      "prompt": "Hero image for a blog post titled \"The Best AI Coding Agents in 2026: A Field Guide\". The post is about: A fair 2026 field guide to the best AI coding agents \u2014 Cursor, Aider, Cline, Devin, Copilot \u2014 by category, plus where a local multi-agent hive fits.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/best-ai-coding-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “The Best AI Coding Agents in 2026: A Field Guide”",
+        "alt": "Hand-drawn sketch from \u201cThe Best AI Coding Agents in 2026: A Field Guide\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/best-ai-coding-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “The Best AI Coding Agents in 2026: A Field Guide”",
+        "alt": "Hand-drawn sketch from \u201cThe Best AI Coding Agents in 2026: A Field Guide\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -231,19 +231,19 @@
     "hero": {
       "file": "assets/media/best-claude-code-multi-agent-tools/hero.png",
       "alt": "Illustration: The Best Tools to Run Multiple Claude Code Agents (2026)",
-      "prompt": "Hero image for a blog post titled \"The Best Tools to Run Multiple Claude Code Agents (2026)\". The post is about: An honest 2026 roundup of tools to run multiple Claude Code agents — Claude Squad, Conductor, Crystal, vibe-kanban, and Munder Difflin — compared.",
+      "prompt": "Hero image for a blog post titled \"The Best Tools to Run Multiple Claude Code Agents (2026)\". The post is about: An honest 2026 roundup of tools to run multiple Claude Code agents \u2014 Claude Squad, Conductor, Crystal, vibe-kanban, and Munder Difflin \u2014 compared.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/best-claude-code-multi-agent-tools/note-1.png",
-        "alt": "Hand-drawn sketch from “The Best Tools to Run Multiple Claude Code Agents (2026)”",
+        "alt": "Hand-drawn sketch from \u201cThe Best Tools to Run Multiple Claude Code Agents (2026)\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/best-claude-code-multi-agent-tools/note-2.png",
-        "alt": "Hand-drawn sketch from “The Best Tools to Run Multiple Claude Code Agents (2026)”",
+        "alt": "Hand-drawn sketch from \u201cThe Best Tools to Run Multiple Claude Code Agents (2026)\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -262,13 +262,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/building-a-terminal-ui-xterm-node-pty/note-1.png",
-        "alt": "Hand-drawn sketch from “Building a Terminal UI with xterm.js and node-pty”",
+        "alt": "Hand-drawn sketch from \u201cBuilding a Terminal UI with xterm.js and node-pty\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/building-a-terminal-ui-xterm-node-pty/note-2.png",
-        "alt": "Hand-drawn sketch from “Building a Terminal UI with xterm.js and node-pty”",
+        "alt": "Hand-drawn sketch from \u201cBuilding a Terminal UI with xterm.js and node-pty\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -287,13 +287,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/building-an-ai-office-floor/note-1.png",
-        "alt": "Hand-drawn sketch from “Building an AI \\\"Office Floor\\\": Avatars, Pathfinding, Envelopes”",
+        "alt": "Hand-drawn sketch from \u201cBuilding an AI \\\"Office Floor\\\": Avatars, Pathfinding, Envelopes\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/building-an-ai-office-floor/note-2.png",
-        "alt": "Hand-drawn sketch from “Building an AI \\\"Office Floor\\\": Avatars, Pathfinding, Envelopes”",
+        "alt": "Hand-drawn sketch from \u201cBuilding an AI \\\"Office Floor\\\": Avatars, Pathfinding, Envelopes\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -306,19 +306,19 @@
     "hero": {
       "file": "assets/media/building-reliable-ai-agents/hero.png",
       "alt": "Illustration: Building Reliable AI Agents: Failure Is the Default",
-      "prompt": "Hero image for a blog post titled \"Building Reliable AI Agents: Failure Is the Default\". The post is about: Agents fail constantly: tools error, steps stall, output goes wrong. Reliability isn't avoiding failure — it's making each one contained and recoverable.",
+      "prompt": "Hero image for a blog post titled \"Building Reliable AI Agents: Failure Is the Default\". The post is about: Agents fail constantly: tools error, steps stall, output goes wrong. Reliability isn't avoiding failure \u2014 it's making each one contained and recoverable.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/building-reliable-ai-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Building Reliable AI Agents: Failure Is the Default”",
+        "alt": "Hand-drawn sketch from \u201cBuilding Reliable AI Agents: Failure Is the Default\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/building-reliable-ai-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Building Reliable AI Agents: Failure Is the Default”",
+        "alt": "Hand-drawn sketch from \u201cBuilding Reliable AI Agents: Failure Is the Default\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -331,19 +331,19 @@
     "hero": {
       "file": "assets/media/can-claude-code-agents-talk-to-each-other/hero.png",
       "alt": "Illustration: Can Claude Code Agents Talk to Each Other?",
-      "prompt": "Hero image for a blog post titled \"Can Claude Code Agents Talk to Each Other?\". The post is about: Can Claude Code agents talk to each other? By default they report to their launcher — but a small coordination layer lets them message peer-to-peer.",
+      "prompt": "Hero image for a blog post titled \"Can Claude Code Agents Talk to Each Other?\". The post is about: Can Claude Code agents talk to each other? By default they report to their launcher \u2014 but a small coordination layer lets them message peer-to-peer.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/can-claude-code-agents-talk-to-each-other/note-1.png",
-        "alt": "Hand-drawn sketch from “Can Claude Code Agents Talk to Each Other?”",
+        "alt": "Hand-drawn sketch from \u201cCan Claude Code Agents Talk to Each Other?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/can-claude-code-agents-talk-to-each-other/note-2.png",
-        "alt": "Hand-drawn sketch from “Can Claude Code Agents Talk to Each Other?”",
+        "alt": "Hand-drawn sketch from \u201cCan Claude Code Agents Talk to Each Other?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -362,13 +362,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/claude-code-automation-while-you-sleep/note-1.png",
-        "alt": "Hand-drawn sketch from “Claude Code Automation: Let Agents Build While You Sleep”",
+        "alt": "Hand-drawn sketch from \u201cClaude Code Automation: Let Agents Build While You Sleep\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/claude-code-automation-while-you-sleep/note-2.png",
-        "alt": "Hand-drawn sketch from “Claude Code Automation: Let Agents Build While You Sleep”",
+        "alt": "Hand-drawn sketch from \u201cClaude Code Automation: Let Agents Build While You Sleep\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -387,13 +387,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/claude-code-git-worktrees-vs-hive/note-1.png",
-        "alt": "Hand-drawn sketch from “Git Worktrees vs a Hive: Two Ways to Parallelize Claude Code”",
+        "alt": "Hand-drawn sketch from \u201cGit Worktrees vs a Hive: Two Ways to Parallelize Claude Code\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/claude-code-git-worktrees-vs-hive/note-2.png",
-        "alt": "Hand-drawn sketch from “Git Worktrees vs a Hive: Two Ways to Parallelize Claude Code”",
+        "alt": "Hand-drawn sketch from \u201cGit Worktrees vs a Hive: Two Ways to Parallelize Claude Code\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -406,19 +406,19 @@
     "hero": {
       "file": "assets/media/claude-code-hooks-explained/hero.png",
       "alt": "Illustration: Claude Code Hooks, Explained (PreToolUse, PostToolUse, Stop)",
-      "prompt": "Hero image for a blog post titled \"Claude Code Hooks, Explained (PreToolUse, PostToolUse, Stop)\". The post is about: A practical tour of Claude Code hooks — the PreToolUse, PostToolUse, and Stop lifecycle — and how a Unix-socket hook shim drives a live office floor.",
+      "prompt": "Hero image for a blog post titled \"Claude Code Hooks, Explained (PreToolUse, PostToolUse, Stop)\". The post is about: A practical tour of Claude Code hooks \u2014 the PreToolUse, PostToolUse, and Stop lifecycle \u2014 and how a Unix-socket hook shim drives a live office floor.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/claude-code-hooks-explained/note-1.png",
-        "alt": "Hand-drawn sketch from “Claude Code Hooks, Explained (PreToolUse, PostToolUse, Stop)”",
+        "alt": "Hand-drawn sketch from \u201cClaude Code Hooks, Explained (PreToolUse, PostToolUse, Stop)\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/claude-code-hooks-explained/note-2.png",
-        "alt": "Hand-drawn sketch from “Claude Code Hooks, Explained (PreToolUse, PostToolUse, Stop)”",
+        "alt": "Hand-drawn sketch from \u201cClaude Code Hooks, Explained (PreToolUse, PostToolUse, Stop)\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -437,13 +437,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/claude-code-multi-agent-setup-tutorial/note-1.png",
-        "alt": "Hand-drawn sketch from “Set Up a Claude Code Multi-Agent Workflow in 10 Minutes”",
+        "alt": "Hand-drawn sketch from \u201cSet Up a Claude Code Multi-Agent Workflow in 10 Minutes\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/claude-code-multi-agent-setup-tutorial/note-2.png",
-        "alt": "Hand-drawn sketch from “Set Up a Claude Code Multi-Agent Workflow in 10 Minutes”",
+        "alt": "Hand-drawn sketch from \u201cSet Up a Claude Code Multi-Agent Workflow in 10 Minutes\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -462,13 +462,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/claude-code-orchestration-guide/note-1.png",
-        "alt": "Hand-drawn sketch from “Orchestrating Claude Code Agents: A Practical Guide”",
+        "alt": "Hand-drawn sketch from \u201cOrchestrating Claude Code Agents: A Practical Guide\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/claude-code-orchestration-guide/note-2.png",
-        "alt": "Hand-drawn sketch from “Orchestrating Claude Code Agents: A Practical Guide”",
+        "alt": "Hand-drawn sketch from \u201cOrchestrating Claude Code Agents: A Practical Guide\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -481,19 +481,19 @@
     "hero": {
       "file": "assets/media/claude-code-orchestration-tools-compared/hero.png",
       "alt": "Illustration: Claude Code Orchestration Tools, Compared",
-      "prompt": "Hero image for a blog post titled \"Claude Code Orchestration Tools, Compared\". The post is about: Claude Code orchestration tools compared on memory, messaging, visibility, control, and local-first — across Claude Squad, Conductor, Crystal, and more.",
+      "prompt": "Hero image for a blog post titled \"Claude Code Orchestration Tools, Compared\". The post is about: Claude Code orchestration tools compared on memory, messaging, visibility, control, and local-first \u2014 across Claude Squad, Conductor, Crystal, and more.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/claude-code-orchestration-tools-compared/note-1.png",
-        "alt": "Hand-drawn sketch from “Claude Code Orchestration Tools, Compared”",
+        "alt": "Hand-drawn sketch from \u201cClaude Code Orchestration Tools, Compared\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/claude-code-orchestration-tools-compared/note-2.png",
-        "alt": "Hand-drawn sketch from “Claude Code Orchestration Tools, Compared”",
+        "alt": "Hand-drawn sketch from \u201cClaude Code Orchestration Tools, Compared\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -512,13 +512,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/claude-code-subagents-vs-multi-agent-harness/note-1.png",
-        "alt": "Hand-drawn sketch from “Claude Code Subagents vs a Multi-Agent Harness”",
+        "alt": "Hand-drawn sketch from \u201cClaude Code Subagents vs a Multi-Agent Harness\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/claude-code-subagents-vs-multi-agent-harness/note-2.png",
-        "alt": "Hand-drawn sketch from “Claude Code Subagents vs a Multi-Agent Harness”",
+        "alt": "Hand-drawn sketch from \u201cClaude Code Subagents vs a Multi-Agent Harness\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -537,13 +537,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/claude-squad-alternative/note-1.png",
-        "alt": "Hand-drawn sketch from “Looking for a Claude Squad Alternative?”",
+        "alt": "Hand-drawn sketch from \u201cLooking for a Claude Squad Alternative?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/claude-squad-alternative/note-2.png",
-        "alt": "Hand-drawn sketch from “Looking for a Claude Squad Alternative?”",
+        "alt": "Hand-drawn sketch from \u201cLooking for a Claude Squad Alternative?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -562,13 +562,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/claude-squad-vs-munder-difflin/note-1.png",
-        "alt": "Hand-drawn sketch from “Claude Squad vs Munder Difflin: Which Should You Use?”",
+        "alt": "Hand-drawn sketch from \u201cClaude Squad vs Munder Difflin: Which Should You Use?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/claude-squad-vs-munder-difflin/note-2.png",
-        "alt": "Hand-drawn sketch from “Claude Squad vs Munder Difflin: Which Should You Use?”",
+        "alt": "Hand-drawn sketch from \u201cClaude Squad vs Munder Difflin: Which Should You Use?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -581,19 +581,19 @@
     "hero": {
       "file": "assets/media/cline-vs-munder-difflin/hero.png",
       "alt": "Illustration: Cline vs Munder Difflin: In-Editor Agent or Local Hive?",
-      "prompt": "Hero image for a blog post titled \"Cline vs Munder Difflin: In-Editor Agent or Local Hive?\". The post is about: A fair comparison of Cline and Munder Difflin — an in-editor BYOK coding agent vs a local multi-agent orchestration hive — and when to pick which.",
+      "prompt": "Hero image for a blog post titled \"Cline vs Munder Difflin: In-Editor Agent or Local Hive?\". The post is about: A fair comparison of Cline and Munder Difflin \u2014 an in-editor BYOK coding agent vs a local multi-agent orchestration hive \u2014 and when to pick which.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/cline-vs-munder-difflin/note-1.png",
-        "alt": "Hand-drawn sketch from “Cline vs Munder Difflin: In-Editor Agent or Local Hive?”",
+        "alt": "Hand-drawn sketch from \u201cCline vs Munder Difflin: In-Editor Agent or Local Hive?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/cline-vs-munder-difflin/note-2.png",
-        "alt": "Hand-drawn sketch from “Cline vs Munder Difflin: In-Editor Agent or Local Hive?”",
+        "alt": "Hand-drawn sketch from \u201cCline vs Munder Difflin: In-Editor Agent or Local Hive?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -606,19 +606,19 @@
     "hero": {
       "file": "assets/media/command-center-guide/hero.png",
       "alt": "Illustration: The Command Center: Kanban, Fleet, and Budgets in One Place",
-      "prompt": "Hero image for a blog post titled \"The Command Center: Kanban, Fleet, and Budgets in One Place\". The post is about: A guide to Munder Difflin's Command Center — the task kanban, live fleet monitoring, per-agent budgets and cost telemetry — and when to watch the board instead of the floor.",
+      "prompt": "Hero image for a blog post titled \"The Command Center: Kanban, Fleet, and Budgets in One Place\". The post is about: A guide to Munder Difflin's Command Center \u2014 the task kanban, live fleet monitoring, per-agent budgets and cost telemetry \u2014 and when to watch the board instead of the floor.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/command-center-guide/note-1.png",
-        "alt": "Hand-drawn sketch from “The Command Center: Kanban, Fleet, and Budgets in One Place”",
+        "alt": "Hand-drawn sketch from \u201cThe Command Center: Kanban, Fleet, and Budgets in One Place\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/command-center-guide/note-2.png",
-        "alt": "Hand-drawn sketch from “The Command Center: Kanban, Fleet, and Budgets in One Place”",
+        "alt": "Hand-drawn sketch from \u201cThe Command Center: Kanban, Fleet, and Budgets in One Place\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -637,13 +637,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/compressing-agent-memory/note-1.png",
-        "alt": "Hand-drawn sketch from “Compressing Agent Memory Without Losing the Original”",
+        "alt": "Hand-drawn sketch from \u201cCompressing Agent Memory Without Losing the Original\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/compressing-agent-memory/note-2.png",
-        "alt": "Hand-drawn sketch from “Compressing Agent Memory Without Losing the Original”",
+        "alt": "Hand-drawn sketch from \u201cCompressing Agent Memory Without Losing the Original\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -662,13 +662,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/conductor-claude-code-alternative/note-1.png",
-        "alt": "Hand-drawn sketch from “A Conductor Alternative for Orchestrating Claude Code”",
+        "alt": "Hand-drawn sketch from \u201cA Conductor Alternative for Orchestrating Claude Code\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/conductor-claude-code-alternative/note-2.png",
-        "alt": "Hand-drawn sketch from “A Conductor Alternative for Orchestrating Claude Code”",
+        "alt": "Hand-drawn sketch from \u201cA Conductor Alternative for Orchestrating Claude Code\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -681,19 +681,19 @@
     "hero": {
       "file": "assets/media/context-engineering-for-ai-agents/hero.png",
       "alt": "Illustration: Context Engineering for AI Agents: Budgeting the Window",
-      "prompt": "Hero image for a blog post titled \"Context Engineering for AI Agents: Budgeting the Window\". The post is about: Why context engineering beats prompt wording for agents — and the tactics (isolation, retrieval, externalized state, compaction) that keep the window lean.",
+      "prompt": "Hero image for a blog post titled \"Context Engineering for AI Agents: Budgeting the Window\". The post is about: Why context engineering beats prompt wording for agents \u2014 and the tactics (isolation, retrieval, externalized state, compaction) that keep the window lean.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/context-engineering-for-ai-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Context Engineering for AI Agents: Budgeting the Window”",
+        "alt": "Hand-drawn sketch from \u201cContext Engineering for AI Agents: Budgeting the Window\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/context-engineering-for-ai-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Context Engineering for AI Agents: Budgeting the Window”",
+        "alt": "Hand-drawn sketch from \u201cContext Engineering for AI Agents: Budgeting the Window\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -706,19 +706,19 @@
     "hero": {
       "file": "assets/media/coordinating-ai-coding-agents/hero.png",
       "alt": "Illustration: The Best Way to Coordinate AI Coding Agents",
-      "prompt": "Hero image for a blog post titled \"The Best Way to Coordinate AI Coding Agents\". The post is about: The best way to coordinate AI coding agents: single-writer files, a message router, a one-scribe plan, and an orchestrator — cooperate, not clobber.",
+      "prompt": "Hero image for a blog post titled \"The Best Way to Coordinate AI Coding Agents\". The post is about: The best way to coordinate AI coding agents: single-writer files, a message router, a one-scribe plan, and an orchestrator \u2014 cooperate, not clobber.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/coordinating-ai-coding-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “The Best Way to Coordinate AI Coding Agents”",
+        "alt": "Hand-drawn sketch from \u201cThe Best Way to Coordinate AI Coding Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/coordinating-ai-coding-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “The Best Way to Coordinate AI Coding Agents”",
+        "alt": "Hand-drawn sketch from \u201cThe Best Way to Coordinate AI Coding Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -731,19 +731,19 @@
     "hero": {
       "file": "assets/media/crewai-autogen-vs-a-local-agent-harness/hero.png",
       "alt": "Illustration: CrewAI and AutoGen vs a Local Agent Harness: Framework or App?",
-      "prompt": "Hero image for a blog post titled \"CrewAI and AutoGen vs a Local Agent Harness: Framework or App?\". The post is about: CrewAI, AutoGen (now Microsoft Agent Framework), and LangGraph are frameworks — Python you write to build your own agent system. A multi-agent harness is an app you download that runs a team on your repos today. Here's how to tell which one you actually need.",
+      "prompt": "Hero image for a blog post titled \"CrewAI and AutoGen vs a Local Agent Harness: Framework or App?\". The post is about: CrewAI, AutoGen (now Microsoft Agent Framework), and LangGraph are frameworks \u2014 Python you write to build your own agent system. A multi-agent harness is an app you download that runs a team on your repos today. Here's how to tell which one you actually need.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/crewai-autogen-vs-a-local-agent-harness/note-1.png",
-        "alt": "Hand-drawn sketch from “CrewAI and AutoGen vs a Local Agent Harness: Framework or App?”",
+        "alt": "Hand-drawn sketch from \u201cCrewAI and AutoGen vs a Local Agent Harness: Framework or App?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/crewai-autogen-vs-a-local-agent-harness/note-2.png",
-        "alt": "Hand-drawn sketch from “CrewAI and AutoGen vs a Local Agent Harness: Framework or App?”",
+        "alt": "Hand-drawn sketch from \u201cCrewAI and AutoGen vs a Local Agent Harness: Framework or App?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -756,19 +756,19 @@
     "hero": {
       "file": "assets/media/crystal-claude-code-alternative/hero.png",
       "alt": "Illustration: A Crystal Alternative: Multi-Agent Claude Code with Memory",
-      "prompt": "Hero image for a blog post titled \"A Crystal Alternative: Multi-Agent Claude Code with Memory\". The post is about: Crystal runs parallel Claude Code worktrees well. Where a memory-backed, orchestrated hive changes the workflow — and when to stick with Crystal.",
+      "prompt": "Hero image for a blog post titled \"A Crystal Alternative: Multi-Agent Claude Code with Memory\". The post is about: Crystal runs parallel Claude Code worktrees well. Where a memory-backed, orchestrated hive changes the workflow \u2014 and when to stick with Crystal.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/crystal-claude-code-alternative/note-1.png",
-        "alt": "Hand-drawn sketch from “A Crystal Alternative: Multi-Agent Claude Code with Memory”",
+        "alt": "Hand-drawn sketch from \u201cA Crystal Alternative: Multi-Agent Claude Code with Memory\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/crystal-claude-code-alternative/note-2.png",
-        "alt": "Hand-drawn sketch from “A Crystal Alternative: Multi-Agent Claude Code with Memory”",
+        "alt": "Hand-drawn sketch from \u201cA Crystal Alternative: Multi-Agent Claude Code with Memory\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -787,13 +787,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/debugging-multi-agent-systems/note-1.png",
-        "alt": "Hand-drawn sketch from “How to Debug a Multi-Agent System”",
+        "alt": "Hand-drawn sketch from \u201cHow to Debug a Multi-Agent System\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/debugging-multi-agent-systems/note-2.png",
-        "alt": "Hand-drawn sketch from “How to Debug a Multi-Agent System”",
+        "alt": "Hand-drawn sketch from \u201cHow to Debug a Multi-Agent System\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -806,19 +806,19 @@
     "hero": {
       "file": "assets/media/deploy-a-blog-writer-agent/hero.png",
       "alt": "Illustration: Deploy a Blog-Writer Agent: The One That Wrote This Post",
-      "prompt": "Hero image for a blog post titled \"Deploy a Blog-Writer Agent: The One That Wrote This Post\". The post is about: How Munder Difflin's blog is written by an automated writer agent in the hive — drafts in a worktree, single-committer integration, Eleventy build, human-gated deploy. Build your own.",
+      "prompt": "Hero image for a blog post titled \"Deploy a Blog-Writer Agent: The One That Wrote This Post\". The post is about: How Munder Difflin's blog is written by an automated writer agent in the hive \u2014 drafts in a worktree, single-committer integration, Eleventy build, human-gated deploy. Build your own.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/deploy-a-blog-writer-agent/note-1.png",
-        "alt": "Hand-drawn sketch from “Deploy a Blog-Writer Agent: The One That Wrote This Post”",
+        "alt": "Hand-drawn sketch from \u201cDeploy a Blog-Writer Agent: The One That Wrote This Post\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/deploy-a-blog-writer-agent/note-2.png",
-        "alt": "Hand-drawn sketch from “Deploy a Blog-Writer Agent: The One That Wrote This Post”",
+        "alt": "Hand-drawn sketch from \u201cDeploy a Blog-Writer Agent: The One That Wrote This Post\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -826,24 +826,24 @@
     "youtube": []
   },
   "deploy-automated-pr-reviewer-agent": {
-    "title": "Deploy a PR Reviewer That Never Sleeps — In About One Prompt",
+    "title": "Deploy a PR Reviewer That Never Sleeps \u2014 In About One Prompt",
     "category": "orchestration",
     "hero": {
       "file": "assets/media/deploy-automated-pr-reviewer-agent/hero.png",
-      "alt": "Illustration: Deploy a PR Reviewer That Never Sleeps — In About One Prompt",
-      "prompt": "Hero image for a blog post titled \"Deploy a PR Reviewer That Never Sleeps — In About One Prompt\". The post is about: A how-to for standing up a fully automated PR-reviewing agent in Munder Difflin — one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue.",
+      "alt": "Illustration: Deploy a PR Reviewer That Never Sleeps \u2014 In About One Prompt",
+      "prompt": "Hero image for a blog post titled \"Deploy a PR Reviewer That Never Sleeps \u2014 In About One Prompt\". The post is about: A how-to for standing up a fully automated PR-reviewing agent in Munder Difflin \u2014 one that reads your real source (not just the PR description), de-dupes noise, and only escalates what matters. With a real triage run that turned 22 duplicate firings into a clean v0.2.5 patch queue.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/deploy-automated-pr-reviewer-agent/note-1.png",
-        "alt": "Hand-drawn sketch from “Deploy a PR Reviewer That Never Sleeps — In About One Prompt”",
+        "alt": "Hand-drawn sketch from \u201cDeploy a PR Reviewer That Never Sleeps \u2014 In About One Prompt\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/deploy-automated-pr-reviewer-agent/note-2.png",
-        "alt": "Hand-drawn sketch from “Deploy a PR Reviewer That Never Sleeps — In About One Prompt”",
+        "alt": "Hand-drawn sketch from \u201cDeploy a PR Reviewer That Never Sleeps \u2014 In About One Prompt\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -856,19 +856,19 @@
     "hero": {
       "file": "assets/media/do-more-with-less-model-routing/hero.png",
       "alt": "Illustration: Do More With Less: Smart Model Routing Across Agents",
-      "prompt": "Hero image for a blog post titled \"Do More With Less: Smart Model Routing Across Agents\". The post is about: Why a hive of agents shouldn't all run the biggest model — and how routing the right task to the right model cuts cost and latency without losing quality.",
+      "prompt": "Hero image for a blog post titled \"Do More With Less: Smart Model Routing Across Agents\". The post is about: Why a hive of agents shouldn't all run the biggest model \u2014 and how routing the right task to the right model cuts cost and latency without losing quality.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/do-more-with-less-model-routing/note-1.png",
-        "alt": "Hand-drawn sketch from “Do More With Less: Smart Model Routing Across Agents”",
+        "alt": "Hand-drawn sketch from \u201cDo More With Less: Smart Model Routing Across Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/do-more-with-less-model-routing/note-2.png",
-        "alt": "Hand-drawn sketch from “Do More With Less: Smart Model Routing Across Agents”",
+        "alt": "Hand-drawn sketch from \u201cDo More With Less: Smart Model Routing Across Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -887,13 +887,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/does-the-june-2026-agent-sdk-change-affect-munder-difflin/note-1.png",
-        "alt": "Hand-drawn sketch from “Does the June 2026 Agent SDK Change Affect Munder Difflin?”",
+        "alt": "Hand-drawn sketch from \u201cDoes the June 2026 Agent SDK Change Affect Munder Difflin?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/does-the-june-2026-agent-sdk-change-affect-munder-difflin/note-2.png",
-        "alt": "Hand-drawn sketch from “Does the June 2026 Agent SDK Change Affect Munder Difflin?”",
+        "alt": "Hand-drawn sketch from \u201cDoes the June 2026 Agent SDK Change Affect Munder Difflin?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -912,13 +912,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/evaluating-ai-agent-reliability/note-1.png",
-        "alt": "Hand-drawn sketch from “Evaluating AI Agent Reliability: How to Measure What You Can Trust”",
+        "alt": "Hand-drawn sketch from \u201cEvaluating AI Agent Reliability: How to Measure What You Can Trust\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/evaluating-ai-agent-reliability/note-2.png",
-        "alt": "Hand-drawn sketch from “Evaluating AI Agent Reliability: How to Measure What You Can Trust”",
+        "alt": "Hand-drawn sketch from \u201cEvaluating AI Agent Reliability: How to Measure What You Can Trust\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -937,13 +937,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/file-based-coordination-vs-message-queues/note-1.png",
-        "alt": "Hand-drawn sketch from “File-Based Coordination vs Message Queues for AI Agents”",
+        "alt": "Hand-drawn sketch from \u201cFile-Based Coordination vs Message Queues for AI Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/file-based-coordination-vs-message-queues/note-2.png",
-        "alt": "Hand-drawn sketch from “File-Based Coordination vs Message Queues for AI Agents”",
+        "alt": "Hand-drawn sketch from \u201cFile-Based Coordination vs Message Queues for AI Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -956,19 +956,19 @@
     "hero": {
       "file": "assets/media/from-one-terminal-to-a-team/hero.png",
       "alt": "Illustration: From One Terminal to a Team: Scaling Your Claude Code Workflow",
-      "prompt": "Hero image for a blog post titled \"From One Terminal to a Team: Scaling Your Claude Code Workflow\". The post is about: The workflow shift from a single Claude Code session to a coordinated team of agents — what changes, where it breaks, and the concrete before-and-after.",
+      "prompt": "Hero image for a blog post titled \"From One Terminal to a Team: Scaling Your Claude Code Workflow\". The post is about: The workflow shift from a single Claude Code session to a coordinated team of agents \u2014 what changes, where it breaks, and the concrete before-and-after.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/from-one-terminal-to-a-team/note-1.png",
-        "alt": "Hand-drawn sketch from “From One Terminal to a Team: Scaling Your Claude Code Workflow”",
+        "alt": "Hand-drawn sketch from \u201cFrom One Terminal to a Team: Scaling Your Claude Code Workflow\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/from-one-terminal-to-a-team/note-2.png",
-        "alt": "Hand-drawn sketch from “From One Terminal to a Team: Scaling Your Claude Code Workflow”",
+        "alt": "Hand-drawn sketch from \u201cFrom One Terminal to a Team: Scaling Your Claude Code Workflow\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -981,19 +981,19 @@
     "hero": {
       "file": "assets/media/generative-engine-optimization-techniques/hero.png",
       "alt": "Illustration: Generative Engine Optimization: The Techniques the Research Backs",
-      "prompt": "Hero image for a blog post titled \"Generative Engine Optimization: The Techniques the Research Backs\". The post is about: What the first peer-reviewed GEO study found works to get content cited by AI — statistics, source citations, quotes — and why keyword stuffing backfires.",
+      "prompt": "Hero image for a blog post titled \"Generative Engine Optimization: The Techniques the Research Backs\". The post is about: What the first peer-reviewed GEO study found works to get content cited by AI \u2014 statistics, source citations, quotes \u2014 and why keyword stuffing backfires.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/generative-engine-optimization-techniques/note-1.png",
-        "alt": "Hand-drawn sketch from “Generative Engine Optimization: The Techniques the Research Backs”",
+        "alt": "Hand-drawn sketch from \u201cGenerative Engine Optimization: The Techniques the Research Backs\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/generative-engine-optimization-techniques/note-2.png",
-        "alt": "Hand-drawn sketch from “Generative Engine Optimization: The Techniques the Research Backs”",
+        "alt": "Hand-drawn sketch from \u201cGenerative Engine Optimization: The Techniques the Research Backs\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1006,19 +1006,19 @@
     "hero": {
       "file": "assets/media/github-copilot-cli-vs-claude-code-for-hive-work/hero.png",
       "alt": "Illustration: GitHub Copilot CLI vs Claude Code as Hive Workers",
-      "prompt": "Hero image for a blog post titled \"GitHub Copilot CLI vs Claude Code as Hive Workers\". The post is about: How GitHub Copilot CLI and Claude Code behave as agent engines inside a multi-agent harness: hooks, inbox mail, orchestration, session lifecycle — and why the right answer is to run both.",
+      "prompt": "Hero image for a blog post titled \"GitHub Copilot CLI vs Claude Code as Hive Workers\". The post is about: How GitHub Copilot CLI and Claude Code behave as agent engines inside a multi-agent harness: hooks, inbox mail, orchestration, session lifecycle \u2014 and why the right answer is to run both.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/github-copilot-cli-vs-claude-code-for-hive-work/note-1.png",
-        "alt": "Hand-drawn sketch from “GitHub Copilot CLI vs Claude Code as Hive Workers”",
+        "alt": "Hand-drawn sketch from \u201cGitHub Copilot CLI vs Claude Code as Hive Workers\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/github-copilot-cli-vs-claude-code-for-hive-work/note-2.png",
-        "alt": "Hand-drawn sketch from “GitHub Copilot CLI vs Claude Code as Hive Workers”",
+        "alt": "Hand-drawn sketch from \u201cGitHub Copilot CLI vs Claude Code as Hive Workers\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1037,13 +1037,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/give-claude-code-long-term-memory/note-1.png",
-        "alt": "Hand-drawn sketch from “How to Give Claude Code Long-Term Memory”",
+        "alt": "Hand-drawn sketch from \u201cHow to Give Claude Code Long-Term Memory\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/give-claude-code-long-term-memory/note-2.png",
-        "alt": "Hand-drawn sketch from “How to Give Claude Code Long-Term Memory”",
+        "alt": "Hand-drawn sketch from \u201cHow to Give Claude Code Long-Term Memory\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1062,13 +1062,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/hire-manifest-untrusted-input/note-1.png",
-        "alt": "Hand-drawn sketch from “Treating a Hire Manifest as Untrusted Input”",
+        "alt": "Hand-drawn sketch from \u201cTreating a Hire Manifest as Untrusted Input\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/hire-manifest-untrusted-input/note-2.png",
-        "alt": "Hand-drawn sketch from “Treating a Hire Manifest as Untrusted Input”",
+        "alt": "Hand-drawn sketch from \u201cTreating a Hire Manifest as Untrusted Input\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1081,19 +1081,19 @@
     "hero": {
       "file": "assets/media/how-agents-remember-semantic-memory/hero.png",
       "alt": "Illustration: How AI Agents Remember: Semantic Memory in a Hive",
-      "prompt": "Hero image for a blog post titled \"How AI Agents Remember: Semantic Memory in a Hive\". The post is about: A code-grounded guide to how AI agents remember — the MemPalace mine loop, per-agent wings, and wake-up digest that give a Claude Code hive shared recall.",
+      "prompt": "Hero image for a blog post titled \"How AI Agents Remember: Semantic Memory in a Hive\". The post is about: A code-grounded guide to how AI agents remember \u2014 the MemPalace mine loop, per-agent wings, and wake-up digest that give a Claude Code hive shared recall.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/how-agents-remember-semantic-memory/note-1.png",
-        "alt": "Hand-drawn sketch from “How AI Agents Remember: Semantic Memory in a Hive”",
+        "alt": "Hand-drawn sketch from \u201cHow AI Agents Remember: Semantic Memory in a Hive\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/how-agents-remember-semantic-memory/note-2.png",
-        "alt": "Hand-drawn sketch from “How AI Agents Remember: Semantic Memory in a Hive”",
+        "alt": "Hand-drawn sketch from \u201cHow AI Agents Remember: Semantic Memory in a Hive\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1106,19 +1106,19 @@
     "hero": {
       "file": "assets/media/how-ai-agents-verify-their-own-work/hero.png",
       "alt": "Illustration: How AI Agents Verify Their Own Work (Before Saying 'Done')",
-      "prompt": "Hero image for a blog post titled \"How AI Agents Verify Their Own Work (Before Saying 'Done')\". The post is about: The discipline that makes an autonomous coding agent trustworthy: prove every claim, reproduce the green, and check the fix — not just the intent.",
+      "prompt": "Hero image for a blog post titled \"How AI Agents Verify Their Own Work (Before Saying 'Done')\". The post is about: The discipline that makes an autonomous coding agent trustworthy: prove every claim, reproduce the green, and check the fix \u2014 not just the intent.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/how-ai-agents-verify-their-own-work/note-1.png",
-        "alt": "Hand-drawn sketch from “How AI Agents Verify Their Own Work (Before Saying 'Done')”",
+        "alt": "Hand-drawn sketch from \u201cHow AI Agents Verify Their Own Work (Before Saying 'Done')\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/how-ai-agents-verify-their-own-work/note-2.png",
-        "alt": "Hand-drawn sketch from “How AI Agents Verify Their Own Work (Before Saying 'Done')”",
+        "alt": "Hand-drawn sketch from \u201cHow AI Agents Verify Their Own Work (Before Saying 'Done')\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1131,19 +1131,19 @@
     "hero": {
       "file": "assets/media/how-ai-answer-engines-choose-sources/hero.png",
       "alt": "Illustration: How AI Answer Engines Choose What to Cite",
-      "prompt": "Hero image for a blog post titled \"How AI Answer Engines Choose What to Cite\". The post is about: How ChatGPT, Claude, Perplexity, and Google AI Overviews actually pick and cite sources in 2026 — the per-engine signals, and why there's no single rank.",
+      "prompt": "Hero image for a blog post titled \"How AI Answer Engines Choose What to Cite\". The post is about: How ChatGPT, Claude, Perplexity, and Google AI Overviews actually pick and cite sources in 2026 \u2014 the per-engine signals, and why there's no single rank.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/how-ai-answer-engines-choose-sources/note-1.png",
-        "alt": "Hand-drawn sketch from “How AI Answer Engines Choose What to Cite”",
+        "alt": "Hand-drawn sketch from \u201cHow AI Answer Engines Choose What to Cite\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/how-ai-answer-engines-choose-sources/note-2.png",
-        "alt": "Hand-drawn sketch from “How AI Answer Engines Choose What to Cite”",
+        "alt": "Hand-drawn sketch from \u201cHow AI Answer Engines Choose What to Cite\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1162,13 +1162,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/how-the-god-orchestrator-works/note-1.png",
-        "alt": "Hand-drawn sketch from “Inside the GOD Orchestrator: Routing, Adjudication, Escalation”",
+        "alt": "Hand-drawn sketch from \u201cInside the GOD Orchestrator: Routing, Adjudication, Escalation\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/how-the-god-orchestrator-works/note-2.png",
-        "alt": "Hand-drawn sketch from “Inside the GOD Orchestrator: Routing, Adjudication, Escalation”",
+        "alt": "Hand-drawn sketch from \u201cInside the GOD Orchestrator: Routing, Adjudication, Escalation\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1187,13 +1187,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/how-to-add-a-github-copilot-cli-agent/note-1.png",
-        "alt": "Hand-drawn sketch from “How to Add a GitHub Copilot CLI Agent to Your Floor”",
+        "alt": "Hand-drawn sketch from \u201cHow to Add a GitHub Copilot CLI Agent to Your Floor\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/how-to-add-a-github-copilot-cli-agent/note-2.png",
-        "alt": "Hand-drawn sketch from “How to Add a GitHub Copilot CLI Agent to Your Floor”",
+        "alt": "Hand-drawn sketch from \u201cHow to Add a GitHub Copilot CLI Agent to Your Floor\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1206,19 +1206,19 @@
     "hero": {
       "file": "assets/media/how-to-choose-a-multi-agent-tool/hero.png",
       "alt": "Illustration: How to Choose a Multi-Agent Coding Tool: A Buyer's Checklist",
-      "prompt": "Hero image for a blog post titled \"How to Choose a Multi-Agent Coding Tool: A Buyer's Checklist\". The post is about: A decision framework for choosing a multi-agent coding tool — memory, control, visibility, cost, local-first — with a simple scoring rubric you can run.",
+      "prompt": "Hero image for a blog post titled \"How to Choose a Multi-Agent Coding Tool: A Buyer's Checklist\". The post is about: A decision framework for choosing a multi-agent coding tool \u2014 memory, control, visibility, cost, local-first \u2014 with a simple scoring rubric you can run.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/how-to-choose-a-multi-agent-tool/note-1.png",
-        "alt": "Hand-drawn sketch from “How to Choose a Multi-Agent Coding Tool: A Buyer's Checklist”",
+        "alt": "Hand-drawn sketch from \u201cHow to Choose a Multi-Agent Coding Tool: A Buyer's Checklist\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/how-to-choose-a-multi-agent-tool/note-2.png",
-        "alt": "Hand-drawn sketch from “How to Choose a Multi-Agent Coding Tool: A Buyer's Checklist”",
+        "alt": "Hand-drawn sketch from \u201cHow to Choose a Multi-Agent Coding Tool: A Buyer's Checklist\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1231,19 +1231,19 @@
     "hero": {
       "file": "assets/media/how-to-hire-from-the-agent-gallery/hero.png",
       "alt": "Illustration: How to Hire From the Agent Gallery",
-      "prompt": "Hero image for a blog post titled \"How to Hire From the Agent Gallery\". The post is about: A practical guide to Munder Difflin's Agent Gallery: browse six off-the-shelf hires, import one from a link or file, review the pre-filled manifest, customize identity, workspace, engine, and briefing — then spawn it yourself.",
+      "prompt": "Hero image for a blog post titled \"How to Hire From the Agent Gallery\". The post is about: A practical guide to Munder Difflin's Agent Gallery: browse six off-the-shelf hires, import one from a link or file, review the pre-filled manifest, customize identity, workspace, engine, and briefing \u2014 then spawn it yourself.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/how-to-hire-from-the-agent-gallery/note-1.png",
-        "alt": "Hand-drawn sketch from “How to Hire From the Agent Gallery”",
+        "alt": "Hand-drawn sketch from \u201cHow to Hire From the Agent Gallery\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/how-to-hire-from-the-agent-gallery/note-2.png",
-        "alt": "Hand-drawn sketch from “How to Hire From the Agent Gallery”",
+        "alt": "Hand-drawn sketch from \u201cHow to Hire From the Agent Gallery\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1256,19 +1256,19 @@
     "hero": {
       "file": "assets/media/how-to-install-and-use-munder-difflin/hero.png",
       "alt": "Illustration: How to Install and Use Munder Difflin",
-      "prompt": "Hero image for a blog post titled \"How to Install and Use Munder Difflin\". The post is about: Install Munder Difflin on macOS, Windows, or Linux and put a hive of Claude Code agents to work on ambitious, long-horizon tasks — start to finish.",
+      "prompt": "Hero image for a blog post titled \"How to Install and Use Munder Difflin\". The post is about: Install Munder Difflin on macOS, Windows, or Linux and put a hive of Claude Code agents to work on ambitious, long-horizon tasks \u2014 start to finish.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/how-to-install-and-use-munder-difflin/note-1.png",
-        "alt": "Hand-drawn sketch from “How to Install and Use Munder Difflin”",
+        "alt": "Hand-drawn sketch from \u201cHow to Install and Use Munder Difflin\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/how-to-install-and-use-munder-difflin/note-2.png",
-        "alt": "Hand-drawn sketch from “How to Install and Use Munder Difflin”",
+        "alt": "Hand-drawn sketch from \u201cHow to Install and Use Munder Difflin\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1287,13 +1287,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/how-to-run-multiple-claude-code-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “How to Run Multiple Claude Code Agents (Without Losing Track)”",
+        "alt": "Hand-drawn sketch from \u201cHow to Run Multiple Claude Code Agents (Without Losing Track)\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/how-to-run-multiple-claude-code-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “How to Run Multiple Claude Code Agents (Without Losing Track)”",
+        "alt": "Hand-drawn sketch from \u201cHow to Run Multiple Claude Code Agents (Without Losing Track)\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1312,13 +1312,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/how-to-talk-to-your-orchestrator/note-1.png",
-        "alt": "Hand-drawn sketch from “How to Brief Your Orchestrator (So the Floor Actually Ships)”",
+        "alt": "Hand-drawn sketch from \u201cHow to Brief Your Orchestrator (So the Floor Actually Ships)\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/how-to-talk-to-your-orchestrator/note-2.png",
-        "alt": "Hand-drawn sketch from “How to Brief Your Orchestrator (So the Floor Actually Ships)”",
+        "alt": "Hand-drawn sketch from \u201cHow to Brief Your Orchestrator (So the Floor Actually Ships)\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1331,19 +1331,19 @@
     "hero": {
       "file": "assets/media/how-to-use-the-built-in-monaco-ide/hero.png",
       "alt": "Illustration: How to Use the Built-in Monaco IDE",
-      "prompt": "Hero image for a blog post titled \"How to Use the Built-in Monaco IDE\". The post is about: A practical walkthrough of Munder Difflin v0.3.3's built-in Monaco IDE: the title-bar IDE button, the git CHANGES rail with side-by-side diffs vs HEAD, the file tree, tabs, Cmd/Ctrl+S save — and the agent review workflow it enables.",
+      "prompt": "Hero image for a blog post titled \"How to Use the Built-in Monaco IDE\". The post is about: A practical walkthrough of Munder Difflin v0.3.3's built-in Monaco IDE: the title-bar IDE button, the git CHANGES rail with side-by-side diffs vs HEAD, the file tree, tabs, Cmd/Ctrl+S save \u2014 and the agent review workflow it enables.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/how-to-use-the-built-in-monaco-ide/note-1.png",
-        "alt": "Hand-drawn sketch from “How to Use the Built-in Monaco IDE”",
+        "alt": "Hand-drawn sketch from \u201cHow to Use the Built-in Monaco IDE\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/how-to-use-the-built-in-monaco-ide/note-2.png",
-        "alt": "Hand-drawn sketch from “How to Use the Built-in Monaco IDE”",
+        "alt": "Hand-drawn sketch from \u201cHow to Use the Built-in Monaco IDE\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1362,13 +1362,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/human-in-the-loop-ai-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Human-in-the-Loop AI Agents: Approvals That Don't Slow You Down”",
+        "alt": "Hand-drawn sketch from \u201cHuman-in-the-Loop AI Agents: Approvals That Don't Slow You Down\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/human-in-the-loop-ai-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Human-in-the-Loop AI Agents: Approvals That Don't Slow You Down”",
+        "alt": "Hand-drawn sketch from \u201cHuman-in-the-Loop AI Agents: Approvals That Don't Slow You Down\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1387,13 +1387,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/human-in-the-loop-approving-ai-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Approving AI Agents: Human-in-the-Loop Without a Queue”",
+        "alt": "Hand-drawn sketch from \u201cApproving AI Agents: Human-in-the-Loop Without a Queue\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/human-in-the-loop-approving-ai-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Approving AI Agents: Human-in-the-Loop Without a Queue”",
+        "alt": "Hand-drawn sketch from \u201cApproving AI Agents: Human-in-the-Loop Without a Queue\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1406,19 +1406,19 @@
     "hero": {
       "file": "assets/media/keep-agent-semantic-memory-clean/hero.png",
       "alt": "Illustration: Keep Your Agent's Semantic Memory Clean: Don't Index the Config",
-      "prompt": "Hero image for a blog post titled \"Keep Your Agent's Semantic Memory Clean: Don't Index the Config\". The post is about: A semantic memory layer is only as good as what you feed it — how an agent's recall got swamped by config and logs, and the .gitignore + prune fix.",
+      "prompt": "Hero image for a blog post titled \"Keep Your Agent's Semantic Memory Clean: Don't Index the Config\". The post is about: A semantic memory layer is only as good as what you feed it \u2014 how an agent's recall got swamped by config and logs, and the .gitignore + prune fix.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/keep-agent-semantic-memory-clean/note-1.png",
-        "alt": "Hand-drawn sketch from “Keep Your Agent's Semantic Memory Clean: Don't Index the Config”",
+        "alt": "Hand-drawn sketch from \u201cKeep Your Agent's Semantic Memory Clean: Don't Index the Config\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/keep-agent-semantic-memory-clean/note-2.png",
-        "alt": "Hand-drawn sketch from “Keep Your Agent's Semantic Memory Clean: Don't Index the Config”",
+        "alt": "Hand-drawn sketch from \u201cKeep Your Agent's Semantic Memory Clean: Don't Index the Config\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1437,13 +1437,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/launching-munder-difflin-v0-2-0/note-1.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.2.0”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.2.0\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/launching-munder-difflin-v0-2-0/note-2.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.2.0”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.2.0\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1456,19 +1456,19 @@
     "hero": {
       "file": "assets/media/launching-munder-difflin-v0-2-4/hero.png",
       "alt": "Illustration: Launching Munder Difflin v0.2.4",
-      "prompt": "Hero image for a blog post titled \"Launching Munder Difflin v0.2.4\". The post is about: Munder Difflin v0.2.4 is here: Claude Code, OpenAI Codex, and Antigravity (Gemini) agents now run as one hive with full parity — no API keys, no setup. Brief a GOD orchestrator, automate basically anything in one prompt, and close the lid while it keeps working.",
+      "prompt": "Hero image for a blog post titled \"Launching Munder Difflin v0.2.4\". The post is about: Munder Difflin v0.2.4 is here: Claude Code, OpenAI Codex, and Antigravity (Gemini) agents now run as one hive with full parity \u2014 no API keys, no setup. Brief a GOD orchestrator, automate basically anything in one prompt, and close the lid while it keeps working.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/launching-munder-difflin-v0-2-4/note-1.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.2.4”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.2.4\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/launching-munder-difflin-v0-2-4/note-2.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.2.4”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.2.4\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1487,13 +1487,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/launching-munder-difflin-v0-2-8/note-1.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.2.8: Shareable Hires”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.2.8: Shareable Hires\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/launching-munder-difflin-v0-2-8/note-2.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.2.8: Shareable Hires”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.2.8: Shareable Hires\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1506,19 +1506,19 @@
     "hero": {
       "file": "assets/media/launching-munder-difflin-v0-3-0/hero.png",
       "alt": "Illustration: Launching Munder Difflin v0.3.0: Selectable Engines, Integrations & Slack-Spawned Workers",
-      "prompt": "Hero image for a blog post titled \"Launching Munder Difflin v0.3.0: Selectable Engines, Integrations & Slack-Spawned Workers\". The post is about: Munder Difflin v0.3.0 makes every hire — and Michael himself — a pluggable engine, adds an integrations registry with a write-only secret broker, and lets the god orchestrator spawn an ephemeral worker straight from Slack.",
+      "prompt": "Hero image for a blog post titled \"Launching Munder Difflin v0.3.0: Selectable Engines, Integrations & Slack-Spawned Workers\". The post is about: Munder Difflin v0.3.0 makes every hire \u2014 and Michael himself \u2014 a pluggable engine, adds an integrations registry with a write-only secret broker, and lets the god orchestrator spawn an ephemeral worker straight from Slack.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/launching-munder-difflin-v0-3-0/note-1.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.3.0: Selectable Engines, Integrations & Slack-Spawned Workers”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.3.0: Selectable Engines, Integrations & Slack-Spawned Workers\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/launching-munder-difflin-v0-3-0/note-2.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.3.0: Selectable Engines, Integrations & Slack-Spawned Workers”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.3.0: Selectable Engines, Integrations & Slack-Spawned Workers\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1531,19 +1531,19 @@
     "hero": {
       "file": "assets/media/launching-munder-difflin-v0-3-2/hero.png",
       "alt": "Illustration: Launching Munder Difflin v0.3.2: Talk to Michael, a Realtime Voice Orchestrator",
-      "prompt": "Hero image for a blog post titled \"Launching Munder Difflin v0.3.2: Talk to Michael, a Realtime Voice Orchestrator\". The post is about: Munder Difflin v0.3.2 adds Realtime Michael — a low-latency voice channel to the GOD orchestrator. Talk to Michael and he listens, answers, and acts: reading the hive and, behind spoken echo-back confirmation, dispatching, spawning, and steering the floor in real time.",
+      "prompt": "Hero image for a blog post titled \"Launching Munder Difflin v0.3.2: Talk to Michael, a Realtime Voice Orchestrator\". The post is about: Munder Difflin v0.3.2 adds Realtime Michael \u2014 a low-latency voice channel to the GOD orchestrator. Talk to Michael and he listens, answers, and acts: reading the hive and, behind spoken echo-back confirmation, dispatching, spawning, and steering the floor in real time.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/launching-munder-difflin-v0-3-2/note-1.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.3.2: Talk to Michael, a Realtime Voice Orchestrator”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.3.2: Talk to Michael, a Realtime Voice Orchestrator\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/launching-munder-difflin-v0-3-2/note-2.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.3.2: Talk to Michael, a Realtime Voice Orchestrator”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.3.2: Talk to Michael, a Realtime Voice Orchestrator\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1556,19 +1556,19 @@
     "hero": {
       "file": "assets/media/launching-munder-difflin-v0-3-3/hero.png",
       "alt": "Illustration: Launching Munder Difflin v0.3.3: A Built-in Monaco IDE and GitHub Copilot CLI Support",
-      "prompt": "Hero image for a blog post titled \"Launching Munder Difflin v0.3.3: A Built-in Monaco IDE and GitHub Copilot CLI Support\". The post is about: Munder Difflin v0.3.3 adds a full Monaco IDE — file tree, editor tabs, save, and side-by-side git diffs of your agents' changes — plus GitHub Copilot CLI as a first-class agent engine, our first community-contributed provider.",
+      "prompt": "Hero image for a blog post titled \"Launching Munder Difflin v0.3.3: A Built-in Monaco IDE and GitHub Copilot CLI Support\". The post is about: Munder Difflin v0.3.3 adds a full Monaco IDE \u2014 file tree, editor tabs, save, and side-by-side git diffs of your agents' changes \u2014 plus GitHub Copilot CLI as a first-class agent engine, our first community-contributed provider.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/launching-munder-difflin-v0-3-3/note-1.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.3.3: A Built-in Monaco IDE and GitHub Copilot CLI Support”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.3.3: A Built-in Monaco IDE and GitHub Copilot CLI Support\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/launching-munder-difflin-v0-3-3/note-2.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.3.3: A Built-in Monaco IDE and GitHub Copilot CLI Support”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.3.3: A Built-in Monaco IDE and GitHub Copilot CLI Support\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1587,13 +1587,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/launching-munder-difflin-v0-3-5/note-1.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.3.5: A Michael Who Knows the Floor, a Git Time-Machine, and an App That Updates Itself”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.3.5: A Michael Who Knows the Floor, a Git Time-Machine, and an App That Updates Itself\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/launching-munder-difflin-v0-3-5/note-2.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.3.5: A Michael Who Knows the Floor, a Git Time-Machine, and an App That Updates Itself”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.3.5: A Michael Who Knows the Floor, a Git Time-Machine, and an App That Updates Itself\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1612,19 +1612,19 @@
     "inline": {
       "note-1": {
         "file": "assets/media/launching-munder-difflin-v0-4-4/note-1.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.4.4: Windows Agents Can Finally Talk”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.4.4: Windows Agents Can Finally Talk\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/launching-munder-difflin-v0-4-4/note-2.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.4.4: Windows Agents Can Finally Talk”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.4.4: Windows Agents Can Finally Talk\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-3": {
         "file": "assets/media/launching-munder-difflin-v0-4-4/note-3.png",
-        "alt": "Hand-drawn sketch from “Launching Munder Difflin v0.4.4: Windows Agents Can Finally Talk”",
+        "alt": "Hand-drawn sketch from \u201cLaunching Munder Difflin v0.4.4: Windows Agents Can Finally Talk\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1637,19 +1637,19 @@
     "hero": {
       "file": "assets/media/local-first-ai-agent-orchestration/hero.png",
       "alt": "Illustration: Local-First AI Agent Orchestration: How a Hive Runs Without a Cloud",
-      "prompt": "Hero image for a blog post titled \"Local-First AI Agent Orchestration: How a Hive Runs Without a Cloud\". The post is about: How local-first AI agent orchestration works under the hood — the loop, mailboxes, scheduler, and audit log that coordinate a hive on one machine.",
+      "prompt": "Hero image for a blog post titled \"Local-First AI Agent Orchestration: How a Hive Runs Without a Cloud\". The post is about: How local-first AI agent orchestration works under the hood \u2014 the loop, mailboxes, scheduler, and audit log that coordinate a hive on one machine.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/local-first-ai-agent-orchestration/note-1.png",
-        "alt": "Hand-drawn sketch from “Local-First AI Agent Orchestration: How a Hive Runs Without a Cloud”",
+        "alt": "Hand-drawn sketch from \u201cLocal-First AI Agent Orchestration: How a Hive Runs Without a Cloud\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/local-first-ai-agent-orchestration/note-2.png",
-        "alt": "Hand-drawn sketch from “Local-First AI Agent Orchestration: How a Hive Runs Without a Cloud”",
+        "alt": "Hand-drawn sketch from \u201cLocal-First AI Agent Orchestration: How a Hive Runs Without a Cloud\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1668,13 +1668,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/local-first-vs-cloud-agent-sdks/note-1.png",
-        "alt": "Hand-drawn sketch from “Local-First vs Cloud Agent SDKs: Which Wins in 2026?”",
+        "alt": "Hand-drawn sketch from \u201cLocal-First vs Cloud Agent SDKs: Which Wins in 2026?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/local-first-vs-cloud-agent-sdks/note-2.png",
-        "alt": "Hand-drawn sketch from “Local-First vs Cloud Agent SDKs: Which Wins in 2026?”",
+        "alt": "Hand-drawn sketch from \u201cLocal-First vs Cloud Agent SDKs: Which Wins in 2026?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1687,19 +1687,19 @@
     "hero": {
       "file": "assets/media/long-running-agents-the-2026-shift/hero.png",
       "alt": "Illustration: Long-Running Agents: The 2026 Shift from Minutes to Hours",
-      "prompt": "Hero image for a blog post titled \"Long-Running Agents: The 2026 Shift from Minutes to Hours\". The post is about: Agents used to answer in seconds; now they run for hours. The data behind the shift — and why a longer agent is a different problem, not just a bigger one.",
+      "prompt": "Hero image for a blog post titled \"Long-Running Agents: The 2026 Shift from Minutes to Hours\". The post is about: Agents used to answer in seconds; now they run for hours. The data behind the shift \u2014 and why a longer agent is a different problem, not just a bigger one.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/long-running-agents-the-2026-shift/note-1.png",
-        "alt": "Hand-drawn sketch from “Long-Running Agents: The 2026 Shift from Minutes to Hours”",
+        "alt": "Hand-drawn sketch from \u201cLong-Running Agents: The 2026 Shift from Minutes to Hours\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/long-running-agents-the-2026-shift/note-2.png",
-        "alt": "Hand-drawn sketch from “Long-Running Agents: The 2026 Shift from Minutes to Hours”",
+        "alt": "Hand-drawn sketch from \u201cLong-Running Agents: The 2026 Shift from Minutes to Hours\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1712,19 +1712,19 @@
     "hero": {
       "file": "assets/media/loop-engineering-for-ai-agents/hero.png",
       "alt": "Illustration: Loop Engineering: Designing Agent Loops That Converge",
-      "prompt": "Hero image for a blog post titled \"Loop Engineering: Designing Agent Loops That Converge\". The post is about: Everyone engineers the prompt; almost nobody engineers the loop around it. Stop conditions, drain loops, retry with backoff, compaction cycles, breaker escalation, budgets, and human gates — the outer-loop mechanics that make an agent converge instead of run away.",
+      "prompt": "Hero image for a blog post titled \"Loop Engineering: Designing Agent Loops That Converge\". The post is about: Everyone engineers the prompt; almost nobody engineers the loop around it. Stop conditions, drain loops, retry with backoff, compaction cycles, breaker escalation, budgets, and human gates \u2014 the outer-loop mechanics that make an agent converge instead of run away.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/loop-engineering-for-ai-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Loop Engineering: Designing Agent Loops That Converge”",
+        "alt": "Hand-drawn sketch from \u201cLoop Engineering: Designing Agent Loops That Converge\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/loop-engineering-for-ai-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Loop Engineering: Designing Agent Loops That Converge”",
+        "alt": "Hand-drawn sketch from \u201cLoop Engineering: Designing Agent Loops That Converge\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1743,13 +1743,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/manage-multiple-claude-code-sessions/note-1.png",
-        "alt": "Hand-drawn sketch from “How to Manage Multiple Claude Code Sessions Like a Pro”",
+        "alt": "Hand-drawn sketch from \u201cHow to Manage Multiple Claude Code Sessions Like a Pro\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/manage-multiple-claude-code-sessions/note-2.png",
-        "alt": "Hand-drawn sketch from “How to Manage Multiple Claude Code Sessions Like a Pro”",
+        "alt": "Hand-drawn sketch from \u201cHow to Manage Multiple Claude Code Sessions Like a Pro\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1768,13 +1768,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/markdown-first-agent-memory/note-1.png",
-        "alt": "Hand-drawn sketch from “Why We Built Agent Memory Markdown-First”",
+        "alt": "Hand-drawn sketch from \u201cWhy We Built Agent Memory Markdown-First\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/markdown-first-agent-memory/note-2.png",
-        "alt": "Hand-drawn sketch from “Why We Built Agent Memory Markdown-First”",
+        "alt": "Hand-drawn sketch from \u201cWhy We Built Agent Memory Markdown-First\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1787,19 +1787,19 @@
     "hero": {
       "file": "assets/media/mcp-and-skills-in-a-hive/hero.png",
       "alt": "Illustration: Bringing Your MCP Servers and Skills Into a Hive of Agents",
-      "prompt": "Hero image for a blog post titled \"Bringing Your MCP Servers and Skills Into a Hive of Agents\". The post is about: How agents in a hive inherit your existing Claude Code MCP servers, skills, and tools — and how to scope which agent gets which capability.",
+      "prompt": "Hero image for a blog post titled \"Bringing Your MCP Servers and Skills Into a Hive of Agents\". The post is about: How agents in a hive inherit your existing Claude Code MCP servers, skills, and tools \u2014 and how to scope which agent gets which capability.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/mcp-and-skills-in-a-hive/note-1.png",
-        "alt": "Hand-drawn sketch from “Bringing Your MCP Servers and Skills Into a Hive of Agents”",
+        "alt": "Hand-drawn sketch from \u201cBringing Your MCP Servers and Skills Into a Hive of Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/mcp-and-skills-in-a-hive/note-2.png",
-        "alt": "Hand-drawn sketch from “Bringing Your MCP Servers and Skills Into a Hive of Agents”",
+        "alt": "Hand-drawn sketch from \u201cBringing Your MCP Servers and Skills Into a Hive of Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1812,19 +1812,19 @@
     "hero": {
       "file": "assets/media/mcp-security-tool-poisoning/hero.png",
       "alt": "Illustration: MCP Tool Poisoning: How to Secure the Model Context Protocol",
-      "prompt": "Hero image for a blog post titled \"MCP Tool Poisoning: How to Secure the Model Context Protocol\". The post is about: How the Model Context Protocol gets attacked — tool poisoning, rug pulls, command injection — and the layered defenses that secure your MCP tools.",
+      "prompt": "Hero image for a blog post titled \"MCP Tool Poisoning: How to Secure the Model Context Protocol\". The post is about: How the Model Context Protocol gets attacked \u2014 tool poisoning, rug pulls, command injection \u2014 and the layered defenses that secure your MCP tools.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/mcp-security-tool-poisoning/note-1.png",
-        "alt": "Hand-drawn sketch from “MCP Tool Poisoning: How to Secure the Model Context Protocol”",
+        "alt": "Hand-drawn sketch from \u201cMCP Tool Poisoning: How to Secure the Model Context Protocol\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/mcp-security-tool-poisoning/note-2.png",
-        "alt": "Hand-drawn sketch from “MCP Tool Poisoning: How to Secure the Model Context Protocol”",
+        "alt": "Hand-drawn sketch from \u201cMCP Tool Poisoning: How to Secure the Model Context Protocol\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1837,19 +1837,19 @@
     "hero": {
       "file": "assets/media/multi-agent-orchestration-patterns/hero.png",
       "alt": "Illustration: Multi-Agent Orchestration Patterns: Which Topology, and When",
-      "prompt": "Hero image for a blog post titled \"Multi-Agent Orchestration Patterns: Which Topology, and When\". The post is about: The multi-agent orchestration patterns — orchestrator-worker, pipeline, fan-out, debate, swarm, blackboard — when to use each, and when one agent wins.",
+      "prompt": "Hero image for a blog post titled \"Multi-Agent Orchestration Patterns: Which Topology, and When\". The post is about: The multi-agent orchestration patterns \u2014 orchestrator-worker, pipeline, fan-out, debate, swarm, blackboard \u2014 when to use each, and when one agent wins.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/multi-agent-orchestration-patterns/note-1.png",
-        "alt": "Hand-drawn sketch from “Multi-Agent Orchestration Patterns: Which Topology, and When”",
+        "alt": "Hand-drawn sketch from \u201cMulti-Agent Orchestration Patterns: Which Topology, and When\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/multi-agent-orchestration-patterns/note-2.png",
-        "alt": "Hand-drawn sketch from “Multi-Agent Orchestration Patterns: Which Topology, and When”",
+        "alt": "Hand-drawn sketch from \u201cMulti-Agent Orchestration Patterns: Which Topology, and When\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1862,13 +1862,13 @@
     "hero": {
       "file": "assets/media/munder-difflin-faq/hero.png",
       "alt": "Illustration: Munder Difflin FAQ: Everything People Ask",
-      "prompt": "Hero image for a blog post titled \"Munder Difflin FAQ: Everything People Ask\". The post is about: Answers to the top Munder Difflin questions — what it is, is it free, does it run locally, which platforms, and how it differs from many terminals.",
+      "prompt": "Hero image for a blog post titled \"Munder Difflin FAQ: Everything People Ask\". The post is about: Answers to the top Munder Difflin questions \u2014 what it is, is it free, does it run locally, which platforms, and how it differs from many terminals.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/munder-difflin-faq/note-1.png",
-        "alt": "Hand-drawn sketch from “Munder Difflin FAQ: Everything People Ask”",
+        "alt": "Hand-drawn sketch from \u201cMunder Difflin FAQ: Everything People Ask\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1881,19 +1881,19 @@
     "hero": {
       "file": "assets/media/munder-difflin-v0-2-4-feature-walkthrough/hero.png",
       "alt": "Illustration: Munder Difflin v0.2.4 Feature Walkthrough",
-      "prompt": "Hero image for a blog post titled \"Munder Difflin v0.2.4 Feature Walkthrough\". The post is about: A comprehensive guide to every change in Munder Difflin v0.2.4 — how the Codex lifecycle-hook bridge achieves full hive parity, what the Schedules tab adds, why tunnelmole replaced localtunnel, and what else shipped.",
+      "prompt": "Hero image for a blog post titled \"Munder Difflin v0.2.4 Feature Walkthrough\". The post is about: A comprehensive guide to every change in Munder Difflin v0.2.4 \u2014 how the Codex lifecycle-hook bridge achieves full hive parity, what the Schedules tab adds, why tunnelmole replaced localtunnel, and what else shipped.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/munder-difflin-v0-2-4-feature-walkthrough/note-1.png",
-        "alt": "Hand-drawn sketch from “Munder Difflin v0.2.4 Feature Walkthrough”",
+        "alt": "Hand-drawn sketch from \u201cMunder Difflin v0.2.4 Feature Walkthrough\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/munder-difflin-v0-2-4-feature-walkthrough/note-2.png",
-        "alt": "Hand-drawn sketch from “Munder Difflin v0.2.4 Feature Walkthrough”",
+        "alt": "Hand-drawn sketch from \u201cMunder Difflin v0.2.4 Feature Walkthrough\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1912,13 +1912,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/node-pty-electron-real-terminals/note-1.png",
-        "alt": "Hand-drawn sketch from “Real Terminals in Electron with node-pty”",
+        "alt": "Hand-drawn sketch from \u201cReal Terminals in Electron with node-pty\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/node-pty-electron-real-terminals/note-2.png",
-        "alt": "Hand-drawn sketch from “Real Terminals in Electron with node-pty”",
+        "alt": "Hand-drawn sketch from \u201cReal Terminals in Electron with node-pty\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1926,24 +1926,24 @@
     "youtube": []
   },
   "number-five-on-product-hunt": {
-    "title": "Nº 5 Product of the Day: How Our First Product Hunt Launch Went",
+    "title": "N\u00ba 5 Product of the Day: How Our First Product Hunt Launch Went",
     "category": "story",
     "hero": {
       "file": "assets/media/number-five-on-product-hunt/hero.png",
-      "alt": "Illustration: Nº 5 Product of the Day: How Our First Product Hunt Launch Went",
-      "prompt": "Hero image for a blog post titled \"Nº 5 Product of the Day: Our Product Hunt Launch, by the Numbers\". The post is about: Munder Difflin finished #5 Product of the Day on Product Hunt — ahead of DeepSeek's harness launch that day. Here's what actually happened: the numbers, the people who showed up, and the two pieces of feedback we're already shipping fixes for.",
+      "alt": "Illustration: N\u00ba 5 Product of the Day: How Our First Product Hunt Launch Went",
+      "prompt": "Hero image for a blog post titled \"N\u00ba 5 Product of the Day: Our Product Hunt Launch, by the Numbers\". The post is about: Munder Difflin finished #5 Product of the Day on Product Hunt \u2014 ahead of DeepSeek's harness launch that day. Here's what actually happened: the numbers, the people who showed up, and the two pieces of feedback we're already shipping fixes for.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/number-five-on-product-hunt/note-1.png",
-        "alt": "Hand-drawn sketch from “Nº 5 Product of the Day: How Our First Product Hunt Launch Went”",
+        "alt": "Hand-drawn sketch from \u201cN\u00ba 5 Product of the Day: How Our First Product Hunt Launch Went\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/number-five-on-product-hunt/note-2.png",
-        "alt": "Hand-drawn sketch from “Nº 5 Product of the Day: How Our First Product Hunt Launch Went”",
+        "alt": "Hand-drawn sketch from \u201cN\u00ba 5 Product of the Day: How Our First Product Hunt Launch Went\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1962,13 +1962,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/observability-for-agent-fleets/note-1.png",
-        "alt": "Hand-drawn sketch from “Observability for Agent Fleets: Seeing What Your Agents Do”",
+        "alt": "Hand-drawn sketch from \u201cObservability for Agent Fleets: Seeing What Your Agents Do\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/observability-for-agent-fleets/note-2.png",
-        "alt": "Hand-drawn sketch from “Observability for Agent Fleets: Seeing What Your Agents Do”",
+        "alt": "Hand-drawn sketch from \u201cObservability for Agent Fleets: Seeing What Your Agents Do\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -1976,24 +1976,24 @@
     "youtube": []
   },
   "one-prompt-automated-pr-review": {
-    "title": "One Prompt, Five PR Reviews, and an Hourly Automation — A Dogfooding Story",
+    "title": "One Prompt, Five PR Reviews, and an Hourly Automation \u2014 A Dogfooding Story",
     "category": "story",
     "hero": {
       "file": "assets/media/one-prompt-automated-pr-review/hero.png",
-      "alt": "Illustration: One Prompt, Five PR Reviews, and an Hourly Automation — A Dogfooding Story",
-      "prompt": "Hero image for a blog post titled \"One Prompt, Five PR Reviews, and an Hourly Automation — A Dogfooding Story\". The post is about: How a single prompt to the Munder Difflin god agent reviewed all open PRs and set up a recurring hourly PR reviewer — while the repo was blowing up with 400+ stars.",
+      "alt": "Illustration: One Prompt, Five PR Reviews, and an Hourly Automation \u2014 A Dogfooding Story",
+      "prompt": "Hero image for a blog post titled \"One Prompt, Five PR Reviews, and an Hourly Automation \u2014 A Dogfooding Story\". The post is about: How a single prompt to the Munder Difflin god agent reviewed all open PRs and set up a recurring hourly PR reviewer \u2014 while the repo was blowing up with 400+ stars.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/one-prompt-automated-pr-review/note-1.png",
-        "alt": "Hand-drawn sketch from “One Prompt, Five PR Reviews, and an Hourly Automation — A Dogfooding Story”",
+        "alt": "Hand-drawn sketch from \u201cOne Prompt, Five PR Reviews, and an Hourly Automation \u2014 A Dogfooding Story\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/one-prompt-automated-pr-review/note-2.png",
-        "alt": "Hand-drawn sketch from “One Prompt, Five PR Reviews, and an Hourly Automation — A Dogfooding Story”",
+        "alt": "Hand-drawn sketch from \u201cOne Prompt, Five PR Reviews, and an Hourly Automation \u2014 A Dogfooding Story\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2006,19 +2006,19 @@
     "hero": {
       "file": "assets/media/open-source-ai-tools-on-purpose/hero.png",
       "alt": "Illustration: Building AI Dev Tools in the Open, On Purpose",
-      "prompt": "Hero image for a blog post titled \"Building AI Dev Tools in the Open, On Purpose\". The post is about: Agents touch your code, keys, and memory. That's why agent tooling should be open source and local-first — so you can verify it, not just trust it.",
+      "prompt": "Hero image for a blog post titled \"Building AI Dev Tools in the Open, On Purpose\". The post is about: Agents touch your code, keys, and memory. That's why agent tooling should be open source and local-first \u2014 so you can verify it, not just trust it.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/open-source-ai-tools-on-purpose/note-1.png",
-        "alt": "Hand-drawn sketch from “Building AI Dev Tools in the Open, On Purpose”",
+        "alt": "Hand-drawn sketch from \u201cBuilding AI Dev Tools in the Open, On Purpose\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/open-source-ai-tools-on-purpose/note-2.png",
-        "alt": "Hand-drawn sketch from “Building AI Dev Tools in the Open, On Purpose”",
+        "alt": "Hand-drawn sketch from \u201cBuilding AI Dev Tools in the Open, On Purpose\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2031,19 +2031,19 @@
     "hero": {
       "file": "assets/media/orca-vs-munder-difflin/hero.png",
       "alt": "Illustration: Orca vs Munder Difflin: Agent IDE or Agent Office?",
-      "prompt": "Hero image for a blog post titled \"Orca vs Munder Difflin: Agent IDE or Agent Office?\". The post is about: Orca is a YC-backed Agent IDE for driving coding agents side by side in isolated worktrees. Munder Difflin is an agent office that runs itself. An honest comparison of the two — and when each one is the right pick.",
+      "prompt": "Hero image for a blog post titled \"Orca vs Munder Difflin: Agent IDE or Agent Office?\". The post is about: Orca is a YC-backed Agent IDE for driving coding agents side by side in isolated worktrees. Munder Difflin is an agent office that runs itself. An honest comparison of the two \u2014 and when each one is the right pick.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/orca-vs-munder-difflin/note-1.png",
-        "alt": "Hand-drawn sketch from “Orca vs Munder Difflin: Agent IDE or Agent Office?”",
+        "alt": "Hand-drawn sketch from \u201cOrca vs Munder Difflin: Agent IDE or Agent Office?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/orca-vs-munder-difflin/note-2.png",
-        "alt": "Hand-drawn sketch from “Orca vs Munder Difflin: Agent IDE or Agent Office?”",
+        "alt": "Hand-drawn sketch from \u201cOrca vs Munder Difflin: Agent IDE or Agent Office?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2056,19 +2056,19 @@
     "hero": {
       "file": "assets/media/overnight-ai-coding-realistic-expectations/hero.png",
       "alt": "Illustration: Overnight AI Coding: What's Realistic (and What's Not)",
-      "prompt": "Hero image for a blog post titled \"Overnight AI Coding: What's Realistic (and What's Not)\". The post is about: An honest look at letting AI coding agents run overnight — what works today, where guardrails matter, and what still needs a human in the morning.",
+      "prompt": "Hero image for a blog post titled \"Overnight AI Coding: What's Realistic (and What's Not)\". The post is about: An honest look at letting AI coding agents run overnight \u2014 what works today, where guardrails matter, and what still needs a human in the morning.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/overnight-ai-coding-realistic-expectations/note-1.png",
-        "alt": "Hand-drawn sketch from “Overnight AI Coding: What's Realistic (and What's Not)”",
+        "alt": "Hand-drawn sketch from \u201cOvernight AI Coding: What's Realistic (and What's Not)\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/overnight-ai-coding-realistic-expectations/note-2.png",
-        "alt": "Hand-drawn sketch from “Overnight AI Coding: What's Realistic (and What's Not)”",
+        "alt": "Hand-drawn sketch from \u201cOvernight AI Coding: What's Realistic (and What's Not)\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2081,19 +2081,19 @@
     "hero": {
       "file": "assets/media/prompt-caching-for-ai-agents/hero.png",
       "alt": "Illustration: Prompt Caching for AI Agents: Stop Paying for the Same Tokens Twice",
-      "prompt": "Hero image for a blog post titled \"Prompt Caching for AI Agents: Stop Paying for the Same Tokens Twice\". The post is about: An agent re-sends the same prompt, tools, and context every turn. Prompt caching makes you pay for that prefix once — here's how to design for it.",
+      "prompt": "Hero image for a blog post titled \"Prompt Caching for AI Agents: Stop Paying for the Same Tokens Twice\". The post is about: An agent re-sends the same prompt, tools, and context every turn. Prompt caching makes you pay for that prefix once \u2014 here's how to design for it.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/prompt-caching-for-ai-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Prompt Caching for AI Agents: Stop Paying for the Same Tokens Twice”",
+        "alt": "Hand-drawn sketch from \u201cPrompt Caching for AI Agents: Stop Paying for the Same Tokens Twice\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/prompt-caching-for-ai-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Prompt Caching for AI Agents: Stop Paying for the Same Tokens Twice”",
+        "alt": "Hand-drawn sketch from \u201cPrompt Caching for AI Agents: Stop Paying for the Same Tokens Twice\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2106,19 +2106,19 @@
     "hero": {
       "file": "assets/media/qm-vs-munder-difflin/hero.png",
       "alt": "Illustration: qm vs Munder Difflin: YC's Multiplayer Harness or a Local-First Agent Office?",
-      "prompt": "Hero image for a blog post titled \"qm vs Munder Difflin: YC's Multiplayer Harness or a Local-First Agent Office?\". The post is about: An honest comparison of YC's qm and Munder Difflin: both orchestrate fleets of CLI coding agents with security postures, scheduled background work, and Slack — one as a headless multiplayer harness for teams, one as a local-first desktop office with real terminals, voice, and a built-in IDE.",
+      "prompt": "Hero image for a blog post titled \"qm vs Munder Difflin: YC's Multiplayer Harness or a Local-First Agent Office?\". The post is about: An honest comparison of YC's qm and Munder Difflin: both orchestrate fleets of CLI coding agents with security postures, scheduled background work, and Slack \u2014 one as a headless multiplayer harness for teams, one as a local-first desktop office with real terminals, voice, and a built-in IDE.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/qm-vs-munder-difflin/note-1.png",
-        "alt": "Hand-drawn sketch from “qm vs Munder Difflin: YC's Multiplayer Harness or a Local-First Agent Office?”",
+        "alt": "Hand-drawn sketch from \u201cqm vs Munder Difflin: YC's Multiplayer Harness or a Local-First Agent Office?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/qm-vs-munder-difflin/note-2.png",
-        "alt": "Hand-drawn sketch from “qm vs Munder Difflin: YC's Multiplayer Harness or a Local-First Agent Office?”",
+        "alt": "Hand-drawn sketch from \u201cqm vs Munder Difflin: YC's Multiplayer Harness or a Local-First Agent Office?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2137,13 +2137,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/recovering-from-agent-failures/note-1.png",
-        "alt": "Hand-drawn sketch from “Recovering From Agent Failures: Resilience Patterns for a Hive”",
+        "alt": "Hand-drawn sketch from \u201cRecovering From Agent Failures: Resilience Patterns for a Hive\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/recovering-from-agent-failures/note-2.png",
-        "alt": "Hand-drawn sketch from “Recovering From Agent Failures: Resilience Patterns for a Hive”",
+        "alt": "Hand-drawn sketch from \u201cRecovering From Agent Failures: Resilience Patterns for a Hive\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2162,13 +2162,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/rendering-many-live-terminals-performance/note-1.png",
-        "alt": "Hand-drawn sketch from “Rendering Many Live Terminals Without Melting the CPU”",
+        "alt": "Hand-drawn sketch from \u201cRendering Many Live Terminals Without Melting the CPU\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/rendering-many-live-terminals-performance/note-2.png",
-        "alt": "Hand-drawn sketch from “Rendering Many Live Terminals Without Melting the CPU”",
+        "alt": "Hand-drawn sketch from \u201cRendering Many Live Terminals Without Melting the CPU\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2187,13 +2187,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/review-agent-work-where-it-happens/note-1.png",
-        "alt": "Hand-drawn sketch from “Review Agent Work Where It Happens”",
+        "alt": "Hand-drawn sketch from \u201cReview Agent Work Where It Happens\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/review-agent-work-where-it-happens/note-2.png",
-        "alt": "Hand-drawn sketch from “Review Agent Work Where It Happens”",
+        "alt": "Hand-drawn sketch from \u201cReview Agent Work Where It Happens\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2212,13 +2212,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/run-a-mixed-engine-office/note-1.png",
-        "alt": "Hand-drawn sketch from “Run a Mixed-Engine Office: the Right CLI for Every Desk”",
+        "alt": "Hand-drawn sketch from \u201cRun a Mixed-Engine Office: the Right CLI for Every Desk\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/run-a-mixed-engine-office/note-2.png",
-        "alt": "Hand-drawn sketch from “Run a Mixed-Engine Office: the Right CLI for Every Desk”",
+        "alt": "Hand-drawn sketch from \u201cRun a Mixed-Engine Office: the Right CLI for Every Desk\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2231,19 +2231,19 @@
     "hero": {
       "file": "assets/media/run-a-release-train-with-agents/hero.png",
       "alt": "Illustration: Run a Release Train with Agents",
-      "prompt": "Hero image for a blog post titled \"Run a Release Train with Agents\". The post is about: Version bumps, changelog entries, release notes in plain language, site updates, and link checks — the release chores that always slip are exactly the work a hive does well. The workflow behind our seven-releases-in-eight-days week.",
+      "prompt": "Hero image for a blog post titled \"Run a Release Train with Agents\". The post is about: Version bumps, changelog entries, release notes in plain language, site updates, and link checks \u2014 the release chores that always slip are exactly the work a hive does well. The workflow behind our seven-releases-in-eight-days week.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/run-a-release-train-with-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Run a Release Train with Agents”",
+        "alt": "Hand-drawn sketch from \u201cRun a Release Train with Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/run-a-release-train-with-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Run a Release Train with Agents”",
+        "alt": "Hand-drawn sketch from \u201cRun a Release Train with Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2256,19 +2256,19 @@
     "hero": {
       "file": "assets/media/run-ai-agent-hive-from-slack-setup/hero.png",
       "alt": "Illustration: Run Your AI Agent Hive from Slack: The Complete Setup",
-      "prompt": "Hero image for a blog post titled \"Run Your AI Agent Hive from Slack: The Complete Setup\". The post is about: Step-by-step setup for driving Munder Difflin's AI agent hive from Slack: create the app, set scopes, paste the tunnel Request URL, and @mention your bot to start work — done-summaries post back in-thread.",
+      "prompt": "Hero image for a blog post titled \"Run Your AI Agent Hive from Slack: The Complete Setup\". The post is about: Step-by-step setup for driving Munder Difflin's AI agent hive from Slack: create the app, set scopes, paste the tunnel Request URL, and @mention your bot to start work \u2014 done-summaries post back in-thread.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/run-ai-agent-hive-from-slack-setup/note-1.png",
-        "alt": "Hand-drawn sketch from “Run Your AI Agent Hive from Slack: The Complete Setup”",
+        "alt": "Hand-drawn sketch from \u201cRun Your AI Agent Hive from Slack: The Complete Setup\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/run-ai-agent-hive-from-slack-setup/note-2.png",
-        "alt": "Hand-drawn sketch from “Run Your AI Agent Hive from Slack: The Complete Setup”",
+        "alt": "Hand-drawn sketch from \u201cRun Your AI Agent Hive from Slack: The Complete Setup\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2281,19 +2281,19 @@
     "hero": {
       "file": "assets/media/run-an-office-of-ai-agents/hero.png",
       "alt": "Illustration: Run an Office of AI Agents While You Sleep",
-      "prompt": "Hero image for a blog post titled \"Run an Office of AI Agents While You Sleep\". The post is about: What it takes to run a self-coordinating office of AI coding agents that keeps shipping after you log off — and the guardrails that keep it sane.",
+      "prompt": "Hero image for a blog post titled \"Run an Office of AI Agents While You Sleep\". The post is about: What it takes to run a self-coordinating office of AI coding agents that keeps shipping after you log off \u2014 and the guardrails that keep it sane.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/run-an-office-of-ai-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Run an Office of AI Agents While You Sleep”",
+        "alt": "Hand-drawn sketch from \u201cRun an Office of AI Agents While You Sleep\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/run-an-office-of-ai-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Run an Office of AI Agents While You Sleep”",
+        "alt": "Hand-drawn sketch from \u201cRun an Office of AI Agents While You Sleep\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2306,19 +2306,19 @@
     "hero": {
       "file": "assets/media/run-munder-difflin-on-a-mac-mini/hero.png",
       "alt": "Illustration: Run Munder Difflin Locally on a Mac Mini",
-      "prompt": "Hero image for a blog post titled \"Run Munder Difflin Locally on a Mac Mini\". The post is about: A step-by-step guide to running a whole Munder Difflin hive offline on an Apple Silicon Mac Mini — how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint.",
+      "prompt": "Hero image for a blog post titled \"Run Munder Difflin Locally on a Mac Mini\". The post is about: A step-by-step guide to running a whole Munder Difflin hive offline on an Apple Silicon Mac Mini \u2014 how to size models to your unified memory, install Ollama or LM Studio, and wire OpenCode and Crush to a local endpoint.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/run-munder-difflin-on-a-mac-mini/note-1.png",
-        "alt": "Hand-drawn sketch from “Run Munder Difflin Locally on a Mac Mini”",
+        "alt": "Hand-drawn sketch from \u201cRun Munder Difflin Locally on a Mac Mini\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/run-munder-difflin-on-a-mac-mini/note-2.png",
-        "alt": "Hand-drawn sketch from “Run Munder Difflin Locally on a Mac Mini”",
+        "alt": "Hand-drawn sketch from \u201cRun Munder Difflin Locally on a Mac Mini\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2326,24 +2326,24 @@
     "youtube": []
   },
   "run-munder-difflin-on-open-models": {
-    "title": "Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider",
+    "title": "Run Munder Difflin on Open-Source Models \u2014 Fully Local or via a Third-Party Provider",
     "category": "guides",
     "hero": {
       "file": "assets/media/run-munder-difflin-on-open-models/hero.png",
-      "alt": "Illustration: Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider",
-      "prompt": "Hero image for a blog post titled \"Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider\". The post is about: Munder Difflin v0.3.1 runs your agent floor on open-weight models — gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi — either fully local (Ollama/LM Studio/vLLM) or through a third-party OSS provider. Here's how to wire each across the OpenCode, Crush, and pi engines.",
+      "alt": "Illustration: Run Munder Difflin on Open-Source Models \u2014 Fully Local or via a Third-Party Provider",
+      "prompt": "Hero image for a blog post titled \"Run Munder Difflin on Open-Source Models \u2014 Fully Local or via a Third-Party Provider\". The post is about: Munder Difflin v0.3.1 runs your agent floor on open-weight models \u2014 gpt-oss, Qwen3, DeepSeek, Llama, Mistral, GLM, Kimi \u2014 either fully local (Ollama/LM Studio/vLLM) or through a third-party OSS provider. Here's how to wire each across the OpenCode, Crush, and pi engines.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/run-munder-difflin-on-open-models/note-1.png",
-        "alt": "Hand-drawn sketch from “Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider”",
+        "alt": "Hand-drawn sketch from \u201cRun Munder Difflin on Open-Source Models \u2014 Fully Local or via a Third-Party Provider\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/run-munder-difflin-on-open-models/note-2.png",
-        "alt": "Hand-drawn sketch from “Run Munder Difflin on Open-Source Models — Fully Local or via a Third-Party Provider”",
+        "alt": "Hand-drawn sketch from \u201cRun Munder Difflin on Open-Source Models \u2014 Fully Local or via a Third-Party Provider\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2356,19 +2356,19 @@
     "hero": {
       "file": "assets/media/scheduling-autonomous-agent-missions/hero.png",
       "alt": "Illustration: Make a Hive Work While You Sleep: Scheduling Autonomous Agent Missions",
-      "prompt": "Hero image for a blog post titled \"Make a Hive Work While You Sleep: Scheduling Autonomous Agent Missions\". The post is about: How scheduled missions make a Claude Code hive work on a cadence — recurring requests that fire on an interval and land in an agent's queue, hands-free.",
+      "prompt": "Hero image for a blog post titled \"Make a Hive Work While You Sleep: Scheduling Autonomous Agent Missions\". The post is about: How scheduled missions make a Claude Code hive work on a cadence \u2014 recurring requests that fire on an interval and land in an agent's queue, hands-free.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/scheduling-autonomous-agent-missions/note-1.png",
-        "alt": "Hand-drawn sketch from “Make a Hive Work While You Sleep: Scheduling Autonomous Agent Missions”",
+        "alt": "Hand-drawn sketch from \u201cMake a Hive Work While You Sleep: Scheduling Autonomous Agent Missions\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/scheduling-autonomous-agent-missions/note-2.png",
-        "alt": "Hand-drawn sketch from “Make a Hive Work While You Sleep: Scheduling Autonomous Agent Missions”",
+        "alt": "Hand-drawn sketch from \u201cMake a Hive Work While You Sleep: Scheduling Autonomous Agent Missions\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2387,13 +2387,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/security-for-ai-coding-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Security for AI Coding Agents: A Practical Guide”",
+        "alt": "Hand-drawn sketch from \u201cSecurity for AI Coding Agents: A Practical Guide\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/security-for-ai-coding-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Security for AI Coding Agents: A Practical Guide”",
+        "alt": "Hand-drawn sketch from \u201cSecurity for AI Coding Agents: A Practical Guide\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2412,13 +2412,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/semantic-memory-for-ai-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Semantic Memory for AI Agents: Recall in Milliseconds”",
+        "alt": "Hand-drawn sketch from \u201cSemantic Memory for AI Agents: Recall in Milliseconds\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/semantic-memory-for-ai-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Semantic Memory for AI Agents: Recall in Milliseconds”",
+        "alt": "Hand-drawn sketch from \u201cSemantic Memory for AI Agents: Recall in Milliseconds\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2426,30 +2426,30 @@
     "youtube": []
   },
   "seven-releases-in-eight-days": {
-    "title": "Seven Releases in Eight Days: 0.3.8 → 0.4.4",
+    "title": "Seven Releases in Eight Days: 0.3.8 \u2192 0.4.4",
     "category": "story",
     "hero": {
       "file": "assets/media/seven-releases-in-eight-days/hero.png",
-      "alt": "Illustration: Seven Releases in Eight Days: 0.3.8 → 0.4.4",
-      "prompt": "Hero image for a blog post titled \"Seven Releases in Eight Days: 0.3.8 → 0.4.4\". The post is about: Between August 11 and August 18 we shipped seven releases: memory condensation that finally works, an update checker, a whole new brand, a public telemetry contract, ten engines named honestly, and the Windows fix. The full tour.",
+      "alt": "Illustration: Seven Releases in Eight Days: 0.3.8 \u2192 0.4.4",
+      "prompt": "Hero image for a blog post titled \"Seven Releases in Eight Days: 0.3.8 \u2192 0.4.4\". The post is about: Between August 11 and August 18 we shipped seven releases: memory condensation that finally works, an update checker, a whole new brand, a public telemetry contract, ten engines named honestly, and the Windows fix. The full tour.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/seven-releases-in-eight-days/note-1.png",
-        "alt": "Hand-drawn sketch from “Seven Releases in Eight Days: 0.3.8 → 0.4.4”",
+        "alt": "Hand-drawn sketch from \u201cSeven Releases in Eight Days: 0.3.8 \u2192 0.4.4\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/seven-releases-in-eight-days/note-2.png",
-        "alt": "Hand-drawn sketch from “Seven Releases in Eight Days: 0.3.8 → 0.4.4”",
+        "alt": "Hand-drawn sketch from \u201cSeven Releases in Eight Days: 0.3.8 \u2192 0.4.4\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-3": {
         "file": "assets/media/seven-releases-in-eight-days/note-3.png",
-        "alt": "Hand-drawn sketch from “Seven Releases in Eight Days: 0.3.8 → 0.4.4”",
+        "alt": "Hand-drawn sketch from \u201cSeven Releases in Eight Days: 0.3.8 \u2192 0.4.4\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2468,13 +2468,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/shareable-agent-roles/note-1.png",
-        "alt": "Hand-drawn sketch from “Shareable Agent Roles: A Portable Format for Hiring AI Coworkers”",
+        "alt": "Hand-drawn sketch from \u201cShareable Agent Roles: A Portable Format for Hiring AI Coworkers\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/shareable-agent-roles/note-2.png",
-        "alt": "Hand-drawn sketch from “Shareable Agent Roles: A Portable Format for Hiring AI Coworkers”",
+        "alt": "Hand-drawn sketch from \u201cShareable Agent Roles: A Portable Format for Hiring AI Coworkers\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2487,19 +2487,19 @@
     "hero": {
       "file": "assets/media/single-committer-git-pattern/hero.png",
       "alt": "Illustration: The Single-Committer Pattern: Multi-Agent Git Without Corruption",
-      "prompt": "Hero image for a blog post titled \"The Single-Committer Pattern: Multi-Agent Git Without Corruption\". The post is about: Parallel agents corrupt a repo with index.lock races. The single-committer pattern — agents write, one process commits — fixes concurrent git writes.",
+      "prompt": "Hero image for a blog post titled \"The Single-Committer Pattern: Multi-Agent Git Without Corruption\". The post is about: Parallel agents corrupt a repo with index.lock races. The single-committer pattern \u2014 agents write, one process commits \u2014 fixes concurrent git writes.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/single-committer-git-pattern/note-1.png",
-        "alt": "Hand-drawn sketch from “The Single-Committer Pattern: Multi-Agent Git Without Corruption”",
+        "alt": "Hand-drawn sketch from \u201cThe Single-Committer Pattern: Multi-Agent Git Without Corruption\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/single-committer-git-pattern/note-2.png",
-        "alt": "Hand-drawn sketch from “The Single-Committer Pattern: Multi-Agent Git Without Corruption”",
+        "alt": "Hand-drawn sketch from \u201cThe Single-Committer Pattern: Multi-Agent Git Without Corruption\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2512,19 +2512,19 @@
     "hero": {
       "file": "assets/media/small-team-ai-agents-playbook/hero.png",
       "alt": "Illustration: A Small-Team Playbook for AI Coding Agents",
-      "prompt": "Hero image for a blog post titled \"A Small-Team Playbook for AI Coding Agents\". The post is about: How a small team adopts a hive of AI coding agents without chaos — the roles to assign, the cadence to run, and the guardrails that keep it safe.",
+      "prompt": "Hero image for a blog post titled \"A Small-Team Playbook for AI Coding Agents\". The post is about: How a small team adopts a hive of AI coding agents without chaos \u2014 the roles to assign, the cadence to run, and the guardrails that keep it safe.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/small-team-ai-agents-playbook/note-1.png",
-        "alt": "Hand-drawn sketch from “A Small-Team Playbook for AI Coding Agents”",
+        "alt": "Hand-drawn sketch from \u201cA Small-Team Playbook for AI Coding Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/small-team-ai-agents-playbook/note-2.png",
-        "alt": "Hand-drawn sketch from “A Small-Team Playbook for AI Coding Agents”",
+        "alt": "Hand-drawn sketch from \u201cA Small-Team Playbook for AI Coding Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2537,19 +2537,19 @@
     "hero": {
       "file": "assets/media/the-clone-army-trap-mixed-swarm-vs-identical-agents/hero.png",
       "alt": "Illustration: The Clone Army Is a Trap: Why a Mixed Swarm Beats Ten Identical Agents",
-      "prompt": "Hero image for a blog post titled \"The Clone Army Is a Trap: Why a Mixed Swarm Beats Ten Identical Agents\". The post is about: Spinning up tens of identical top-tier CLI agents feels powerful and burns tokens on work a cheaper agent could do. A mixed-capability swarm with shared memory wins on cost — and often on quality.",
+      "prompt": "Hero image for a blog post titled \"The Clone Army Is a Trap: Why a Mixed Swarm Beats Ten Identical Agents\". The post is about: Spinning up tens of identical top-tier CLI agents feels powerful and burns tokens on work a cheaper agent could do. A mixed-capability swarm with shared memory wins on cost \u2014 and often on quality.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/the-clone-army-trap-mixed-swarm-vs-identical-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “The Clone Army Is a Trap: Why a Mixed Swarm Beats Ten Identical Agents”",
+        "alt": "Hand-drawn sketch from \u201cThe Clone Army Is a Trap: Why a Mixed Swarm Beats Ten Identical Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/the-clone-army-trap-mixed-swarm-vs-identical-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “The Clone Army Is a Trap: Why a Mixed Swarm Beats Ten Identical Agents”",
+        "alt": "Hand-drawn sketch from \u201cThe Clone Army Is a Trap: Why a Mixed Swarm Beats Ten Identical Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2568,13 +2568,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/the-hook-shim-pattern/note-1.png",
-        "alt": "Hand-drawn sketch from “The Hook Shim Pattern: Wiring Agent Hooks to a Live Process”",
+        "alt": "Hand-drawn sketch from \u201cThe Hook Shim Pattern: Wiring Agent Hooks to a Live Process\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/the-hook-shim-pattern/note-2.png",
-        "alt": "Hand-drawn sketch from “The Hook Shim Pattern: Wiring Agent Hooks to a Live Process”",
+        "alt": "Hand-drawn sketch from \u201cThe Hook Shim Pattern: Wiring Agent Hooks to a Live Process\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2587,19 +2587,19 @@
     "hero": {
       "file": "assets/media/the-lethal-trifecta-for-coding-agents/hero.png",
       "alt": "Illustration: The Lethal Trifecta for Coding Agents",
-      "prompt": "Hero image for a blog post titled \"The Lethal Trifecta for Coding Agents\". The post is about: A coding agent reads private code, ingests untrusted content, and runs commands — the lethal trifecta. How a poisoned dependency leaks your secrets.",
+      "prompt": "Hero image for a blog post titled \"The Lethal Trifecta for Coding Agents\". The post is about: A coding agent reads private code, ingests untrusted content, and runs commands \u2014 the lethal trifecta. How a poisoned dependency leaks your secrets.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/the-lethal-trifecta-for-coding-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “The Lethal Trifecta for Coding Agents”",
+        "alt": "Hand-drawn sketch from \u201cThe Lethal Trifecta for Coding Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/the-lethal-trifecta-for-coding-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “The Lethal Trifecta for Coding Agents”",
+        "alt": "Hand-drawn sketch from \u201cThe Lethal Trifecta for Coding Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2612,19 +2612,19 @@
     "hero": {
       "file": "assets/media/the-multi-agent-cost-playbook/hero.png",
       "alt": "Illustration: The Multi-Agent Cost Playbook: Five Levers to Cut AI Agent Spend",
-      "prompt": "Hero image for a blog post titled \"The Multi-Agent Cost Playbook: Five Levers to Cut AI Agent Spend\". The post is about: Caching, batching, model tiering, context discipline, local-first — the five levers that cut a multi-agent fleet's bill, and how they compound.",
+      "prompt": "Hero image for a blog post titled \"The Multi-Agent Cost Playbook: Five Levers to Cut AI Agent Spend\". The post is about: Caching, batching, model tiering, context discipline, local-first \u2014 the five levers that cut a multi-agent fleet's bill, and how they compound.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/the-multi-agent-cost-playbook/note-1.png",
-        "alt": "Hand-drawn sketch from “The Multi-Agent Cost Playbook: Five Levers to Cut AI Agent Spend”",
+        "alt": "Hand-drawn sketch from \u201cThe Multi-Agent Cost Playbook: Five Levers to Cut AI Agent Spend\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/the-multi-agent-cost-playbook/note-2.png",
-        "alt": "Hand-drawn sketch from “The Multi-Agent Cost Playbook: Five Levers to Cut AI Agent Spend”",
+        "alt": "Hand-drawn sketch from \u201cThe Multi-Agent Cost Playbook: Five Levers to Cut AI Agent Spend\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2637,19 +2637,19 @@
     "hero": {
       "file": "assets/media/the-newline-that-silenced-windows-agents/hero.png",
       "alt": "Illustration: The Newline That Silenced Every Windows Agent",
-      "prompt": "Hero image for a blog post titled \"The Newline That Silenced Every Windows Agent\". The post is about: A cmd.exe parsing rule from the 1980s meant Windows agents received exactly one line of their multi-line startup protocol — and nothing errored. The anatomy of our worst silent failure, and the fix.",
+      "prompt": "Hero image for a blog post titled \"The Newline That Silenced Every Windows Agent\". The post is about: A cmd.exe parsing rule from the 1980s meant Windows agents received exactly one line of their multi-line startup protocol \u2014 and nothing errored. The anatomy of our worst silent failure, and the fix.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/the-newline-that-silenced-windows-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “The Newline That Silenced Every Windows Agent”",
+        "alt": "Hand-drawn sketch from \u201cThe Newline That Silenced Every Windows Agent\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/the-newline-that-silenced-windows-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “The Newline That Silenced Every Windows Agent”",
+        "alt": "Hand-drawn sketch from \u201cThe Newline That Silenced Every Windows Agent\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2662,19 +2662,19 @@
     "hero": {
       "file": "assets/media/the-office-parody-behind-munder-difflin/hero.png",
       "alt": "Illustration: The Office Parody Behind Munder Difflin (and Why It Helps)",
-      "prompt": "Hero image for a blog post titled \"The Office Parody Behind Munder Difflin (and Why It Helps)\". The post is about: Why Munder Difflin is a loving parody of The Office — and how the office metaphor makes a hive of AI agents genuinely easier to understand and trust.",
+      "prompt": "Hero image for a blog post titled \"The Office Parody Behind Munder Difflin (and Why It Helps)\". The post is about: Why Munder Difflin is a loving parody of The Office \u2014 and how the office metaphor makes a hive of AI agents genuinely easier to understand and trust.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/the-office-parody-behind-munder-difflin/note-1.png",
-        "alt": "Hand-drawn sketch from “The Office Parody Behind Munder Difflin (and Why It Helps)”",
+        "alt": "Hand-drawn sketch from \u201cThe Office Parody Behind Munder Difflin (and Why It Helps)\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/the-office-parody-behind-munder-difflin/note-2.png",
-        "alt": "Hand-drawn sketch from “The Office Parody Behind Munder Difflin (and Why It Helps)”",
+        "alt": "Hand-drawn sketch from \u201cThe Office Parody Behind Munder Difflin (and Why It Helps)\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2693,13 +2693,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/tmux-and-scripts-vs-an-agent-harness/note-1.png",
-        "alt": "Hand-drawn sketch from “Running Agents in tmux vs an Agent Harness”",
+        "alt": "Hand-drawn sketch from \u201cRunning Agents in tmux vs an Agent Harness\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/tmux-and-scripts-vs-an-agent-harness/note-2.png",
-        "alt": "Hand-drawn sketch from “Running Agents in tmux vs an Agent Harness”",
+        "alt": "Hand-drawn sketch from \u201cRunning Agents in tmux vs an Agent Harness\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2712,19 +2712,19 @@
     "hero": {
       "file": "assets/media/trigger-ai-agents-from-github-webhook/hero.png",
       "alt": "Illustration: How to Trigger Your AI Agent Hive from a GitHub Webhook",
-      "prompt": "Hero image for a blog post titled \"How to Trigger Your AI Agent Hive from a GitHub Webhook\". The post is about: Wire a GitHub webhook to Munder Difflin: a secret-gated local endpoint turns each repo event into a task for your GOD orchestrator — POST a message, get a token, poll the result. No server to host.",
+      "prompt": "Hero image for a blog post titled \"How to Trigger Your AI Agent Hive from a GitHub Webhook\". The post is about: Wire a GitHub webhook to Munder Difflin: a secret-gated local endpoint turns each repo event into a task for your GOD orchestrator \u2014 POST a message, get a token, poll the result. No server to host.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/trigger-ai-agents-from-github-webhook/note-1.png",
-        "alt": "Hand-drawn sketch from “How to Trigger Your AI Agent Hive from a GitHub Webhook”",
+        "alt": "Hand-drawn sketch from \u201cHow to Trigger Your AI Agent Hive from a GitHub Webhook\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/trigger-ai-agents-from-github-webhook/note-2.png",
-        "alt": "Hand-drawn sketch from “How to Trigger Your AI Agent Hive from a GitHub Webhook”",
+        "alt": "Hand-drawn sketch from \u201cHow to Trigger Your AI Agent Hive from a GitHub Webhook\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2737,19 +2737,19 @@
     "hero": {
       "file": "assets/media/trigger-ai-agents-from-slack/hero.png",
       "alt": "Illustration: Trigger Your AI Agent Hive from Slack",
-      "prompt": "Hero image for a blog post titled \"Trigger Your AI Agent Hive from Slack\". The post is about: Trigger an AI agent hive from Slack: a local webhook verifies each message and drops it into your orchestrator's queue as a task — no server to host.",
+      "prompt": "Hero image for a blog post titled \"Trigger Your AI Agent Hive from Slack\". The post is about: Trigger an AI agent hive from Slack: a local webhook verifies each message and drops it into your orchestrator's queue as a task \u2014 no server to host.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/trigger-ai-agents-from-slack/note-1.png",
-        "alt": "Hand-drawn sketch from “Trigger Your AI Agent Hive from Slack”",
+        "alt": "Hand-drawn sketch from \u201cTrigger Your AI Agent Hive from Slack\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/trigger-ai-agents-from-slack/note-2.png",
-        "alt": "Hand-drawn sketch from “Trigger Your AI Agent Hive from Slack”",
+        "alt": "Hand-drawn sketch from \u201cTrigger Your AI Agent Hive from Slack\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2762,19 +2762,19 @@
     "hero": {
       "file": "assets/media/turn-feedback-into-a-backlog-with-agents/hero.png",
       "alt": "Illustration: Turn a Firehose of Feedback into a Backlog with Agents",
-      "prompt": "Hero image for a blog post titled \"Turn a Firehose of Feedback into a Backlog with Agents\". The post is about: 516 Reddit comments, 27 Product Hunt threads, GitHub issues and Discord — launch week buries you in feedback that decays if unprocessed. The agent workflow that turned ours into a ranked backlog, with receipts.",
+      "prompt": "Hero image for a blog post titled \"Turn a Firehose of Feedback into a Backlog with Agents\". The post is about: 516 Reddit comments, 27 Product Hunt threads, GitHub issues and Discord \u2014 launch week buries you in feedback that decays if unprocessed. The agent workflow that turned ours into a ranked backlog, with receipts.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/turn-feedback-into-a-backlog-with-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Turn a Firehose of Feedback into a Backlog with Agents”",
+        "alt": "Hand-drawn sketch from \u201cTurn a Firehose of Feedback into a Backlog with Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/turn-feedback-into-a-backlog-with-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Turn a Firehose of Feedback into a Backlog with Agents”",
+        "alt": "Hand-drawn sketch from \u201cTurn a Firehose of Feedback into a Backlog with Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2787,19 +2787,19 @@
     "hero": {
       "file": "assets/media/vibe-kanban-alternative/hero.png",
       "alt": "Illustration: A vibe-kanban Alternative for Coordinating AI Agents",
-      "prompt": "Hero image for a blog post titled \"A vibe-kanban Alternative for Coordinating AI Agents\". The post is about: vibe-kanban gives you a board to assign tasks to coding agents. When a self-routing hive is the better vibe-kanban alternative — and when a board wins.",
+      "prompt": "Hero image for a blog post titled \"A vibe-kanban Alternative for Coordinating AI Agents\". The post is about: vibe-kanban gives you a board to assign tasks to coding agents. When a self-routing hive is the better vibe-kanban alternative \u2014 and when a board wins.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/vibe-kanban-alternative/note-1.png",
-        "alt": "Hand-drawn sketch from “A vibe-kanban Alternative for Coordinating AI Agents”",
+        "alt": "Hand-drawn sketch from \u201cA vibe-kanban Alternative for Coordinating AI Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/vibe-kanban-alternative/note-2.png",
-        "alt": "Hand-drawn sketch from “A vibe-kanban Alternative for Coordinating AI Agents”",
+        "alt": "Hand-drawn sketch from \u201cA vibe-kanban Alternative for Coordinating AI Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2812,19 +2812,19 @@
     "hero": {
       "file": "assets/media/visualizing-ai-agents-pixijs/hero.png",
       "alt": "Illustration: Visualizing AI Agents with Pixi.js: An Office You Can Watch",
-      "prompt": "Hero image for a blog post titled \"Visualizing AI Agents with Pixi.js: An Office You Can Watch\". The post is about: How we render AI agents as avatars on a Pixi.js office floor — driven by real hook and message events, with seat assignment, pathing, and flying envelopes.",
+      "prompt": "Hero image for a blog post titled \"Visualizing AI Agents with Pixi.js: An Office You Can Watch\". The post is about: How we render AI agents as avatars on a Pixi.js office floor \u2014 driven by real hook and message events, with seat assignment, pathing, and flying envelopes.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/visualizing-ai-agents-pixijs/note-1.png",
-        "alt": "Hand-drawn sketch from “Visualizing AI Agents with Pixi.js: An Office You Can Watch”",
+        "alt": "Hand-drawn sketch from \u201cVisualizing AI Agents with Pixi.js: An Office You Can Watch\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/visualizing-ai-agents-pixijs/note-2.png",
-        "alt": "Hand-drawn sketch from “Visualizing AI Agents with Pixi.js: An Office You Can Watch”",
+        "alt": "Hand-drawn sketch from \u201cVisualizing AI Agents with Pixi.js: An Office You Can Watch\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2837,19 +2837,19 @@
     "hero": {
       "file": "assets/media/voice-as-a-control-plane-for-agent-fleets/hero.png",
       "alt": "Illustration: Voice Is a Control Plane, Not a Gimmick",
-      "prompt": "Hero image for a blog post titled \"Voice Is a Control Plane, Not a Gimmick\". The post is about: Voice is a terrible way to write code and a great way to run a fleet. Why low-bandwidth commands over high-bandwidth work is the right split — with Munder Difflin's Talk mode (echo-back confirmation, spend caps, michael-voice attribution) as the case study.",
+      "prompt": "Hero image for a blog post titled \"Voice Is a Control Plane, Not a Gimmick\". The post is about: Voice is a terrible way to write code and a great way to run a fleet. Why low-bandwidth commands over high-bandwidth work is the right split \u2014 with Munder Difflin's Talk mode (echo-back confirmation, spend caps, michael-voice attribution) as the case study.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/voice-as-a-control-plane-for-agent-fleets/note-1.png",
-        "alt": "Hand-drawn sketch from “Voice Is a Control Plane, Not a Gimmick”",
+        "alt": "Hand-drawn sketch from \u201cVoice Is a Control Plane, Not a Gimmick\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/voice-as-a-control-plane-for-agent-fleets/note-2.png",
-        "alt": "Hand-drawn sketch from “Voice Is a Control Plane, Not a Gimmick”",
+        "alt": "Hand-drawn sketch from \u201cVoice Is a Control Plane, Not a Gimmick\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2868,13 +2868,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/we-opened-a-discord/note-1.png",
-        "alt": "Hand-drawn sketch from “We Opened a Discord (Merge a PR, Become Employee of the Month)”",
+        "alt": "Hand-drawn sketch from \u201cWe Opened a Discord (Merge a PR, Become Employee of the Month)\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/we-opened-a-discord/note-2.png",
-        "alt": "Hand-drawn sketch from “We Opened a Discord (Merge a PR, Become Employee of the Month)”",
+        "alt": "Hand-drawn sketch from \u201cWe Opened a Discord (Merge a PR, Become Employee of the Month)\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2887,19 +2887,19 @@
     "hero": {
       "file": "assets/media/what-are-claude-code-agents/hero.png",
       "alt": "Illustration: What Are Claude Code Agents? And How to Use Many at Once",
-      "prompt": "Hero image for a blog post titled \"What Are Claude Code Agents? And How to Use Many at Once\". The post is about: Claude Code agents explained in plain English — what an agent actually is, how subagents differ, and the leap from one agent to a coordinated team.",
+      "prompt": "Hero image for a blog post titled \"What Are Claude Code Agents? And How to Use Many at Once\". The post is about: Claude Code agents explained in plain English \u2014 what an agent actually is, how subagents differ, and the leap from one agent to a coordinated team.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/what-are-claude-code-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “What Are Claude Code Agents? And How to Use Many at Once”",
+        "alt": "Hand-drawn sketch from \u201cWhat Are Claude Code Agents? And How to Use Many at Once\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/what-are-claude-code-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “What Are Claude Code Agents? And How to Use Many at Once”",
+        "alt": "Hand-drawn sketch from \u201cWhat Are Claude Code Agents? And How to Use Many at Once\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2912,19 +2912,19 @@
     "hero": {
       "file": "assets/media/what-is-a-multi-agent-harness/hero.png",
       "alt": "Illustration: What Is a Multi-Agent Harness? (Plain-English Guide)",
-      "prompt": "Hero image for a blog post titled \"What Is a Multi-Agent Harness? (Plain-English Guide)\". The post is about: A multi-agent harness coordinates several AI coding agents into one team — here's what that means, and how it differs from a single agent or a framework.",
+      "prompt": "Hero image for a blog post titled \"What Is a Multi-Agent Harness? (Plain-English Guide)\". The post is about: A multi-agent harness coordinates several AI coding agents into one team \u2014 here's what that means, and how it differs from a single agent or a framework.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/what-is-a-multi-agent-harness/note-1.png",
-        "alt": "Hand-drawn sketch from “What Is a Multi-Agent Harness? (Plain-English Guide)”",
+        "alt": "Hand-drawn sketch from \u201cWhat Is a Multi-Agent Harness? (Plain-English Guide)\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/what-is-a-multi-agent-harness/note-2.png",
-        "alt": "Hand-drawn sketch from “What Is a Multi-Agent Harness? (Plain-English Guide)”",
+        "alt": "Hand-drawn sketch from \u201cWhat Is a Multi-Agent Harness? (Plain-English Guide)\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2943,13 +2943,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/what-is-aeo-for-dev-tools/note-1.png",
-        "alt": "Hand-drawn sketch from “AEO for Dev Tools: Getting Cited by ChatGPT and Claude”",
+        "alt": "Hand-drawn sketch from \u201cAEO for Dev Tools: Getting Cited by ChatGPT and Claude\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/what-is-aeo-for-dev-tools/note-2.png",
-        "alt": "Hand-drawn sketch from “AEO for Dev Tools: Getting Cited by ChatGPT and Claude”",
+        "alt": "Hand-drawn sketch from \u201cAEO for Dev Tools: Getting Cited by ChatGPT and Claude\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2962,19 +2962,19 @@
     "hero": {
       "file": "assets/media/what-is-an-agent-development-environment/hero.png",
       "alt": "Illustration: What Is an Agent Development Environment (ADE)?",
-      "prompt": "Hero image for a blog post titled \"What Is an Agent Development Environment (ADE)?\". The post is about: ADE means two things in 2026: a platform for building agents (Letta's sense) and a workspace for shipping code with fleets of coding agents (Orca's sense). Here's the full tooling map — chat IDEs, agent CLIs, agent IDEs, and agent harnesses — and how to pick.",
+      "prompt": "Hero image for a blog post titled \"What Is an Agent Development Environment (ADE)?\". The post is about: ADE means two things in 2026: a platform for building agents (Letta's sense) and a workspace for shipping code with fleets of coding agents (Orca's sense). Here's the full tooling map \u2014 chat IDEs, agent CLIs, agent IDEs, and agent harnesses \u2014 and how to pick.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/what-is-an-agent-development-environment/note-1.png",
-        "alt": "Hand-drawn sketch from “What Is an Agent Development Environment (ADE)?”",
+        "alt": "Hand-drawn sketch from \u201cWhat Is an Agent Development Environment (ADE)?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/what-is-an-agent-development-environment/note-2.png",
-        "alt": "Hand-drawn sketch from “What Is an Agent Development Environment (ADE)?”",
+        "alt": "Hand-drawn sketch from \u201cWhat Is an Agent Development Environment (ADE)?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -2987,19 +2987,19 @@
     "hero": {
       "file": "assets/media/what-is-harness-engineering/hero.png",
       "alt": "Illustration: What Is Harness Engineering?",
-      "prompt": "Hero image for a blog post titled \"What Is Harness Engineering?\". The post is about: Harness engineering is the discipline of building everything around the model — PTY plumbing, lifecycle hooks, mailboxes, memory, budgets, human gates, observability — because that's where agent reliability actually comes from. A definition, and four case studies from inside Munder Difflin.",
+      "prompt": "Hero image for a blog post titled \"What Is Harness Engineering?\". The post is about: Harness engineering is the discipline of building everything around the model \u2014 PTY plumbing, lifecycle hooks, mailboxes, memory, budgets, human gates, observability \u2014 because that's where agent reliability actually comes from. A definition, and four case studies from inside Munder Difflin.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/what-is-harness-engineering/note-1.png",
-        "alt": "Hand-drawn sketch from “What Is Harness Engineering?”",
+        "alt": "Hand-drawn sketch from \u201cWhat Is Harness Engineering?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/what-is-harness-engineering/note-2.png",
-        "alt": "Hand-drawn sketch from “What Is Harness Engineering?”",
+        "alt": "Hand-drawn sketch from \u201cWhat Is Harness Engineering?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -3018,13 +3018,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/what-reddit-told-us-about-munder-difflin/note-1.png",
-        "alt": "Hand-drawn sketch from “What Reddit Told Us About Munder Difflin”",
+        "alt": "Hand-drawn sketch from \u201cWhat Reddit Told Us About Munder Difflin\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/what-reddit-told-us-about-munder-difflin/note-2.png",
-        "alt": "Hand-drawn sketch from “What Reddit Told Us About Munder Difflin”",
+        "alt": "Hand-drawn sketch from \u201cWhat Reddit Told Us About Munder Difflin\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -3043,13 +3043,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/whats-new-in-agentic-ai-june-2026/note-1.png",
-        "alt": "Hand-drawn sketch from “What's New in Agentic AI: A June 2026 Field Guide”",
+        "alt": "Hand-drawn sketch from \u201cWhat's New in Agentic AI: A June 2026 Field Guide\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/whats-new-in-agentic-ai-june-2026/note-2.png",
-        "alt": "Hand-drawn sketch from “What's New in Agentic AI: A June 2026 Field Guide”",
+        "alt": "Hand-drawn sketch from \u201cWhat's New in Agentic AI: A June 2026 Field Guide\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -3062,19 +3062,19 @@
     "hero": {
       "file": "assets/media/whats-up-with-munder-difflin/hero.png",
       "alt": "Illustration: What's Up With Munder Difflin: Six Weeks, Four Releases, and the Part of the Stack You Actually Own",
-      "prompt": "Hero image for a blog post titled \"What's Up With Munder Difflin: Six Weeks, Four Releases, and the Part of the Stack You Actually Own\". The post is about: Everything that shipped between v0.3.3 and v0.3.7 — a Michael who knows the floor and runs the app by voice, a git time-machine in the IDE, nine agent engines, a queue that respects your draft, Node that installs itself, and the auto-update bug that had been silently broken since the day we shipped it.",
+      "prompt": "Hero image for a blog post titled \"What's Up With Munder Difflin: Six Weeks, Four Releases, and the Part of the Stack You Actually Own\". The post is about: Everything that shipped between v0.3.3 and v0.3.7 \u2014 a Michael who knows the floor and runs the app by voice, a git time-machine in the IDE, nine agent engines, a queue that respects your draft, Node that installs itself, and the auto-update bug that had been silently broken since the day we shipped it.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/whats-up-with-munder-difflin/note-1.png",
-        "alt": "Hand-drawn sketch from “What's Up With Munder Difflin: Six Weeks, Four Releases, and the Part of the Stack You Actually Own”",
+        "alt": "Hand-drawn sketch from \u201cWhat's Up With Munder Difflin: Six Weeks, Four Releases, and the Part of the Stack You Actually Own\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/whats-up-with-munder-difflin/note-2.png",
-        "alt": "Hand-drawn sketch from “What's Up With Munder Difflin: Six Weeks, Four Releases, and the Part of the Stack You Actually Own”",
+        "alt": "Hand-drawn sketch from \u201cWhat's Up With Munder Difflin: Six Weeks, Four Releases, and the Part of the Stack You Actually Own\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -3093,13 +3093,13 @@
     "inline": {
       "note-1": {
         "file": "assets/media/when-do-agents-need-an-agent-protocol/note-1.png",
-        "alt": "Hand-drawn sketch from “When Do AI Agents Actually Need an Agent Protocol?”",
+        "alt": "Hand-drawn sketch from \u201cWhen Do AI Agents Actually Need an Agent Protocol?\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/when-do-agents-need-an-agent-protocol/note-2.png",
-        "alt": "Hand-drawn sketch from “When Do AI Agents Actually Need an Agent Protocol?”",
+        "alt": "Hand-drawn sketch from \u201cWhen Do AI Agents Actually Need an Agent Protocol?\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -3107,24 +3107,24 @@
     "youtube": []
   },
   "why-cli-agents-are-powerful": {
-    "title": "Why CLI Agents Are So Powerful — and How Munder Difflin Spends Fewer Tokens Doing the Same Work",
+    "title": "Why CLI Agents Are So Powerful \u2014 and How Munder Difflin Spends Fewer Tokens Doing the Same Work",
     "category": "concepts",
     "hero": {
       "file": "assets/media/why-cli-agents-are-powerful/hero.png",
-      "alt": "Illustration: Why CLI Agents Are So Powerful — and How Munder Difflin Spends Fewer Tokens Doing the Same Work",
-      "prompt": "Hero image for a blog post titled \"Why CLI Agents Are So Powerful — and How Munder Difflin Spends Fewer Tokens Doing the Same Work\". The post is about: CLI agents are powerful because they have terminal-level access: they run builds, tests, and git, and verify their own work by executing it. Here's why that matters — and the concrete ways Munder Difflin cuts token consumption while doing it.",
+      "alt": "Illustration: Why CLI Agents Are So Powerful \u2014 and How Munder Difflin Spends Fewer Tokens Doing the Same Work",
+      "prompt": "Hero image for a blog post titled \"Why CLI Agents Are So Powerful \u2014 and How Munder Difflin Spends Fewer Tokens Doing the Same Work\". The post is about: CLI agents are powerful because they have terminal-level access: they run builds, tests, and git, and verify their own work by executing it. Here's why that matters \u2014 and the concrete ways Munder Difflin cuts token consumption while doing it.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/why-cli-agents-are-powerful/note-1.png",
-        "alt": "Hand-drawn sketch from “Why CLI Agents Are So Powerful — and How Munder Difflin Spends Fewer Tokens Doing the Same Work”",
+        "alt": "Hand-drawn sketch from \u201cWhy CLI Agents Are So Powerful \u2014 and How Munder Difflin Spends Fewer Tokens Doing the Same Work\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/why-cli-agents-are-powerful/note-2.png",
-        "alt": "Hand-drawn sketch from “Why CLI Agents Are So Powerful — and How Munder Difflin Spends Fewer Tokens Doing the Same Work”",
+        "alt": "Hand-drawn sketch from \u201cWhy CLI Agents Are So Powerful \u2014 and How Munder Difflin Spends Fewer Tokens Doing the Same Work\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -3137,19 +3137,19 @@
     "hero": {
       "file": "assets/media/why-local-first-matters-for-ai-agents/hero.png",
       "alt": "Illustration: Why Local-First Matters for Your AI Agents",
-      "prompt": "Hero image for a blog post titled \"Why Local-First Matters for Your AI Agents\". The post is about: The control, privacy, and cost case for keeping your AI agents and their memory on your own machine — and what cloud orchestration quietly costs.",
+      "prompt": "Hero image for a blog post titled \"Why Local-First Matters for Your AI Agents\". The post is about: The control, privacy, and cost case for keeping your AI agents and their memory on your own machine \u2014 and what cloud orchestration quietly costs.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/why-local-first-matters-for-ai-agents/note-1.png",
-        "alt": "Hand-drawn sketch from “Why Local-First Matters for Your AI Agents”",
+        "alt": "Hand-drawn sketch from \u201cWhy Local-First Matters for Your AI Agents\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/why-local-first-matters-for-ai-agents/note-2.png",
-        "alt": "Hand-drawn sketch from “Why Local-First Matters for Your AI Agents”",
+        "alt": "Hand-drawn sketch from \u201cWhy Local-First Matters for Your AI Agents\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -3162,19 +3162,19 @@
     "hero": {
       "file": "assets/media/why-our-auto-update-never-ran/hero.png",
       "alt": "Illustration: Our Auto-Update Never Ran Once: A CommonJS Export That Vanished Into an ESM Namespace",
-      "prompt": "Hero image for a blog post titled \"Our Auto-Update Never Ran Once: A CommonJS Export That Vanished Into an ESM Namespace\". The post is about: Munder Difflin shipped auto-update in v0.3.4 and it silently never worked in a single packaged build. The cause was one destructuring assignment across the CommonJS/ESM boundary — and a catch block that threw the evidence away. Here's how we found it, and what v0.3.7 changes.",
+      "prompt": "Hero image for a blog post titled \"Our Auto-Update Never Ran Once: A CommonJS Export That Vanished Into an ESM Namespace\". The post is about: Munder Difflin shipped auto-update in v0.3.4 and it silently never worked in a single packaged build. The cause was one destructuring assignment across the CommonJS/ESM boundary \u2014 and a catch block that threw the evidence away. Here's how we found it, and what v0.3.7 changes.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/why-our-auto-update-never-ran/note-1.png",
-        "alt": "Hand-drawn sketch from “Our Auto-Update Never Ran Once: A CommonJS Export That Vanished Into an ESM Namespace”",
+        "alt": "Hand-drawn sketch from \u201cOur Auto-Update Never Ran Once: A CommonJS Export That Vanished Into an ESM Namespace\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/why-our-auto-update-never-ran/note-2.png",
-        "alt": "Hand-drawn sketch from “Our Auto-Update Never Ran Once: A CommonJS Export That Vanished Into an ESM Namespace”",
+        "alt": "Hand-drawn sketch from \u201cOur Auto-Update Never Ran Once: A CommonJS Export That Vanished Into an ESM Namespace\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -3187,19 +3187,19 @@
     "hero": {
       "file": "assets/media/why-we-built-munder-difflin/hero.png",
       "alt": "Illustration: Why We Built Munder Difflin",
-      "prompt": "Hero image for a blog post titled \"Why We Built Munder Difflin\". The post is about: The origin story of Munder Difflin — how the pain of juggling Claude Code terminals led to a coordinated, memory-backed hive of agents you can watch.",
+      "prompt": "Hero image for a blog post titled \"Why We Built Munder Difflin\". The post is about: The origin story of Munder Difflin \u2014 how the pain of juggling Claude Code terminals led to a coordinated, memory-backed hive of agents you can watch.",
       "status": "ready"
     },
     "inline": {
       "note-1": {
         "file": "assets/media/why-we-built-munder-difflin/note-1.png",
-        "alt": "Hand-drawn sketch from “Why We Built Munder Difflin”",
+        "alt": "Hand-drawn sketch from \u201cWhy We Built Munder Difflin\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/why-we-built-munder-difflin/note-2.png",
-        "alt": "Hand-drawn sketch from “Why We Built Munder Difflin”",
+        "alt": "Hand-drawn sketch from \u201cWhy We Built Munder Difflin\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -3224,13 +3224,13 @@
       },
       "note-1": {
         "file": "assets/media/your-first-hour-with-munder-difflin/note-1.png",
-        "alt": "Hand-drawn sketch from “Your First Hour With Munder Difflin”",
+        "alt": "Hand-drawn sketch from \u201cYour First Hour With Munder Difflin\u201d",
         "prompt": "",
         "status": "ready"
       },
       "note-2": {
         "file": "assets/media/your-first-hour-with-munder-difflin/note-2.png",
-        "alt": "Hand-drawn sketch from “Your First Hour With Munder Difflin”",
+        "alt": "Hand-drawn sketch from \u201cYour First Hour With Munder Difflin\u201d",
         "prompt": "",
         "status": "ready"
       }
@@ -3238,9 +3238,21 @@
     "youtube": [
       {
         "id": "",
-        "title": "Your first hour with Munder Difflin — full walkthrough",
+        "title": "Your first hour with Munder Difflin \u2014 full walkthrough",
         "status": "placeholder"
       }
     ]
+  },
+  "indian-open-source-ai-projects-vs-big-tech": {
+    "title": "Top 10 Indian open source projects that are giving US big tech a tough time",
+    "category": "comparisons",
+    "hero": {
+      "file": "assets/media/best-ai-coding-agents/hero.png",
+      "alt": "Illustration: Top 10 Indian Open Source AI Projects vs US Big Tech",
+      "prompt": "Hero image representing Indian open source AI developers competing with US big tech products.",
+      "status": "ready"
+    },
+    "inline": {},
+    "youtube": []
   }
 }
