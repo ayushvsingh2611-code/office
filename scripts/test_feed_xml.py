@@ -8,3 +8,4 @@ print('Contains Ayush Singh:', 'Ayush Singh' in c)
 print('Contains /blog/feed.xml:', '/blog/feed.xml' in c)
 print('Contains munderdiffl or agenthive.local:', 'munderdiffl' in c.lower() or 'agenthive.local' in c.lower())
 print('Total <entry> tags:', c.count('<entry>'))
+

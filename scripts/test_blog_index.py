@@ -33,3 +33,4 @@ footer_idx = c.find('<footer class="site-foot">')
 if footer_idx != -1:
     print('\n=== Footer HTML Preview ===')
     print(c[footer_idx:footer_idx+700])
+

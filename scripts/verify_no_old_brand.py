@@ -17,3 +17,4 @@ for t, flist in found.items():
     print(f'Term "{t}": {len(flist)} occurrences')
     for p in flist[:5]:
         print('  ', p)
+

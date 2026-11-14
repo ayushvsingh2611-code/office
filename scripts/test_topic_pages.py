@@ -21,3 +21,4 @@ for key, expected in clusters:
         c = f.read()
     cards = c.count('<article class="card')
     print(f"Topic '{key}': expected {expected}, found {cards} cards. Clean footer: {'AgentHive ↗' in c}")
+
