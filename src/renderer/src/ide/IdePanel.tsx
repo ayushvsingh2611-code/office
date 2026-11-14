@@ -51,7 +51,7 @@ interface DiffData {
 }
 
 const tabKey = (mode: TabMode, rel: string) => `${mode}::${rel}`;
-const basename = (rel: string) => rel.split('/').pop() || rel;
+const basename = (rel: string) => rel.split(/[\\/]/).pop() || rel;
 
 function statusColor(code: string): string {
   if (code === 'M') return 'var(--cth-lemon)';
@@ -94,8 +94,33 @@ function pickIdeTarget(): IdeTarget {
 
 export function IdePanel() {
   const setIdeOpen = useStore((s) => s.setIdeOpen);
-  const [target] = useState<IdeTarget>(pickIdeTarget);
+  const [target, setTarget] = useState<IdeTarget>(pickIdeTarget);
   const root = target.root;
+
+  // If no agent workspace was resolved, fallback to the harness home or recent hive workspace
+  useEffect(() => {
+    if (target.root) return;
+    let alive = true;
+    void window.cth.getConfig().then((cfg) => {
+      if (!alive) return;
+      const fallbackRoot = cfg.harnessHome || (cfg.recentHives && cfg.recentHives[0]) || null;
+      if (fallbackRoot) {
+        setTarget({ agent: null, root: fallbackRoot, inferred: true });
+      }
+    });
+    return () => { alive = false; };
+  }, [target.root]);
+
+  const handleChooseWorkspace = useCallback(async () => {
+    try {
+      const res = await window.cth.chooseFolder();
+      if (res.ok && res.path) {
+        setTarget({ agent: null, root: res.path, inferred: false });
+        setTabs([]);
+        setActiveKey(null);
+      }
+    } catch { /* noop */ }
+  }, []);
 
   const [tabs, setTabs] = useState<Tab[]>([]);
   const [activeKey, setActiveKey] = useState<string | null>(null);
@@ -238,9 +263,10 @@ export function IdePanel() {
     const abs = useStore.getState().ideInitialFile;
     if (!abs) return;
     useStore.getState().setIdeInitialFile(null);
-    const prefix = root.endsWith('/') ? root : `${root}/`;
-    if (!abs.startsWith(prefix)) return; // different workspace — tree still lets them browse
-    const rel = abs.slice(prefix.length);
+    const normRoot = root.replace(/\\/g, '/').replace(/\/+$/, '');
+    const normAbs = abs.replace(/\\/g, '/');
+    if (!normAbs.toLowerCase().startsWith(normRoot.toLowerCase() + '/')) return; // different workspace — tree still lets them browse
+    const rel = normAbs.slice(normRoot.length + 1);
     // Same routing as a tree click — an "open in IDE" on a screenshot must land
     // on the preview, not on a tab that refuses to display it.
     openEdit(rel);
@@ -338,7 +364,10 @@ export function IdePanel() {
   };
 
   const copyAbs = (rel: string) => {
-    if (root) navigator.clipboard.writeText(rel ? `${root}/${rel}` : root).catch(() => { /* noop */ });
+    if (!root) return;
+    const isWin = root.includes('\\');
+    const pathStr = rel ? (isWin ? `${root}\\${rel.replace(/\//g, '\\')}` : `${root}/${rel}`) : root;
+    navigator.clipboard.writeText(pathStr).catch(() => { /* noop */ });
   };
 
   // Image tabs highlight in the tree too — the tree's job is "what am I looking
@@ -416,6 +445,23 @@ export function IdePanel() {
         </span>
         <button
           className="cth-titlebar-nodrag"
+          onClick={handleChooseWorkspace}
+          title="Open a different folder in the IDE"
+          style={{
+            ...textBtn,
+            marginLeft: 4,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 4,
+            padding: '2px 8px',
+            fontSize: 11
+          }}
+        >
+          <Icon name="folder" size={1} style={{ width: 12, height: 12 }} />
+          <span>open folder…</span>
+        </button>
+        <button
+          className="cth-titlebar-nodrag"
           onClick={() => setIdeOpen(false)}
           title="Close IDE (Esc)"
           aria-label="Close IDE"
@@ -435,10 +481,25 @@ export function IdePanel() {
       {/* Body */}
       {!root ? (
         <div style={{
-          flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
-          textAlign: 'center', color: 'var(--cth-ink-500)', fontFamily: 'var(--cth-font-ui)', fontSize: 16
+          flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          gap: 16, textAlign: 'center', color: 'var(--cth-ink-500)', fontFamily: 'var(--cth-font-ui)', fontSize: 15
         }}>
-          No workspace available.<br />Spawn an agent first — the IDE opens on its working directory.
+          <div>
+            <strong style={{ fontSize: 16, color: 'var(--cth-ink-900)' }}>No Workspace Loaded</strong>
+            <p style={{ marginTop: 6, fontSize: 13, color: 'var(--cth-ink-500)', maxWidth: 420 }}>
+              The IDE inspects an agent's working directory, or you can open any project folder directly on your machine.
+            </p>
+          </div>
+          <button
+            onClick={handleChooseWorkspace}
+            style={{
+              padding: '8px 16px', background: 'var(--cth-sky-light)', color: 'var(--cth-ink-900)',
+              border: '1px solid var(--cth-ink-500)', borderRadius: 4, cursor: 'pointer',
+              fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13
+            }}
+          >
+            <Icon name="folder" size={1} style={{ width: 14, height: 14 }} /> Open Project Folder in IDE
+          </button>
         </div>
       ) : (
         <div style={{ flex: 1, minHeight: 0, display: 'flex' }}>

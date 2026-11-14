@@ -51,13 +51,13 @@ export function FileTree({ root, activeRel, onOpenFile, onCopyPath }: FileTreePr
     })) };
   }, [root]);
 
-  // Initial root load
+  // Initial root load or root change
   useEffect(() => {
     let cancelled = false;
     (async () => {
       const res = await loadDir('');
       if (cancelled) return;
-      setTree(prev => ({ ...prev, ...res }));
+      setTree({ rel: '', name: 'root', isDir: true, expanded: true, ...res });
     })();
     return () => { cancelled = true; };
   }, [loadDir]);
