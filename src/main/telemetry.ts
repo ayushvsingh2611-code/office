@@ -116,6 +116,8 @@ export interface TelemetryCollectorOptions {
   emit?: (channel: string, payload: unknown) => void;
   /** Resolve an agent's cwd (from the hive registry) for the transcript fallback. */
   resolveCwd?: (agentId: string) => string | null;
+  /** Seed initial spans or activity from hive log entries when available. */
+  getLogTail?: (n?: number) => unknown[];
 }
 
 export class TelemetryCollector {
@@ -125,6 +127,7 @@ export class TelemetryCollector {
   private readonly port: number;
   private readonly emit?: (channel: string, payload: unknown) => void;
   private readonly resolveCwd?: (agentId: string) => string | null;
+  private readonly getLogTail?: (n?: number) => unknown[];
 
   /** sessionId → running accumulation. */
   private readonly sessions = new Map<string, SessionAccum>();
@@ -143,6 +146,7 @@ export class TelemetryCollector {
     this.port = opts.port ?? 0;
     this.emit = opts.emit;
     this.resolveCwd = opts.resolveCwd;
+    this.getLogTail = opts.getLogTail;
   }
 
   /** Bind the loopback OTLP listener. The handler is live the instant this
@@ -199,7 +203,56 @@ export class TelemetryCollector {
 
   /** Recent tool spans for the per-agent waterfall (#7B.2), oldest→newest. */
   getSpans(agentId: string): ToolSpan[] {
-    return this.spans.get(agentId)?.slice() ?? [];
+    const existing = this.spans.get(agentId);
+    if (existing && existing.length > 0) {
+      return existing.slice();
+    }
+    // Seed initial activity spans from hive logTail if available
+    if (this.getLogTail) {
+      try {
+        const logs = this.getLogTail(60) as Array<{
+          ts?: number;
+          kind?: string;
+          agentId?: string;
+          from?: string;
+          to?: string;
+          text?: string;
+          act?: string;
+          count?: number;
+        }>;
+        if (Array.isArray(logs)) {
+          const seeded: ToolSpan[] = [];
+          for (const entry of logs) {
+            const matchesAgent = entry.agentId === agentId || entry.from === agentId || entry.to === agentId;
+            if (matchesAgent && entry.ts) {
+              const toolName = entry.kind === 'message' ? `msg:${entry.act ?? 'send'}` :
+                entry.kind === 'external' ? 'command' :
+                entry.kind === 'drain' ? 'drain' :
+                entry.kind === 'spawn' ? 'spawn' : (entry.kind ?? 'action');
+              seeded.push({
+                agentId,
+                sessionId: 'log-' + agentId,
+                ts: entry.ts,
+                tool: toolName,
+                success: true,
+                durationMs: 250
+              });
+            }
+          }
+          if (seeded.length > 0) {
+            for (const s of seeded) this.pushSpan(s);
+            return seeded.slice();
+          }
+        }
+      } catch { /* ignore fallback error */ }
+    }
+    return [];
+  }
+
+  /** Push an explicit tool span (e.g. from PTY terminal stream, transcript, or CLI hooks). */
+  recordSpan(span: ToolSpan): void {
+    this.pushSpan(span);
+    this.emit?.('telemetry:event', { kind: 'tool_result', span } satisfies TelemetryEvent);
   }
 
   /** Everything the renderer needs on cold start (it missed the live pushes). */

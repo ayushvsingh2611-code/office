@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATELIER & CO. — High-Street & Luxury Fashion Flagship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 6.1 Announcement Bar & Top Navigation -->
+  <div id="announcement-bar">
+    <div class="announcement-content">
+      <span id="promo-copy">COMPLIMENTARY GLOBAL COURIER ON ORDERS OVER $150 &bull; CODE: <strong id="copy-vogue-btn" title="Click to copy promo code">VOGUE20</strong> FOR 20% OFF</span>
+      <button id="announcement-close" aria-label="Close Announcement">&times;</button>
+    </div>
+  </div>
+
+  <header id="site-header">
+    <div class="header-container">
+      <div class="header-left">
+        <button id="mobile-menu-btn" aria-label="Open Navigation Drawer">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+        <nav class="desktop-nav">
+          <ul id="category-nav-list">
+            <li><a href="#catalog-section" data-cat="all" class="active">All</a></li>
+            <li><a href="#catalog-section" data-cat="outerwear">Outerwear</a></li>
+            <li><a href="#catalog-section" data-cat="tailoring">Tailoring</a></li>
+            <li><a href="#catalog-section" data-cat="essentials">Essentials</a></li>
+            <li><a href="#catalog-section" data-cat="dresses">Dresses</a></li>
+            <li><a href="#catalog-section" data-cat="knitwear">Knitwear</a></li>
+            <li><a href="#catalog-section" data-cat="accessories">Accessories</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="header-center">
+        <a href="#" id="nav-brand-logo">ATELIER & CO.</a>
+      </div>
+
+      <div class="header-right">
+        <button id="search-toggle-btn" aria-label="Toggle Search" title="Search Catalog (Press /)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <button id="wishlist-toggle-btn" aria-label="Open Wishlist" title="View Wishlist">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span id="wishlist-badge-count" class="badge-count">0</span>
+        </button>
+        <button id="cart-toggle-btn" aria-label="Open Cart Bag" title="View Shopping Bag">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span id="cart-badge-count" class="badge-count">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Bar Expandable Drawer -->
+    <div id="search-bar-container" class="search-drawer">
+      <div class="search-inner">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="search-input" placeholder="Search by garment title, SKU, or fabrication (e.g. Wool, Cashmere, Silk)..." autocomplete="off">
+        <button id="search-clear-btn" aria-label="Clear Search">&times;</button>
+        <button id="search-close-btn" aria-label="Close Search Bar">ESC</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <span class="mobile-brand">ATELIER & CO.</span>
+      <button id="mobile-drawer-close" aria-label="Close Menu">&times;</button>
+    </div>
+    <div class="mobile-drawer-body">
+      <ul class="mobile-nav-links">
+        <li><a href="#" class="mobile-cat-link" data-cat="all">All Collection</a></li>
+        <li><a href="#" class="mobile-cat-link" data-cat="outerwear">Outerwear & Coats</a></li>
+        <li><a href="#" class="mobile-cat-link" data-cat="tailoring">Tailoring & Trousers</a></li>
+        <li><a href="#" class="mobile-cat-link" data-cat="essentials">Essentials & Hoodies</a></li>
+        <li><a href="#" class="mobile-cat-link" data-cat="dresses">Dresses & Gowns</a></li>
+        <li><a href="#" class="mobile-cat-link" data-cat="knitwear">Knitwear & Cashmere</a></li>
+        <li><a href="#" class="mobile-cat-link" data-cat="accessories">Accessories & Leather</a></li>
+      </ul>
+      <div class="mobile-footer-links">
+        <a href="#" id="mobile-size-guide-link">Size Guide & Fit Assistance</a>
+        <a href="#" id="mobile-shipping-link">Shipping & Global Courier</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- 6.2 Hero Banner & Editorial Collection Highlight -->
+    <section id="hero-section">
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-eyebrow">AUTUMN / WINTER 2025 FLAGSHIP EDIT</span>
+        <h1 class="hero-title">Architectural Silhouettes & Uncompromising Craft</h1>
+        <p class="hero-subtitle">Meticulously engineered from heavyweight Italian wools, Mongolian cashmere, and liquid mulberry silks.</p>
+        <div class="hero-cta-group">
+          <button id="hero-cta-shop" class="btn btn-primary">EXPLORE COLLECTION</button>
+          <button id="hero-cta-lookbook" class="btn btn-outline">VIEW EDITORIAL LOOKBOOK</button>
+        </div>
+      </div>
+      <div class="hero-ticker-chips" id="ticker-category-chips">
+        <button class="chip-btn" data-cat="outerwear">Outerwear</button>
+        <button class="chip-btn" data-cat="tailoring">Tailoring</button>
+        <button class="chip-btn" data-cat="knitwear">Cashmere & Knit</button>
+        <button class="chip-btn" data-cat="dresses">Evening Gowns</button>
+        <button class="chip-btn" data-cat="essentials">Essentials</button>
+      </div>
+    </section>
+
+    <!-- 6.3 Catalog Controls & Toolbar -->
+    <section id="catalog-section" class="catalog-section">
+      <div class="container">
+        
+        <div class="catalog-header-bar">
+          <div class="catalog-count-wrap">
+            <h2 class="section-heading">Curated Garments</h2>
+            <span id="catalog-count-label">Showing 12 pieces</span>
+          </div>
+          
+          <div class="catalog-tools-right">
+            <div class="sort-wrapper">
+              <label for="sort-select">SORT BY:</label>
+              <select id="sort-select">
+                <option value="featured">Featured Curations</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating">Highest Customer Rated</option>
+              </select>
+            </div>
+
+            <div class="layout-toggle-group">
+              <button id="grid-toggle-2" class="layout-btn" title="2-Column Editorial View" aria-label="2-Column View">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/></svg>
+              </button>
+              <button id="grid-toggle-4" class="layout-btn active" title="4-Column Grid View" aria-label="4-Column View">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="4" height="18" rx="1"/><rect x="10" y="3" width="4" height="18" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Sub-Toolbar -->
+        <div class="filter-toolbar">
+          <div id="filter-category-pills" class="category-pills-row">
+            <button class="cat-pill active" data-cat="all">All Pieces</button>
+            <button class="cat-pill" data-cat="outerwear">Outerwear</button>
+            <button class="cat-pill" data-cat="tailoring">Tailoring</button>
+            <button class="cat-pill" data-cat="essentials">Essentials</button>
+            <button class="cat-pill" data-cat="dresses">Dresses</button>
+            <button class="cat-pill" data-cat="knitwear">Knitwear</button>
+            <button class="cat-pill" data-cat="accessories">Accessories</button>
+          </div>
+
+          <div class="advanced-filters-row">
+            <div class="filter-group">
+              <label for="price-range-slider">Max Price: $<span id="price-range-value">500</span></label>
+              <input type="range" id="price-range-slider" min="50" max="500" step="10" value="500">
+            </div>
+
+            <div class="filter-group checkbox-group">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="instock-filter-check">
+                <span class="checkmark"></span>
+                In-Stock Only
+              </label>
+            </div>
+
+            <button id="reset-filters-btn" class="btn-text">Reset All Filters</button>
+          </div>
+        </div>
+
+        <!-- Products Grid Container -->
+        <div id="products-grid" class="products-grid columns-4">
+          <!-- Dynamically populated by app.js -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-catalog-state" class="empty-state hidden">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6"/></svg>
+          <h3>No garments match your exact curation criteria</h3>
+          <p>Try adjusting your price ceiling, clearing search terms, or resetting category filters.</p>
+          <button id="empty-reset-btn" class="btn btn-primary">RESET ALL FILTERS</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Editorial Brand Banner -->
+    <section class="brand-editorial-banner">
+      <div class="editorial-grid">
+        <div class="editorial-card">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=80" alt="Sustainable Craft">
+          <div class="editorial-caption">
+            <span class="caption-eyebrow">SUSTAINABLE ETHOS</span>
+            <h3>Consciously Sourced Fibers & Zero-Waste Pattern Cutting</h3>
+          </div>
+        </div>
+        <div class="editorial-card">
+          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1000&q=80" alt="Atelier Craftsmanship">
+          <div class="editorial-caption">
+            <span class="caption-eyebrow">ATELIER HERITAGE</span>
+            <h3>Hand-Finished in Porto, Istanbul, and Okayama</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="site-footer">
+    <div class="container footer-container">
+      <div class="footer-col">
+        <span class="footer-brand">ATELIER & CO.</span>
+        <p class="footer-desc">High-street luxury hybrid flagship curating elevated daily wear and avant-garde tailoring for the modern wardrobe.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Pinterest">PI</a>
+          <a href="#" aria-label="Twitter">TW</a>
+          <a href="#" aria-label="LinkedIn">IN</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#" id="footer-sizeguide-link">Interactive Size Guide</a></li>
+          <li><a href="#">Global Express Shipping</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">Track Order Status</a></li>
+          <li><a href="#">Client Concierge</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>The House</h4>
+        <ul>
+          <li><a href="#">About Atelier & Co.</a></li>
+          <li><a href="#">Sustainable Practices</a></li>
+          <li><a href="#">Press & Editorial Lookbooks</a></li>
+          <li><a href="#">Careers at Atelier</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p>Subscribe for private sample sale access and seasonal editorial drops.</p>
+        <form id="newsletter-form" onsubmit="event.preventDefault(); showToast('Thank you for subscribing to Atelier & Co.'); this.reset();">
+          <input type="email" placeholder="Enter your email address..." required>
+          <button type="submit" class="btn btn-primary">JOIN</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-flex">
+        <span>&copy; 2025 ATELIER & CO. Flagship E-Commerce. All rights reserved.</span>
+        <div class="legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Preferences</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- 6.5 Quick View Modal -->
+  <div id="quickview-modal" class="modal-backdrop">
+    <div class="modal-dialog quickview-dialog">
+      <button id="quickview-close-btn" class="modal-close" aria-label="Close Quick View">&times;</button>
+      <div class="quickview-grid">
+        <div class="quickview-media-col">
+          <div class="main-img-wrap">
+            <img id="quickview-image-main" src="" alt="Product Preview">
+            <span id="quickview-badge" class="badge">NEW</span>
+          </div>
+          <div id="quickview-thumbnails" class="thumbnails-row"></div>
+        </div>
+        <div class="quickview-info-col">
+          <span id="quickview-sku" class="quickview-sku">ATL-0000</span>
+          <h2 id="quickview-title" class="quickview-title">Garment Title</h2>
+          <div id="quickview-price" class="quickview-price-row"></div>
+          
+          <p id="quickview-desc" class="quickview-desc">Description goes here.</p>
+
+          <div class="quickview-selector-group">
+            <div class="selector-label-row">
+              <span>COLOR: <strong id="quickview-color-label">Camel</strong></span>
+            </div>
+            <div id="quickview-colors-list" class="colors-swatch-row"></div>
+          </div>
+
+          <div class="quickview-selector-group">
+            <div class="selector-label-row">
+              <span>SELECT SIZE:</span>
+              <button id="quickview-size-guide-btn" class="btn-link">Size Guide</button>
+            </div>
+            <div id="quickview-sizes-list" class="sizes-pill-row"></div>
+          </div>
+
+          <div class="quickview-selector-group">
+            <span>QUANTITY:</span>
+            <div class="qty-stepper">
+              <button id="quickview-qty-minus">-</button>
+              <input type="number" id="quickview-qty-input" value="1" min="1" max="20" readonly>
+              <button id="quickview-qty-plus">+</button>
+            </div>
+          </div>
+
+          <div id="quickview-stock-alert" class="stock-alert">Only 5 items remaining</div>
+
+          <button id="quickview-add-cart-btn" class="btn btn-primary btn-full">ADD TO SHOPPING BAG</button>
+
+          <div class="quickview-details-dropdown">
+            <h4>Composition, Care & Origin</h4>
+            <ul id="quickview-details-list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 6.6 Slide-Over Cart Drawer -->
+  <div id="cart-drawer-overlay" class="drawer-overlay"></div>
+  <aside id="cart-drawer" class="drawer">
+    <div class="drawer-header">
+      <div class="drawer-title-wrap">
+        <h3>Shopping Bag</h3>
+        <span id="cart-drawer-count" class="drawer-count">(0)</span>
+      </div>
+      <button id="cart-close-btn" class="drawer-close" aria-label="Close Cart">&times;</button>
+    </div>
+
+    <!-- Free shipping progress -->
+    <div class="cart-shipping-banner">
+      <div class="shipping-progress-track">
+        <div id="cart-shipping-bar" class="shipping-progress-fill" style="width: 0%"></div>
+      </div>
+      <span id="cart-shipping-msg">Add $150.00 more for FREE Global Express Courier</span>
+    </div>
+
+    <div id="cart-items-container" class="drawer-items-list">
+      <!-- Populated dynamically -->
+    </div>
+
+    <div id="cart-empty-view" class="drawer-empty hidden">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <p>Your shopping bag is currently empty.</p>
+      <button class="btn btn-primary close-cart-action">START SHOPPING</button>
+    </div>
+
+    <div class="drawer-footer">
+      <!-- Promo code input -->
+      <div class="promo-box">
+        <div class="promo-input-row">
+          <input type="text" id="promo-input" placeholder="Promo code (e.g. VOGUE20)">
+          <button id="promo-apply-btn" class="btn btn-outline">APPLY</button>
+        </div>
+        <span id="promo-status-msg" class="promo-status"></span>
+      </div>
+
+      <div class="cart-totals-summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <div id="cart-discount-row" class="summary-row discount-row hidden">
+          <span>Discount (Voucher)</span>
+          <span id="cart-discount-val">-$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Global Courier</span>
+          <span id="cart-shipping-fee">$15.00</span>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total Payable</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+      </div>
+
+      <div class="cart-actions-row">
+        <button id="cart-checkout-btn" class="btn btn-primary btn-full">PROCEED TO SECURE CHECKOUT</button>
+        <button id="cart-clear-btn" class="btn-text btn-center">Empty Bag</button>
+      </div>
+    </div>
+  </aside>
+
+
+  <!-- 6.7 Wishlist Slide-Over -->
+  <div id="wishlist-drawer-overlay" class="drawer-overlay"></div>
+  <aside id="wishlist-drawer" class="drawer">
+    <div class="drawer-header">
+      <div class="drawer-title-wrap">
+        <h3>Saved Favorites</h3>
+        <span id="wishlist-drawer-count" class="drawer-count">(0)</span>
+      </div>
+      <button id="wishlist-close-btn" class="drawer-close" aria-label="Close Wishlist">&times;</button>
+    </div>
+
+    <div id="wishlist-items-container" class="drawer-items-list">
+      <!-- Populated dynamically -->
+    </div>
+
+    <div id="wishlist-empty-view" class="drawer-empty hidden">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <p>No saved pieces in your wishlist yet.</p>
+      <button class="btn btn-primary close-wishlist-action">EXPLORE GARMENTS</button>
+    </div>
+
+    <div class="drawer-footer">
+      <button id="wishlist-move-all-btn" class="btn btn-outline btn-full">MOVE ALL TO SHOPPING BAG</button>
+    </div>
+  </aside>
+
+
+  <!-- 6.8 Multi-Step Checkout Modal -->
+  <div id="checkout-modal" class="modal-backdrop">
+    <div class="modal-dialog checkout-dialog">
+      <button id="checkout-close-btn" class="modal-close" aria-label="Close Checkout">&times;</button>
+      
+      <div class="checkout-header">
+        <h2>Secure Global Checkout</h2>
+        <div id="checkout-step-indicator" class="step-indicator">
+          <div class="step-dot active" data-step="1">1. Shipping</div>
+          <div class="line"></div>
+          <div class="step-dot" data-step="2">2. Payment</div>
+          <div class="line"></div>
+          <div class="step-dot" data-step="3">3. Confirmed</div>
+        </div>
+      </div>
+
+      <div class="checkout-body">
+        
+        <!-- Step 1: Shipping Address -->
+        <div id="checkout-step-1" class="checkout-step active">
+          <form id="shipping-form">
+            <h3>Shipping Destination</h3>
+            <div class="form-grid">
+              <div class="form-group full">
+                <label for="ship-name">Full Name *</label>
+                <input type="text" id="ship-name" required placeholder="Alexander Vance">
+              </div>
+              <div class="form-group full">
+                <label for="ship-email">Email Address (for tracking & receipt) *</label>
+                <input type="email" id="ship-email" required placeholder="alexander@atelier.com">
+              </div>
+              <div class="form-group full">
+                <label for="ship-address">Street Address *</label>
+                <input type="text" id="ship-address" required placeholder="742 Evergreen Terrace, Suite 4B">
+              </div>
+              <div class="form-group">
+                <label for="ship-city">City *</label>
+                <input type="text" id="ship-city" required placeholder="New York">
+              </div>
+              <div class="form-group">
+                <label for="ship-state">State / Province *</label>
+                <input type="text" id="ship-state" required placeholder="NY">
+              </div>
+              <div class="form-group">
+                <label for="ship-zip">Postal / Zip Code *</label>
+                <input type="text" id="ship-zip" required placeholder="10001">
+              </div>
+              <div class="form-group">
+                <label for="ship-country">Country *</label>
+                <select id="ship-country" required>
+                  <option value="US">United States</option>
+                  <option value="GB">United Kingdom</option>
+                  <option value="FR">France</option>
+                  <option value="DE">Germany</option>
+                  <option value="JP">Japan</option>
+                  <option value="CA">Canada</option>
+                  <option value="AU">Australia</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-action-row">
+              <button type="submit" id="to-step2-btn" class="btn btn-primary btn-full">PROCEED TO PAYMENT</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Step 2: Payment Details -->
+        <div id="checkout-step-2" class="checkout-step">
+          <form id="payment-form">
+            <h3>Payment Gateway (Simulated SSL Secured)</h3>
+            
+            <div class="accepted-cards-row">
+              <span>Accepted:</span>
+              <strong>VISA</strong> &bull; <strong>MASTERCARD</strong> &bull; <strong>AMEX</strong> &bull; <strong>APPLE PAY</strong>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group full">
+                <label for="card-holder">Cardholder Name *</label>
+                <input type="text" id="card-holder" required placeholder="Alexander Vance">
+              </div>
+              <div class="form-group full">
+                <label for="card-number">Card Number *</label>
+                <input type="text" id="card-number" required placeholder="4532      8901" maxlength="19">
+              </div>
+              <div class="form-group">
+                <label for="card-exp">Expiration Date *</label>
+                <input type="text" id="card-exp" required placeholder="MM/YY" maxlength="5">
+              </div>
+              <div class="form-group">
+                <label for="card-cvv">CVV Security Code *</label>
+                <input type="password" id="card-cvv" required placeholder="123" maxlength="4">
+              </div>
+            </div>
+
+            <div class="form-action-row two-btn">
+              <button type="button" id="back-to-step1-btn" class="btn btn-outline">Back to Shipping</button>
+              <button type="submit" id="complete-order-btn" class="btn btn-primary">AUTHORIZE & PAY SECURELY</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Step 3: Confirmation -->
+        <div id="checkout-step-3" class="checkout-step">
+          <div id="order-confirmation-box" class="confirmation-box">
+            <div class="success-icon-wrap">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Order Successfully Placed</h3>
+            <p>Thank you for shopping with Atelier & Co. Your curated order has been transmitted to our fulfillment atelier.</p>
+            
+            <div class="order-receipt-meta">
+              <div class="receipt-row">
+                <span>Assigned Order ID:</span>
+                <strong id="confirmed-order-id">ATL-98431</strong>
+              </div>
+              <div class="receipt-row">
+                <span>Estimated Global Delivery:</span>
+                <strong id="confirmed-delivery-date">5 Business Days</strong>
+              </div>
+              <div class="receipt-row">
+                <span>Confirmation Sent To:</span>
+                <strong id="confirmed-email-sent">alexander@atelier.com</strong>
+              </div>
+            </div>
+
+            <button id="finish-shopping-btn" class="btn btn-primary btn-full">RETURN TO CATALOGUE</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 6.9 Size Guide Modal -->
+  <div id="sizeguide-modal" class="modal-backdrop">
+    <div class="modal-dialog sizeguide-dialog">
+      <button id="sizeguide-close-btn" class="modal-close" aria-label="Close Size Guide">&times;</button>
+      
+      <div class="sizeguide-header">
+        <h2>Garment Measurement & Fit Guide</h2>
+        <div class="unit-toggle-group">
+          <button id="unit-toggle-cm" class="unit-btn active">Metric (cm)</button>
+          <button id="unit-toggle-in" class="unit-btn">Imperial (Inches)</button>
+        </div>
+      </div>
+
+      <div class="sizeguide-body">
+        <p class="sizeguide-intro">Our silhouettes are engineered with relaxed, architectural draping. If you prefer a more tailored fit, we recommend sizing down.</p>
+        
+        <div class="table-responsive">
+          <table class="size-table">
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Chest / Bust</th>
+                <th>Waist</th>
+                <th>Hips</th>
+                <th>Sleeve Length</th>
+              </tr>
+            </thead>
+            <tbody id="sizeguide-table-body">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 6.10 Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>

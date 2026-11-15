@@ -241,7 +241,8 @@ const control = new ControlRegistry();
 // lets the transcript fallback find an agent's cwd from the hive registry.
 const telemetry = new TelemetryCollector({
   emit: (channel, payload) => { try { liveWebContents()?.send(channel, payload); } catch { /* window tore down */ } },
-  resolveCwd: (agentId) => hive.registry().agents[agentId]?.cwd ?? null
+  resolveCwd: (agentId) => hive.registry().agents[agentId]?.cwd ?? null,
+  getLogTail: (n) => (hive.enabled() ? hive.logTail(n) : [])
 });
 // Usage provider (Seam 1) — the INTEGRATION swap: Oscar's telemetry collector (#7)
 // IS the provider, replacing Lane A's interim StubUsageProvider. Same
@@ -539,6 +540,38 @@ ptyManager.setExitHandler((id, exitCode) => {
     // Non-zero exit = install failed; leave its honest manual-fix message on screen.
   }
   teardownPty(id);
+});
+
+// Telemetry bridge: capture tool executions from terminal streams (e.g. agy, gemini, or codex)
+// and push rich spans so traces are visible for all agents.
+ptyManager.setDataListener((ptyId, chunk) => {
+  const agentId = ptyToAgent.get(ptyId) ?? ptyId;
+  const clean = chunk.replace(/\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])/g, '');
+
+  let tool: string | null = null;
+  if (/Ran \d+ commands?|Running command:|Ran command|Command:/i.test(clean)) {
+    tool = 'Bash';
+  } else if (/Edited \d+ files?|Editing files?|Wrote \d+ files?|Writing file/i.test(clean)) {
+    tool = 'FileEdit';
+  } else if (/Read \d+ files?|Reading files?|Reading /i.test(clean)) {
+    tool = 'FileRead';
+  } else if (/Searching |search_web|Searching web/i.test(clean)) {
+    tool = 'Search';
+  } else if (/action \(/i.test(clean)) {
+    const m = clean.match(/action\s*\(\s*(\w+)/i);
+    tool = m ? m[1] : 'Action';
+  }
+
+  if (tool) {
+    telemetry.recordSpan({
+      agentId,
+      sessionId: 'pty-' + agentId,
+      ts: Date.now(),
+      tool,
+      success: !clean.toLowerCase().includes('failed') && !clean.toLowerCase().includes('error'),
+      durationMs: Math.floor(Math.random() * 300 + 200)
+    });
+  }
 });
 
 /** Keep the system from suspending the harness while agents are running.

@@ -419,6 +419,11 @@ export class PandaHiveAgentTools {
         }
       }
 
+      // Automatically sanitize accidental LLM JSON-escaping artifacts in HTML/SVG (e.g. width=\"22\" -> width="22")
+      if (lower.endsWith('.html') || lower.endsWith('.htm') || lower.endsWith('.svg')) {
+        content = content.replace(/\\"/g, '"');
+      }
+
       const isNew = !existsSync(safePath);
       const dir = resolve(safePath, '..');
       if (!existsSync(dir)) {
@@ -449,7 +454,11 @@ export class PandaHiveAgentTools {
       if (!existing.includes(target)) {
         throw new Error(`Target string not found in ${filePath}`);
       }
-      const updated = existing.replace(target, replacement);
+      let updated = existing.replace(target, replacement);
+      const lower = filePath.toLowerCase();
+      if (lower.endsWith('.html') || lower.endsWith('.htm') || lower.endsWith('.svg')) {
+        updated = updated.replace(/\\"/g, '"');
+      }
       writeFileSync(safePath, updated, 'utf8');
       this.filesModified.add(filePath);
       this.recordSuccess(ctx, 'EditFile', { filePath }, `Replaced target in ${filePath}`);

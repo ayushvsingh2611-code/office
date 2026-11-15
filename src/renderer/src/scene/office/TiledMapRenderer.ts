@@ -65,7 +65,11 @@ export class TiledMapRenderer {
 
   private static readonly WALKABLE_SPAWN_PREFIXES = ['desk-', 'pc-', 'warroom-', 'entrance'];
 
-  constructor(private mapData: TiledMap, private tilesetTextures: Texture[]) {
+  constructor(
+    private mapData: TiledMap,
+    private tilesetTextures: Texture[],
+    private layerTints?: Record<string, number>
+  ) {
     this.width = mapData.width;
     this.height = mapData.height;
     this.tileSize = mapData.tilewidth;
@@ -192,6 +196,7 @@ export class TiledMapRenderer {
       const layer = this.findLayer(layerName, 'tilelayer');
       const container = new Container();
       container.label = layerName;
+      const layerTint = this.layerTints?.[layerName];
 
       if (layer?.data) {
         for (let y = 0; y < this.height; y++) {
@@ -217,6 +222,9 @@ export class TiledMapRenderer {
 
             const frame = new Rectangle(srcX, srcY, tw, th);
             const sprite = new Sprite(new Texture({ source: texture.source, frame }));
+            if (layerTint !== undefined) {
+              sprite.tint = layerTint;
+            }
 
             if (flippedH || flippedV || flippedD) {
               sprite.anchor.set(0.5, 0.5);

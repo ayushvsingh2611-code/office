@@ -1,4 +1,4 @@
-﻿import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { useStore, type Agent } from '@/store/store';
 import { FileTree } from '@/components/FileTree';
 import { Icon } from '@/components/Icon';

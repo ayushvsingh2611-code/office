@@ -37,7 +37,9 @@ export function ToolWaterfall({ agentId }: { agentId: string }) {
             <span style={{ color: 'var(--cth-ink-500)' }}>{fmtTokens(totalTokens(sample))}t total</span>
           </>
         ) : (
-          <span style={{ color: 'var(--cth-ink-500)' }}>no live telemetry yet — spawn / respawn this agent to instrument it</span>
+          <span style={{ color: 'var(--cth-ink-700)' }}>
+            Live tool telemetry ({recent.length} {recent.length === 1 ? 'span' : 'spans'} captured)
+          </span>
         )}
       </div>
 

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HashPulse Mining OS - Enterprise Cloud & Rig Hashpower Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HEADER & STATUS BAR -->
+  <header class="app-header">
+    <div class="header-left">
+      <div id="brand-logo" class="brand-logo">
+        <span class="logo-icon">⚡</span>
+        <div class="logo-text">
+          <h1>HashPulse</h1>
+          <span class="logo-subtitle">MINING OS v2.4</span>
+        </div>
+      </div>
+      <div class="stratum-status-pill" id="stratum-status-pill" title="Stratum Server Status">
+        <span class="status-dot"></span>
+        <span class="status-text">Stratum Online (24ms)</span>
+      </div>
+      <div class="header-workers-badge" id="header-workers-count">
+        5 Active / 6 Total
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="market-ticker-bar" id="market-ticker-bar">
+        <div class="ticker-track" id="market-ticker-track">
+          <!-- Dynamically populated ticker items -->
+        </div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="header-wallet-summary" id="btn-open-wallet">
+        <div class="wallet-icon">👛</div>
+        <div class="wallet-balances">
+          <span class="wallet-total-usd" id="header-total-usd">$4,892.45</span>
+          <span class="wallet-unpaid-usd" id="header-unpaid-usd">Unpaid: $148.20</span>
+        </div>
+      </div>
+      <button class="btn-action btn-gold" id="btn-quick-payout" title="Instant Payout">Payout</button>
+      <button class="btn-icon" id="btn-toggle-audio" title="Toggle Stratum Audio Chime">🔇</button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS BAR -->
+  <nav class="nav-tabs-bar">
+    <button class="nav-tab active" id="tab-btn-dashboard" onclick="switchTab('dashboard')">
+      <span class="tab-icon">📊</span> Dashboard
+    </button>
+    <button class="nav-tab" id="tab-btn-rigs" onclick="switchTab('rigs')">
+      <span class="nav-tab-icon">🖥️</span> Rig Manager <span class="badge-count" id="nav-rigs-count">6</span>
+    </button>
+    <button class="nav-tab" id="tab-btn-algorithms" onclick="switchTab('algorithms')">
+      <span class="tab-icon">🪙</span> Multi-Crypto Pool
+    </button>
+    <button class="nav-tab" id="tab-btn-marketplace" onclick="switchTab('marketplace')">
+      <span class="tab-icon">☁️</span> Cloud Marketplace
+    </button>
+    <button class="nav-tab" id="tab-btn-calculator" onclick="switchTab('calculator')">
+      <span class="tab-icon">🧮</span> Calculator
+    </button>
+    <button class="nav-tab" id="tab-btn-payouts" onclick="switchTab('payouts')">
+      <span class="tab-icon">💳</span> Payouts & Wallet
+    </button>
+  </nav>
+
+  <!-- MAIN VIEW CONTAINER -->
+  <main id="main-content-area">
+
+    <!-- TAB 1: DASHBOARD -->
+    <section id="view-dashboard" class="view-section active">
+      <!-- Stat Cards Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">Total Hashrate</span>
+            <span class="stat-icon cyan">⚡</span>
+          </div>
+          <div class="stat-value" id="stat-total-hashrate">826.50 TH/s</div>
+          <div class="stat-footer success">↑ +2.4% last 24h</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">24h Est. Profit</span>
+            <span class="stat-icon gold">💰</span>
+          </div>
+          <div class="stat-value" id="stat-daily-est-usd">$84.50 <span class="sub-crypto" id="stat-daily-est-btc">0.0013 BTC</span></div>
+          <div class="stat-footer success">Net after power cost</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">Power Consumption</span>
+            <span class="stat-icon yellow">⚡</span>
+          </div>
+          <div class="stat-value" id="stat-power-consumption">7,800 W</div>
+          <div class="stat-footer muted">Efficiency: 0.11 W/GH</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-label">Accepted / Rejected</span>
+            <span class="stat-icon green">✅</span>
+          </div>
+          <div class="stat-value"><span id="stat-accepted-shares">23,732</span> / <span id="stat-rejected-shares" class="error-text">38</span></div>
+          <div class="stat-footer success">99.84% Efficiency</div>
+        </div>
+      </div>
+
+      <!-- Main Dashboard Center Layout -->
+      <div class="dashboard-grid">
+        <!-- Left Column: Live Chart & Auto Profit Switcher -->
+        <div class="dash-main-col">
+          <div class="panel-card chart-panel">
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h3>Live Hashrate Performance</h3>
+                <span class="live-badge">REAL-TIME</span>
+              </div>
+              <div class="chart-timeframes">
+                <button class="timeframe-btn" id="chart-timeframe-1h" onclick="setChartTimeframe('1h')">1h</button>
+                <button class="timeframe-btn" id="chart-timeframe-6h" onclick="setChartTimeframe('6h')">6h</button>
+                <button class="timeframe-btn active" id="chart-timeframe-24h" onclick="setChartTimeframe('24h')">24h</button>
+                <button class="timeframe-btn" id="chart-timeframe-7d" onclick="setChartTimeframe('7d')">7d</button>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="hashrate-chart-canvas"></canvas>
+            </div>
+          </div>
+
+          <!-- Quick Rig Summary & Master Profit Switcher -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <h3>Auto-Profit Algorithm Switcher</h3>
+              <div class="toggle-switch-container">
+                <span class="toggle-label">Auto-Switching Mode</span>
+                <label class="switch">
+                  <input type="checkbox" id="auto-profit-toggle" checked onchange="handleToggleAutoProfitSwitch()">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+            <p class="panel-desc">HashPulse auto-switcher monitors pool profitability in real-time and dynamically routes your idle & active rigs to the highest yielding cryptocurrency algorithm.</p>
+            <div class="active-pool-banner">
+              <div class="banner-icon">🌐</div>
+              <div class="banner-info">
+                <strong>Current Primary Mined Coin:</strong> <span id="current-mined-coin-name">Bitcoin (BTC) - SHA-256</span>
+                <span class="banner-sub">Next evaluation in 42 seconds</span>
+              </div>
+              <button class="btn-action btn-cyan-outline" onclick="switchTab('algorithms')">Manage Pools</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Mini Stratum Terminal Feed -->
+        <div class="dash-side-col">
+          <div class="panel-card terminal-side-panel">
+            <div class="panel-header">
+              <h3>Live Stratum Feed</h3>
+              <span class="status-dot pulsing"></span>
+            </div>
+            <div class="mini-terminal-feed" id="mini-stratum-log-list">
+              <!-- Dynamically populated log entries -->
+            </div>
+            <button class="btn-action btn-subtle full-width" onclick="toggleTerminalDrawer()">Expand Full Console</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: RIG MANAGER -->
+    <section id="view-rigs" class="view-section">
+      <div class="section-toolbar">
+        <div class="toolbar-left">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="rig-search-input" placeholder="Search rigs by name or type..." oninput="handleFilterRigs()">
+          </div>
+          <div class="filter-dropdowns">
+            <select id="rig-status-filter" onchange="handleFilterRigs()">
+              <option value="all">All Statuses</option>
+              <option value="mining">Mining</option>
+              <option value="idle">Idle</option>
+              <option value="overheating">Overheating</option>
+            </select>
+            <select id="rig-sort-select" onchange="handleFilterRigs()">
+              <option value="hashrate">Sort by Hashrate</option>
+              <option value="name">Sort by Name</option>
+              <option value="temp">Sort by Temperature</option>
+              <option value="power">Sort by Power (W)</option>
+            </select>
+          </div>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-action btn-green" id="btn-start-all-rigs" onclick="handleStartAllRigs()">▶ Start All</button>
+          <button class="btn-action btn-yellow" id="btn-stop-all-rigs" onclick="handleStopAllRigs()">⏸ Stop All</button>
+          <button class="btn-action btn-gold" id="btn-open-add-rig" onclick="handleOpenAddRigModal()">+ Add New Rig</button>
+        </div>
+      </div>
+
+      <!-- Rig Cards Grid Container -->
+      <div class="rig-cards-grid" id="rig-cards-container">
+        <!-- Dynamically rendered rig cards -->
+      </div>
+    </section>
+
+    <!-- TAB 3: MULTI-CRYPTO POOL (ALGORITHMS) -->
+    <section id="view-algorithms" class="view-section">
+      <div class="section-toolbar">
+        <div class="toolbar-left">
+          <h2>Supported Mineable Cryptocurrencies & Algorithms</h2>
+          <p class="section-subtitle">Select any coin to instantly redirect your pool worker connections via Stratum protocol.</p>
+        </div>
+        <div class="toolbar-right">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="coins-filter-search" placeholder="Filter coins..." oninput="renderCoinsGrid()">
+          </div>
+        </div>
+      </div>
+
+      <div class="coins-grid-container" id="coins-grid-container">
+        <!-- Dynamically rendered crypto cards -->
+      </div>
+    </section>
+
+    <!-- TAB 4: CLOUD HASHRATE CONTRACT MARKETPLACE -->
+    <section id="view-marketplace" class="view-section">
+      <div class="section-toolbar">
+        <div class="toolbar-left">
+          <h2>Cloud Hashrate Rental Marketplace</h2>
+          <p class="section-subtitle">Rent high-performance cloud mining power instantly with zero hardware setup or maintenance.</p>
+        </div>
+        <div class="toolbar-right filter-pills">
+          <button class="pill-btn active" id="btn-filter-contract-all" onclick="filterContracts('all')">All Contracts</button>
+          <button class="pill-btn" id="btn-filter-contract-btc" onclick="filterContracts('btc')">Bitcoin (SHA-256)</button>
+          <button class="pill-btn" id="btn-filter-contract-alt" onclick="filterContracts('alt')">Altcoins</button>
+        </div>
+      </div>
+
+      <div class="marketplace-layout">
+        <!-- Marketplace Contract Cards -->
+        <div class="marketplace-grid" id="marketplace-grid">
+          <!-- Rendered contracts -->
+        </div>
+
+        <!-- Active Contracts Sidebar / Bottom Tracker -->
+        <div class="active-contracts-panel">
+          <h3>Your Active Cloud Contracts</h3>
+          <div class="active-contracts-container" id="active-contracts-container">
+            <!-- Dynamically populated rented contracts -->
+            <div class="empty-notice">No active cloud contracts rented yet. Select a plan above to start earning instantly!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: MINING PROFITABILITY CALCULATOR -->
+    <section id="view-calculator" class="view-section">
+      <div class="section-toolbar">
+        <div class="toolbar-left">
+          <h2>Advanced Mining Profitability Calculator</h2>
+          <p class="section-subtitle">Estimate your gross earnings and net mining profits factoring in electricity costs.</p>
+        </div>
+      </div>
+
+      <div class="calculator-container panel-card">
+        <div class="calc-form-grid">
+          <div class="form-group">
+            <label>Hardware Preset</label>
+            <select id="calc-device-preset" onchange="handleHardwarePresetChange(this.value)">
+              <option value="rtx4090">6x RTX 4090 GPU Rig</option>
+              <option value="s21">Antminer S21 Hydro ASIC</option>
+              <option value="rx7900xtx">6x RX 7900 XTX Rig</option>
+              <option value="threadripper">Threadripper 5995WX CPU Node</option>
+              <option value="custom">Custom Hardware Spec</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Target Algorithm</label>
+            <select id="calc-algo-select" onchange="calculateProfitability()">
+              <option value="sha256">SHA-256 (Bitcoin)</option>
+              <option value="etchash">Etchash (Ethereum Classic)</option>
+              <option value="kawpow">KawPow (Ravencoin)</option>
+              <option value="kheavyhash">kHeavyHash (Kaspa)</option>
+              <option value="randomx">RandomX (Monero CPU)</option>
+              <option value="scrypt">Scrypt (Doge / Litecoin)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Hashrate Power</label>
+            <input type="number" id="calc-hashrate-input" value="142.5" step="0.1" oninput="calculateProfitability()">
+          </div>
+
+          <div class="form-group">
+            <label>Power Consumption (Watts)</label>
+            <input type="number" id="calc-power-input" value="1850" step="10" oninput="calculateProfitability()">
+          </div>
+
+          <div class="form-group">
+            <label>Electricity Cost ($ / kWh)</label>
+            <input type="number" id="calc-electricity-cost" value="0.08" step="0.01" oninput="calculateProfitability()">
+          </div>
+        </div>
+
+        <div class="calc-results-banner">
+          <div class="calc-result-item">
+            <span class="c-label">Net Daily Profit</span>
+            <span class="c-value success-text" id="calc-profit-daily-usd">$18.42</span>
+          </div>
+          <div class="calc-result-item">
+            <span class="c-label">Net Monthly Profit</span>
+            <span class="c-value success-text" id="calc-profit-monthly-usd">$560.36</span>
+          </div>
+          <div class="calc-result-item">
+            <span class="c-label">Daily Power Cost</span>
+            <span class="c-value warning-text" id="calc-power-cost-daily">$3.55</span>
+          </div>
+          <div class="calc-result-item">
+            <span class="c-label">Est. Crypto / Day</span>
+            <span class="c-value cyan-text" id="calc-crypto-daily-est">0.00028 BTC</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: PAYOUTS & WALLET MANAGER -->
+    <section id="view-payouts" class="view-section">
+      <div class="section-toolbar">
+        <div class="toolbar-left">
+          <h2>Multi-Currency Wallet & Payout History</h2>
+          <p class="section-subtitle">Manage your balances, deposit addresses, and request fast payouts.</p>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn-action btn-gold" id="btn-open-withdraw-modal" onclick="handleOpenWithdrawModal('btc')">↗ Withdraw Funds</button>
+        </div>
+      </div>
+
+      <!-- Wallet Balances Grid -->
+      <div class="wallet-balances-grid" id="wallet-balances-grid">
+        <!-- Dynamically rendered coin balance cards -->
+      </div>
+
+      <!-- Payout & Transaction History Table -->
+      <div class="panel-card transaction-history-panel">
+        <div class="panel-header">
+          <h3>Payout & Transaction History</h3>
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="payout-search-input" placeholder="Filter history..." oninput="renderPayoutHistory()">
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tx ID</th>
+                <th>Date & Time</th>
+                <th>Coin</th>
+                <th>Amount</th>
+                <th>USD Value</th>
+                <th>Destination Address</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="payout-history-tbody">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PERSISTENT BOTTOM DOCK / CONSOLE -->
+  <footer class="stratum-console-footer">
+    <div class="console-header" onclick="toggleTerminalDrawer()">
+      <div class="console-title-group">
+        <span class="terminal-icon">💻</span>
+        <span>Stratum Protocol Terminal Console</span>
+        <span class="console-status-pill">CONNECTED</span>
+      </div>
+      <div class="console-controls" onclick="event.stopPropagation()">
+        <button class="console-btn" id="terminal-pause-btn" onclick="toggleTerminalPause()" title="Pause/Resume Feed">⏸ Pause</button>
+        <button class="console-btn" id="terminal-clear-btn" onclick="clearTerminalLogs()" title="Clear Console">🧹 Clear</button>
+        <button class="console-btn" id="terminal-toggle-btn" onclick="toggleTerminalDrawer()">▲ Expand</button>
+      </div>
+    </div>
+    <div class="console-body collapsed" id="stratum-console">
+      <pre id="terminal-log-output"><code>[00:00:00] [SYSTEM] Initializing HashPulse Mining OS v2.4...
+[00:00:01] [STRATUM] Connecting to primary pool stratum+tcp://btc.hashpulse-pool.com:3333...
+[00:00:02] [SUCCESS] Authorized worker connection for all 6 rigs.
+</code></pre>
+    </div>
+  </footer>
+
+  <!-- MODALS & DRAWERS CONTAINER -->
+  <div class="modal-backdrop" id="modal-backdrop">
+
+    <!-- 1. Add Rig Modal -->
+    <div class="modal-card" id="modal-add-rig">
+      <div class="modal-header">
+        <h3>Register New Mining Rig / Worker</h3>
+        <button class="modal-close-btn" id="btn-close-add-rig" onclick="closeAllModals()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Rig Name</label>
+          <input type="text" id="add-rig-name" value="CyberRig Apex 8X" placeholder="e.g. Rig Alpha">
+        </div>
+        <div class="form-group">
+          <label>Device Hardware Type</label>
+          <select id="add-rig-type">
+            <option value="GPU (8x RTX 4080 16GB)">GPU (8x RTX 4080 16GB)</option>
+            <option value="ASIC Dedicated Unit">ASIC Dedicated Unit (Antminer S19 Pro)</option>
+            <option value="CPU Mining Node">CPU Mining Node (AMD EPYC)</option>
+            <option value="FPGA / Custom Miner">FPGA / Custom Miner</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Target Primary Algorithm</label>
+          <select id="add-rig-algo">
+            <option value="SHA-256">SHA-256 (Bitcoin)</option>
+            <option value="KawPow">KawPow (Ravencoin)</option>
+            <option value="kHeavyHash">kHeavyHash (Kaspa)</option>
+            <option value="Etchash">Etchash (Ethereum Classic)</option>
+            <option value="RandomX (CPU)">RandomX (Monero)</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-action btn-subtle" onclick="closeAllModals()">Cancel</button>
+        <button class="btn-action btn-gold" id="btn-confirm-add-rig" onclick="handleSaveNewRig()">Deploy Rig</button>
+      </div>
+    </div>
+
+    <!-- 2. Cloud Contract Rent Modal -->
+    <div class="modal-card" id="modal-rent-contract">
+      <div class="modal-header">
+        <h3 id="rent-contract-title">Rent Cloud Hashrate Contract</h3>
+        <button class="modal-close-btn" onclick="closeAllModals()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="rent-details-box">
+          <div class="rent-row"><span>Contract Price:</span> <strong id="rent-contract-price" class="gold-text">$499.00</strong></div>
+          <div class="rent-row"><span>Hashrate Power:</span> <strong id="rent-contract-hashrate">250 TH/s</strong></div>
+          <div class="rent-row"><span>Duration:</span> <strong id="rent-contract-duration">30 Days</strong></div>
+          <div class="rent-row"><span>Est. Daily Return:</span> <strong id="rent-contract-return" class="success-text">$20.50 / day</strong></div>
+        </div>
+        <p class="modal-note">Funds will be deducted from your available wallet balance. Instant activation on pool network.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-action btn-subtle" onclick="closeAllModals()">Cancel</button>
+        <button class="btn-action btn-green" id="btn-confirm-rent" onclick="handleConfirmRentContract()">Confirm & Rent Contract</button>
+      </div>
+    </div>
+
+    <!-- 3. Withdrawal Modal -->
+    <div class="modal-card" id="modal-withdraw">
+      <div class="modal-header">
+        <h3>Withdraw Mining Earnings</h3>
+        <button class="modal-close-btn" id="btn-close-withdraw" onclick="closeAllModals()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Select Coin to Withdraw</label>
+          <select id="withdraw-coin-select" onchange="updateWithdrawalFeeCalc()">
+            <option value="btc">Bitcoin (BTC)</option>
+            <option value="etc">Ethereum Classic (ETC)</option>
+            <option value="rvn">Ravencoin (RVN)</option>
+            <option value="kas">Kaspa (KAS)</option>
+            <option value="xmr">Monero (XMR)</option>
+            <option value="doge">Dogecoin (DOGE)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Destination Wallet Address</label>
+          <input type="text" id="withdraw-address-input" placeholder="Paste your secure payout address here...">
+        </div>
+        <div class="form-group">
+          <label>Withdrawal Amount</label>
+          <input type="number" id="withdraw-amount-input" value="0.05" step="0.001" placeholder="0.00">
+        </div>
+        <div class="withdrawal-calc-box">
+          <div class="w-row"><span>Network Fee:</span> <span id="withdraw-fee-display">0.0001 BTC (~$0.65)</span></div>
+          <div class="w-row"><span>You Will Receive:</span> <strong id="withdraw-receive-display" class="success-text">0.0499 BTC</strong></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-action btn-subtle" onclick="closeAllModals()">Cancel</button>
+        <button class="btn-action btn-gold" id="btn-confirm-withdraw" onclick="handleConfirmWithdraw()">Send Withdrawal</button>
+      </div>
+    </div>
+
+    <!-- 4. Rig Tune / Overclock Modal -->
+    <div class="modal-card" id="modal-tune-rig">
+      <div class="modal-header">
+        <h3 id="tune-modal-title">Tune Worker Overclock & Fans</h3>
+        <button class="modal-close-btn" id="btn-close-tune" onclick="closeAllModals()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Fan Speed Target (%) <span id="tune-fan-val">75</span>%</label>
+          <input type="range" id="tune-fan-slider" min="30" max="100" value="75" oninput="document.getElementById('tune-fan-val').innerText = this.value">
+        </div>
+        <div class="form-group">
+          <label>Power Limit (%) <span id="tune-power-val">85</span>%</label>
+          <input type="range" id="tune-power-slider" min="50" max="120" value="85" oninput="document.getElementById('tune-power-val').innerText = this.value">
+        </div>
+        <div class="form-group">
+          <label>Overclock Profile / Memory Offset</label>
+          <input type="text" id="tune-core-input" value="Core -150MHz, Mem +1200MHz" placeholder="e.g. +1000 Mem">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-action btn-subtle" onclick="closeAllModals()">Cancel</button>
+        <button class="btn-action btn-cyan" id="btn-save-tune" onclick="handleSaveTuneProfile()">Apply Overclock</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- App Logic JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>

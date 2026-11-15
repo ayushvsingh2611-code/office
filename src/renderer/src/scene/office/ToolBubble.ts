@@ -23,9 +23,9 @@ const PADDING_X = 6;
 const PADDING_Y = 3;
 const CORNER_RADIUS = 4;
 const MAX_WIDTH = 140;
-const BG_COLOR = 0x1a1320; // ink-900
-const BG_ALPHA = 0.95;     // near-opaque: thin text over a busy floor was hard to read
-const TEXT_COLOR = '#fffdf5';
+const BG_COLOR = 0xfff8e7; // Warm rich cream color
+const BG_ALPHA = 0.98;
+const TEXT_COLOR = '#000000'; // Black font
 const FONT_SIZE = 12;
 const RENDER_SCALE = 0.5; // render at 2x, scale down for crispness
 const OFFSET_Y = -36;
@@ -216,5 +216,6 @@ export class ToolBubble {
     this.bg.clear();
     this.bg.roundRect(0, 0, this.bgW, this.bgH, CORNER_RADIUS);
     this.bg.fill({ color: BG_COLOR, alpha: BG_ALPHA });
+    this.bg.stroke({ color: 0x2d3748, width: 1 });
   }
 }

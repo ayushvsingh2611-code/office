@@ -1,54 +1,54 @@
-﻿/* ══════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════════════════
    AGENTHIVE — Design tokens v0.1.0
-   Authentic retro-light theme matching Command Center & Floor UI
+   Cyberpunk Neon Theme (Dark Obsidian + Electric Cyan & Purple)
    ══════════════════════════════════════════════════════════════ */
 :root {
-  /* Base — Clean crisp ivory / slate */
-  --cth-cream-50: #F8FAFC;
-  --cth-cream-100: #F1F5F9;
-  --cth-cream-200: #E2E8F0;
-  --cth-cream-300: #CBD5E1;
-  --cth-paper-100: #FFFFFF;
-  --cth-paper-200: #F8FAFC;
+  /* Base — Deep Cyber Void */
+  --cth-cream-50: #080C14;
+  --cth-cream-100: #0D1527;
+  --cth-cream-200: #141E36;
+  --cth-cream-300: #1E2C4D;
+  --cth-paper-100: #0F192E;
+  --cth-paper-200: #17233E;
 
-  /* Ink — Neutral Charcoal / Slate */
-  --cth-ink-900: #0F172A;
-  --cth-ink-700: #334155;
-  --cth-ink-500: #64748B;
-  --cth-ink-300: #94A3B8;
-  --cth-ink-100: #CBD5E1;
+  /* Ink — Holographic Cyan & High-Contrast Text */
+  --cth-ink-900: #00F0FF;
+  --cth-ink-700: #E2E8F0;
+  --cth-ink-500: #8FA3C7;
+  --cth-ink-300: #4B638B;
+  --cth-ink-100: #1E2D4E;
 
-  /* Accents */
-  --cth-coral: #E11D48;
-  --cth-coral-light: #FFE4E6;
-  --cth-mint: #10B981;
-  --cth-mint-light: #D1FAE5;
-  --cth-sky: #0EA5E9;
-  --cth-sky-light: #E0F2FE;
-  --cth-lemon: #F59E0B;
-  --cth-lemon-light: #FEF3C7;
-  --cth-lilac: #8B5CF6;
-  --cth-lilac-light: #EDE9FE;
-  --cth-peach: #F97316;
-  --cth-peach-light: #FFEDD5;
+  /* Accents — Cyberpunk Neon */
+  --cth-coral: #FF0055;
+  --cth-coral-light: #3B0817;
+  --cth-mint: #00FF9D;
+  --cth-mint-light: #063622;
+  --cth-sky: #00F0FF;
+  --cth-sky-light: #053447;
+  --cth-lemon: #FFE600;
+  --cth-lemon-light: #383204;
+  --cth-lilac: #BD00FF;
+  --cth-lilac-light: #2C0740;
+  --cth-peach: #FF7700;
+  --cth-peach-light: #3D1B04;
 
   /* AgentHive brand accent */
-  --cth-panda-green: #10B981;
-  --cth-panda-green-light: #D1FAE5;
-  --cth-panda-black: #0F172A;
-  --cth-panda-accent: #10B981;
+  --cth-panda-green: #00FF9D;
+  --cth-panda-green-light: #063622;
+  --cth-panda-black: #080C14;
+  --cth-panda-accent: #00F0FF;
 
   /* Status */
   --cth-status-idle: #64748B;
-  --cth-status-thinking: #0EA5E9;
-  --cth-status-working: #F59E0B;
-  --cth-status-waiting: #3B82F6;
-  --cth-status-blocked: #E11D48;
-  --cth-status-success: #10B981;
-  --cth-status-ghost: #94A3B8;
-  --cth-status-compacting: #8B5CF6;
-  --cth-status-looping: #F97316;
-  --cth-status-typing: #F59E0B;
+  --cth-status-thinking: #00F0FF;
+  --cth-status-working: #FFE600;
+  --cth-status-waiting: #38BDF8;
+  --cth-status-blocked: #FF0055;
+  --cth-status-success: #00FF9D;
+  --cth-status-ghost: #475569;
+  --cth-status-compacting: #BD00FF;
+  --cth-status-looping: #FF7700;
+  --cth-status-typing: #FFE600;
 
   /* Spacing */
   --cth-space-0: 0px;
@@ -86,60 +86,60 @@
   --cth-lh-mono: 20px;
 
   /* Shadow */
-  --cth-shadow-hard: 3px 3px 0 rgba(15, 23, 42, 0.12);
+  --cth-shadow-hard: 4px 4px 0 rgba(0, 0, 0, 0.7);
 
   /* Panel borders */
-  --cth-panel-border: inset 0 0 0 1px var(--cth-ink-300);
-  --cth-on-accent: #FFFFFF;
-  --cth-panel-border-inset: inset 0 0 0 1px var(--cth-ink-100);
-  --cth-panel-border-terminal: inset 0 0 0 1px var(--cth-ink-300);
-  --cth-panel-border-dialog: inset 0 0 0 1px var(--cth-ink-500);
+  --cth-panel-border: inset 0 0 0 1px #1E2C4D;
+  --cth-on-accent: #080C14;
+  --cth-panel-border-inset: inset 0 0 0 1px #141E36;
+  --cth-panel-border-terminal: inset 0 0 0 1px #1E2C4D;
+  --cth-panel-border-dialog: inset 0 0 0 1px rgba(0, 240, 255, 0.4);
 }
 
-/* Dark theme — Slate Night */
+/* Dark theme — Cyberpunk Ultraviolet Night */
 :root[data-cth-theme='dark'] {
-  --cth-cream-50: #0B0F19;
-  --cth-cream-100: #0F172A;
-  --cth-cream-200: #1E293B;
-  --cth-cream-300: #334155;
-  --cth-paper-100: #0F172A;
-  --cth-paper-200: #1E293B;
+  --cth-cream-50: #05080F;
+  --cth-cream-100: #0A0F1D;
+  --cth-cream-200: #10182C;
+  --cth-cream-300: #18233F;
+  --cth-paper-100: #0C1324;
+  --cth-paper-200: #131C35;
 
-  --cth-ink-900: #F8FAFC;
-  --cth-ink-700: #E2E8F0;
+  --cth-ink-900: #00F0FF;
+  --cth-ink-700: #F1F5F9;
   --cth-ink-500: #94A3B8;
-  --cth-ink-300: #64748B;
-  --cth-ink-100: #334155;
+  --cth-ink-300: #546B96;
+  --cth-ink-100: #18233F;
 
-  --cth-coral: #F43F5E;
-  --cth-mint: #10B981;
-  --cth-sky: #38BDF8;
-  --cth-lemon: #FBBF24;
-  --cth-lilac: #A78BFA;
-  --cth-peach: #FB923C;
+  --cth-coral: #FF0055;
+  --cth-mint: #00FF9D;
+  --cth-sky: #00F0FF;
+  --cth-lemon: #FFE600;
+  --cth-lilac: #BD00FF;
+  --cth-peach: #FF7700;
 
-  --cth-coral-light: #4C0519;
-  --cth-mint-light: #064E3B;
-  --cth-sky-light: #0C4A6E;
-  --cth-lemon-light: #451A03;
-  --cth-lilac-light: #2E1065;
-  --cth-peach-light: #431407;
+  --cth-coral-light: #3B0817;
+  --cth-mint-light: #063622;
+  --cth-sky-light: #053447;
+  --cth-lemon-light: #383204;
+  --cth-lilac-light: #2C0740;
+  --cth-peach-light: #3D1B04;
 
-  --cth-panda-green: #10B981;
-  --cth-panda-green-light: #064E3B;
-  --cth-panda-accent: #34D399;
+  --cth-panda-green: #00FF9D;
+  --cth-panda-green-light: #063622;
+  --cth-panda-accent: #00F0FF;
 
   --cth-status-idle: #64748B;
-  --cth-status-thinking: #38BDF8;
-  --cth-status-working: #FBBF24;
-  --cth-status-waiting: #60A5FA;
-  --cth-status-blocked: #F43F5E;
-  --cth-status-success: #10B981;
+  --cth-status-thinking: #00F0FF;
+  --cth-status-working: #FFE600;
+  --cth-status-waiting: #38BDF8;
+  --cth-status-blocked: #FF0055;
+  --cth-status-success: #00FF9D;
   --cth-status-ghost: #475569;
-  --cth-status-compacting: #A78BFA;
-  --cth-status-looping: #FB923C;
-  --cth-status-typing: #FBBF24;
+  --cth-status-compacting: #BD00FF;
+  --cth-status-looping: #FF7700;
+  --cth-status-typing: #FFE600;
 
-  --cth-shadow-hard: 4px 4px 0 rgba(0, 0, 0, 0.55);
-  --cth-on-accent: #FFFFFF;
+  --cth-shadow-hard: 4px 4px 0 rgba(0, 0, 0, 0.85);
+  --cth-on-accent: #05080F;
 }

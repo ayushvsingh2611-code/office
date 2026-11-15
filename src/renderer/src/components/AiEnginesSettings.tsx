@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, type CSSProperties } from 'react';
+import { useState, useEffect, type CSSProperties } from 'react';
 import type { HarnessConfig, AgentProvider } from '@/store/config';
 import { PixelButton } from './PixelButton';
 import { ProviderLogo } from './ProviderLogo';
@@ -200,6 +200,75 @@ export function AiEnginesSettings({ config }: { config: HarnessConfig }) {
             onClick={(e) => { e.preventDefault(); void window.cth.openExternal(OSS_BLOG_LINKS.macMini); }}
             style={linkStyle}
           >set it up on a Mac Mini</a>.
+        </div>
+      </div>
+
+      {/* Per-Agent Model Connection (BYOK Fallback & Routing) */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div style={headStyle}>AGENT CONNECTIONS · ASSIGN PROVIDER &amp; MODEL PER AGENT</div>
+        <div style={{ fontSize: 12, color: 'var(--cth-ink-700)', lineHeight: '18px' }}>
+          Choose which AI provider and model each agent connects to when using your BYOK API keys (OpenRouter, Gemini, Groq, OpenAI, or Local Ollama).
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, background: 'var(--cth-paper-100)', padding: 10, boxShadow: 'inset 0 0 0 1px var(--cth-ink-200)' }}>
+          {[
+            { id: 'luffy', name: 'Luffy (Captain & Orchestrator)', defaultModel: 'gemini-2.0-flash' },
+            { id: 'zoro', name: 'Zoro (Lead Builder & Coder)', defaultModel: 'anthropic/claude-3.5-sonnet' },
+            { id: 'nami', name: 'Nami (Architect & Planner)', defaultModel: 'gemini-2.0-flash' },
+            { id: 'sanji', name: 'Sanji (Verifier & Logic QA)', defaultModel: 'llama-3.3-70b-versatile' },
+            { id: 'franky', name: 'Franky (DevOps & Build)', defaultModel: 'deepseek/deepseek-r1' },
+            { id: 'chopper', name: 'Chopper (Testing Doctor)', defaultModel: 'gpt-4o-mini' },
+            { id: 'brook', name: 'Brook (Code Reviewer)', defaultModel: 'anthropic/claude-3.5-sonnet' }
+          ].map((agent) => {
+            const current = (config.agentModelAssignments ?? {})[agent.id] ?? { provider: 'default', model: '' };
+            return (
+              <div key={agent.id} style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                <span style={{ width: 190, fontSize: 12, fontWeight: 700, color: 'var(--cth-ink-900)' }}>
+                  {agent.name}
+                </span>
+                <select
+                  value={current.provider || 'default'}
+                  onChange={(e) => {
+                    const next = {
+                      ...(config.agentModelAssignments ?? {}),
+                      [agent.id]: { provider: e.target.value, model: current.model || agent.defaultModel }
+                    };
+                    void window.cth.updateConfig({ agentModelAssignments: next });
+                  }}
+                  style={{
+                    padding: '4px 6px',
+                    fontSize: 12,
+                    fontFamily: 'var(--cth-font-ui)',
+                    background: 'var(--cth-paper-50)',
+                    border: '1px solid var(--cth-ink-300)',
+                    color: 'var(--cth-ink-900)'
+                  }}
+                >
+                  <option value="default">Default / OmniRoute</option>
+                  <option value="openrouter">OpenRouter (300+ models)</option>
+                  <option value="google">Google · Gemini</option>
+                  <option value="openai">OpenAI</option>
+                  <option value="groq">Groq (Ultra-Fast)</option>
+                  <option value="custom">Local (Ollama / Custom)</option>
+                </select>
+                <input
+                  placeholder={`Model e.g. ${agent.defaultModel}`}
+                  defaultValue={current.model || ''}
+                  onBlur={(e) => {
+                    const next = {
+                      ...(config.agentModelAssignments ?? {}),
+                      [agent.id]: { provider: current.provider || 'default', model: e.target.value.trim() }
+                    };
+                    void window.cth.updateConfig({ agentModelAssignments: next });
+                  }}
+                  style={{
+                    flex: 1, minWidth: 150, padding: '4px 8px', fontSize: 12,
+                    fontFamily: 'var(--cth-font-mono)', background: 'var(--cth-paper-50)',
+                    border: '1px solid var(--cth-ink-300)', color: 'var(--cth-ink-900)'
+                  }}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
 

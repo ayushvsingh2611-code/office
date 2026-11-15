@@ -28,6 +28,7 @@
  */
 import { existsSync, mkdirSync, writeFileSync, readFileSync, readdirSync, copyFileSync } from 'node:fs';
 import { join, resolve, normalize } from 'node:path';
+import { readConfig } from './config';
 import {
   executeAgentLlmCallWithTools,
   getOmniRouteConfig
@@ -40,6 +41,8 @@ import {
 import { browserTestRunner, type RealBrowserTestReport } from './browserTestRunner';
 import { STRAW_HAT_CREW, findStrawHatAgent, type StrawHatAgentConfig } from '../shared/strawHatAgents';
 import type { TaskGroup, TaskPhase, MilestoneRecord, PandaHiveTaskState, CafeOrder } from '../shared/pandaHiveTypes';
+import { buildOnlineDataDirectives } from '../shared/publicApisCatalog';
+import { autoResolveSkillsDirective } from '../shared/skillResolver';
 
 export type { TaskGroup, TaskPhase, MilestoneRecord, PandaHiveTaskState, CafeOrder };
 
@@ -122,7 +125,17 @@ class PandaHiveOrchestrator {
    * Supports both object options `{ group, prompt, projectName }` and positional arguments.
    */
   public async runTask(
-    optionsOrGroup: { taskId?: string; group: TaskGroup; prompt: string; projectName?: string } | TaskGroup,
+    optionsOrGroup: {
+      taskId?: string;
+      group: TaskGroup;
+      prompt: string;
+      projectName?: string;
+      assignedWorkers?: {
+        architectId?: string;
+        builderId?: string;
+        verifierId?: string;
+      };
+    } | TaskGroup,
     maybePrompt?: string,
     maybeProjectName?: string
   ): Promise<PandaHiveTaskState> {
@@ -155,18 +168,19 @@ class PandaHiveOrchestrator {
     mkdirSync(workspaceDir, { recursive: true });
     workspacePermissionManager.authorizeWorkspace(workspaceDir);
 
-    // Resolve assigned agents based on group
-    const architect = group === 'group1'
-      ? findStrawHatAgent('sh-nami')!
-      : findStrawHatAgent('sh-robin')!;
+    // Resolve assigned agents (supports user-customized worker selection or defaults)
+    const customWorkers = (typeof optionsOrGroup === 'object' && optionsOrGroup.assignedWorkers)
+      ? optionsOrGroup.assignedWorkers
+      : undefined;
 
-    const builder = group === 'group1'
-      ? findStrawHatAgent('sh-zoro')!
-      : findStrawHatAgent('sh-shanks')!;
+    const architect = (customWorkers?.architectId && findStrawHatAgent(customWorkers.architectId))
+      || (group === 'group1' ? findStrawHatAgent('sh-nami')! : findStrawHatAgent('sh-robin')!);
 
-    const verifier = group === 'group1'
-      ? findStrawHatAgent('sh-sanji')!
-      : findStrawHatAgent('sh-hancock')!;
+    const builder = (customWorkers?.builderId && findStrawHatAgent(customWorkers.builderId))
+      || (group === 'group1' ? findStrawHatAgent('sh-zoro')! : findStrawHatAgent('sh-shanks')!);
+
+    const verifier = (customWorkers?.verifierId && findStrawHatAgent(customWorkers.verifierId))
+      || (group === 'group1' ? findStrawHatAgent('sh-sanji')! : findStrawHatAgent('sh-hancock')!);
 
     const mascots = group === 'group1'
       ? [findStrawHatAgent('sh-chopper')!, findStrawHatAgent('sh-brook')!]
@@ -242,10 +256,11 @@ class PandaHiveOrchestrator {
     const task = this.tasks.get(taskId);
     if (!task) return;
 
+    const cfg = readConfig();
     const omniCfg = getOmniRouteConfig();
-    const architectModel = omniCfg?.architectModel || 'agy/gemini-3.8-flash-high';
-    const builderModel = omniCfg?.builderModel || 'agy/gemini-3-flash';
-    const verifierModel = omniCfg?.verifierModel || 'agy/gemini-3.8-flash-medium';
+    const architectModel = cfg.agentModelAssignments?.['nami']?.model || cfg.agentModelAssignments?.['architect']?.model || omniCfg?.architectModel || 'agy/gemini-3.8-flash-high';
+    const builderModel = cfg.agentModelAssignments?.['zoro']?.model || cfg.agentModelAssignments?.['builder']?.model || omniCfg?.builderModel || 'agy/gemini-3-flash';
+    const verifierModel = cfg.agentModelAssignments?.['sanji']?.model || cfg.agentModelAssignments?.['verifier']?.model || omniCfg?.verifierModel || 'agy/gemini-3.8-flash-medium';
 
     // ── STAGE 1: ARCHITECT (Spec & DOM Contract) ───────────────────────────────
     task.status = 'ARCHITECTING';
@@ -342,6 +357,9 @@ Do not write the full code yourself; write the detailed contract so ${task.assig
       ? readFileSync(join(task.workspaceDir, 'spec.md'), 'utf8')
       : '';
 
+    const onlineDataDirectives = buildOnlineDataDirectives(task.prompt);
+    const skillsDirectives = autoResolveSkillsDirective(task.prompt);
+
     const builderPrompt = `You are ${task.assignedWorkers.builder.name}, Full-Stack Builder & Coder of Straw Hat Crew ${task.group.toUpperCase()}.
 You must implement the COMPLETE, working web application based on the Architect's specification:
 
@@ -364,6 +382,8 @@ CRITICAL BUILDER RULES:
    - app.js MUST define rich, realistic in-memory seed data (6 to 12 realistic items matching the authentic real-world platform: real titles, dates, descriptions, prices, tags, status badges, avatars, images).
    - The UI MUST render this demo data immediately on page load (DOMContentLoaded) so that when index.html is opened or double-clicked, the page is fully populated with content and NEVER blank/empty!
    - (Online Data Enrichment): If online internet connectivity is available, the app can optionally fetch or refresh online data in a try-catch block, but it must NEVER wipe out or blank the screen if offline. Local seed data is always the primary fallback.
+${onlineDataDirectives}
+${skillsDirectives}
 4. Write index.html with all container elements and the EXACT IDs from spec.md.
 5. Write style.css with modern, beautiful responsive styling (flexbox/grid, cards, vibrant brand colors, active hover/focus states).
 6. Write Dockerfile with a lightweight static web server (e.g. nginx:alpine).
@@ -453,6 +473,8 @@ MANDATORY REQUIREMENTS:
 1. High-fidelity replica: Define a rich in-memory array of at least 6-12 realistic items matching "${task.prompt}" (e.g. products, courses, cards, tasks, items with real names, prices/dates, tags, images, specs).
 2. Render these items into the main HTML containers from spec.md (e.g. grids, lists, carousels) immediately on DOMContentLoaded so the page is fully populated and NEVER blank!
 3. 100% WORKING FUNCTIONALITY (ZERO DEAD BUTTONS): Implement real, working event listeners for every single interactive control: search, category/filter tabs, sorting, add-to-cart/drawer, modal popups, favorites/wishlist toggles with badge counters, and toast feedback.
+${onlineDataDirectives}
+${skillsDirectives}
 Write the complete production-ready app.js now.`;
           await executeAgentLlmCallWithTools(
             enrichPrompt,

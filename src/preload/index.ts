@@ -329,6 +329,8 @@ export interface HarnessConfig {
   providerBaseUrls?: Partial<Record<AgentProvider, string>>;
   /** Per-CLI-provider default model slug, used to pre-fill the model picker. */
   providerDefaultModels?: Partial<Record<AgentProvider, string>>;
+  /** Per-agent custom AI provider & model mapping (BYOK fallback). */
+  agentModelAssignments?: Record<string, { provider: string; model: string }>;
 }
 
 export interface MemoryStatus {
@@ -1415,7 +1417,13 @@ const api = {
   }): Promise<{ ok: boolean; error?: string }> => ipcRenderer.invoke('update:simulate', opts),
 
   // ─── AgentHive 3-Worker / 2-Group Orchestrator & Usopp Café ───────────────
-  agentHiveRunTask: (payload: { group: 'group1' | 'group2'; prompt: string; projectName?: string; taskId?: string }): Promise<{ ok: boolean; task?: PandaHiveTaskState; error?: string }> =>
+  agentHiveRunTask: (payload: {
+    group: 'group1' | 'group2';
+    prompt: string;
+    projectName?: string;
+    taskId?: string;
+    assignedWorkers?: { architectId?: string; builderId?: string; verifierId?: string };
+  }): Promise<{ ok: boolean; task?: PandaHiveTaskState; error?: string }> =>
     ipcRenderer.invoke('agentHive:runTask', payload),
   agentHiveOpenFolder: (folderPath: string): Promise<{ ok: boolean; error?: string }> =>
     ipcRenderer.invoke('agentHive:openFolder', folderPath),

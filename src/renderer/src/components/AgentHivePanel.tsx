@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { PixelPanel } from './PixelPanel';
 import { PixelButton } from './PixelButton';
 import { Icon } from './Icon';
 import { useStore } from '@/store/store';
-import { STRAW_HAT_CREW } from '@shared/strawHatAgents';
+import { STRAW_HAT_CREW, type StrawHatAgentConfig } from '@shared/strawHatAgents';
 import type { PandaHiveTaskState as AgentHiveTaskState, CafeOrder, MilestoneRecord } from '@shared/pandaHiveTypes';
 
 export const CAFE_MENU = [
@@ -29,12 +29,28 @@ export function AgentHivePanel({ isOpen = true, onClose, isModal = true }: Agent
   const [projectNameB, setProjectNameB] = useState('');
   const [loadingA, setLoadingA] = useState(false);
   const [loadingB, setLoadingB] = useState(false);
+
+  // Customizable Squad Members for Task A (Group 1)
+  const [archA, setArchA] = useState('sh-nami');
+  const [builderA, setBuilderA] = useState('sh-zoro');
+  const [verifierA, setVerifierA] = useState('sh-sanji');
+
+  // Customizable Squad Members for Task B (Group 2)
+  const [archB, setArchB] = useState('sh-robin');
+  const [builderB, setBuilderB] = useState('sh-shanks');
+  const [verifierB, setVerifierB] = useState('sh-hancock');
+
   const [selectedCafeItem, setSelectedCafeItem] = useState(CAFE_MENU[0].name);
   const [selectedAgentId, setSelectedAgentId] = useState(STRAW_HAT_CREW[1].id); // Nami
   const [cafeFeed, setCafeFeed] = useState<CafeOrder[]>([]);
   const [activeTab, setActiveTab] = useState<'tasks' | 'cafe'>('tasks');
 
   const pushFeed = useStore((s) => s.pushFeed);
+
+  // Available worker pool (excluding Captain Luffy and Café Waiter Usopp)
+  const availableWorkers: StrawHatAgentConfig[] = useMemo(() => {
+    return STRAW_HAT_CREW.filter((a) => a.id !== 'sh-luffy' && a.id !== 'sh-usopp');
+  }, []);
 
   // Poll / subscribe to live task updates
   useEffect(() => {
@@ -79,11 +95,19 @@ export function AgentHivePanel({ isOpen = true, onClose, isModal = true }: Agent
     const res = await runTask({
       group: 'group1',
       prompt: promptA.trim(),
-      projectName: projectNameA.trim() || undefined
+      projectName: projectNameA.trim() || undefined,
+      assignedWorkers: {
+        architectId: archA,
+        builderId: builderA,
+        verifierId: verifierA
+      }
     });
     if (res.ok && res.task) {
       setTaskA(res.task);
-      pushFeed('sh-luffy', `Luffy assigned Task A to Group 1 (Nami, Zoro, Sanji): "${promptA.trim()}"`);
+      const aName = availableWorkers.find((w: StrawHatAgentConfig) => w.id === archA)?.name.split(' ')[0] || 'Nami';
+      const bName = availableWorkers.find((w: StrawHatAgentConfig) => w.id === builderA)?.name.split(' ')[0] || 'Zoro';
+      const vName = availableWorkers.find((w: StrawHatAgentConfig) => w.id === verifierA)?.name.split(' ')[0] || 'Sanji';
+      pushFeed('sh-luffy', `Luffy assigned Task A to Group 1 (${aName}, ${bName}, ${vName}): "${promptA.trim()}"`);
     } else {
       setLoadingA(false);
       alert(`Failed to launch Task A: ${res.error || 'Unknown error'}`);
@@ -97,11 +121,19 @@ export function AgentHivePanel({ isOpen = true, onClose, isModal = true }: Agent
     const res = await runTask({
       group: 'group2',
       prompt: promptB.trim(),
-      projectName: projectNameB.trim() || undefined
+      projectName: projectNameB.trim() || undefined,
+      assignedWorkers: {
+        architectId: archB,
+        builderId: builderB,
+        verifierId: verifierB
+      }
     });
     if (res.ok && res.task) {
       setTaskB(res.task);
-      pushFeed('sh-luffy', `Luffy assigned Task B to Group 2 (Robin, Shanks, Hancock): "${promptB.trim()}"`);
+      const aName = availableWorkers.find((w: StrawHatAgentConfig) => w.id === archB)?.name.split(' ')[0] || 'Robin';
+      const bName = availableWorkers.find((w: StrawHatAgentConfig) => w.id === builderB)?.name.split(' ')[0] || 'Shanks';
+      const vName = availableWorkers.find((w: StrawHatAgentConfig) => w.id === verifierB)?.name.split(' ')[0] || 'Hancock';
+      pushFeed('sh-luffy', `Luffy assigned Task B to Group 2 (${aName}, ${bName}, ${vName}): "${promptB.trim()}"`);
     } else {
       setLoadingB(false);
       alert(`Failed to launch Task B: ${res.error || 'Unknown error'}`);
@@ -216,9 +248,42 @@ export function AgentHivePanel({ isOpen = true, onClose, isModal = true }: Agent
             style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: 14 }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 11 }}>
-              <span>
-                <strong>Active Workers:</strong> Nami (Arch) · Zoro (Builder) · Sanji (QA)
-              </span>
+              <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 10, color: '#00f0ff', fontWeight: 'bold', textTransform: 'uppercase' }}>Squad:</span>
+                <label style={{ display: 'inline-flex', alignItems: 'center', gap: 3, color: '#cbd5e1' }}>
+                  <span style={{ fontSize: 10, opacity: 0.8 }}>Arch:</span>
+                  <select
+                    value={archA}
+                    onChange={(e) => setArchA(e.target.value)}
+                    disabled={loadingA || taskA?.status === 'BUILDING' || taskA?.status === 'ARCHITECTING'}
+                    style={{ background: '#090e1a', color: '#00f0ff', border: '1px solid rgba(0,240,255,0.35)', padding: '2px 5px', borderRadius: 3, fontSize: 11 }}
+                  >
+                    {availableWorkers.map((w: StrawHatAgentConfig) => <option key={w.id} value={w.id}>{w.name.split(' ')[0]}</option>)}
+                  </select>
+                </label>
+                <label style={{ display: 'inline-flex', alignItems: 'center', gap: 3, color: '#cbd5e1' }}>
+                  <span style={{ fontSize: 10, opacity: 0.8 }}>Builder:</span>
+                  <select
+                    value={builderA}
+                    onChange={(e) => setBuilderA(e.target.value)}
+                    disabled={loadingA || taskA?.status === 'BUILDING' || taskA?.status === 'ARCHITECTING'}
+                    style={{ background: '#090e1a', color: '#00f0ff', border: '1px solid rgba(0,240,255,0.35)', padding: '2px 5px', borderRadius: 3, fontSize: 11 }}
+                  >
+                    {availableWorkers.map((w: StrawHatAgentConfig) => <option key={w.id} value={w.id}>{w.name.split(' ')[0]}</option>)}
+                  </select>
+                </label>
+                <label style={{ display: 'inline-flex', alignItems: 'center', gap: 3, color: '#cbd5e1' }}>
+                  <span style={{ fontSize: 10, opacity: 0.8 }}>QA:</span>
+                  <select
+                    value={verifierA}
+                    onChange={(e) => setVerifierA(e.target.value)}
+                    disabled={loadingA || taskA?.status === 'BUILDING' || taskA?.status === 'ARCHITECTING'}
+                    style={{ background: '#090e1a', color: '#00f0ff', border: '1px solid rgba(0,240,255,0.35)', padding: '2px 5px', borderRadius: 3, fontSize: 11 }}
+                  >
+                    {availableWorkers.map((w: StrawHatAgentConfig) => <option key={w.id} value={w.id}>{w.name.split(' ')[0]}</option>)}
+                  </select>
+                </label>
+              </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 {taskA?.generatedFiles?.some((f) => f.includes('index.html')) && (
                   <PixelButton
@@ -398,9 +463,42 @@ export function AgentHivePanel({ isOpen = true, onClose, isModal = true }: Agent
             style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: 14 }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 11 }}>
-              <span>
-                <strong>Active Workers:</strong> Robin (Arch) · Shanks (Builder) · Hancock (QA)
-              </span>
+              <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 10, color: '#00f0ff', fontWeight: 'bold', textTransform: 'uppercase' }}>Squad:</span>
+                <label style={{ display: 'inline-flex', alignItems: 'center', gap: 3, color: '#cbd5e1' }}>
+                  <span style={{ fontSize: 10, opacity: 0.8 }}>Arch:</span>
+                  <select
+                    value={archB}
+                    onChange={(e) => setArchB(e.target.value)}
+                    disabled={loadingB || taskB?.status === 'BUILDING' || taskB?.status === 'ARCHITECTING'}
+                    style={{ background: '#090e1a', color: '#00f0ff', border: '1px solid rgba(0,240,255,0.35)', padding: '2px 5px', borderRadius: 3, fontSize: 11 }}
+                  >
+                    {availableWorkers.map((w: StrawHatAgentConfig) => <option key={w.id} value={w.id}>{w.name.split(' ')[0]}</option>)}
+                  </select>
+                </label>
+                <label style={{ display: 'inline-flex', alignItems: 'center', gap: 3, color: '#cbd5e1' }}>
+                  <span style={{ fontSize: 10, opacity: 0.8 }}>Builder:</span>
+                  <select
+                    value={builderB}
+                    onChange={(e) => setBuilderB(e.target.value)}
+                    disabled={loadingB || taskB?.status === 'BUILDING' || taskB?.status === 'ARCHITECTING'}
+                    style={{ background: '#090e1a', color: '#00f0ff', border: '1px solid rgba(0,240,255,0.35)', padding: '2px 5px', borderRadius: 3, fontSize: 11 }}
+                  >
+                    {availableWorkers.map((w: StrawHatAgentConfig) => <option key={w.id} value={w.id}>{w.name.split(' ')[0]}</option>)}
+                  </select>
+                </label>
+                <label style={{ display: 'inline-flex', alignItems: 'center', gap: 3, color: '#cbd5e1' }}>
+                  <span style={{ fontSize: 10, opacity: 0.8 }}>QA:</span>
+                  <select
+                    value={verifierB}
+                    onChange={(e) => setVerifierB(e.target.value)}
+                    disabled={loadingB || taskB?.status === 'BUILDING' || taskB?.status === 'ARCHITECTING'}
+                    style={{ background: '#090e1a', color: '#00f0ff', border: '1px solid rgba(0,240,255,0.35)', padding: '2px 5px', borderRadius: 3, fontSize: 11 }}
+                  >
+                    {availableWorkers.map((w: StrawHatAgentConfig) => <option key={w.id} value={w.id}>{w.name.split(' ')[0]}</option>)}
+                  </select>
+                </label>
+              </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 {taskB?.generatedFiles?.some((f) => f.includes('index.html')) && (
                   <PixelButton

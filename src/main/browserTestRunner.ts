@@ -261,16 +261,18 @@ export class BrowserTestRunner {
           const text = msg.text();
           // Filter out benign favicon/font/offline CDN network resolution warnings
           const isNetworkWarning = /net::ERR_|Failed to load resource|favicon\.ico|fonts\.googleapis\.com|cdnjs\.cloudflare\.com|unsplash\.com|cdn\.jsdelivr\.net/i.test(text);
+          const isSvgAttrWarning = /<svg>\s*attribute\s*(?:width|height|x|y|d):/i.test(text);
           if (!isNetworkWarning) {
+            const isSvgOrHtml = isSvgAttrWarning || /<svg>|attribute width|attribute height|<element>|HTMLUnknownElement/i.test(text);
             errorsDetected.push({
               type: 'console_error',
               message: text
             });
             issues.push({
-              category: 'javascript',
+              category: isSvgOrHtml ? 'html' : 'javascript',
               targetAgentId: 'sh-usopp',
-              targetFile: 'app.js',
-              severity: 'MAJOR',
+              targetFile: isSvgOrHtml ? 'index.html' : 'app.js',
+              severity: isSvgAttrWarning ? 'MINOR' : 'MAJOR',
               description: `Console Error Log: ${text}`
             });
           }

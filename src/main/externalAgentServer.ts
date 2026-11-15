@@ -25,6 +25,8 @@ import { STRAW_HAT_CREW, findStrawHatAgent } from '../shared/strawHatAgents';
 import { pandaHiveOrchestrator } from './pandaHiveOrchestrator';
 import { callUnifiedLlm, callGeminiChat, getGeminiApiKey } from './geminiClient';
 import { skillsEngine } from './skillsEngine';
+import { buildOnlineDataDirectives } from '../shared/publicApisCatalog';
+import { autoResolveSkillsDirective } from '../shared/skillResolver';
 
 interface SprintDeliverable {
   name: string;
@@ -1130,6 +1132,8 @@ Call WriteFile("style.css", "/* style.css */...") directly. Do NOT output a conv
         // Step 4C: Usopp reads Franky's HTML and writes complete application logic
         // ─────────────────────────────────────────────────────────────────────
         const frankySavedHtml = existsSync(indexPath) ? agentTools.readFile(usoppCtx, 'index.html') : '';
+        const onlineDataDirectives = buildOnlineDataDirectives(p);
+        const skillsDirectives = autoResolveSkillsDirective(p);
         const usoppPrompt = `You are Usopp, Lead Backend & Application Logic Engineer.
 Write the complete, 100% dynamic, state-driven JavaScript application logic in app.js for: "${p}".
 EXPECTED DELIVERABLE: 'app.js'
@@ -1150,6 +1154,8 @@ DIRECTIVES:
      * Game reset button (#reset-btn / Reset / New Game): restores initial 32 pieces and resets turn to White.
 4. Wrap everything in document.addEventListener('DOMContentLoaded', () => { ... }).
 5. Reactive State & LocalStorage: Initialize realistic seed data, maintain reactive state, and synchronize synchronously to LocalStorage.
+${onlineDataDirectives}
+${skillsDirectives}
 6. Form Handling: Intercept form submissions (e.preventDefault()), validate fields, append new records into state, and dynamically render them to the DOM.
 7. Navigation & Views: Wire tabs, view switchers, and filter pills to toggle content visibility.
 8. Real-Time Search: Filter elements on typing without page reload.
@@ -1214,6 +1220,7 @@ ${frankySavedHtml.slice(0, 1500)}
 REQUIREMENTS:
 1. Wrap in document.addEventListener('DOMContentLoaded', () => { ... }).
 2. Implement reactive state, LocalStorage persistence, form submit handlers (e.preventDefault()), live search filtering, modal open/close toggles, and phToast calls.
+${onlineDataDirectives}
 3. Call WriteFile tool directly with filePath: "app.js" and the complete JavaScript code.
 DO NOT provide an engineering summary or markdown. The executable JavaScript file must be created on disk.`;
 

@@ -11,6 +11,8 @@
  */
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { getSecret } from './integrations';
+import { readConfig } from './config';
 import {
   agentTools,
   type ToolExecutionContext,
@@ -280,7 +282,7 @@ export const getGroqApiKey = getGrokApiKey;
 
 export interface LlmExecutionResult {
   text: string;
-  provider: 'omniroute' | 'gemini' | 'groq' | 'grok';
+  provider: 'omniroute' | 'gemini' | 'groq' | 'grok' | 'openrouter' | 'openai' | 'custom';
   model: string;
   keyIndex?: number;
   durationMs: number;
@@ -360,6 +362,56 @@ export async function callOmniRouteChatDetails(
     }
   }
 
+  return null;
+}
+
+/**
+ * Universal OpenAI-compatible Chat Completions caller (handles OpenRouter, OpenAI, Groq, Ollama, vLLM).
+ */
+export async function callOpenAiCompatibleChatDetails(
+  baseUrl: string,
+  apiKey: string,
+  model: string,
+  prompt: string,
+  systemInstruction?: string,
+  timeoutMs = 120000
+): Promise<Omit<LlmExecutionResult, 'durationMs'> | null> {
+  const endpoint = `${baseUrl.replace(/\/+$/, '')}/chat/completions`;
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      signal: AbortSignal.timeout(timeoutMs),
+      body: JSON.stringify({
+        model,
+        messages: [
+          ...(systemInstruction ? [{ role: 'system', content: systemInstruction }] : []),
+          { role: 'user', content: prompt }
+        ],
+        temperature: 0.7,
+        max_tokens: 8192
+      })
+    });
+    if (res.ok) {
+      const data = (await res.json()) as any;
+      const text = data?.choices?.[0]?.message?.content;
+      if (text && text.trim().length > 0) {
+        return {
+          text: text.trim(),
+          provider: 'omniroute', // keep compatible signature
+          model
+        };
+      }
+    } else {
+      const err = await res.text().catch(() => '');
+      console.warn(`[BYOK Endpoint] ${endpoint} returned HTTP ${res.status}: ${err.slice(0, 150)}`);
+    }
+  } catch (err: any) {
+    console.warn(`[BYOK Endpoint] Error calling ${endpoint} (${model}):`, err?.message || err);
+  }
   return null;
 }
 
@@ -632,17 +684,77 @@ export async function executeAgentLlmCall(
   const minChars = options?.minChars ?? 50;
   const start = Date.now();
 
-  // Exclusively route through OmniRoute Antigravity Model Pool & Load Balancer
-  const omniRes = await callOmniRouteChatDetails(prompt, systemInstruction, options?.preferredModel, timeoutMs);
-  if (omniRes && omniRes.text.length >= minChars) {
-    return {
-      ...omniRes,
-      durationMs: Date.now() - start,
-      fallbackOccurred: false
-    };
+  // 1. PRIMARY: OmniRoute Antigravity Model Pool & Load Balancer (Presentation active)
+  const omniCfg = getOmniRouteConfig();
+  if (omniCfg) {
+    try {
+      const omniRes = await callOmniRouteChatDetails(prompt, systemInstruction, options?.preferredModel, timeoutMs);
+      if (omniRes && omniRes.text.length >= minChars) {
+        return {
+          ...omniRes,
+          durationMs: Date.now() - start,
+          fallbackOccurred: false
+        };
+      }
+    } catch { /* proceed to BYOK fallback */ }
   }
 
-  throw new Error(`OmniRoute Antigravity Model Pool failed to generate output (> ${minChars} chars)`);
+  // 2. FALLBACK (Post-presentation / BYOK Settings):
+  const cfg = readConfig();
+  const assigned = (options as any)?.agentId ? cfg.agentModelAssignments?.[(options as any).agentId] : undefined;
+
+  // OpenRouter key
+  const openRouterKey = getSecret('apikey:openrouter') || process.env.OPENROUTER_API_KEY;
+  if (openRouterKey && (!assigned || assigned.provider === 'openrouter')) {
+    const model = assigned?.model || options?.preferredModel || 'anthropic/claude-3.5-sonnet';
+    const res = await callOpenAiCompatibleChatDetails('https://openrouter.ai/api/v1', openRouterKey, model, prompt, systemInstruction, timeoutMs);
+    if (res && res.text.length >= minChars) {
+      return { ...res, provider: 'openrouter', durationMs: Date.now() - start, fallbackOccurred: true };
+    }
+  }
+
+  // Google Gemini key
+  const geminiKey = getSecret('apikey:google') || process.env.GEMINI_API_KEY;
+  if (geminiKey && (!assigned || assigned.provider === 'google')) {
+    try {
+      const res = await callGeminiChatDetails(prompt, systemInstruction, assigned?.model || options?.preferredModel, timeoutMs);
+      if (res && res.text.length >= minChars) {
+        return { ...res, durationMs: Date.now() - start, fallbackOccurred: true };
+      }
+    } catch { /* proceed */ }
+  }
+
+  // Groq key
+  const groqKey = getSecret('apikey:groq') || process.env.GROQ_API_KEY;
+  if (groqKey && (!assigned || assigned.provider === 'groq')) {
+    try {
+      const res = await callGroqChatDetails(prompt, systemInstruction, assigned?.model || options?.preferredModel, timeoutMs);
+      if (res && res.text.length >= minChars) {
+        return { ...res, durationMs: Date.now() - start, fallbackOccurred: true };
+      }
+    } catch { /* proceed */ }
+  }
+
+  // OpenAI key
+  const openAiKey = getSecret('apikey:openai') || process.env.OPENAI_API_KEY;
+  if (openAiKey && (!assigned || assigned.provider === 'openai')) {
+    const res = await callOpenAiCompatibleChatDetails('https://api.openai.com/v1', openAiKey, assigned?.model || 'gpt-4o', prompt, systemInstruction, timeoutMs);
+    if (res && res.text.length >= minChars) {
+      return { ...res, provider: 'openai', durationMs: Date.now() - start, fallbackOccurred: true };
+    }
+  }
+
+  // Local / Custom base URL (Crush/OpenCode endpoint)
+  const customUrl = cfg.providerBaseUrls?.crush || cfg.providerBaseUrls?.opencode;
+  if (customUrl) {
+    const customModel = cfg.providerDefaultModels?.crush || cfg.providerDefaultModels?.opencode || 'local-model';
+    const res = await callOpenAiCompatibleChatDetails(customUrl, openAiKey || openRouterKey || 'no-key', customModel, prompt, systemInstruction, timeoutMs);
+    if (res && res.text.length >= minChars) {
+      return { ...res, provider: 'custom', durationMs: Date.now() - start, fallbackOccurred: true };
+    }
+  }
+
+  throw new Error(`AI Model execution failed (> ${minChars} chars). Ensure OmniRoute is running or configure API Keys in Settings -> Agents & Models.`);
 }
 
 // ─── Phase 4E: Advanced Tool-Calling Integration (Gemini & Groq) ──────────────
@@ -1215,10 +1327,37 @@ export async function executeAgentLlmCallWithTools(
   // Helper for executing OmniRoute tool calling loop with dynamic model pool failover
   async function runOmniRouteToolLoop(): Promise<Omit<LlmExecutionResult, 'durationMs'>> {
     const config = getOmniRouteConfig();
-    if (!config) throw new Error('No OmniRoute configuration found');
+    let endpoint = config ? `${config.baseUrl}/chat/completions` : '';
+    let apiKey = config ? config.apiKey : '';
+    let candidateModels = config ? getOmniCandidateModels(options?.preferredModel || config.builderModel) : [];
 
-    const endpoint = `${config.baseUrl}/chat/completions`;
-    const candidateModels = getOmniCandidateModels(options?.preferredModel || config.builderModel);
+    // Fallback if OmniRoute config not available (post-presentation / BYOK)
+    if (!config || candidateModels.length === 0) {
+      const cfg = readConfig();
+      const openRouterKey = getSecret('apikey:openrouter') || process.env.OPENROUTER_API_KEY;
+      const openAiKey = getSecret('apikey:openai') || process.env.OPENAI_API_KEY;
+      const groqKey = getSecret('apikey:groq') || process.env.GROQ_API_KEY;
+      if (openRouterKey) {
+        endpoint = 'https://openrouter.ai/api/v1/chat/completions';
+        apiKey = openRouterKey;
+        candidateModels = [options?.preferredModel || 'anthropic/claude-3.5-sonnet', 'openai/gpt-4o', 'deepseek/deepseek-r1'];
+      } else if (openAiKey) {
+        endpoint = 'https://api.openai.com/v1/chat/completions';
+        apiKey = openAiKey;
+        candidateModels = [options?.preferredModel || 'gpt-4o', 'gpt-4o-mini'];
+      } else if (groqKey) {
+        endpoint = 'https://api.groq.com/openai/v1/chat/completions';
+        apiKey = groqKey;
+        candidateModels = ['llama-3.3-70b-versatile', 'llama-3.1-8b-instant'];
+      } else if (cfg.providerBaseUrls?.crush || cfg.providerBaseUrls?.opencode) {
+        const u = cfg.providerBaseUrls?.crush || cfg.providerBaseUrls?.opencode;
+        endpoint = `${u!.replace(/\/+$/, '')}/chat/completions`;
+        apiKey = openAiKey || openRouterKey || 'no-key';
+        candidateModels = [cfg.providerDefaultModels?.crush || cfg.providerDefaultModels?.opencode || 'local-model'];
+      } else {
+        throw new Error('No OmniRoute or BYOK API Key configured for tool execution');
+      }
+    }
     let activeModelIndex = 0;
     const openaiTools = formatToolsForGroq(allowedTools);
 
@@ -1269,7 +1408,7 @@ export async function executeAgentLlmCallWithTools(
           const res = await fetch(endpoint, {
             method: 'POST',
             headers: {
-              'Authorization': `Bearer ${config.apiKey}`,
+              'Authorization': `Bearer ${apiKey}`,
               'Content-Type': 'application/json'
             },
             signal: AbortSignal.timeout(timeoutMs),
@@ -1414,7 +1553,7 @@ export async function executeAgentLlmCallWithTools(
           const finalRes = await fetch(endpoint, {
             method: 'POST',
             headers: {
-              'Authorization': `Bearer ${config.apiKey}`,
+              'Authorization': `Bearer ${apiKey}`,
               'Content-Type': 'application/json'
             },
             signal: AbortSignal.timeout(timeoutMs),

@@ -281,7 +281,10 @@ export function OfficeFloor() {
       const world = new Container();
       app.stage.addChild(world);
 
-      const mapRenderer = new TiledMapRenderer(resolveThemeMap(theme), tilesetTextures);
+      const layerTints: Record<string, number> = {};
+      if (theme.palette.floorTint !== undefined) layerTints['floor'] = theme.palette.floorTint;
+      if (theme.palette.wallsTint !== undefined) layerTints['walls'] = theme.palette.wallsTint;
+      const mapRenderer = new TiledMapRenderer(resolveThemeMap(theme), tilesetTextures, layerTints);
       world.addChild(mapRenderer.getContainer());
       const charLayer = mapRenderer.getCharacterContainer();
       const tileCount = mapRenderer.getContainer().children.reduce(
@@ -292,6 +295,19 @@ export function OfficeFloor() {
       camera.setMapSize(mapRenderer.width * mapRenderer.tileSize, mapRenderer.height * mapRenderer.tileSize);
       camera.setViewSize(app.screen.width, app.screen.height);
       camera.fitToScreen();
+
+      // Pre-instantiate DeskScreen for every desk monitor across the office so
+      // every desktop has a modern, sleek screen with live IDE / standby modes.
+      const allDeskScreens = new Map<string, DeskScreen>();
+      for (let y = 0; y < mapRenderer.height; y++) {
+        for (let x = 0; x < mapRenderer.width; x++) {
+          if (mapRenderer.gidAt('furniture-above', x, y) === theme.monitor.offTopLeftGid) {
+            const screen = new DeskScreen(mapRenderer, { x, y }, theme.monitor);
+            charLayer.addChild(screen.container);
+            allDeskScreens.set(`${x},${y}`, screen);
+          }
+        }
+      }
 
       // ─── The boss's wall calendar → TRIGGERS ───────────────────────────────
       // A little tear-off month page hangs on the CEO office wall. Clicking it
@@ -1174,7 +1190,6 @@ export function OfficeFloor() {
           // The monitor lights up whenever its owner is in the chair.
           if (rt.screen) {
             rt.screen.setOn(rt.character.isSittingAtDesk());
-            rt.screen.update(dt);
           }
         }
       };
@@ -1576,8 +1591,11 @@ export function OfficeFloor() {
         // where an agent actually carried one).
         if (mapRenderer.gidAt('furniture-above', seatTile.x, seatTile.y - 2) === theme.monitor.offTopLeftGid) {
           const top = { x: seatTile.x, y: seatTile.y - 2 };
-          rt.screen = new DeskScreen(mapRenderer, top, theme.monitor);
-          charLayer.addChild(rt.screen.container);
+          rt.screen = allDeskScreens.get(`${top.x},${top.y}`) ?? new DeskScreen(mapRenderer, top, theme.monitor);
+          if (!allDeskScreens.has(`${top.x},${top.y}`)) {
+            charLayer.addChild(rt.screen.container);
+            allDeskScreens.set(`${top.x},${top.y}`, rt.screen);
+          }
           const ts2 = mapRenderer.tileSize;
           character.setCupSpot({ x: top.x * ts2 + 18, y: top.y * ts2 + 23 });
         }
@@ -1880,6 +1898,9 @@ export function OfficeFloor() {
         for (const rt of runtimes.values()) {
           rt.character.setBubbleZoom(zoom);
           rt.character.update(dt);
+        }
+        for (const screen of allDeskScreens.values()) {
+          screen.update(dt);
         }
         updateCafeteria(dt);
         updateCoffeeRuns(dt);

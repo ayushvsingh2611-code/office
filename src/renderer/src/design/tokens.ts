@@ -3,44 +3,44 @@
 
 export const colors = {
   cream: {
-    50: 0xfffdf5,
-    100: 0xfff8e7,
-    200: 0xf4e9c7,
-    300: 0xe8d9a0
+    50: 0x080c14,
+    100: 0x0d1527,
+    200: 0x141e36,
+    300: 0x1e2c4d
   },
   paper: {
-    100: 0xfcfaf0,
-    200: 0xf0ead2
+    100: 0x0f192e,
+    200: 0x17233e
   },
   ink: {
-    900: 0x1a1320,
-    700: 0x3d2e4a,
-    500: 0x6b5878,
-    300: 0xa899b5,
-    100: 0xd9cfe0
+    900: 0x00f0ff,
+    700: 0xe2e8f0,
+    500: 0x8fa3c7,
+    300: 0x4b638b,
+    100: 0x1e2d4e
   },
-  // v0.3.4 recalibration: same hues, professional saturation (mirrors tokens.css)
+  // Cyberpunk Neon palette (mirrors tokens.css)
   accent: {
-    coral: 0xd96a62,
-    coralLight: 0xf3d3cd,
-    mint: 0x5ca97a,
-    mintLight: 0xd2e7da,
-    sky: 0x4f9faf,
-    skyLight: 0xcfe5e9,
-    lemon: 0xdcab3c,
-    lemonLight: 0xf3e4bc,
-    lilac: 0x9482d3,
-    lilacLight: 0xe0daf2,
-    peach: 0xd99168,
-    peachLight: 0xf3daca
+    coral: 0xff0055,
+    coralLight: 0x3b0817,
+    mint: 0x00ff9d,
+    mintLight: 0x063622,
+    sky: 0x00f0ff,
+    skyLight: 0x053447,
+    lemon: 0xffe600,
+    lemonLight: 0x383204,
+    lilac: 0xbd00ff,
+    lilacLight: 0x2c0740,
+    peach: 0xff7700,
+    peachLight: 0x3d1b04
   },
   status: {
-    idle: 0xa199ab,
-    thinking: 0x4f9faf,
-    working: 0xdcab3c,
-    blocked: 0xd96a62,
-    success: 0x5ca97a,
-    ghost: 0xd9d3de
+    idle: 0x64748b,
+    thinking: 0x00f0ff,
+    working: 0xffe600,
+    blocked: 0xff0055,
+    success: 0x00ff9d,
+    ghost: 0x475569
   },
   world: {
     grassLight: 0xd4eab0,

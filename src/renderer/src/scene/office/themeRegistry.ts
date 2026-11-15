@@ -106,6 +106,8 @@ export interface AnchorConfig {
  *  kanban note colors keyed by task status. */
 export interface PaletteConfig {
   background: number;
+  floorTint?: number;
+  wallsTint?: number;
   noteColors: Record<string, number>;
 }
 
@@ -206,8 +208,10 @@ export const OFFICE_THEME: ThemeConfig = {
     ],
   },
   palette: {
-    background: colors.ink[900],
-    noteColors: { todo: 0xf2df8a, doing: 0x9ecbf0, blocked: 0xf0a3a3, done: 0xa8e0b0 },
+    background: 0x080c14, // Cyberpunk deep obsidian void
+    floorTint: 0x5e7290,  // Modern cool slate floor (balanced, crisp & clear)
+    wallsTint: 0x7589a2,  // Balanced metallic office walls
+    noteColors: { todo: 0xffe600, doing: 0x00f0ff, blocked: 0xff0055, done: 0x00ff9d },
   },
   cast: {
     byName: CAST_BY_NAME as Record<string, CastMember>,

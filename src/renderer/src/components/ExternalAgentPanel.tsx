@@ -314,8 +314,9 @@ await fetch(eventUrl, {
       <div
         style={{
           padding: '10px 12px',
-          background: isStrawHat ? 'var(--cth-bamboo-50, #f0f7f2)' : lyzrConfig ? 'var(--cth-mint-light, #e8f9ee)' : 'var(--cth-bamboo-50, #f0f7f2)',
-          boxShadow: `inset 0 0 0 1px ${isStrawHat ? '#3b82f6' : lyzrConfig ? 'var(--cth-mint, #22c55e)' : 'var(--cth-bamboo-600, #225a38)'}`,
+          background: 'rgba(12, 19, 36, 0.95)',
+          boxShadow: 'inset 0 0 0 1px rgba(0, 240, 255, 0.25)',
+          borderRadius: 4,
           display: 'flex',
           flexDirection: 'column',
           gap: 6
@@ -328,22 +329,25 @@ await fetch(eventUrl, {
                 width: 9,
                 height: 9,
                 borderRadius: '50%',
-                background: '#22c55e',
+                background: '#00f0ff',
                 display: 'inline-block',
-                boxShadow: '0 0 6px #22c55e'
+                boxShadow: '0 0 8px #00f0ff'
               }}
             />
-            <strong style={{ fontSize: 13, color: 'var(--cth-ink-900)' }}>
+            <strong style={{ fontSize: 13, color: '#00f0ff', letterSpacing: '0.3px' }}>
               {isStrawHat ? `Straw Hat Crew · ${agent.name}` : lyzrConfig ? `Lyzr AI Studio · ${lyzrConfig.name}` : 'External Agent API Connected'}
             </strong>
           </div>
           <span
             style={{
               fontSize: 10,
-              padding: '2px 6px',
-              background: 'var(--cth-ink-900)',
-              color: '#fff',
-              fontFamily: 'var(--cth-font-mono)'
+              padding: '2px 8px',
+              background: 'rgba(0, 240, 255, 0.15)',
+              color: '#00f0ff',
+              borderRadius: 3,
+              boxShadow: 'inset 0 0 0 1px rgba(0, 240, 255, 0.35)',
+              fontFamily: 'var(--cth-font-mono)',
+              fontWeight: 600
             }}
           >
             {isStrawHat
@@ -354,7 +358,7 @@ await fetch(eventUrl, {
           </span>
         </div>
 
-        <div style={{ fontSize: 12, color: 'var(--cth-ink-800)', lineHeight: '16px' }}>
+        <div style={{ fontSize: 12, color: '#cbd5e1', lineHeight: '18px' }}>
           {isStrawHat
             ? `${agent.description || 'Specialist AI Agent'}`
             : lyzrConfig
@@ -454,12 +458,12 @@ await fetch(eventUrl, {
                     alignSelf: isUser ? 'flex-end' : 'flex-start',
                     maxWidth: '88%',
                     background: isError
-                      ? 'var(--cth-coral-light, #fee2e2)'
+                      ? 'rgba(239, 68, 68, 0.2)'
                       : isUser
-                      ? 'var(--cth-cream-300, #eedfc5)'
-                      : 'var(--cth-paper-100, #ffffff)',
-                    color: 'var(--cth-ink-900)',
-                    boxShadow: 'inset 0 0 0 1px var(--cth-ink-100)',
+                      ? 'rgba(0, 240, 255, 0.18)'
+                      : '#090e1a',
+                    color: isError ? '#fca5a5' : isUser ? '#00f0ff' : '#f8fafc',
+                    boxShadow: `inset 0 0 0 1px ${isError ? 'rgba(239, 68, 68, 0.4)' : isUser ? 'rgba(0, 240, 255, 0.35)' : 'rgba(255, 255, 255, 0.1)'}`,
                     fontFamily: isUser ? 'var(--cth-font-ui)' : 'var(--cth-font-mono)',
                     whiteSpace: 'pre-wrap',
                     wordBreak: 'break-word'
@@ -517,14 +521,15 @@ await fetch(eventUrl, {
       <div
         style={{
           padding: 10,
-          background: 'var(--cth-cream-100)',
-          boxShadow: 'inset 0 0 0 1px var(--cth-ink-300)',
+          background: 'rgba(12, 19, 36, 0.95)',
+          boxShadow: 'inset 0 0 0 1px rgba(0, 240, 255, 0.2)',
+          borderRadius: 4,
           display: 'flex',
           flexDirection: 'column',
           gap: 6
         }}
       >
-        <strong style={{ fontSize: 12, color: 'var(--cth-ink-900)' }}>
+        <strong style={{ fontSize: 12, color: '#00f0ff' }}>
           {`Ask ${agent.name} (${agent.description?.slice(0, 30) || 'Specialist'})`}
         </strong>
         <div style={{ display: 'flex', gap: 6 }}>
@@ -538,10 +543,11 @@ await fetch(eventUrl, {
               flex: 1,
               padding: '6px 8px',
               fontSize: 13,
-              background: 'var(--cth-paper-100)',
+              background: '#070b14',
               border: 'none',
-              boxShadow: 'inset 0 0 0 1px var(--cth-ink-100)',
-              color: 'var(--cth-ink-900)',
+              boxShadow: 'inset 0 0 0 1px rgba(0, 240, 255, 0.3)',
+              color: '#f8fafc',
+              borderRadius: 3,
               outline: 'none'
             }}
           />
@@ -555,9 +561,10 @@ await fetch(eventUrl, {
             style={{
               padding: '4px 8px',
               fontSize: 12,
-              background: dispatchStatus.type === 'success' ? 'var(--cth-mint-light)' : 'var(--cth-cream-200)',
-              color: 'var(--cth-ink-900)',
-              boxShadow: 'inset 0 0 0 1px var(--cth-ink-300)'
+              background: dispatchStatus.type === 'success' ? 'rgba(0, 240, 255, 0.15)' : 'rgba(239, 68, 68, 0.2)',
+              color: dispatchStatus.type === 'success' ? '#00f0ff' : '#f87171',
+              boxShadow: `inset 0 0 0 1px ${dispatchStatus.type === 'success' ? 'rgba(0, 240, 255, 0.3)' : 'rgba(239, 68, 68, 0.4)'}`,
+              borderRadius: 3
             }}
           >
             {dispatchStatus.msg}
@@ -569,16 +576,17 @@ await fetch(eventUrl, {
       <div
         style={{
           padding: 10,
-          background: 'var(--cth-cream-100)',
-          boxShadow: 'inset 0 0 0 1px var(--cth-ink-300)',
+          background: 'rgba(12, 19, 36, 0.95)',
+          boxShadow: 'inset 0 0 0 1px rgba(0, 240, 255, 0.2)',
+          borderRadius: 4,
           display: 'flex',
           flexDirection: 'column',
           gap: 8
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <strong style={{ fontSize: 12, color: 'var(--cth-ink-900)' }}>Avatar Actions (Office Floor Animations)</strong>
-          <span style={{ fontSize: 11, color: 'var(--cth-ink-500)' }}>Test movement &amp; tools</span>
+          <strong style={{ fontSize: 12, color: '#00f0ff' }}>Avatar Actions (Office Floor Animations)</strong>
+          <span style={{ fontSize: 11, color: '#94a3b8' }}>Test movement &amp; tools</span>
         </div>
 
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
@@ -659,15 +667,16 @@ await fetch(eventUrl, {
       <div
         style={{
           padding: 10,
-          background: 'var(--cth-paper-200)',
-          boxShadow: 'inset 0 0 0 1px var(--cth-ink-300)',
+          background: 'rgba(12, 19, 36, 0.95)',
+          boxShadow: 'inset 0 0 0 1px rgba(0, 240, 255, 0.25)',
+          borderRadius: 4,
           display: 'flex',
           flexDirection: 'column',
           gap: 8
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <strong style={{ fontSize: 12, color: 'var(--cth-ink-900)' }}>
+          <strong style={{ fontSize: 12, color: '#00f0ff' }}>
             {`API Integration Snippets (${agent.name})`}
           </strong>
           <div style={{ display: 'flex', gap: 4 }}>
@@ -675,11 +684,14 @@ await fetch(eventUrl, {
               onClick={() => setCodeTab('curl')}
               style={{
                 border: 'none',
-                padding: '2px 8px',
+                padding: '3px 10px',
                 fontSize: 11,
                 cursor: 'pointer',
-                background: codeTab === 'curl' ? 'var(--cth-mint-light)' : 'transparent',
-                color: 'var(--cth-ink-900)'
+                borderRadius: 3,
+                fontWeight: 600,
+                background: codeTab === 'curl' ? 'rgba(0, 240, 255, 0.25)' : 'rgba(255,255,255,0.05)',
+                color: codeTab === 'curl' ? '#00f0ff' : '#94a3b8',
+                boxShadow: codeTab === 'curl' ? 'inset 0 0 0 1px rgba(0, 240, 255, 0.5)' : 'none'
               }}
             >
               cURL
@@ -688,11 +700,14 @@ await fetch(eventUrl, {
               onClick={() => setCodeTab('python')}
               style={{
                 border: 'none',
-                padding: '2px 8px',
+                padding: '3px 10px',
                 fontSize: 11,
                 cursor: 'pointer',
-                background: codeTab === 'python' ? 'var(--cth-mint-light)' : 'transparent',
-                color: 'var(--cth-ink-900)'
+                borderRadius: 3,
+                fontWeight: 600,
+                background: codeTab === 'python' ? 'rgba(0, 240, 255, 0.25)' : 'rgba(255,255,255,0.05)',
+                color: codeTab === 'python' ? '#00f0ff' : '#94a3b8',
+                boxShadow: codeTab === 'python' ? 'inset 0 0 0 1px rgba(0, 240, 255, 0.5)' : 'none'
               }}
             >
               Python
@@ -701,11 +716,14 @@ await fetch(eventUrl, {
               onClick={() => setCodeTab('node')}
               style={{
                 border: 'none',
-                padding: '2px 8px',
+                padding: '3px 10px',
                 fontSize: 11,
                 cursor: 'pointer',
-                background: codeTab === 'node' ? 'var(--cth-mint-light)' : 'transparent',
-                color: 'var(--cth-ink-900)'
+                borderRadius: 3,
+                fontWeight: 600,
+                background: codeTab === 'node' ? 'rgba(0, 240, 255, 0.25)' : 'rgba(255,255,255,0.05)',
+                color: codeTab === 'node' ? '#00f0ff' : '#94a3b8',
+                boxShadow: codeTab === 'node' ? 'inset 0 0 0 1px rgba(0, 240, 255, 0.5)' : 'none'
               }}
             >
               Node.js
@@ -717,19 +735,20 @@ await fetch(eventUrl, {
           <pre
             style={{
               margin: 0,
-              padding: 10,
+              padding: 12,
               fontSize: 11,
-              lineHeight: '16px',
+              lineHeight: '18px',
               fontFamily: 'var(--cth-font-mono)',
-              background: 'var(--cth-ink-900)',
-              color: '#f8fafc',
+              background: '#060a12',
+              color: '#38bdf8',
               overflowX: 'auto',
-              borderRadius: 2
+              borderRadius: 4,
+              boxShadow: 'inset 0 0 0 1px rgba(0, 240, 255, 0.25)'
             }}
           >
             {codeTab === 'python' ? pythonSnippet : codeTab === 'node' ? nodeSnippet : curlSnippet}
           </pre>
-          <div style={{ position: 'absolute', top: 6, right: 6 }}>
+          <div style={{ position: 'absolute', top: 8, right: 8 }}>
             <PixelButton
               variant="secondary"
               size="sm"

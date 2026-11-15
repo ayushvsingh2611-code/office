@@ -52,13 +52,45 @@ export function ThreadsPanel({ agentId }: ThreadsPanelProps) {
   const [openThreads, setOpenThreads] = useState<Record<string, boolean>>({});
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [drafts, setDrafts] = useState<Record<string, string>>({});
+  const [newSubject, setNewSubject] = useState('');
+  const [newBody, setNewBody] = useState('');
+  const [sendingNew, setSendingNew] = useState(false);
 
   useEffect(() => {
     let alive = true;
     const load = async () => {
       try {
-        const inbox = await window.cth.hiveInbox(agentId);
-        if (alive && Array.isArray(inbox)) setMessages(inbox);
+        const [inbox, full] = await Promise.all([
+          window.cth.hiveInbox(agentId).catch(() => []),
+          window.cth.hiveMessages?.({ agentId, includeArchived: true, limit: 100 }).catch(() => [])
+        ]);
+        const map = new Map<string, HiveMessage>();
+        if (Array.isArray(full)) {
+          for (const m of full) {
+            if (m && m.id) {
+              map.set(m.id, {
+                id: m.id,
+                conversation: m.conversation || ('conv-' + m.id),
+                in_reply_to: null,
+                from: m.from || 'unknown',
+                to: m.to || agentId,
+                act: m.act || 'inform',
+                subject: m.subject || '(no subject)',
+                body: m.body || '',
+                hops: 0,
+                requires_reply: !!m.requires_reply,
+                needs_human: false,
+                created_at: m.created_at || new Date().toISOString()
+              });
+            }
+          }
+        }
+        if (Array.isArray(inbox)) {
+          for (const m of inbox) {
+            if (m && m.id) map.set(m.id, m);
+          }
+        }
+        if (alive) setMessages([...map.values()]);
       } catch { /* keep last good state */ }
     };
     load();
@@ -78,18 +110,35 @@ export function ThreadsPanel({ agentId }: ThreadsPanelProps) {
     setDrafts(d => ({ ...d, [last.conversation]: '' }));
   };
 
-  if (threads.length === 0) {
-    return (
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, background: 'var(--cth-paper-200)' }}>
-        <p style={{ margin: 0, fontSize: 13, color: 'var(--cth-ink-700)', textAlign: 'center', maxWidth: 280 }}>
-          No conversations yet. Messages this agent receives will appear here as threads.
-        </p>
-      </div>
-    );
-  }
+  const sendNewMessage = async () => {
+    const text = newBody.trim();
+    if (!text || sendingNew) return;
+    setSendingNew(true);
+    try {
+      await window.cth.hiveSend({
+        to: agentId,
+        act: 'request',
+        subject: newSubject.trim() || 'Instruction',
+        body: text,
+        conversation: 'conv-' + Date.now()
+      }, 'human');
+      setNewSubject('');
+      setNewBody('');
+    } finally {
+      setSendingNew(false);
+    }
+  };
 
   return (
     <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: 'var(--cth-space-3)', background: 'var(--cth-paper-200)', display: 'flex', flexDirection: 'column', gap: 'var(--cth-space-3)' }}>
+      {threads.length === 0 && (
+        <div style={{ padding: '12px 10px', background: 'var(--cth-cream-100)', border: '1px dashed var(--cth-ink-300)', textAlign: 'center' }}>
+          <p style={{ margin: 0, fontSize: 12, color: 'var(--cth-ink-700)' }}>
+            No past conversations recorded for this agent. Send a message below to start a thread:
+          </p>
+        </div>
+      )}
+
       {threads.map(thread => {
         const open = openThreads[thread.conversation] ?? true;
         const last = thread.messages[thread.messages.length - 1];
@@ -167,6 +216,47 @@ export function ThreadsPanel({ agentId }: ThreadsPanelProps) {
           </PixelPanel>
         );
       })}
+
+      {/* Direct New Message Composer */}
+      <PixelPanel variant="default" style={{ marginTop: 'auto', padding: '10px' }}>
+        <div style={{ fontFamily: 'var(--cth-font-display)', fontSize: 12, color: 'var(--cth-ink-900)', marginBottom: 6 }}>
+          SEND MESSAGE TO THIS AGENT
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <input
+            value={newSubject}
+            onChange={e => setNewSubject(e.target.value)}
+            placeholder="Subject (e.g. Code Review, Task)"
+            style={{
+              width: '100%', boxSizing: 'border-box', padding: '5px 8px',
+              fontFamily: 'var(--cth-font-ui)', fontSize: 12,
+              color: 'var(--cth-ink-900)', background: 'var(--cth-cream-50)',
+              border: 'none', boxShadow: 'inset 0 0 0 1px var(--cth-ink-500)'
+            }}
+          />
+          <textarea
+            value={newBody}
+            onChange={e => setNewBody(e.target.value)}
+            placeholder="Type your message or instruction here..."
+            rows={2}
+            style={{
+              resize: 'vertical', width: '100%', boxSizing: 'border-box', padding: '6px 8px',
+              fontFamily: 'var(--cth-font-ui)', fontSize: 12,
+              color: 'var(--cth-ink-900)', background: 'var(--cth-cream-50)',
+              border: 'none', boxShadow: 'inset 0 0 0 1px var(--cth-ink-500)'
+            }}
+          />
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <PixelButton
+              size="sm"
+              onClick={sendNewMessage}
+              disabled={!newBody.trim() || sendingNew}
+            >
+              {sendingNew ? 'Sending...' : 'Send Message'}
+            </PixelButton>
+          </div>
+        </div>
+      </PixelPanel>
     </div>
   );
 }

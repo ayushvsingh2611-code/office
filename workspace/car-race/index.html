@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX VELOCITY: ARCADE RACING LEAGUE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-root">
+        <!-- Canvas Game Viewport -->
+        <canvas id="canvas-game"></canvas>
+
+        <!-- Top Navigation Bar -->
+        <header id="top-nav-bar">
+            <div id="brand-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">APEX <span class="highlight">VELOCITY</span></span>
+            </div>
+            <div class="nav-car-preview" id="nav-car-display">
+                <span class="nav-car-label">CURRENT RIDE:</span>
+                <span id="nav-car-name-val">Apex GT-R 'Ghostline'</span>
+            </div>
+            <div class="nav-action-buttons">
+                <button id="btn-quick-race" class="btn btn-primary pulse-glow">🏁 QUICK RACE</button>
+                <button id="btn-open-garage" class="btn btn-secondary">🏎️ GARAGE & TUNE</button>
+                <button id="btn-open-tracks" class="btn btn-secondary">🗺️ SELECT TRACK</button>
+                <button id="btn-open-leaderboard" class="btn btn-secondary">🏆 HALL OF FAME</button>
+                <button id="btn-open-settings" class="btn btn-icon" title="Settings">⚙️</button>
+                <button id="btn-open-help" class="btn btn-icon" title="Controls">❓</button>
+            </div>
+        </header>
+
+        <!-- HUD Overlay -->
+        <div id="hud-container" class="hidden">
+            <!-- Minimap -->
+            <div class="hud-minimap-wrapper">
+                <canvas id="canvas-minimap" width="180" height="180"></canvas>
+                <span class="minimap-label">RADAR LINK</span>
+            </div>
+
+            <!-- Slipstream Alert -->
+            <div id="hud-slipstream-alert" class="hidden">
+                ⚡ SLIPSTREAM DRAFTING +18 KM/H ⚡
+            </div>
+
+            <!-- Drift Combo Banner -->
+            <div id="hud-drift-banner" class="hidden">
+                <div class="drift-title">🔥 DRIFT COMBO 🔥</div>
+                <div class="drift-score-box">
+                    <span id="hud-drift-points">0</span> PTS 
+                    <span id="hud-drift-mult" class="drift-mult">x1.0</span>
+                </div>
+            </div>
+
+            <!-- Top Telemetry Row -->
+            <div class="hud-top-telemetry">
+                <div class="telemetry-box">
+                    <span class="t-label">POS</span>
+                    <span id="hud-position-rank" class="t-val">1st</span>
+                </div>
+                <div class="telemetry-box">
+                    <span class="t-label">LAP</span>
+                    <span id="hud-lap-counter" class="t-val">1 / 3</span>
+                </div>
+                <div class="telemetry-box">
+                    <span class="t-label">CURRENT TIME</span>
+                    <span id="hud-timer-current" class="t-val mono">00:00.000</span>
+                </div>
+                <div class="telemetry-box">
+                    <span class="t-label">BEST LAP</span>
+                    <span id="hud-timer-best" class="t-val mono">--:--.---</span>
+                </div>
+            </div>
+
+            <!-- Bottom Driver Dashboard -->
+            <div class="hud-dashboard-bottom">
+                <!-- Tachometer Gauge -->
+                <div class="tachometer-wrapper">
+                    <div class="tachometer-dial">
+                        <div id="hud-tachometer-needle" class="tach-needle"></div>
+                        <div class="tach-center-hub">
+                            <span id="hud-gear-val" class="gear-display">1</span>
+                            <span class="gear-sub">GEAR</span>
+                        </div>
+                    </div>
+                    <div id="hud-tachometer-bar" class="tach-led-bar"></div>
+                </div>
+
+                <!-- Speedometer Central HUD -->
+                <div class="speedometer-cluster">
+                    <div class="speed-number-wrapper">
+                        <span id="hud-speedometer-val">0</span>
+                        <span id="hud-speedometer-unit">KM/H</span>
+                    </div>
+                    <div class="nitro-gauge-container">
+                        <div class="nitro-label-row">
+                            <span>NITRO INJECTION</span>
+                            <span id="hud-nitro-status">READY</span>
+                        </div>
+                        <div class="nitro-bar-track">
+                            <div id="hud-nitro-fill" class="nitro-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Action HUD Buttons -->
+                <div class="hud-action-cluster">
+                    <button id="btn-hud-camera" class="btn btn-hud" title="Change Camera View">📷 CAMERA</button>
+                    <button id="btn-hud-mute" class="btn btn-hud" title="Mute Audio">🔊 MUTE</button>
+                    <button id="btn-hud-pause" class="btn btn-hud btn-red" title="Pause Game">⏸ PAUSE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Touch Controls Bar (Mobile / Tablet) -->
+        <div id="touch-controls-bar" class="hidden">
+            <div class="touch-group-steering">
+                <button id="btn-touch-steer-left" class="btn-touch">◀</button>
+                <button id="btn-touch-steer-right" class="btn-touch">▶</button>
+            </div>
+            <div class="touch-group-action">
+                <button id="btn-touch-brake" class="btn-touch btn-brake">BRAKE</button>
+                <button id="btn-touch-accelerate" class="btn-touch btn-gas">GAS</button>
+                <button id="btn-touch-nitro" class="btn-touch btn-nitro">NITRO</button>
+            </div>
+        </div>
+
+        <!-- Garage Drawer -->
+        <aside id="garage-drawer" class="drawer">
+            <div class="drawer-header">
+                <h2>🏎️ APEX GARAGE & CUSTOMIZATION</h2>
+                <button id="btn-garage-close" class="btn-close">&times;</button>
+            </div>
+            <div class="drawer-body">
+                <div class="car-showcase-section">
+                    <div class="car-carousel-nav">
+                        <button id="garage-car-prev" class="btn-carousel">&#10094;</button>
+                        <div class="car-info-display">
+                            <h3 id="garage-car-name">Apex GT-R 'Ghostline'</h3>
+                            <span id="garage-car-category" class="car-badge">Balanced Track Specialist • S-CLASS</span>
+                            <p id="garage-car-desc">Twin-turbocharged all-wheel attack weapon engineered for surgical corner precision and blistering straightaways.</p>
+                        </div>
+                        <button id="garage-car-next" class="btn-carousel">&#10095;</button>
+                    </div>
+
+                    <div class="car-stats-grid">
+                        <div class="stat-row">
+                            <span>TOP SPEED</span>
+                            <div class="stat-bar-track"><div id="stat-bar-speed" class="stat-fill"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <span>ACCELERATION</span>
+                            <div class="stat-bar-track"><div id="stat-bar-accel" class="stat-fill"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <span>HANDLING & GRIP</span>
+                            <div class="stat-bar-track"><div id="stat-bar-handling" class="stat-fill"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <span>DRIFT FACTOR</span>
+                            <div class="stat-bar-track"><div id="stat-bar-drift" class="stat-fill"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tuning-customization-section">
+                    <h4>🎨 LIVERY & PERFORMANCE TUNING</h4>
+                    <div class="tuning-grid">
+                        <div class="tune-item">
+                            <label>Primary Body Paint</label>
+                            <input type="color" id="color-picker-primary" value="#E6ECEF">
+                        </div>
+                        <div class="tune-item">
+                            <label>Secondary / Stripe</label>
+                            <input type="color" id="color-picker-accent" value="#FF2A54">
+                        </div>
+                        <div class="tune-item">
+                            <label>Underglow Neon</label>
+                            <input type="color" id="color-picker-neon" value="#00F0FF">
+                        </div>
+                        <div class="tune-item">
+                            <label>Tire Compound</label>
+                            <select id="select-tire-compound">
+                                <option value="balanced">Balanced Street Compound</option>
+                                <option value="grip">High-Downforce Slick (Max Grip)</option>
+                                <option value="drift">Low-Friction Drift Compound</option>
+                            </select>
+                        </div>
+                        <div class="tune-item">
+                            <label>Nitro Injection Kit</label>
+                            <select id="select-nitro-boost">
+                                <option value="standard">Standard Dual-Stage Turbo</option>
+                                <option value="extended">Extended Endurance Tank</option>
+                                <option value="instant">Instant Hyper-Burst Injector</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Track Selection Modal -->
+        <div id="track-modal" class="modal-overlay hidden">
+            <div class="modal-card wide">
+                <div class="modal-header">
+                    <h2>🗺️ SELECT GLOBAL CIRCUIT</h2>
+                    <button id="btn-track-close" class="btn-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="track-cards-grid" class="track-grid">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard / Hall of Fame Modal -->
+        <div id="leaderboard-modal" class="modal-overlay hidden">
+            <div class="modal-card wide">
+                <div class="modal-header">
+                    <h2>🏆 GLOBAL HALL OF FAME & GHOST LEADERBOARD</h2>
+                    <button id="btn-leaderboard-close" class="btn-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="leaderboard-toolbar">
+                        <div class="filter-group">
+                            <label>Filter Circuit:</label>
+                            <select id="leaderboard-filter-track">
+                                <option value="all">All Circuits</option>
+                                <option value="tokyo-expressway">Tokyo Night Expressway</option>
+                                <option value="redrock-canyon">Red Rock Canyon Pass</option>
+                                <option value="alpine-ridge">Glacier Alpine Ridge</option>
+                                <option value="cyber-grid-2099">Neo Sector 2099</option>
+                            </select>
+                        </div>
+                        <button id="btn-leaderboard-reset" class="btn btn-secondary btn-sm">🔄 RESET RECORDS</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>RANK</th>
+                                    <th>DRIVER</th>
+                                    <th>VEHICLE</th>
+                                    <th>CIRCUIT</th>
+                                    <th>FASTEST LAP</th>
+                                    <th>DRIFT SCORE</th>
+                                    <th>DATE</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-table-body">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal-overlay hidden">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h2>⚙️ GAME SETTINGS & PREFERENCES</h2>
+                    <button id="btn-settings-close" class="btn-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <label>Master Volume: <span id="val-vol-master">80</span>%</label>
+                            <input type="range" id="slider-vol-master" min="0" max="100" value="80">
+                        </div>
+                        <div class="setting-item">
+                            <label>Engine Synth Volume: <span id="val-vol-engine">90</span>%</label>
+                            <input type="range" id="slider-vol-engine" min="0" max="100" value="90">
+                        </div>
+                        <div class="setting-item">
+                            <label>SFX (Screech / Nitro): <span id="val-vol-sfx">85</span>%</label>
+                            <input type="range" id="slider-vol-sfx" min="0" max="100" value="85">
+                        </div>
+                        <div class="setting-item checkbox-row">
+                            <label for="toggle-audio-mute">Mute All Audio</label>
+                            <input type="checkbox" id="toggle-audio-mute">
+                        </div>
+                        <div class="setting-item">
+                            <label>Default Camera View</label>
+                            <select id="select-camera-view">
+                                <option value="CHASE">Dynamic Chase Cam</option>
+                                <option value="HOOD">Bumper / Hood Cam</option>
+                                <option value="TOP_DOWN">Arcade Bird's Eye</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Unit System</label>
+                            <select id="select-unit-system">
+                                <option value="KMH">Metric (KM/H)</option>
+                                <option value="MPH">Imperial (MPH)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Graphics Quality / Road Detail</label>
+                            <select id="select-graphics-qual">
+                                <option value="ULTRA">Ultra (60FPS Raycast Pro)</option>
+                                <option value="HIGH">High (Standard 2.5D)</option>
+                                <option value="LOW">Low (Performance Boost)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help / Controls Modal -->
+        <div id="help-modal" class="modal-overlay hidden">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h2>❓ CONTROLS & RACING GUIDE</h2>
+                    <button id="btn-help-close" class="btn-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="controls-guide-list">
+                        <div class="control-row">
+                            <span class="key-badge">W</span> / <span class="key-badge">▲</span>
+                            <span>Accelerate / Throttle Up</span>
+                        </div>
+                        <div class="control-row">
+                            <span class="key-badge">S</span> / <span class="key-badge">▼</span>
+                            <span>Brake / Reverse</span>
+                        </div>
+                        <div class="control-row">
+                            <span class="key-badge">A</span> <span class="key-badge">D</span> / <span class="key-badge">◀</span> <span class="key-badge">▶</span>
+                            <span>Steer Left / Right</span>
+                        </div>
+                        <div class="control-row">
+                            <span class="key-badge">SPACEBAR</span>
+                            <span>Handbrake (Initiate Drifts & Score Combo Points)</span>
+                        </div>
+                        <div class="control-row">
+                            <span class="key-badge">SHIFT</span> or <span class="key-badge">N</span>
+                            <span>Nitro Boost Injection (Maximum Velocity Surge)</span>
+                        </div>
+                        <div class="control-row">
+                            <span class="key-badge">C</span>
+                            <span>Cycle Camera View (Chase / Hood / Top-Down)</span>
+                        </div>
+                        <div class="control-row">
+                            <span class="key-badge">P</span>
+                            <span>Pause Race</span>
+                        </div>
+                        <div class="control-row">
+                            <span class="key-badge">M</span>
+                            <span>Toggle Audio Mute</span>
+                        </div>
+                    </div>
+                    <div class="pro-tip-box">
+                        💡 <strong>PRO TIP:</strong> Slipstream directly behind rival AI cars to trigger aerodynamic drafting for +18 KM/H top speed bonus. Maintain sustained slides through hairpin corners to rack up massive drift multipliers!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pause Overlay Modal -->
+        <div id="pause-overlay" class="modal-overlay hidden">
+            <div class="modal-card small-card">
+                <div class="modal-header">
+                    <h2>⏸ RACE PAUSED</h2>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="pause-menu-buttons">
+                        <button id="btn-pause-resume" class="btn btn-primary">▶ RESUME RACE</button>
+                        <button id="btn-pause-restart" class="btn btn-secondary">🔄 RESTART CIRCUIT</button>
+                        <button id="btn-pause-garage" class="btn btn-secondary">🏎️ GARAGE TUNE</button>
+                        <button id="btn-pause-quit" class="btn btn-red">🏠 QUIT TO MAIN HUB</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Race Finish Modal -->
+        <div id="race-finish-modal" class="modal-overlay hidden">
+            <div class="modal-card">
+                <div class="modal-header text-center">
+                    <h2 id="finish-position-title" class="podium-title">VICTORY - 1ST PLACE</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="podium-stats-grid">
+                        <div class="podium-stat">
+                            <span>TOTAL RACE TIME</span>
+                            <strong id="finish-total-time" class="mono">03:24.512</strong>
+                        </div>
+                        <div class="podium-stat">
+                            <span>FASTEST LAP</span>
+                            <strong id="finish-best-lap" class="mono">01:08.412</strong>
+                        </div>
+                        <div class="podium-stat">
+                            <span>DRIFT SCORE ACCUMULATED</span>
+                            <strong id="finish-drift-score" class="highlight-gold">48,200 PTS</strong>
+                        </div>
+                    </div>
+                    <div class="finish-buttons-row">
+                        <button id="btn-finish-restart" class="btn btn-secondary">🔄 RACE AGAIN</button>
+                        <button id="btn-finish-next" class="btn btn-primary">⚡ NEXT CIRCUIT</button>
+                        <button id="btn-finish-hub" class="btn btn-red">🏠 MAIN HUB</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast-notification" class="toast hidden">
+            <span id="toast-message">Notification Message</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
