@@ -112,6 +112,27 @@ export const VERIFIED_PUBLIC_APIS: PublicApiEntry[] = [
   .catch(err => console.warn('[CoinGecko] Fallback to seed crypto rates:', err.message));`
   },
   {
+    id: 'binance-ticker-24hr',
+    name: 'Binance 24hr MiniTicker Stream',
+    domain: 'Institutional Trading Terminal & Crypto Ticker',
+    category: 'crypto',
+    description: 'Real-time 24hr ticker market statistics from Binance public API (zero-auth, CORS enabled).',
+    endpoint: 'https://api.binance.com/api/v3/ticker/24hr?symbols=[%22BTCUSDT%22,%22ETHUSDT%22,%22SOLUSDT%22,%22BNBUSDT%22]',
+    docsUrl: 'https://binance-docs.github.io/apidocs/spot/en/#24hr-ticker-price-change-statistics',
+    keywords: ['trading', 'terminal', 'nexus', 'tradingview', 'binance', 'bloomberg', 'orderbook', 'candlestick', 'crypto trading', 'stock trading', 'leverage', 'futures'],
+    samplePath: 'data (array of ticker objects)',
+    mappingNotes: 'Array of { symbol, lastPrice, priceChangePercent, highPrice, lowPrice, volume, quoteVolume }',
+    codeSample: `fetch('https://api.binance.com/api/v3/ticker/24hr?symbols=[%22BTCUSDT%22,%22ETHUSDT%22,%22SOLUSDT%22,%22BNBUSDT%22]', { signal: AbortSignal.timeout(5000) })
+  .then(res => res.json())
+  .then(tickers => {
+    if (Array.isArray(tickers) && tickers.length > 0) {
+      updateWatchlistPrices(tickers);
+      showOnlineStatus('Live Binance Feeds');
+    }
+  })
+  .catch(err => console.warn('[Binance] Fallback to simulated seed tickers:', err.message));`
+  },
+  {
     id: 'open-exchangerate',
     name: 'ExchangeRate-API Open Access',
     domain: 'Forex Currency Exchange Rates',

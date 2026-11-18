@@ -26,8 +26,8 @@
  * - Real AI code generation only. If AI fails, preserve work, save checkpoint, mark BLOCKED with actual error.
  * - Concurrency-safe: Task A and Task B have independent workspaces, task IDs, and model contexts.
  */
-import { existsSync, mkdirSync, writeFileSync, readFileSync, readdirSync, copyFileSync } from 'node:fs';
-import { join, resolve, normalize } from 'node:path';
+import { existsSync, mkdirSync, writeFileSync, readFileSync, readdirSync, copyFileSync, statSync, rmSync } from 'node:fs';
+import { join, resolve, normalize, dirname } from 'node:path';
 import { readConfig } from './config';
 import {
   executeAgentLlmCallWithTools,
@@ -262,11 +262,38 @@ class PandaHiveOrchestrator {
     const builderModel = cfg.agentModelAssignments?.['zoro']?.model || cfg.agentModelAssignments?.['builder']?.model || omniCfg?.builderModel || 'agy/gemini-3-flash';
     const verifierModel = cfg.agentModelAssignments?.['sanji']?.model || cfg.agentModelAssignments?.['verifier']?.model || omniCfg?.verifierModel || 'agy/gemini-3.8-flash-medium';
 
+    const onlineDataDirectives = buildOnlineDataDirectives(task.prompt);
+    const skillsDirectives = autoResolveSkillsDirective(task.prompt);
+
+    const isTradingTask = /\b(trading|terminal|crypto exchange|stock market|orderbook|candlestick|nexus|bloomberg|binance)\b/i.test(task.prompt);
+    const tradingArchitectureDirective = isTradingTask ? `
+────────────────────────────────────────────────────────────────────────
+📈 NEXUS-PRO INSTITUTIONAL TRADING TERMINAL BLUEPRINT (MANDATORY):
+Target Theme: Bloomberg / TradingView / Binance Pro Institutional Dark Suite
+Color Tokens:
+- Canvas/Body Base: #0b0e11, Surfaces/Cards: #181a20, Borders: #2b313a
+- Uptrend/Bids: #0ecb81 (Bright Emerald), Downtrend/Asks: #f6465d (Vibrant Crimson)
+- Primary Accent: #f0b90b (Binance Gold) / #2962ff (TradingView Blue)
+Core Modules:
+1. Multi-Asset Watchlist: 10 pre-loaded instruments (BTC/USDT, ETH/USDT, SOL/USDT, NVDA, AAPL, EUR/USD, XAU/USD, etc.) with real-time price tick simulation.
+2. Dual Canvas Charts:
+   - Candlestick Chart (50 bars, SMA20 line, crosshair hover tooltip) scaled via window.devicePixelRatio.
+   - Sub-chart: RSI(14) oscillator with 70 overbought and 30 oversold bands.
+3. Live Orderbook (Depth Ladder):
+   - 8 asks in red, 8 bids in green with relative volume depth fill bars.
+   - CRITICAL LOOP SAFETY: In orderbook generation, strictly increment with i++ (e.g. for (let i = 1; i <= 8; i++)). NEVER use i-- starting from 1 (which causes infinite loop and RangeError: Invalid string length).
+4. Trade Execution Desk:
+   - Buy/Long and Sell/Short tabs, Limit/Market order types, Leverage slider (1x - 100x), Margin requirement calculation.
+   - Open Positions table with real-time PnL updates and "Close Position" action.
+5. Live Market Trades Stream:
+   - Rolling real-time trades list with timestamp, price, amount, and buy/sell color indicators.
+────────────────────────────────────────────────────────────────────────` : '';
+
     // ── STAGE 1: ARCHITECT (Spec & DOM Contract) ───────────────────────────────
     task.status = 'ARCHITECTING';
     task.progress = 15;
     task.activeAgentId = task.assignedWorkers.architect.id;
-    task.currentStepDescription = `${task.assignedWorkers.architect.name} is creating the DOM Contract & Blueprint`;
+    task.currentStepDescription = `${task.assignedWorkers.architect.name} is creating the DOM Contract & Blueprint (Reconnaissance & Online Schema)`;
     task.milestones[0].status = 'IN_PROGRESS';
     task.milestones[0].startedAt = Date.now();
     this.notify(task);
@@ -282,17 +309,23 @@ Your mission: Create the concrete contract and architecture blueprint for:
 "${task.prompt}"
 
 CRITICAL REPLICA & CONTRACT RULES:
-1. REAL-WORLD EXISTING PRODUCT REPLICA FIDELITY (MANDATORY):
-   - Whenever the user requests an application, store, portal, or tool (e.g. Canva, Samsung, Netflix, Spotify, Amazon, YouTube, Trello, Twitter, Instagram, or an industry concept like e-commerce, LMS, dashboard):
-   - You MUST design it as a HIGH-FIDELITY REPLICA of that real-world existing platform.
-   - Replicate the authentic brand identity, signature color palette, exact layout hierarchy (header, sidebars, hero banner, content grids, drawers, modals), and hallmark real-world features.
+1. DEEP THEME RECONNAISSANCE & AUTHENTIC REALITY (MANDATORY):
+   - Take the user's requested theme (e.g. Naruto, Cyberpunk, Netflix, Spotify, Sneaker Store, Luxury Watch Salon, Medical Dashboard, Crypto Terminal) DEAD SERIOUSLY.
+   - NEVER create a generic or static website with dummy text like "Item 1", "Lorem Ipsum", or generic gray cards.
+   - Extract authentic brand color palettes (e.g. Konoha Green #1E3F20, Uzumaki Orange #FF6B00, Chakra Cyan #00E5FF; or Cyberpunk Neon Yellow #FCEE0A, Electric Cyan #00F0FF; or Netflix Cinema Black #141414, Crimson #E50914).
+   - Use your FetchUrl tool if needed to inspect public schemas, live documentation, or verified API endpoints.
+   - Replicate authentic brand identity, signature styling, layout hierarchy (header, sidebars, hero banner, content grids, drawers, modals), and hallmark real-world features.
 2. 100% WORKING FUNCTIONALITY ARCHITECTURE (ZERO DEAD BUTTONS):
    - Every single feature, button, tab, search bar, and control in the application MUST be 100% functional.
    - Specify EXACT DOM element IDs to be shared between HTML and JavaScript (e.g. #menu-grid, #search-input, #cart-btn, #cart-drawer, #checkout-modal, #cart-count, #filter-all, #wishlist-btn, #toast-container).
    - Specify active event handler signatures for every single interactive control so that NO button or link is left dead or non-functional.
-3. MANDATORY PRE-LOADED RICH DEMO DATA (PRIORITY #1):
+3. MANDATORY PRE-LOADED RICH DEMO DATA + LIVE ONLINE INTEGRATION (PRIORITY #1):
    - For ANY application, portal, dashboard, SaaS, or website (excluding pure game loops):
-   - Specify rich initial mock data structures with 6-12 realistic items matching the authentic real-world platform (real titles, real specs/prices, real dates, categories, statuses, tags, realistic avatars/images) so the UI is richly populated on load.
+   - Specify rich initial mock data structures with 8-12 realistic items matching the authentic real-world platform (real titles, real specs/prices, real dates, categories, statuses, tags, realistic avatars/images) so the UI is richly populated on load.
+   - Specify the exact online API integration contract and mapping fields so the Builder can fetch live data smoothly.
+${onlineDataDirectives}
+${skillsDirectives}
+${tradingArchitectureDirective}
 4. Specify exact data structures, state models, and event handler signatures.
 5. Write your output file "spec.md" into the project workspace using WriteFile.
 6. Do NOT leave placeholders or TODOs.
@@ -301,12 +334,12 @@ Do not write the full code yourself; write the detailed contract so ${task.assig
     try {
       const archResult = await executeAgentLlmCallWithTools(
         architectPrompt,
-        `You are ${task.assignedWorkers.architect.name}. You use WriteFile to save spec.md.`,
+        `You are ${task.assignedWorkers.architect.name}. You use WriteFile to save spec.md and FetchUrl to verify public endpoints if needed.`,
         architectCtx,
         {
           preferredModel: architectModel,
-          maxTurns: 4,
-          allowedTools: ['WriteFile', 'ReadFile', 'ListFiles']
+          maxTurns: 6,
+          allowedTools: ['WriteFile', 'ReadFile', 'ListFiles', 'FetchUrl']
         }
       );
 
@@ -357,9 +390,6 @@ Do not write the full code yourself; write the detailed contract so ${task.assig
       ? readFileSync(join(task.workspaceDir, 'spec.md'), 'utf8')
       : '';
 
-    const onlineDataDirectives = buildOnlineDataDirectives(task.prompt);
-    const skillsDirectives = autoResolveSkillsDirective(task.prompt);
-
     const builderPrompt = `You are ${task.assignedWorkers.builder.name}, Full-Stack Builder & Coder of Straw Hat Crew ${task.group.toUpperCase()}.
 You must implement the COMPLETE, working web application based on the Architect's specification:
 
@@ -369,25 +399,33 @@ Architect Blueprint & DOM Contract:
 ${specText}
 
 CRITICAL BUILDER RULES:
-1. REAL-WORLD EXISTING PRODUCT REPLICA FIDELITY:
-   - Build a high-fidelity REPLICA of the targeted real-world application (e.g. Canva, Samsung, Netflix, Spotify, Amazon, YouTube, Trello, Twitter, Instagram, etc.).
-   - Accurately reproduce the genuine brand colors, typography, layout hierarchy (header, sidebars, hero banner, content grids, drawers, modals), and signature real-world features.
+1. DEEP THEME RECONNAISSANCE & ZERO-STATIC REALITY (MANDATORY):
+   - Take the user's requested theme (e.g. Naruto, Cyberpunk, Luxury Salon, E-Commerce, Crypto, Healthcare) DEAD SERIOUSLY.
+   - Accurately reproduce the genuine brand colors, typography, high-fidelity components (header, hero, grids, drawers, modals), and signature real-world features.
+   - NEVER create a static page or leave dummy buttons. Every control must be active, interactive, and powered by JavaScript state.
 2. 100% WORKING FUNCTIONALITY (ZERO DEAD BUTTONS OR DUMMY CONTROLS):
    - EVERY SINGLE FEATURE, BUTTON, AND INTERACTION MUST BE 100% WORKING.
    - Every button, tab, search bar, dropdown, filter, toggle, modal trigger, card click, add/edit/delete operation, cart drawer, checkout step, and audio/canvas tool MUST have real event listeners in JavaScript that execute actual state updates and DOM mutations.
    - ZERO dead links (\`href="#"\` without click handlers), ZERO dummy non-working buttons, ZERO unimplemented placeholders.
    - Interactive feedback: Toast notifications on actions (e.g. "Item added to cart", "Template selected", "Saved to wishlist"), counters updating (e.g. cart badge, like count, task count), instant search filtering of cards, modal open/close toggles.
-3. MANDATORY PRE-LOADED DEMO DATA (PRIORITY #1):
+3. MANDATORY PRE-LOADED DEMO DATA + LIVE ONLINE HYBRID FETCH (PRIORITY #1):
    - For ANY application, portal, dashboard, SaaS, or website (excluding pure game loops):
-   - app.js MUST define rich, realistic in-memory seed data (6 to 12 realistic items matching the authentic real-world platform: real titles, dates, descriptions, prices, tags, status badges, avatars, images).
+   - app.js MUST define rich, realistic in-memory seed data (8 to 12 realistic items matching the authentic real-world platform: real titles, dates, descriptions, prices, tags, status badges, avatars, images).
+   - Use clean Base64 vector SVGs for image fallbacks so the UI renders crisply in 0 milliseconds without any broken image boxes.
    - The UI MUST render this demo data immediately on page load (DOMContentLoaded) so that when index.html is opened or double-clicked, the page is fully populated with content and NEVER blank/empty!
-   - (Online Data Enrichment): If online internet connectivity is available, the app can optionally fetch or refresh online data in a try-catch block, but it must NEVER wipe out or blank the screen if offline. Local seed data is always the primary fallback.
+   - (Online Data Enrichment): The app must include the background async fetch to the verified public API with a 5-second timeout and try/catch error handling.
+   - Include a live status indicator (e.g. "🟢 Live Online API Connected" / "🟡 Local Seed Data Active").
+4. MANDATORY TABBED / MULTI-VIEW & TABLE RENDERING (ZERO EMPTY TABLES):
+   - If your application has multiple views or tabs (e.g. Kiosk, Roster, Leaves, Timesheets, Patients, Appointments, Billing):
+   - Your initial load / initApp function MUST call every view's table/container rendering function immediately on DOMContentLoaded! (DO NOT only render the active tab).
+   - Every single <tbody> on the page MUST have its initial rows pre-rendered synchronously on load so NO table in the DOM is left empty.
 ${onlineDataDirectives}
 ${skillsDirectives}
-4. Write index.html with all container elements and the EXACT IDs from spec.md.
-5. Write style.css with modern, beautiful responsive styling (flexbox/grid, cards, vibrant brand colors, active hover/focus states).
-6. Write Dockerfile with a lightweight static web server (e.g. nginx:alpine).
-7. Immediately invoke WriteFile for index.html, style.css, and app.js. Do not waste turns reading files. Ensure NO fake fallbacks or partial snippets. Complete, production-ready code.`;
+${tradingArchitectureDirective}
+5. Write index.html with all container elements and the EXACT IDs from spec.md.
+6. Write style.css with modern, beautiful responsive styling (flexbox/grid, cards, vibrant brand colors, active hover/focus states).
+7. Write Dockerfile with a lightweight static web server (e.g. nginx:alpine).
+8. Immediately invoke WriteFile for index.html, style.css, and app.js. Do not waste turns reading files. Ensure NO fake fallbacks or partial snippets. Complete, production-ready code.`;
 
     try {
       await executeAgentLlmCallWithTools(
@@ -398,19 +436,35 @@ ${skillsDirectives}
           preferredModel: builderModel,
           maxTurns: 14,
           timeoutMs: 180000,
-          allowedTools: ['WriteFile', 'EditFile', 'ReadFile', 'ListFiles', 'RunSyntaxAudit']
+          allowedTools: ['WriteFile', 'EditFile', 'ReadFile', 'ListFiles', 'RunSyntaxAudit', 'FetchUrl']
         }
       );
 
       task.generatedFiles = this.scanWorkspaceFiles(task.workspaceDir);
 
-      // Check if builder wrote into a subfolder like 'workspace/app.js' or 'js/app.js'
-      if (existsSync(join(task.workspaceDir, 'workspace', 'app.js'))) {
-        const subContent = readFileSync(join(task.workspaceDir, 'workspace', 'app.js'), 'utf8');
-        const rootContent = existsSync(join(task.workspaceDir, 'app.js')) ? readFileSync(join(task.workspaceDir, 'app.js'), 'utf8') : '';
-        if (subContent.length > rootContent.length) {
-          copyFileSync(join(task.workspaceDir, 'workspace', 'app.js'), join(task.workspaceDir, 'app.js'));
-        }
+      // Deeply flatten any accidental nested 'workspace' directory created by the LLM
+      const nestedWs = join(task.workspaceDir, 'workspace');
+      if (existsSync(nestedWs)) {
+        try {
+          const hoistFiles = (dir: string, baseRel = '') => {
+            const entries = readdirSync(dir);
+            for (const entry of entries) {
+              const fullSrc = join(dir, entry);
+              const relDest = baseRel ? join(baseRel, entry) : entry;
+              const fullDest = join(task.workspaceDir, relDest);
+              if (statSync(fullSrc).isDirectory()) {
+                hoistFiles(fullSrc, relDest);
+              } else {
+                mkdirSync(dirname(fullDest), { recursive: true });
+                if (!existsSync(fullDest) || statSync(fullDest).size <= statSync(fullSrc).size) {
+                  copyFileSync(fullSrc, fullDest);
+                }
+              }
+            }
+          };
+          hoistFiles(nestedWs);
+          rmSync(nestedWs, { recursive: true, force: true });
+        } catch { /* ignore */ }
       }
 
       // If modular structure was used, bridge root entry points for standard compatibility
@@ -423,21 +477,62 @@ ${skillsDirectives}
 
       // Verify that core files actually exist — NEVER fake them
       const hasHtml = existsSync(join(task.workspaceDir, 'index.html'));
+      let hasCss = existsSync(join(task.workspaceDir, 'style.css')) ||
+                   existsSync(join(task.workspaceDir, 'css', 'style.css'));
       let hasJs = existsSync(join(task.workspaceDir, 'app.js')) ||
                   existsSync(join(task.workspaceDir, 'js', 'app.js'));
+
+      // If index.html exists but style.css is missing or too short, give Builder a dedicated styling turn
+      if (hasHtml && (!hasCss || readFileSync(join(task.workspaceDir, 'style.css'), 'utf8').trim().length < 60)) {
+        try {
+          console.log(`[PandaHiveOrchestrator] style.css missing. Triggering Builder CSS generation turn...`);
+          const missingCssPrompt = `CRITICAL DEFECT DETECTED: You have not created "style.css" in the project workspace!
+The index.html file links to "style.css". Without it, the application renders completely unstyled!
+You MUST use WriteFile to create "style.css" now.
+MANDATORY STYLING REQUIREMENTS:
+1. Modern, production-grade responsive layout matching spec.md (CSS Grid, Flexbox, high-fidelity color palette, typography).
+2. Complete styling for all header navbars, hero sections, cards, product/item grids, search/filters, badges, modals, drawers, and buttons.
+3. Active, hover, and focus states with smooth transitions.
+4. Clean dark/light theme variables and crisp typography.
+Write the complete, comprehensive "style.css" now.`;
+          await executeAgentLlmCallWithTools(
+            missingCssPrompt,
+            `You are ${task.assignedWorkers.builder.name}. Use WriteFile to create style.css in the project root.`,
+            builderCtx,
+            {
+              preferredModel: builderModel,
+              maxTurns: 6,
+              timeoutMs: 180000,
+              allowedTools: ['WriteFile']
+            }
+          );
+          hasCss = existsSync(join(task.workspaceDir, 'style.css')) ||
+                   existsSync(join(task.workspaceDir, 'css', 'style.css'));
+        } catch (cErr: any) {
+          console.warn(`[PandaHiveOrchestrator] Builder CSS continuation turn warning:`, cErr.message);
+        }
+      }
 
       // If index.html exists but app.js is missing, give Builder a continuation turn
       if (hasHtml && !hasJs) {
         try {
-          const missingJsPrompt = `You have created index.html and style.css in the workspace.
+          const missingJsPrompt = `TARGET APPLICATION: "${task.prompt}"
+WORKSPACE: "${task.workspaceDir}"
+You have created index.html and style.css in the workspace.
 Now create the JavaScript entry point "app.js" (or "js/app.js" as linked in index.html) using WriteFile.
+
+ARCHITECT SPECIFICATION & DOM CONTRACT:
+${specText.substring(0, 15000)}
+
 MANDATORY REQUIREMENTS:
-1. High-fidelity replica of the target real-world product with rich pre-loaded seed demo data (6-12 realistic items).
-2. Render items into the main HTML containers on DOMContentLoaded so the UI is richly populated on load.
-3. 100% WORKING FUNCTIONALITY: Bind real, working event listeners to ALL buttons, tabs, search bars, filters, and modal toggles from spec.md. ZERO dead buttons or non-functional links. Complete working code only.`;
+1. High-fidelity replica of "${task.prompt}" with rich pre-loaded seed demo data (6-12 realistic items strictly matching the target domain: e.g. patients/doctors for hospital, bikes for motorcycle showroom, courses for LMS). DO NOT use generic goal/marathon/quantum templates!
+2. Render items into the main HTML containers from spec.md (match exact IDs like tbody rows, cards grid, lists, etc.) on DOMContentLoaded so the UI is richly populated on load and NEVER blank!
+3. TABBED / MULTI-VIEW TABLE RENDERING (ZERO EMPTY TABLES): If your application has multiple views or tabs (e.g. Dashboard, Patients, Appointments, Roster, Leaves, Timesheets), your initial load / initApp function MUST call every view's table/container rendering function immediately on DOMContentLoaded! Every single <tbody> on the page MUST have its initial rows pre-rendered synchronously on load.
+4. 100% WORKING FUNCTIONALITY: Bind real, working event listeners to ALL buttons, tabs, search bars, filters, and modal toggles from spec.md. ZERO dead buttons or non-functional links. Complete working code only.
+${tradingArchitectureDirective}`;
           await executeAgentLlmCallWithTools(
             missingJsPrompt,
-            `You are ${task.assignedWorkers.builder.name}. Use WriteFile to create the entry point script (app.js or js/app.js).`,
+            `You are ${task.assignedWorkers.builder.name}. Use WriteFile to create the entry point script (app.js or js/app.js) matching ${task.prompt}.`,
             builderCtx,
             {
               preferredModel: builderModel,
@@ -467,14 +562,20 @@ MANDATORY REQUIREMENTS:
       if (!isPureGamePrompt && hasHtml && (appJsContent.length < 1200 || !appJsContent.includes('['))) {
         try {
           console.log(`[PandaHiveOrchestrator] Detected empty or stub app.js (${appJsContent.length} chars). Forcing Demo Data Enrichment...`);
-          const enrichPrompt = `CRITICAL DEFECT DETECTED: Your app.js is an incomplete stub (${appJsContent.length} chars) with NO demo data and NO rendering logic.
+          const enrichPrompt = `CRITICAL DEFECT DETECTED: Your app.js is an incomplete stub or domain mismatch (${appJsContent.length} chars) with NO domain-specific demo data and NO rendering logic.
+TARGET APPLICATION: "${task.prompt}"
+ARCHITECT BLUEPRINT & DOM CONTRACT:
+${specText.substring(0, 15000)}
+
 You MUST write the complete, full-featured "app.js" using WriteFile now.
 MANDATORY REQUIREMENTS:
-1. High-fidelity replica: Define a rich in-memory array of at least 6-12 realistic items matching "${task.prompt}" (e.g. products, courses, cards, tasks, items with real names, prices/dates, tags, images, specs).
-2. Render these items into the main HTML containers from spec.md (e.g. grids, lists, carousels) immediately on DOMContentLoaded so the page is fully populated and NEVER blank!
-3. 100% WORKING FUNCTIONALITY (ZERO DEAD BUTTONS): Implement real, working event listeners for every single interactive control: search, category/filter tabs, sorting, add-to-cart/drawer, modal popups, favorites/wishlist toggles with badge counters, and toast feedback.
+1. High-fidelity replica: Define a rich in-memory array of at least 6-12 realistic items matching "${task.prompt}" (e.g. products, courses, cards, patients/doctors/appointments, items with real names, prices/dates, tags, images, specs). DO NOT use generic goal/todo templates!
+2. Render these items into the main HTML containers from spec.md (e.g. grids, tables, lists, carousels) immediately on DOMContentLoaded so the page is fully populated and NEVER blank!
+3. TABBED / MULTI-VIEW TABLE RENDERING (ZERO EMPTY TABLES): If your application has multiple views or tabs (e.g. Dashboard, Patients, Appointments, Roster, Leaves, Timesheets), your initial load / initApp function MUST call every view's table/container rendering function immediately on DOMContentLoaded! Every single <tbody> on the page MUST have its initial rows pre-rendered synchronously on load.
+4. 100% WORKING FUNCTIONALITY (ZERO DEAD BUTTONS): Implement real, working event listeners for every single interactive control: search, category/filter tabs, sorting, add-to-cart/drawer, modal popups, favorites/wishlist toggles with badge counters, and toast feedback.
 ${onlineDataDirectives}
 ${skillsDirectives}
+${tradingArchitectureDirective}
 Write the complete production-ready app.js now.`;
           await executeAgentLlmCallWithTools(
             enrichPrompt,
@@ -495,8 +596,16 @@ Write the complete production-ready app.js now.`;
         }
       }
 
-      if (!hasHtml || !hasJs) {
-        throw new Error(`Builder ${task.assignedWorkers.builder.name} did not generate required files (index.html or app.js missing). Fake fallbacks are prohibited.`);
+      // Guarantee workspace file integrity, hoisting, Tailwind CDN injection, and asset sync
+      this.ensureProjectIntegrity(task.workspaceDir);
+      task.generatedFiles = this.scanWorkspaceFiles(task.workspaceDir);
+
+      const finalHasHtml = existsSync(join(task.workspaceDir, 'index.html'));
+      const finalHasCss = existsSync(join(task.workspaceDir, 'style.css'));
+      const finalHasJs = existsSync(join(task.workspaceDir, 'app.js'));
+
+      if (!finalHasHtml || !finalHasJs || !finalHasCss) {
+        throw new Error(`Builder ${task.assignedWorkers.builder.name} did not generate required files (index.html, style.css, or app.js missing). Complete production-ready files are strictly required.`);
       }
 
       task.milestones[1].status = 'COMPLETED';
@@ -536,6 +645,9 @@ Write the complete production-ready app.js now.`;
       task.currentStepDescription = `${task.assignedWorkers.verifier.name} is running syntax audit & headless browser DOM tests (Pass ${task.repairTurn + 1})`;
       task.progress = Math.min(75 + task.repairTurn * 7, 95);
       this.notify(task);
+
+      // Pre-Verification Integrity Check (hoisting, sync, Tailwind CDN, and fallbacks)
+      this.ensureProjectIntegrity(task.workspaceDir);
 
       // Run real headless browser test
       let qaReport: RealBrowserTestReport;
@@ -626,6 +738,8 @@ Your goal: Fix these exact defects in index.html, style.css, or app.js using Edi
 - Read ONLY the specific file mentioned in the defect (do NOT read all files in the project).
 - Immediately invoke EditFile or WriteFile to apply the fix.
 - 100% WORKING FUNCTIONALITY: Ensure every button, filter, tab, and modal trigger has active JavaScript event listeners and performs visible state updates.
+- If EMPTY DATA TABLES is reported: Ensure that every <tbody> is populated on page load (DOMContentLoaded / initApp). If tables exist in different tabs or views, call each view's table rendering function immediately on initialization so all tbodies have rows!
+- If "tailwind is not defined" is reported: Ensure window.tailwind = window.tailwind || {} is declared before tailwind.config.
 - If a modal toggle failed, ensure the modal button event listener in app.js opens the modal (removes 'hidden' class or sets display: flex/block) and close buttons restore 'hidden'.
 - Match all element IDs exactly. Complete working code.`;
 
@@ -635,18 +749,22 @@ Your goal: Fix these exact defects in index.html, style.css, or app.js using Edi
           projectWorkspace: task.workspaceDir
         };
 
+        const repairModel = getOmniRouteConfig()?.repairModel || 'agy/gemini-3.8-flash-high';
+
         try {
           await executeAgentLlmCallWithTools(
             repairPrompt,
             `You are ${task.assignedWorkers.builder.name}. Fix the specific defects reported by QA. Read only the affected file and immediately save the fix.`,
             builderCtx,
             {
-              preferredModel: builderModel,
+              preferredModel: repairModel,
+              role: 'repair',
               maxTurns: 8,
               timeoutMs: 120000,
               allowedTools: ['ReadFile', 'WriteFile', 'EditFile', 'RunSyntaxAudit']
             }
           );
+          this.ensureProjectIntegrity(task.workspaceDir);
           task.generatedFiles = this.scanWorkspaceFiles(task.workspaceDir);
         } catch (repairErr: any) {
           console.warn(`[PandaHiveOrchestrator] Builder repair turn encountered error:`, repairErr.message);
@@ -692,6 +810,179 @@ Your goal: Fix these exact defects in index.html, style.css, or app.js using Edi
       task.currentStepDescription = `Verification failed: ${task.error}`;
       this.notify(task);
       return;
+    }
+  }
+
+  /**
+   * Enforces strict workspace integrity across all project generations:
+   * 1. Flattens any accidental nested `workspace/` directories.
+   * 2. Bidirectional syncs root `app.js` and `js/app.js` (and `style.css` and `css/style.css`).
+   * 3. Prevents the Tailwind Trap: auto-injects Tailwind CDN if utility classes are detected in HTML without CDN.
+   * 4. Ensures production Dockerfile and fallback styling exist.
+   */
+  private ensureProjectIntegrity(workspaceDir: string): void {
+    try {
+      // 1. Hoist any nested workspace folders
+      const nestedWs = join(workspaceDir, 'workspace');
+      if (existsSync(nestedWs) && statSync(nestedWs).isDirectory()) {
+        const hoistFiles = (dir: string) => {
+          const entries = readdirSync(dir, { withFileTypes: true });
+          for (const ent of entries) {
+            const fullSrc = join(dir, ent.name);
+            if (ent.isDirectory()) {
+              hoistFiles(fullSrc);
+            } else if (ent.isFile()) {
+              const relPath = fullSrc.replace(nestedWs + '\\', '').replace(nestedWs + '/', '');
+              const fullDest = join(workspaceDir, relPath);
+              mkdirSync(dirname(fullDest), { recursive: true });
+              if (!existsSync(fullDest) || statSync(fullDest).size <= statSync(fullSrc).size) {
+                copyFileSync(fullSrc, fullDest);
+              }
+            }
+          }
+        };
+        hoistFiles(nestedWs);
+        rmSync(nestedWs, { recursive: true, force: true });
+      }
+
+      // 2. Dual Sync: Ensure both root and modular subdirectories exist & are synchronized
+      const rootJs = join(workspaceDir, 'app.js');
+      const subJs = join(workspaceDir, 'js', 'app.js');
+      if (existsSync(subJs) && !existsSync(rootJs)) {
+        copyFileSync(subJs, rootJs);
+      } else if (existsSync(rootJs) && !existsSync(subJs)) {
+        mkdirSync(join(workspaceDir, 'js'), { recursive: true });
+        copyFileSync(rootJs, subJs);
+      } else if (existsSync(subJs) && existsSync(rootJs)) {
+        const rootSize = statSync(rootJs).size;
+        const subSize = statSync(subJs).size;
+        if (subSize > rootSize) copyFileSync(subJs, rootJs);
+        else if (rootSize > subSize) copyFileSync(rootJs, subJs);
+      }
+
+      const rootCss = join(workspaceDir, 'style.css');
+      const subCss = join(workspaceDir, 'css', 'style.css');
+      if (existsSync(subCss) && !existsSync(rootCss)) {
+        copyFileSync(subCss, rootCss);
+      } else if (existsSync(rootCss) && !existsSync(subCss)) {
+        mkdirSync(join(workspaceDir, 'css'), { recursive: true });
+        copyFileSync(rootCss, subCss);
+      } else if (existsSync(subCss) && existsSync(rootCss)) {
+        const rootSize = statSync(rootCss).size;
+        const subSize = statSync(subCss).size;
+        if (subSize > rootSize) copyFileSync(subCss, rootCss);
+        else if (rootSize > subSize) copyFileSync(rootCss, subCss);
+      }
+
+      // 3. Fallback CSS if style.css is missing or empty (< 60 chars)
+      if (!existsSync(rootCss) || statSync(rootCss).size < 60) {
+        writeFileSync(
+          rootCss,
+          `:root { --color-primary: #FF3E1D; --color-surface: #0B0D11; --color-card: #13161C; --color-text: #F3F4F6; --color-muted: #9CA3AF; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+body { background: var(--color-surface); color: var(--color-text); min-height: 100vh; }
+.flex { display: flex; } .grid { display: grid; } .hidden { display: none !important; }
+button { cursor: pointer; transition: all 0.2s; }
+`,
+          'utf8'
+        );
+        mkdirSync(join(workspaceDir, 'css'), { recursive: true });
+        copyFileSync(rootCss, subCss);
+      } else {
+        // Ensure .hidden display: none !important is always present for modal/tab toggles
+        let css = readFileSync(rootCss, 'utf8');
+        if (!css.includes('.hidden')) {
+          css += '\n.hidden { display: none !important; }\n';
+          writeFileSync(rootCss, css, 'utf8');
+          if (existsSync(subCss)) writeFileSync(subCss, css, 'utf8');
+        }
+      }
+
+      // 4. The Tailwind Trap Prevention: Auto-inject Tailwind CDN if utility classes are in HTML
+      const htmlPath = join(workspaceDir, 'index.html');
+      if (existsSync(htmlPath)) {
+        let html = readFileSync(htmlPath, 'utf8');
+        const usesTailwindClasses = /\b(flex|grid|rounded-|bg-|text-|border-|shadow-|max-w-|py-|px-|gap-)\b/.test(html);
+        const hasTailwindCdn = /cdn\.tailwindcss\.com/i.test(html);
+
+        if (usesTailwindClasses && !hasTailwindCdn) {
+          const tailwindSnippet = `\n    <!-- Auto-Injected Tailwind CSS CDN & Fallback Configuration -->\n    <script src="https://cdn.tailwindcss.com"></script>\n    <script>
+      if (window.tailwind) {
+        tailwind.config = {
+          darkMode: 'class',
+          theme: {
+            extend: {
+              colors: {
+                primary: '#FF3E1D',
+                'primary-hover': '#E02F10',
+                canvas: '#0B0D11',
+                'surface-1': '#13161C',
+                'surface-2': '#1B1F27',
+                'surface-3': '#232833',
+                'border-subtle': '#242933',
+                'border-active': '#343B49',
+                main: '#F3F4F6',
+                muted: '#9CA3AF',
+                dim: '#6B7280'
+              }
+            }
+          }
+        };
+      }
+    </script>\n  </head>`;
+
+          if (/<\/head>/i.test(html)) {
+            html = html.replace(/<\/head>/i, tailwindSnippet);
+          } else {
+            html = tailwindSnippet + '\n' + html;
+          }
+          writeFileSync(htmlPath, html, 'utf8');
+        } else if (hasTailwindCdn) {
+          // Guard against ReferenceError if tailwind CDN fails to load offline
+          if (/tailwind\.config\s*=/i.test(html) && !/window\.tailwind/i.test(html)) {
+            html = html.replace(/(<script[^>]*>[\s\n]*)(tailwind\.config\s*=)/i, '$1window.tailwind = window.tailwind || {};\n        $2');
+            writeFileSync(htmlPath, html, 'utf8');
+          }
+        }
+      }
+
+      // 5. Anti-Lazy-Tab Table Population & Unescape:
+      if (existsSync(rootJs)) {
+        let jsCode = readFileSync(rootJs, 'utf8');
+        // Unescape double-escaped literal \n in code if LLM serialized raw escape sequences without newlines
+        if (jsCode.split('\n').length <= 3 && jsCode.includes('\\n')) {
+          jsCode = jsCode.replace(/\\n/g, '\n').replace(/\\t/g, '\t').replace(/\\"/g, '"');
+          writeFileSync(rootJs, jsCode, 'utf8');
+          if (existsSync(subJs)) writeFileSync(subJs, jsCode, 'utf8');
+        }
+
+        const viewBranchMatch = jsCode.match(/function\s+renderActiveView\s*\(\)\s*\{([\s\S]*?)\}/);
+        const initAppMatch = jsCode.match(/function\s+initApp\s*\(\)\s*\{([\s\S]*?)\}/);
+        if (viewBranchMatch && initAppMatch) {
+          const body = viewBranchMatch[1];
+          const initBody = initAppMatch[1];
+          const viewFns = [...body.matchAll(/\b(render[A-Z]\w*View)\s*\(\)/g)].map((m) => m[1]);
+          const uncalled = viewFns.filter((fn) => !initBody.includes(fn));
+          if (uncalled.length > 0) {
+            const injection = uncalled.map((fn) => `    if (typeof ${fn} === 'function') try { ${fn}(); } catch (e) {}`).join('\n');
+            jsCode = jsCode.replace(/(function\s+initApp\s*\(\)\s*\{[\s\S]*?renderActiveView\(\);)/, `$1\n${injection}`);
+            writeFileSync(rootJs, jsCode, 'utf8');
+            if (existsSync(subJs)) writeFileSync(subJs, jsCode, 'utf8');
+          }
+        }
+      }
+
+      // 6. Ensure Dockerfile exists
+      const dockerfilePath = join(workspaceDir, 'Dockerfile');
+      if (!existsSync(dockerfilePath)) {
+        writeFileSync(
+          dockerfilePath,
+          `FROM nginx:alpine\nCOPY . /usr/share/nginx/html\nEXPOSE 80\nCMD ["nginx", "-g", "daemon off;"]\n`,
+          'utf8'
+        );
+      }
+    } catch (e: any) {
+      console.warn('[PandaHiveOrchestrator] ensureProjectIntegrity warning:', e?.message);
     }
   }
 

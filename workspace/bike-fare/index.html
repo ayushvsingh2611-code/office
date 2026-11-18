@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex MotoVault | Premium Motorcycle Marketplace & Dealership Experience</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS CDN & Custom Theme Mapping -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      if (window.tailwind) {
+        tailwind.config = {
+          darkMode: 'class',
+          theme: {
+            extend: {
+              colors: {
+                canvas: '#0A0C10',
+                'surface-1': '#12161F',
+                'surface-2': '#1B212D',
+                'surface-3': '#242C3B',
+                primary: '#FF3E1D',
+                accent: '#F59E0B',
+                success: '#10B981',
+                main: '#F3F4F6',
+                muted: '#9CA3AF',
+                dim: '#6B7280',
+                subtle: '#1F2836',
+                'border-active': '#374151'
+              }
+            }
+          }
+        };
+      }
+    </script>
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-canvas text-main font-body antialiased selection:bg-primary selection:text-white">
+
+    <!-- Top Announcement & Global Utility Bar -->
+    <div id="top-bar" class="bg-surface-1 border-b border-subtle text-xs py-2 px-4 transition-colors">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4">
+                <span class="flex items-center gap-1.5 text-success font-medium">
+                    <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+                    Flagship Vaults Open • Nationwide Insured Delivery
+                </span>
+                <button id="top-zip-btn" class="flex items-center gap-1 text-muted hover:text-main bg-surface-2 px-2.5 py-1 rounded-md border border-subtle transition-all hover:border-primary">
+                    <i class="fa-solid fa-location-dot text-primary"></i>
+                    <span>Zip:</span> <span id="current-zip-display" class="font-semibold text-main">33101 - Miami, FL</span>
+                    <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
+                </button>
+            </div>
+            <div class="flex items-center gap-4 text-muted">
+                <a id="top-hotline-btn" href="tel:1800555MOTO" class="flex items-center gap-1.5 hover:text-primary transition-colors">
+                    <i class="fa-solid fa-headset text-primary"></i>
+                    <span>VIP Concierge: <strong>1-800-555-MOTO</strong></span>
+                </a>
+                <span class="text-border-active">|</span>
+                <button id="top-trade-in-link" class="hover:text-primary transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-calculator text-accent"></i>
+                    <span>Instant Trade-In Valuation</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Main Navigation Bar -->
+    <header id="main-navbar" class="sticky top-0 z-40 bg-surface-1/90 backdrop-blur-md border-b border-subtle shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Logo -->
+            <div class="flex items-center gap-8">
+                <a id="nav-logo-btn" href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center shadow-neon group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-motorcycle text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-heading font-black text-2xl tracking-wider text-white block leading-none">APEX</span>
+                        <span class="text-[10px] font-mono tracking-widest text-primary uppercase block mt-1">MotoVault</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Category Navigation Links -->
+                <nav id="nav-category-links" class="hidden xl:flex items-center gap-1 text-sm font-medium">
+                    <button class="nav-cat-link px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-surface-2 transition-all active" data-category="All">All Inventory</button>
+                    <button class="nav-cat-link px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-surface-2 transition-all" data-category="Sportbike">Sportbike</button>
+                    <button class="nav-cat-link px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-surface-2 transition-all" data-category="Cruiser">Cruiser</button>
+                    <button class="nav-cat-link px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-surface-2 transition-all" data-category="Adventure">Adventure</button>
+                    <button class="nav-cat-link px-3 py-2 rounded-lg text-muted hover:text-white hover:bg-surface-2 transition-all" data-category="Naked">Naked</button>
+                </nav>
+            </div>
+
+            <!-- Instant Search Autocomplete Bar -->
+            <div class="flex-1 max-w-md relative hidden md:block">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input id="nav-search-input" type="text" placeholder="Search make, model, engine (e.g. Ducati V4, GS 1250)..." 
+                           class="w-full bg-surface-2 border border-subtle rounded-xl pl-10 pr-10 py-2.5 text-sm text-main placeholder-dim focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+                    <button id="nav-search-clear-btn" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-dim hover:text-main hidden">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+                <!-- Autocomplete Dropdown -->
+                <div id="nav-search-dropdown" class="absolute left-0 right-0 top-full mt-2 bg-surface-3 border border-border-active rounded-xl shadow-2xl z-50 hidden overflow-hidden max-h-96 overflow-y-auto">
+                    <!-- Dynamic search results populated via JS -->
+                </div>
+            </div>
+
+            <!-- Header Action Buttons & Badges -->
+            <div class="flex items-center gap-3">
+                <!-- Sell Bike CTA Button -->
+                <button id="nav-sell-btn" class="hidden lg:flex items-center gap-2 bg-gradient-to-r from-surface-2 to-surface-3 hover:from-surface-3 hover:to-border-active border border-subtle hover:border-primary/50 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition-all shadow-sm">
+                    <i class="fa-solid fa-hand-holding-dollar text-primary"></i>
+                    <span>Sell / Trade</span>
+                </button>
+
+                <!-- Compare Drawer Trigger -->
+                <button id="nav-compare-btn" title="Compare Motorcycles" class="relative p-2.5 bg-surface-2 hover:bg-surface-3 border border-subtle hover:border-border-active rounded-xl text-muted hover:text-white transition-all">
+                    <i class="fa-solid fa-scale-balanced text-base"></i>
+                    <span id="nav-compare-count" class="absolute -top-1.5 -right-1.5 bg-primary text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">0</span>
+                </button>
+
+                <!-- Wishlist Drawer Trigger -->
+                <button id="nav-wishlist-btn" title="Wishlist Favorites" class="relative p-2.5 bg-surface-2 hover:bg-surface-3 border border-subtle hover:border-border-active rounded-xl text-muted hover:text-white transition-all">
+                    <i class="fa-solid fa-heart text-base"></i>
+                    <span id="nav-wishlist-count" class="absolute -top-1.5 -right-1.5 bg-primary text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">0</span>
+                </button>
+
+                <!-- Cart / Reservations Drawer Trigger -->
+                <button id="nav-cart-btn" title="Reserved Deposits Cart" class="relative p-2.5 bg-surface-2 hover:bg-surface-3 border border-subtle hover:border-border-active rounded-xl text-muted hover:text-white transition-all">
+                    <i class="fa-solid fa-cart-shopping text-base"></i>
+                    <span id="nav-cart-count" class="absolute -top-1.5 -right-1.5 bg-primary text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">0</span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main>
+
+        <!-- Hero Banner Section -->
+        <section id="hero-section" class="relative min-h-[560px] lg:min-h-[640px] flex items-center justify-center overflow-hidden bg-canvas">
+            <!-- Background Image with Cinematic Dark Gradient Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=2000&q=85" alt="Apex MotoVault Hero Motorcycle" class="w-full h-full object-cover object-center filter brightness-50 scale-105 animate-fade-in">
+                <div class="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/60 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-canvas via-transparent to-canvas/80"></div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 py-16 w-full flex flex-col items-start justify-center">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 bg-primary/15 border border-primary/40 rounded-full px-4 py-1.5 mb-6 text-primary text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
+                        <i class="fa-solid fa-bolt"></i> High-Octane Digital Showroom & Marketplace
+                    </div>
+                    <h1 class="font-heading font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight leading-none mb-6">
+                        DOMINATE <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-amber-500">THE ASPHALT.</span>
+                    </h1>
+                    <p class="text-muted text-base sm:text-lg mb-8 leading-relaxed">
+                        Explore certified new and pre-owned superbikes, cruisers, and adventure machines. Experience live synthesized exhaust notes, instant trade-in valuations, and secure refundable deposit reservations.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4">
+                        <button id="hero-cta-explore" class="bg-primary hover:bg-primary-hover text-white font-heading font-bold px-8 py-4 rounded-xl shadow-neon transition-all hover:scale-105 flex items-center gap-3 text-base">
+                            <span>Explore Inventory</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </button>
+                        <button id="hero-cta-sell" class="bg-surface-2/80 hover:bg-surface-3 backdrop-blur-md border border-border-active text-white font-heading font-semibold px-8 py-4 rounded-xl transition-all flex items-center gap-3 text-base">
+                            <i class="fa-solid fa-calculator text-primary"></i>
+                            <span>Instant Trade-In Valuation</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Filter Floating Strip over Hero -->
+                <div id="quick-filter-strip" class="mt-12 w-full bg-surface-1/90 backdrop-blur-xl border border-subtle rounded-2xl p-4 lg:p-6 shadow-2xl">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-center">
+                        
+                        <!-- Quick Make -->
+                        <div>
+                            <label class="block text-[11px] font-mono uppercase text-dim mb-1.5">Manufacturer</label>
+                            <select id="quick-make-select" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary">
+                                <option value="All">All Makes (10)</option>
+                                <option value="Ducati">Ducati</option>
+                                <option value="Yamaha">Yamaha</option>
+                                <option value="Harley-Davidson">Harley-Davidson</option>
+                                <option value="BMW">BMW</option>
+                                <option value="Kawasaki">Kawasaki</option>
+                                <option value="Triumph">Triumph</option>
+                                <option value="Honda">Honda</option>
+                                <option value="KTM">KTM</option>
+                                <option value="Indian Motorcycle">Indian Motorcycle</option>
+                                <option value="Suzuki">Suzuki</option>
+                            </select>
+                        </div>
+
+                        <!-- Quick Category -->
+                        <div>
+                            <label class="block text-[11px] font-mono uppercase text-dim mb-1.5">Category</label>
+                            <select id="quick-category-select" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary">
+                                <option value="All">All Categories</option>
+                                <option value="Sportbike">Sportbike</option>
+                                <option value="Cruiser">Cruiser</option>
+                                <option value="Adventure">Adventure</option>
+                                <option value="Naked">Naked</option>
+                            </select>
+                        </div>
+
+                        <!-- Quick Budget -->
+                        <div>
+                            <label class="block text-[11px] font-mono uppercase text-dim mb-1.5">Max Budget</label>
+                            <select id="quick-budget-select" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary">
+                                <option value="35000">Any Price ($35k Max)</option>
+                                <option value="15000">Under $15,000</option>
+                                <option value="20000">Under $20,000</option>
+                                <option value="25000">Under $25,000</option>
+                            </select>
+                        </div>
+
+                        <!-- Quick Condition -->
+                        <div>
+                            <label class="block text-[11px] font-mono uppercase text-dim mb-1.5">Condition</label>
+                            <select id="quick-condition-select" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary">
+                                <option value="All">New & Certified Pre-Owned</option>
+                                <option value="New">Brand New</option>
+                                <option value="Certified Pre-Owned">Certified Pre-Owned (CPO)</option>
+                            </select>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="flex items-end h-full pt-5 lg:pt-0">
+                            <button id="quick-filter-submit" class="w-full bg-primary hover:bg-primary-hover text-white font-heading font-bold py-2.5 px-6 rounded-xl transition-all shadow-neon flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-filter"></i>
+                                <span>Filter Vault</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Main Inventory & Faceted Filter Section -->
+        <section id="inventory-section" class="max-w-7xl mx-auto px-4 py-16">
+            
+            <!-- Category Pills Bar -->
+            <div id="category-pills-bar" class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
+                <button class="cat-pill active flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-2 border border-subtle hover:border-primary text-sm font-medium whitespace-nowrap transition-all" data-category="All">
+                    <i class="fa-solid fa-layer-group text-primary"></i> All Motorcycles
+                </button>
+                <button class="cat-pill flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-2 border border-subtle hover:border-primary text-sm font-medium whitespace-nowrap transition-all" data-category="Sportbike">
+                    <i class="fa-solid fa-gauge-high text-primary"></i> Sportbikes
+                </button>
+                <button class="cat-pill flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-2 border border-subtle hover:border-primary text-sm font-medium whitespace-nowrap transition-all" data-category="Cruiser">
+                    <i class="fa-solid fa-road text-primary"></i> Cruisers
+                </button>
+                <button class="cat-pill flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-2 border border-subtle hover:border-primary text-sm font-medium whitespace-nowrap transition-all" data-category="Adventure">
+                    <i class="fa-solid fa-mountain text-primary"></i> Adventure / Touring
+                </button>
+                <button class="cat-pill flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-2 border border-subtle hover:border-primary text-sm font-medium whitespace-nowrap transition-all" data-category="Naked">
+                    <i class="fa-solid fa-skull text-primary"></i> Naked / Streetfighter
+                </button>
+            </div>
+
+            <!-- Main Layout Grid: Sidebar Filters + Inventory Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                
+                <!-- Faceted Sidebar Filters -->
+                <aside id="sidebar-filters" class="lg:col-span-1 bg-surface-1 border border-subtle rounded-2xl p-6 h-fit sticky top-28 shadow-xl">
+                    <div class="flex items-center justify-between pb-4 mb-6 border-b border-subtle">
+                        <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-primary"></i> Filter Vault
+                        </h3>
+                        <button id="reset-all-filters-btn" class="text-xs text-muted hover:text-primary underline transition-colors">Reset All</button>
+                    </div>
+
+                    <!-- Keyword Search in Sidebar -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-mono uppercase text-dim mb-2">Keyword Search</label>
+                        <input id="filter-search-input" type="text" placeholder="Make, model, color..." class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2 text-sm text-main focus:outline-none focus:border-primary">
+                    </div>
+
+                    <!-- Condition Filter -->
+                    <div class="mb-6 pb-6 border-b border-subtle">
+                        <label class="block text-xs font-mono uppercase text-dim mb-2">Condition</label>
+                        <div id="filter-condition-container" class="space-y-2">
+                            <label class="flex items-center gap-2.5 text-sm text-muted cursor-pointer hover:text-main">
+                                <input type="radio" name="condition-filter" value="All" checked class="accent-primary"> All Condition
+                            </label>
+                            <label class="flex items-center gap-2.5 text-sm text-muted cursor-pointer hover:text-main">
+                                <input type="radio" name="condition-filter" value="New" class="accent-primary"> Brand New
+                            </label>
+                            <label class="flex items-center gap-2.5 text-sm text-muted cursor-pointer hover:text-main">
+                                <input type="radio" name="condition-filter" value="Certified Pre-Owned" class="accent-primary"> Certified Pre-Owned
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Manufacturer Checkbox List -->
+                    <div class="mb-6 pb-6 border-b border-subtle">
+                        <label class="block text-xs font-mono uppercase text-dim mb-2">Manufacturer</label>
+                        <div id="filter-make-container" class="space-y-2.5 max-h-48 overflow-y-auto pr-1">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Price Range Slider -->
+                    <div class="mb-6 pb-6 border-b border-subtle">
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-xs font-mono uppercase text-dim">Max Price Cap</label>
+                            <span id="filter-price-display" class="font-mono text-sm font-bold text-primary">$35,000</span>
+                        </div>
+                        <input id="filter-price-slider" type="range" min="10000" max="35000" step="500" value="35000" class="w-full accent-primary bg-surface-2 cursor-pointer">
+                        <div class="flex justify-between text-[10px] text-dim font-mono mt-1">
+                            <span>$10k</span>
+                            <span>$35k</span>
+                        </div>
+                    </div>
+
+                    <!-- Minimum Engine Displacement (cc) -->
+                    <div class="mb-6 pb-6 border-b border-subtle">
+                        <label class="block text-xs font-mono uppercase text-dim mb-2">Min Displacement (cc)</label>
+                        <select id="filter-engine-min" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2 text-sm text-main focus:outline-none focus:border-primary">
+                            <option value="0">Any Engine Size</option>
+                            <option value="900">900cc+</option>
+                            <option value="1100">1,100cc+</option>
+                            <option value="1300">1,300cc+</option>
+                        </select>
+                    </div>
+
+                    <!-- Transmission / Quickshifter Filter -->
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-2">Transmission / Tech</label>
+                        <select id="filter-transmission" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2 text-sm text-main focus:outline-none focus:border-primary">
+                            <option value="All">All Transmissions</option>
+                            <option value="Quickshifter">Quickshifter Equipped</option>
+                        </select>
+                    </div>
+
+                </aside>
+
+                <!-- Inventory Main Grid Area -->
+                <div class="lg:col-span-3">
+                    
+                    <!-- Inventory Header: Results Counter & Sorting -->
+                    <div id="inventory-header" class="bg-surface-1 border border-subtle rounded-2xl p-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-md">
+                        <div>
+                            <span id="results-counter" class="text-sm font-semibold text-white">Showing 10 of 10 Motorcycles</span>
+                        </div>
+                        <div class="flex items-center gap-3 w-full sm:w-auto">
+                            <label class="text-xs font-mono uppercase text-dim whitespace-nowrap">Sort By:</label>
+                            <select id="sort-select" class="w-full sm:w-auto bg-surface-2 border border-subtle rounded-xl px-3.5 py-2 text-sm text-main focus:outline-none focus:border-primary">
+                                <option value="featured">Featured / Recommended</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="hp-high">Horsepower: Highest</option>
+                                <option value="year-newest">Year: Newest First</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Active Filter Chips Bar -->
+                    <div id="active-filter-chips" class="flex flex-wrap items-center gap-2 mb-6">
+                        <!-- Removable filter chips rendered dynamically -->
+                    </div>
+
+                    <!-- Bikes Grid Container -->
+                    <div id="bikes-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <!-- Bike cards injected dynamically via app.js -->
+                    </div>
+
+                    <!-- No Results Empty State -->
+                    <div id="no-results-state" class="hidden text-center py-20 bg-surface-1 border border-subtle rounded-2xl p-8">
+                        <div class="w-16 h-16 bg-surface-2 rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-white mb-2">No Motorcycles Match Your Criteria</h3>
+                        <p class="text-muted text-sm max-w-md mx-auto mb-6">Try broadening your price range, clearing filters, or searching for a different make or model.</p>
+                        <button onclick="clearAllFilters()" class="bg-primary hover:bg-primary-hover text-white font-heading font-semibold px-6 py-2.5 rounded-xl transition-all shadow-neon">
+                            Reset All Filters
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-1 border-t border-subtle mt-20 pt-16 pb-12 text-muted text-sm">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div>
+                <a href="#" class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center shadow-neon">
+                        <i class="fa-solid fa-motorcycle text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="font-heading font-black text-xl tracking-wider text-white block leading-none">APEX</span>
+                        <span class="text-[9px] font-mono tracking-widest text-primary uppercase block mt-1">MotoVault</span>
+                    </div>
+                </a>
+                <p class="text-xs leading-relaxed text-dim mb-4">
+                    The world's premier high-fidelity motorcycle marketplace and showroom. Certified pre-owned inspections, Web Audio exhaust simulations, and nationwide doorstep delivery.
+                </p>
+                <div class="flex items-center gap-3">
+                    <a href="#" class="w-8 h-8 rounded-lg bg-surface-2 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-lg bg-surface-2 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-lg bg-surface-2 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-lg bg-surface-2 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-heading font-bold text-white mb-4 uppercase text-xs tracking-wider">Showroom Vaults</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="#" class="hover:text-primary transition-colors">Miami Flagship Vault, FL</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">Austin Supercenter, TX</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">Los Angeles Flagship, CA</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">Chicago Metro Vault, IL</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">Denver Mountain Hub, CO</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-heading font-bold text-white mb-4 uppercase text-xs tracking-wider">Buyer Services</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="#" class="hover:text-primary transition-colors" onclick="openFinanceCalcModal()">Loan EMI Calculator</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors" onclick="openSellBikeModal()">Instant Trade-In Valuation</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">Certified Pre-Owned Inspection</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">Nationwide Enclosed Delivery</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">Extended Warranty Packages</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-heading font-bold text-white mb-4 uppercase text-xs tracking-wider">VIP Concierge Hotline</h4>
+                <p class="text-xs text-dim mb-4">Speak directly with our master motorcycle specialists 7 days a week (8am - 10pm EST).</p>
+                <a href="tel:1800555MOTO" class="font-mono font-bold text-lg text-primary block mb-2">1-800-555-MOTO</a>
+                <span class="text-[11px] text-dim block">concierge@apexmotovault.com</span>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 pt-8 border-t border-subtle flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-dim">
+            <p>&copy; 2025 Apex MotoVault Inc. All rights reserved. Built by Group 2 Builder (Shanks).</p>
+            <div class="flex items-center gap-6">
+                <a href="#" class="hover:text-main">Privacy Policy</a>
+                <a href="#" class="hover:text-main">Terms of Service</a>
+                <a href="#" class="hover:text-main">Dealer Licensing</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ==================== MODALS & DRAWERS ==================== -->
+
+    <!-- 1. Zip Code / Location Selector Modal -->
+    <div id="zip-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-surface-2 border border-border-active rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+            <button onclick="closeZipModal()" class="absolute top-4 right-4 text-muted hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="font-heading font-bold text-xl text-white mb-2">Select Your Delivery / Store Location</h3>
+            <p class="text-xs text-muted mb-6">Choose your zip code to calculate regional taxes, registration, and closest flagship vault pickup.</p>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono uppercase text-dim mb-1.5">Enter US Zip Code</label>
+                    <input id="modal-zip-input" type="text" placeholder="e.g. 33101, 78701, 90001" maxlength="5" class="w-full bg-surface-3 border border-subtle rounded-xl px-4 py-2.5 text-sm text-main focus:outline-none focus:border-primary">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="setStoreLocation('33101', 'Miami, FL')" class="p-3 bg-surface-3 hover:bg-surface-1 border border-subtle rounded-xl text-left transition-all">
+                        <span class="font-bold text-white block text-xs">Miami Flagship, FL</span>
+                        <span class="text-[10px] text-dim">33101</span>
+                    </button>
+                    <button onclick="setStoreLocation('78701', 'Austin, TX')" class="p-3 bg-surface-3 hover:bg-surface-1 border border-subtle rounded-xl text-left transition-all">
+                        <span class="font-bold text-white block text-xs">Austin Supercenter, TX</span>
+                        <span class="text-[10px] text-dim">78701</span>
+                    </button>
+                    <button onclick="setStoreLocation('90001', 'Los Angeles, CA')" class="p-3 bg-surface-3 hover:bg-surface-1 border border-subtle rounded-xl text-left transition-all">
+                        <span class="font-bold text-white block text-xs">Los Angeles Vault, CA</span>
+                        <span class="text-[10px] text-dim">90001</span>
+                    </button>
+                    <button onclick="setStoreLocation('60601', 'Chicago, IL')" class="p-3 bg-surface-3 hover:bg-surface-1 border border-subtle rounded-xl text-left transition-all">
+                        <span class="font-bold text-white block text-xs">Chicago Metro, IL</span>
+                        <span class="text-[10px] text-dim">60601</span>
+                    </button>
+                </div>
+                <button onclick="submitZipModal()" class="w-full bg-primary hover:bg-primary-hover text-white font-heading font-bold py-3 rounded-xl transition-all shadow-neon mt-2">
+                    Confirm Location
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2. Vehicle Detail Modal -->
+    <div id="bike-detail-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 hidden overflow-y-auto">
+        <div class="bg-surface-1 border border-border-active rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative flex flex-col">
+            <button id="detail-modal-close" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-surface-3/80 hover:bg-primary text-white flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="detail-modal-body" class="p-6 sm:p-8">
+                <!-- Dynamically rendered detailed vehicle specs & gallery -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3. Synthesized Engine Exhaust Sound Simulator Modal -->
+    <div id="exhaust-audio-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="bg-surface-1 border border-primary/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-neon relative text-center">
+            <button id="audio-modal-close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-2 text-muted hover:text-white flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="w-16 h-16 rounded-2xl bg-primary/20 border border-primary flex items-center justify-center mx-auto mb-4 text-primary text-2xl animate-pulse">
+                <i class="fa-solid fa-wave-square"></i>
+            </div>
+            <span class="text-xs font-mono text-primary uppercase tracking-widest block mb-1">Web Audio API Synthesis</span>
+            <h3 id="audio-modal-bike-title" class="font-heading font-black text-2xl text-white mb-2">Exhaust Sound Simulator</h3>
+            <p id="audio-modal-engine-desc" class="text-xs text-muted mb-6">Desmosedici Stradale 90° V4 Acoustic Profile</p>
+
+            <!-- Sound Wave Canvas Visualizer -->
+            <div class="bg-canvas border border-subtle rounded-2xl p-4 mb-6 relative overflow-hidden h-32 flex items-center justify-center">
+                <canvas id="sound-wave-canvas" class="w-full h-full"></canvas>
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span id="rpm-display" class="font-mono font-bold text-3xl text-primary drop-shadow-lg">1,000 RPM (Idle)</span>
+                </div>
+            </div>
+
+            <!-- Throttle Controls -->
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between text-xs font-mono text-dim mb-1">
+                        <span>Idle (1,000)</span>
+                        <span>Mid Throttle (7,500)</span>
+                        <span>Redline (14,000)</span>
+                    </div>
+                    <input id="throttle-rpm-slider" type="range" min="1000" max="14000" step="100" value="1000" class="w-full accent-primary bg-surface-2 cursor-pointer h-2 rounded-lg">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <button id="throttle-rev-btn" class="bg-primary hover:bg-primary-hover text-white font-heading font-bold py-3 px-4 rounded-xl shadow-neon transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-gauge"></i>
+                        <span>BLIP THROTTLE</span>
+                    </button>
+                    <button id="audio-toggle-btn" class="bg-surface-2 hover:bg-surface-3 border border-subtle text-white font-heading font-semibold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play text-primary"></i>
+                        <span id="audio-toggle-label">Start Engine</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 4. Compare Drawer -->
+    <div id="compare-drawer" class="fixed inset-x-0 bottom-0 z-50 bg-surface-1 border-t-2 border-primary shadow-2xl transform translate-y-full transition-transform duration-300 max-h-[85vh] overflow-y-auto">
+        <div class="max-w-7xl mx-auto p-4 sm:p-6">
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-subtle">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-scale-balanced text-primary text-xl"></i>
+                    <div>
+                        <h3 class="font-heading font-bold text-lg text-white">Side-by-Side Motorcycle Comparison Matrix</h3>
+                        <p class="text-xs text-muted">Compare up to 3 superbikes across power, torque, weight, and features.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="compare-clear-all-btn" class="text-xs text-muted hover:text-primary underline">Clear Matrix</button>
+                    <button id="compare-drawer-close" class="w-8 h-8 rounded-full bg-surface-2 hover:bg-surface-3 text-muted hover:text-white flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            <div id="compare-bikes-content" class="overflow-x-auto pb-4">
+                <!-- Rendered comparison table via JS -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 5. Wishlist Drawer -->
+    <div id="wishlist-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-surface-1 border-l border-subtle shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-6 border-b border-subtle flex items-center justify-between">
+            <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
+                <i class="fa-solid fa-heart text-primary"></i> Saved Wishlist Bikes (<span id="wishlist-drawer-count">0</span>)
+            </h3>
+            <button id="wishlist-drawer-close" class="w-8 h-8 rounded-full bg-surface-2 hover:bg-surface-3 text-muted hover:text-white flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="wishlist-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+            <!-- Wishlist cards populated via JS -->
+        </div>
+    </div>
+
+
+    <!-- 6. Cart / Reservation Deposits Drawer -->
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-surface-1 border-l border-subtle shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-6 border-b border-subtle flex items-center justify-between">
+            <h3 class="font-heading font-bold text-lg text-white flex items-center gap-2">
+                <i class="fa-solid fa-cart-shopping text-primary"></i> Refundable Reservations (<span id="cart-drawer-count">0</span>)
+            </h3>
+            <button id="cart-drawer-close" class="w-8 h-8 rounded-full bg-surface-2 hover:bg-surface-3 text-muted hover:text-white flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+            <!-- Cart reservation cards populated via JS -->
+        </div>
+        <div class="p-6 border-t border-subtle bg-surface-2">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-xs text-muted uppercase font-mono">Total Deposit Due ($500 ea):</span>
+                <span id="cart-subtotal-price" class="font-mono font-bold text-2xl text-primary">$0</span>
+            </div>
+            <button id="cart-checkout-btn" class="w-full bg-primary hover:bg-primary-hover text-white font-heading font-bold py-3.5 rounded-xl transition-all shadow-neon flex items-center justify-center gap-2">
+                <i class="fa-solid fa-lock"></i>
+                <span>Proceed to Secure Checkout</span>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- 7. Checkout / Reservation Finalization Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden overflow-y-auto">
+        <div class="bg-surface-1 border border-border-active rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+            <button id="checkout-modal-close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-2 text-muted hover:text-white flex items-center justify-center"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div id="checkout-form-view">
+                <h3 class="font-heading font-bold text-2xl text-white mb-2">Secure Reservation Checkout</h3>
+                <p class="text-xs text-muted mb-6">Secure your motorcycle with a fully refundable $500 earnest deposit. VIN will be locked immediately.</p>
+                <form id="checkout-form" class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-dim mb-1">First Name</label>
+                            <input type="text" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary" placeholder="Monkey D.">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-dim mb-1">Last Name</label>
+                            <input type="text" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary" placeholder="Luffy">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-1">Email Address</label>
+                        <input type="email" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary" placeholder="luffy@strawhat.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-1">Phone Number</label>
+                        <input type="tel" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary" placeholder="(305) 555-0199">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-1">Mock Credit / Debit Card (Sandbox)</label>
+                        <input type="text" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main font-mono focus:outline-none focus:border-primary" placeholder="4242 •••• •••• 4242" value="4242 4242 4242 4242">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-dim mb-1">Exp Date</label>
+                            <input type="text" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main font-mono focus:outline-none focus:border-primary" placeholder="12/28" value="12/28">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-dim mb-1">CVV</label>
+                            <input type="text" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main font-mono focus:outline-none focus:border-primary" placeholder="888" value="888">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-white font-heading font-bold py-3.5 rounded-xl transition-all shadow-neon mt-4 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Authorize $500 Refundable Deposit</span>
+                    </button>
+                </form>
+            </div>
+            <!-- Success Confirmation View -->
+            <div id="checkout-success-view" class="hidden text-center py-6">
+                <div class="w-16 h-16 rounded-full bg-success/20 border border-success flex items-center justify-center mx-auto mb-4 text-success text-3xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 class="font-heading font-black text-2xl text-white mb-2">Reservation Successful!</h3>
+                <p class="text-xs text-muted mb-6">Your $500 earnest deposit has been securely processed. VIN assigned & locked in Vault.</p>
+                <div class="bg-surface-2 border border-subtle rounded-2xl p-4 text-left font-mono text-xs space-y-2 mb-6">
+                    <div class="flex justify-between"><span class="text-dim">Reservation ID:</span> <strong id="receipt-id" class="text-primary">MV-94821</strong></div>
+                    <div class="flex justify-between"><span class="text-dim">Deposit Charged:</span> <strong class="text-white">$500.00 (Refundable)</strong></div>
+                    <div class="flex justify-between"><span class="text-dim">Assigned Vault:</span> <strong class="text-white">Miami Flagship, FL</strong></div>
+                </div>
+                <button onclick="closeCheckoutModalCompletely()" class="w-full bg-primary hover:bg-primary-hover text-white font-heading font-bold py-3 rounded-xl transition-all shadow-neon">
+                    Return to Showroom
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 8. Sell / Instant Trade-In Valuation Modal -->
+    <div id="sell-bike-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden overflow-y-auto">
+        <div class="bg-surface-1 border border-border-active rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative">
+            <button id="sell-modal-close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-2 text-muted hover:text-white flex items-center justify-center"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="inline-flex items-center gap-2 bg-primary/15 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                <i class="fa-solid fa-bolt"></i> Instant AI Valuation Engine
+            </div>
+            <h3 class="font-heading font-bold text-2xl text-white mb-2">Sell or Trade In Your Motorcycle</h3>
+            <p class="text-xs text-muted mb-6">Get an instant cash offer or trade-in credit estimate in seconds based on live market telemetry.</p>
+            
+            <form id="sell-bike-form" class="space-y-4 mb-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-1">Make</label>
+                        <input id="sell-make" type="text" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary" placeholder="e.g. Yamaha, Ducati">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-1">Model</label>
+                        <input id="sell-model" type="text" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary" placeholder="e.g. YZF-R6">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-1">Year</label>
+                        <input id="sell-year" type="number" min="1990" max="2025" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary" placeholder="2022" value="2022">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-1">Current Mileage</label>
+                        <input id="sell-mileage" type="number" min="0" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary" placeholder="4500" value="4500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-mono uppercase text-dim mb-1">Mechanical & Cosmetic Condition</label>
+                    <select id="sell-condition" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary">
+                        <option value="Excellent">Excellent (Pristine showroom condition)</option>
+                        <option value="Good" selected>Good (Minor wear, well maintained)</option>
+                        <option value="Fair">Fair (Scratches or service due)</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-white font-heading font-bold py-3.5 rounded-xl transition-all shadow-neon flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>Generate Instant Valuation</span>
+                </button>
+            </form>
+
+            <!-- Valuation Result Container -->
+            <div id="sell-valuation-result" class="hidden bg-surface-2 border border-border-active rounded-2xl p-6 text-center animate-fade-in">
+                <!-- Dynamically populated valuation breakdown -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 9. Test Ride Booking Modal -->
+    <div id="test-ride-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden overflow-y-auto">
+        <div class="bg-surface-1 border border-border-active rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+            <button id="test-ride-modal-close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-2 text-muted hover:text-white flex items-center justify-center"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="inline-flex items-center gap-2 bg-info/15 text-info text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                <i class="fa-solid fa-calendar-days"></i> VIP Appointment
+            </div>
+            <h3 class="font-heading font-bold text-2xl text-white mb-2">Schedule In-Person Test Ride</h3>
+            <p id="test-ride-bike-subtitle" class="text-xs text-muted mb-6">Book your private track or street loop session with a factory specialist.</p>
+            
+            <form id="test-ride-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono uppercase text-dim mb-1">Select Flagship Vault Location</label>
+                    <select id="test-ride-location" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary">
+                        <option value="Miami Flagship Vault, FL">Miami Flagship Vault, FL</option>
+                        <option value="Austin Supercenter, TX">Austin Supercenter, TX</option>
+                        <option value="Los Angeles Flagship, CA">Los Angeles Flagship, CA</option>
+                        <option value="Chicago Metro Vault, IL">Chicago Metro Vault, IL</option>
+                        <option value="Denver Mountain Hub, CO">Denver Mountain Hub, CO</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-1">Preferred Date</label>
+                        <input type="date" required class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-1">Time Slot</label>
+                        <select class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary">
+                            <option value="10:00 AM">10:00 AM EST</option>
+                            <option value="01:00 PM">01:00 PM EST</option>
+                            <option value="04:00 PM">04:00 PM EST</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="flex items-center gap-2.5 text-xs text-muted cursor-pointer bg-surface-2 p-3 rounded-xl border border-subtle">
+                        <input type="checkbox" required class="accent-primary w-4 h-4">
+                        <span>I confirm I possess a valid Motorcycle Endorsement (Class M) driver's license.</span>
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-white font-heading font-bold py-3.5 rounded-xl transition-all shadow-neon flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Confirm Test Ride Booking</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- 10. Loan & EMI Financing Calculator Modal -->
+    <div id="finance-calc-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden overflow-y-auto">
+        <div class="bg-surface-1 border border-border-active rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+            <button id="finance-calc-close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-2 text-muted hover:text-white flex items-center justify-center"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="font-heading font-bold text-2xl text-white mb-2">Motorcycle Financing & EMI Calculator</h3>
+            <p class="text-xs text-muted mb-6">Customize down payment, loan term, and APR to calculate your estimated monthly payment.</p>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono uppercase text-dim mb-1">Motorcycle Price ($)</label>
+                    <input id="calc-price-input" type="number" value="24995" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main font-mono focus:outline-none focus:border-primary">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono uppercase text-dim mb-1">Down Payment ($)</label>
+                    <input id="calc-down-input" type="number" value="4995" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main font-mono focus:outline-none focus:border-primary">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-1">Loan Term</label>
+                        <select id="calc-term-select" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main focus:outline-none focus:border-primary">
+                            <option value="24">24 Months</option>
+                            <option value="36">36 Months</option>
+                            <option value="48">48 Months</option>
+                            <option value="60" selected>60 Months</option>
+                            <option value="72">72 Months</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-dim mb-1">Interest Rate (APR %)</label>
+                        <input id="calc-rate-input" type="number" step="0.1" value="5.9" class="w-full bg-surface-2 border border-subtle rounded-xl px-3.5 py-2.5 text-sm text-main font-mono focus:outline-none focus:border-primary">
+                    </div>
+                </div>
+
+                <!-- Result Box -->
+                <div class="bg-gradient-to-br from-surface-2 to-surface-3 border border-border-active rounded-2xl p-6 text-center mt-6">
+                    <span class="text-xs font-mono uppercase text-dim block mb-1">Estimated Monthly Payment (EMI)</span>
+                    <span id="calc-monthly-result" class="font-heading font-black text-4xl text-primary">$412<span class="text-sm font-normal text-muted">/mo</span></span>
+                    <span class="text-[10px] text-dim block mt-2">*Rates subject to credit approval. Zero pre-payment penalties.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+
+    <!-- Main Application JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>

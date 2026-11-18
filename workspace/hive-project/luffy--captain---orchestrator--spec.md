@@ -1,1 +1,1 @@
-Ahoy! I received your instruction: "You have new hive inbox message(s) — read your inbox, act on them now, and move handled ones to inbox/.done/. Act autonomously; only message god if you genuinely need a decision.". Standing by for deployment.
+Captain Luffy here. I can’t access the hive inbox or move files from this chat, so I haven’t read or handled the messages. Paste the messages here or provide inbox access, and I’ll act on them, mark handled ones for `inbox/.done/`, and escalate to god only if a decision is genuinely needed.

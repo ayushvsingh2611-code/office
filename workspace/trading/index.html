@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS-PRO | Institutional Trading Terminal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Auto-Injected Tailwind CSS CDN & Fallback Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      if (window.tailwind) {
+        tailwind.config = {
+          darkMode: 'class',
+          theme: {
+            extend: {
+              colors: {
+                primary: '#FF3E1D',
+                'primary-hover': '#E02F10',
+                canvas: '#0B0D11',
+                'surface-1': '#13161C',
+                'surface-2': '#1B1F27',
+                'surface-3': '#232833',
+                'border-subtle': '#242933',
+                'border-active': '#343B49',
+                main: '#F3F4F6',
+                muted: '#9CA3AF',
+                dim: '#6B7280'
+              }
+            }
+          }
+        };
+      }
+    </script>
+  </head>
+<body class="nexus-terminal">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header id="header-nav" class="nexus-header">
+        <div class="header-left">
+            <div id="header-logo" class="brand-logo">
+                <span class="logo-icon"><i class="fa-solid fa-chart-line-up"></i></span>
+                <span class="logo-text">NEXUS<span class="logo-accent">PRO</span></span>
+                <span class="version-badge">v2.0</span>
+            </div>
+            <div class="header-divider"></div>
+            <div id="live-status-pill" class="status-pill simulating" title="System Status">
+                <span class="status-dot"></span>
+                <span class="status-text">SIMULATING / LIVE SYNC</span>
+            </div>
+            <div class="header-divider"></div>
+            <div id="ticker-marquee" class="ticker-marquee-container">
+                <!-- Dynamically populated ticker items -->
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="account-quick-bar">
+                <div class="quick-metric" title="Total Equity">
+                    <span class="metric-label">EQUITY</span>
+                    <span id="account-equity-val" class="metric-value">$50,000.00</span>
+                </div>
+                <div class="quick-metric" title="Available Cash Balance">
+                    <span class="metric-label">BALANCE</span>
+                    <span id="account-balance-val" class="metric-value">$50,000.00</span>
+                </div>
+                <div class="quick-metric" title="Unrealized Profit & Loss">
+                    <span class="metric-label">u.PnL</span>
+                    <span id="account-pnl-val" class="metric-value profit">$0.00</span>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button id="btn-deposit-modal" class="btn btn-primary-tactical" title="Deposit Demo Funds">
+                    <i class="fa-solid fa-wallet"></i> Deposit
+                </button>
+                <button id="btn-reset-account" class="btn btn-secondary-tactical" title="Reset Account to $50,000">
+                    <i class="fa-solid fa-rotate-right"></i> Reset
+                </button>
+                <button id="btn-sound-toggle" class="btn btn-icon active" title="Toggle Audio FX">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <button id="btn-fullscreen" class="btn btn-icon" title="Toggle Fullscreen">
+                    <i class="fa-solid fa-expand"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN TERMINAL GRID -->
+    <div class="terminal-grid">
+
+        <!-- COLUMN 1: WATCHLIST & MARKETS -->
+        <aside class="terminal-panel watchlist-panel">
+            <div class="panel-header">
+                <div class="panel-title"><i class="fa-solid fa-binoculars"></i> Markets</div>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="watchlist-search-input" placeholder="Search symbol...">
+                </div>
+            </div>
+
+            <div class="category-filters">
+                <button id="filter-cat-all" class="cat-filter-btn active">All</button>
+                <button id="filter-cat-crypto" class="cat-filter-btn">Crypto</button>
+                <button id="filter-cat-stocks" class="cat-filter-btn">Stocks</button>
+                <button id="filter-cat-forex" class="cat-filter-btn">Forex</button>
+                <button id="filter-cat-commodities" class="cat-filter-btn">Commodities</button>
+            </div>
+
+            <div class="watchlist-table-container">
+                <table class="nexus-table">
+                    <thead>
+                        <tr>
+                            <th>Pair</th>
+                            <th class="text-right">Price</th>
+                            <th class="text-right">24h Change</th>
+                        </tr>
+                    </thead>
+                    <tbody id="watchlist-table-body">
+                        <!-- Dynamically populated instrument rows -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="market-quick-stats" class="market-quick-stats">
+                <!-- Selected market stats strip -->
+                <div class="stat-row">
+                    <span>24h High: <strong id="stat-high">--</strong></span>
+                    <span>24h Low: <strong id="stat-low">--</strong></span>
+                </div>
+                <div class="stat-row">
+                    <span>24h Vol: <strong id="stat-vol">--</strong></span>
+                    <span>Spread: <strong id="stat-spread">--</strong></span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- COLUMN 2: CENTER CHART & CONTROLS -->
+        <main class="terminal-panel center-chart-panel">
+            <div class="chart-topbar">
+                <div class="symbol-info-group">
+                    <div id="active-symbol-badge" class="symbol-badge">BTC-USDT</div>
+                    <div class="price-display-group">
+                        <span id="active-price-display" class="active-price">64,280.50</span>
+                        <span id="active-change-badge" class="change-badge profit">+2.45%</span>
+                    </div>
+                </div>
+
+                <div class="chart-toolbar">
+                    <div class="timeframe-group">
+                        <button id="tf-1m" class="tf-btn">1m</button>
+                        <button id="tf-5m" class="tf-btn">5m</button>
+                        <button id="tf-15m" class="tf-btn active">15m</button>
+                        <button id="tf-1h" class="tf-btn">1h</button>
+                        <button id="tf-4h" class="tf-btn">4h</button>
+                        <button id="tf-1D" class="tf-btn">1D</button>
+                    </div>
+
+                    <div class="divider-vertical"></div>
+
+                    <div class="indicator-toggles">
+                        <button id="toggle-chart-type" class="ind-btn" title="Toggle Chart Type (Candle / Line)"><i class="fa-solid fa-chart-candlestick"></i></button>
+                        <button id="toggle-indicator-sma" class="ind-btn active" title="Toggle SMA (20)">SMA</button>
+                        <button id="toggle-indicator-ema" class="ind-btn active" title="Toggle EMA (50)">EMA</button>
+                        <button id="toggle-indicator-rsi" class="ind-btn active" title="Toggle RSI Sub-chart">RSI</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-canvas-wrapper">
+                <div id="chart-crosshair-data" class="crosshair-hud">
+                    O: <span id="hud-o">--</span> H: <span id="hud-h">--</span> L: <span id="hud-l">--</span> C: <span id="hud-c">--</span> Vol: <span id="hud-v">--</span>
+                </div>
+                <canvas id="main-chart-canvas"></canvas>
+                <div id="rsi-container" class="rsi-sub-container">
+                    <div class="rsi-label">RSI (14) <span id="rsi-val">58.4</span></div>
+                    <canvas id="rsi-chart-canvas"></canvas>
+                </div>
+            </div>
+        </main>
+
+        <!-- COLUMN 3: ORDER BOOK & RECENT TRADES -->
+        <aside class="terminal-panel orderbook-panel">
+            <div class="panel-tabs">
+                <button id="tab-orderbook" class="tab-btn active"><i class="fa-solid fa-bars-staggered"></i> Order Book</button>
+                <button id="tab-trades" class="tab-btn"><i class="fa-solid fa-clock-rotate-left"></i> Trades</button>
+                <div class="orderbook-precision">
+                    <select id="orderbook-precision-select">
+                        <option value="0.1">0.1</option>
+                        <option value="1.0" selected>1.0</option>
+                        <option value="10.0">10.0</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="view-orderbook" class="tab-content active">
+                <div class="orderbook-header-row">
+                    <span>Price (USDT)</span>
+                    <span class="text-right">Size</span>
+                    <span class="text-right">Total</span>
+                </div>
+                <div id="orderbook-asks-container" class="orderbook-ladder asks">
+                    <!-- Asks rows populated dynamically -->
+                </div>
+
+                <div class="orderbook-spread-strip">
+                    <span>Spread: <span id="orderbook-spread-value">0.50 (0.0008%)</span></span>
+                    <span class="live-indicator"><i class="fa-solid fa-bolt"></i></span>
+                </div>
+
+                <div id="orderbook-bids-container" class="orderbook-ladder bids">
+                    <!-- Bids rows populated dynamically -->
+                </div>
+            </div>
+
+            <div id="view-trades" class="tab-content">
+                <div class="orderbook-header-row">
+                    <span>Time</span>
+                    <span class="text-right">Price</span>
+                    <span class="text-right">Amount</span>
+                </div>
+                <div id="recent-trades-container" class="recent-trades-list">
+                    <!-- Recent trades populated dynamically -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- COLUMN 4: ORDER ENTRY SYSTEM -->
+        <aside class="terminal-panel order-entry-panel">
+            <div class="panel-header-compact">
+                <div class="side-toggle-group">
+                    <button id="btn-side-buy" class="side-btn buy active">Buy / Long</button>
+                    <button id="btn-side-sell" class="side-btn sell">Sell / Short</button>
+                </div>
+            </div>
+
+            <div class="order-type-tabs">
+                <button id="tab-order-market" class="order-type-btn active">Market</button>
+                <button id="tab-order-limit" class="order-type-btn">Limit</button>
+                <button id="tab-order-stop" class="order-type-btn">Stop Market</button>
+            </div>
+
+            <div class="order-form-body">
+                <div class="form-group" id="group-order-price">
+                    <label>Order Price (USDT)</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="input-order-price" step="0.01" value="64280.50" disabled>
+                        <span>USDT</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Quantity / Amount</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="input-order-amount" step="0.001" value="0.100" min="0.001">
+                        <span id="label-asset-unit">BTC</span>
+                    </div>
+                </div>
+
+                <div class="quick-amount-buttons">
+                    <button id="amount-quick-25" class="quick-btn">25%</button>
+                    <button id="amount-quick-50" class="quick-btn">50%</button>
+                    <button id="amount-quick-75" class="quick-btn">75%</button>
+                    <button id="amount-quick-100" class="quick-btn">100%</button>
+                </div>
+
+                <div class="form-group leverage-section">
+                    <div class="leverage-header">
+                        <label>Leverage</label>
+                        <span id="display-leverage-val" class="leverage-badge">10x</span>
+                    </div>
+                    <input type="range" id="slider-leverage" min="1" max="100" value="10" step="1">
+                    <div class="leverage-ticks">
+                        <span>1x</span><span>25x</span><span>50x</span><span>75x</span><span>100x</span>
+                    </div>
+                </div>
+
+                <div class="tpsl-accordion-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="checkbox-tpsl">
+                        <span>Take Profit / Stop Loss Triggers</span>
+                    </label>
+                    <div id="container-tpsl-inputs" class="tpsl-inputs-grid hidden">
+                        <div class="form-group">
+                            <label>Take-Profit Price</label>
+                            <input type="number" id="input-tp-price" placeholder="0.00" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label>Stop-Loss Price</label>
+                            <input type="number" id="input-sl-price" placeholder="0.00" step="0.01">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-summary-box">
+                    <div class="summary-row">
+                        <span>Margin Required:</span>
+                        <strong id="order-cost-calc">$642.81</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Max Notional:</span>
+                        <strong id="order-max-calc">$6,428.05</strong>
+                    </div>
+                </div>
+
+                <button id="btn-execute-order" class="btn btn-execute-cta buy">
+                    Buy / Long BTC-USDT
+                </button>
+            </div>
+        </aside>
+
+        <!-- BOTTOM PORTFOLIO TERMINAL -->
+        <footer class="terminal-panel bottom-portfolio-panel">
+            <div class="portfolio-header-bar">
+                <div class="portfolio-tabs">
+                    <button id="tab-bottom-positions" class="portfolio-tab active">
+                        Open Positions <span id="badge-positions-count" class="badge">0</span>
+                    </button>
+                    <button id="tab-bottom-open-orders" class="portfolio-tab">
+                        Open Orders <span id="badge-orders-count" class="badge">0</span>
+                    </button>
+                    <button id="tab-bottom-history" class="portfolio-tab">
+                        Trade History
+                    </button>
+                </div>
+
+                <div class="portfolio-actions">
+                    <button id="btn-close-all-positions" class="btn btn-danger-subtle"><i class="fa-solid fa-bomb"></i> Close All Positions</button>
+                    <button id="btn-cancel-all-orders" class="btn btn-secondary-subtle"><i class="fa-solid fa-ban"></i> Cancel All Orders</button>
+                </div>
+            </div>
+
+            <div class="portfolio-table-container">
+                <!-- POSITIONS VIEW -->
+                <div id="view-positions" class="portfolio-view active">
+                    <table class="nexus-table">
+                        <thead>
+                            <tr>
+                                <th>Position / Pair</th>
+                                <th class="text-right">Size</th>
+                                <th class="text-right">Entry Price</th>
+                                <th class="text-right">Mark Price</th>
+                                <th class="text-right">Liq. Price</th>
+                                <th class="text-right">Margin (Lev)</th>
+                                <th class="text-right">Unrealized PnL (ROE)</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-positions-body">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- OPEN ORDERS VIEW -->
+                <div id="view-open-orders" class="portfolio-view">
+                    <table class="nexus-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Pair</th>
+                                <th>Type</th>
+                                <th>Side</th>
+                                <th class="text-right">Limit Price</th>
+                                <th class="text-right">Amount</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-orders-body">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- TRADE HISTORY VIEW -->
+                <div id="view-history" class="portfolio-view">
+                    <table class="nexus-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Pair</th>
+                                <th>Type</th>
+                                <th class="text-right">Execution Price</th>
+                                <th class="text-right">Amount</th>
+                                <th class="text-right">Realized PnL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-history-body">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- MODAL: DEPOSIT DEMO FUNDS -->
+    <div id="modal-deposit" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-wallet"></i> Deposit Demo Funds</h3>
+                <button id="btn-close-deposit" class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Top up your simulated institutional trading balance instantly with test USDT.</p>
+                <div class="form-group">
+                    <label>Amount (USDT)</label>
+                    <input type="number" id="input-deposit-amount" value="10000" min="1000" max="1000000" step="1000">
+                </div>
+                <div class="preset-deposit-btns">
+                    <button class="preset-dep-btn" data-val="5000">+$5,000</button>
+                    <button class="preset-dep-btn" data-val="10000">+$10,000</button>
+                    <button class="preset-dep-btn" data-val="50000">+$50,000</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-deposit" class="btn btn-primary-tactical w-100">Credit Funds</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- SCRIPT APPLICATION -->
+    <script src="app.js"></script>
+</body>
+</html>

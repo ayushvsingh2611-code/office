@@ -159,7 +159,13 @@ export const workspacePermissionManager = new WorkspacePermissionManager();
 export function resolveSafeWorkspacePath(workspaceDir: string, relativePath: string): string {
   const normalizedWs = normalize(resolve(workspaceDir));
   // Strip leading slashes/backslashes so paths like "/spec.md" remain relative to workspaceDir on Windows
-  const cleanRelative = (relativePath || '').replace(/^[\/\\]+/, '');
+  let cleanRelative = (relativePath || '').replace(/^[\/\\]+/, '');
+
+  // Automatically strip redundant 'workspace/' prefix so LLMs never create accidental nested workspace folders
+  if (/^workspace[\/\\]/i.test(cleanRelative)) {
+    cleanRelative = cleanRelative.replace(/^workspace[\/\\]/i, '');
+  }
+
   const targetPath = normalize(resolve(workspaceDir, cleanRelative));
 
   if (!targetPath.startsWith(normalizedWs)) {
@@ -185,7 +191,7 @@ export const AGENT_ALLOWED_TOOLS: Record<string, string[]> = {
   'sh-shanks': ['ReadFile', 'WriteFile', 'EditFile', 'ListFiles', 'FetchUrl', 'GitStatus', 'GitDiff', 'CallMcpTool'],
 
   // Nami (Data Architect): Data schemas, Entity models, State contracts
-  'sh-nami': ['ReadFile', 'WriteFile', 'EditFile', 'ListFiles', 'CallMcpTool'],
+  'sh-nami': ['ReadFile', 'WriteFile', 'EditFile', 'ListFiles', 'FetchUrl', 'CallMcpTool'],
 
   // Franky (UI/UX & Design Systems Engineer): HTML layout, CSS stylesheets, UI assets
   'sh-franky': ['ReadFile', 'WriteFile', 'EditFile', 'ListFiles', 'SearchFiles', 'FetchUrl', 'GitStatus', 'GitDiff', 'CallMcpTool'],
@@ -422,6 +428,13 @@ export class PandaHiveAgentTools {
       // Automatically sanitize accidental LLM JSON-escaping artifacts in HTML/SVG (e.g. width=\"22\" -> width="22")
       if (lower.endsWith('.html') || lower.endsWith('.htm') || lower.endsWith('.svg')) {
         content = content.replace(/\\"/g, '"');
+      }
+
+      // Automatically unescape double-escaped literal \n in code files if serialized without real newlines
+      if (lower.endsWith('.js') || lower.endsWith('.css') || lower.endsWith('.html') || lower.endsWith('.json')) {
+        if (content && content.split('\n').length <= 3 && content.includes('\\n')) {
+          content = content.replace(/\\n/g, '\n').replace(/\\t/g, '\t').replace(/\\"/g, '"');
+        }
       }
 
       const isNew = !existsSync(safePath);

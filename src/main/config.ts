@@ -468,7 +468,12 @@ const DEFAULTS: HarnessConfig = {
 };
 
 function configPath(): string {
-  return join(app.getPath('userData'), 'config.json');
+  try {
+    if (typeof app !== 'undefined' && app && typeof app.getPath === 'function') {
+      return join(app.getPath('userData'), 'config.json');
+    }
+  } catch {}
+  return join(process.env.APPDATA || homedir(), 'agenthive', 'config.json');
 }
 
 /**

@@ -36,10 +36,18 @@ export const COMMON_ALIASES: Record<string, string[]> = {
   'security-hardening': ['security', 'vulnerability', 'audit', 'secret leak', 'cve', 'xss', 'injection', 'owasp'],
   'mermaid-diagrams': ['mermaid', 'diagram', 'flowchart', 'architecture chart', 'sequence diagram'],
   'slack-thread-reply': ['slack', 'channel', 'slack reply', 'post to slack'],
-  'frontend-slides': ['web slides', 'html presentation', 'revealjs']
+  'frontend-slides': ['web slides', 'html presentation', 'revealjs'],
+  'trading-terminal': ['trading', 'trade', 'terminal', 'nexus', 'tradingview', 'binance', 'bloomberg', 'orderbook', 'candlestick', 'crypto trading', 'stock trading', 'forex trading', 'leverage']
 };
 
 export const CORE_CATALOG_SKILLS: Array<{ name: string; category: string; owner: string; url: string; description: string }> = [
+  {
+    name: 'trading-terminal',
+    category: 'Fintech & Analytics',
+    owner: 'agenthive',
+    url: 'https://github.com/agenthive/skills/tree/main/skills/trading-terminal',
+    description: 'Institutional Trading Terminal architecture (Bloomberg / TradingView / Binance Pro style), HTML5 sub-pixel canvas candlestick & RSI charts, real-time orderbook ladder, live trades stream, leverage trading execution, and multi-asset telemetry.'
+  },
   {
     name: 'frontend-design',
     category: 'Creative & Design',

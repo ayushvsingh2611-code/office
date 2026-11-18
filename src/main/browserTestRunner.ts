@@ -116,6 +116,30 @@ export class BrowserTestRunner {
       domStatus = 'FAIL';
     }
 
+    if (!existsSync(cssPath)) {
+      issues.push({
+        category: 'html',
+        targetAgentId: 'sh-franky',
+        targetFile: 'style.css',
+        severity: 'CRITICAL',
+        description: 'Missing required style.css stylesheet. Web application renders completely unstyled without CSS.'
+      });
+      domStatus = 'FAIL';
+      syntaxStatus = 'FAIL';
+    } else {
+      const cssContent = readFileSync(cssPath, 'utf8').trim();
+      if (cssContent.length < 60) {
+        issues.push({
+          category: 'html',
+          targetAgentId: 'sh-franky',
+          targetFile: 'style.css',
+          severity: 'MAJOR',
+          description: `style.css is incomplete or empty (${cssContent.length} chars). Modern responsive styling is required.`
+        });
+        domStatus = 'FAIL';
+      }
+    }
+
     if (!existsSync(jsPath)) {
       issues.push({
         category: 'javascript',
@@ -125,6 +149,17 @@ export class BrowserTestRunner {
         description: 'Missing required app.js application logic'
       });
       syntaxStatus = 'FAIL';
+    }
+
+    const dockerfilePath = resolve(workspaceDir, 'Dockerfile');
+    if (!existsSync(dockerfilePath)) {
+      issues.push({
+        category: 'integration',
+        targetAgentId: 'sh-sanji',
+        targetFile: 'Dockerfile',
+        severity: 'MAJOR',
+        description: 'Missing required Dockerfile for containerized static web deployment.'
+      });
     }
 
     let buttonCount = 0;
@@ -259,22 +294,43 @@ export class BrowserTestRunner {
       page.on('console', (msg: any) => {
         if (msg.type() === 'error') {
           const text = msg.text();
-          // Filter out benign favicon/font/offline CDN network resolution warnings
-          const isNetworkWarning = /net::ERR_|Failed to load resource|favicon\.ico|fonts\.googleapis\.com|cdnjs\.cloudflare\.com|unsplash\.com|cdn\.jsdelivr\.net/i.test(text);
-          const isSvgAttrWarning = /<svg>\s*attribute\s*(?:width|height|x|y|d):/i.test(text);
-          if (!isNetworkWarning) {
-            const isSvgOrHtml = isSvgAttrWarning || /<svg>|attribute width|attribute height|<element>|HTMLUnknownElement/i.test(text);
+          // Detect critical missing local files (file:/// or local asset 404 / ERR_FILE_NOT_FOUND)
+          const isLocalMissing = /ERR_FILE_NOT_FOUND/i.test(text) ||
+            (/Failed to load resource/i.test(text) && (/\.js|\.css/i.test(text) || /file:\/\/\//i.test(text)));
+
+          if (isLocalMissing) {
+            const isCss = /\.css/i.test(text);
             errorsDetected.push({
-              type: 'console_error',
-              message: text
+              type: 'requestfailed',
+              message: `Critical missing local asset: ${text}`
             });
             issues.push({
-              category: isSvgOrHtml ? 'html' : 'javascript',
-              targetAgentId: 'sh-usopp',
-              targetFile: isSvgOrHtml ? 'index.html' : 'app.js',
-              severity: isSvgAttrWarning ? 'MINOR' : 'MAJOR',
-              description: `Console Error Log: ${text}`
+              category: isCss ? 'html' : 'javascript',
+              targetAgentId: isCss ? 'sh-franky' : 'sh-usopp',
+              targetFile: isCss ? 'style.css' : 'app.js',
+              severity: 'CRITICAL',
+              description: `Critical missing asset detected in browser console: ${text}`
             });
+            domStatus = 'FAIL';
+            syntaxStatus = 'FAIL';
+          } else {
+            // Filter out benign favicon/font/offline external CDN network resolution warnings
+            const isNetworkWarning = /favicon\.ico|fonts\.googleapis\.com|fonts\.gstatic\.com|cdnjs\.cloudflare\.com|unsplash\.com|cdn\.jsdelivr\.net/i.test(text);
+            const isSvgAttrWarning = /<svg>\s*attribute\s*(?:width|height|x|y|d):/i.test(text);
+            if (!isNetworkWarning) {
+              const isSvgOrHtml = isSvgAttrWarning || /<svg>|attribute width|attribute height|<element>|HTMLUnknownElement/i.test(text);
+              errorsDetected.push({
+                type: 'console_error',
+                message: text
+              });
+              issues.push({
+                category: isSvgOrHtml ? 'html' : 'javascript',
+                targetAgentId: isSvgOrHtml ? 'sh-franky' : 'sh-usopp',
+                targetFile: isSvgOrHtml ? 'index.html' : 'app.js',
+                severity: isSvgAttrWarning ? 'MINOR' : 'MAJOR',
+                description: `Console Error Log: ${text}`
+              });
+            }
           }
         }
       });
@@ -284,7 +340,24 @@ export class BrowserTestRunner {
         const failure = req.failure();
         const url = req.url();
         const isBenignAsset = /favicon\.ico|fonts\.googleapis\.com|fonts\.gstatic\.com|cdnjs\.cloudflare\.com|unsplash\.com|cdn\.jsdelivr\.net|tailwindcss\.com/i.test(url);
-        if (!url.startsWith('file:///') && !isBenignAsset) {
+
+        // Catch missing local linked assets (e.g. style.css or app.js returning ERR_FILE_NOT_FOUND)
+        if (url.startsWith('file:///') && failure?.errorText?.includes('ERR_FILE_NOT_FOUND')) {
+          const fileName = url.split('/').pop() || 'resource';
+          errorsDetected.push({
+            type: 'requestfailed',
+            message: `Missing local asset: ${fileName} (${failure.errorText})`
+          });
+          issues.push({
+            category: fileName.endsWith('.css') ? 'html' : 'javascript',
+            targetAgentId: fileName.endsWith('.css') ? 'sh-franky' : 'sh-usopp',
+            targetFile: fileName.endsWith('.css') ? 'style.css' : 'app.js',
+            severity: 'CRITICAL',
+            description: `Critical 404: Local linked asset "${fileName}" was requested by index.html but does not exist on disk!`
+          });
+          domStatus = 'FAIL';
+          syntaxStatus = 'FAIL';
+        } else if (!url.startsWith('file:///') && !isBenignAsset) {
           errorsDetected.push({
             type: 'requestfailed',
             message: `Request failed for ${url}: ${failure ? failure.errorText : 'Unknown error'}`
@@ -670,7 +743,8 @@ export class BrowserTestRunner {
             return mainEl ? (mainEl.textContent || '').trim().length : 0;
           });
 
-          const isPopulated = cardsOrItems >= 3 || mainTextLength > 300;
+          // A functional web app must render interactive data cards/items (at least 3 items)
+          const isPopulated = cardsOrItems >= 3;
           interactionsTested.push({
             type: 'requirement_assertion',
             target: 'Demo Data Population',
@@ -681,7 +755,7 @@ export class BrowserTestRunner {
               : undefined,
             error: isPopulated
               ? undefined
-              : `CRITICAL BLANK PAGE: Main content area is empty (only ${cardsOrItems} items, ${mainTextLength} chars). The application failed to render pre-loaded demo/mock data on load.`
+              : `CRITICAL BLANK PAGE: Main content area has only ${cardsOrItems} items (requires >= 3). The application failed to render pre-loaded demo/mock data on load.`
           });
 
           if (!isPopulated) {
@@ -692,8 +766,93 @@ export class BrowserTestRunner {
               targetAgentId: 'sh-usopp',
               targetFile: 'app.js',
               severity: 'CRITICAL',
-              description: `CRITICAL BLANK PAGE DETECTED: Main content area has zero populated cards/items. app.js must define rich seed demo data and render it into the DOM on DOMContentLoaded.`
+              description: `CRITICAL BLANK PAGE DETECTED: Main content area has only ${cardsOrItems} populated cards/items. app.js must define rich seed demo data and render it into the DOM on DOMContentLoaded.`
             });
+          }
+
+          // Table Population Verification:
+          // In table-based dashboards (e.g. patients, appointments, billing, users), ensure that tbody rows exist
+          const tbodyElements = await page.locator('table tbody');
+          const tbodyCount = await tbodyElements.count();
+          if (tbodyCount > 0) {
+            let totalTbodyRows = await page.locator('table tbody tr').count();
+            // If 0 rows on initial view, try cycling through tab buttons to see if tables populate on tab activation
+            if (totalTbodyRows === 0) {
+              const tabButtons = await page.locator('button[data-tab], [role="tab"], .nav-tab, [id*="tab" i], nav button, aside button');
+              const tabCount = await tabButtons.count();
+              for (let t = 0; t < Math.min(tabCount, 8); t++) {
+                try {
+                  await tabButtons.nth(t).click({ timeout: 1000 });
+                  await page.waitForTimeout(200);
+                } catch { /* ignore */ }
+              }
+              totalTbodyRows = await page.locator('table tbody tr').count();
+            }
+
+            if (totalTbodyRows === 0) {
+              domStatus = 'FAIL';
+              browserFunctionalStatus = 'FAIL';
+              issues.push({
+                category: 'javascript',
+                targetAgentId: 'sh-usopp',
+                targetFile: 'app.js',
+                severity: 'CRITICAL',
+                description: `CRITICAL EMPTY DATA TABLES: Found ${tbodyCount} data tables on page, but 0 total data rows in tbody. app.js failed to render table records.`
+              });
+            }
+          }
+
+          // Primary Grid / Container Verification:
+          const emptyPrimaryContainers = await page.evaluate(() => {
+            const containers = document.querySelectorAll('[id*="grid" i], [id*="table-body" i], [id*="tbody" i]');
+            const emptyIds: string[] = [];
+            containers.forEach((el) => {
+              // Ignore layout grids that already have sub-containers or static controls
+              if (el.children.length === 0 && !el.classList.contains('hidden') && el.tagName !== 'TABLE') {
+                emptyIds.push(el.id || el.className);
+              }
+            });
+            return emptyIds;
+          });
+
+          if (emptyPrimaryContainers.length >= 2) {
+            domStatus = 'FAIL';
+            browserFunctionalStatus = 'FAIL';
+            issues.push({
+              category: 'javascript',
+              targetAgentId: 'sh-usopp',
+              targetFile: 'app.js',
+              severity: 'CRITICAL',
+              description: `CRITICAL UNPOPULATED DATA CONTAINERS: Multiple primary data containers are completely empty: ${emptyPrimaryContainers.slice(0, 4).join(', ')}. app.js must render data into these containers.`
+            });
+          }
+
+          // Unstyled UI / Tailwind Trap Detection:
+          // Check if elements with utility classes like .flex or .grid are actually computing their CSS layout
+          const utilityEl = page.locator('.flex, .grid, [class*="grid-cols"]').first();
+          if (await utilityEl.count() > 0) {
+            const computedLayout = await utilityEl.evaluate((el: any) => {
+              const display = window.getComputedStyle(el).display;
+              const hasClassFlex = el.classList.contains('flex');
+              const hasClassGrid = el.classList.contains('grid') || /grid-cols/.test(el.className);
+              return { display, hasClassFlex, hasClassGrid };
+            }).catch(() => null);
+
+            if (computedLayout) {
+              const isUnstyledFlex = computedLayout.hasClassFlex && computedLayout.display !== 'flex' && computedLayout.display !== 'inline-flex';
+              const isUnstyledGrid = computedLayout.hasClassGrid && computedLayout.display !== 'grid' && computedLayout.display !== 'inline-grid';
+              if (isUnstyledFlex || isUnstyledGrid) {
+                issues.push({
+                  category: 'css',
+                  targetAgentId: 'sh-franky',
+                  targetFile: 'style.css',
+                  severity: 'CRITICAL',
+                  description: `Unstyled UI detected: Elements have utility class "${computedLayout.hasClassFlex ? 'flex' : 'grid'}" but computed display is "${computedLayout.display}". Stylesheet or Tailwind CDN was not loaded properly.`
+                });
+                domStatus = 'FAIL';
+                browserFunctionalStatus = 'FAIL';
+              }
+            }
           }
         } catch (contentErr: any) {
           console.warn('[BrowserTestRunner] Content population test error:', contentErr?.message);

@@ -43,6 +43,9 @@ export interface OmniRouteConfig {
   architectModel: string;
   builderModel: string;
   verifierModel: string;
+  repairModel?: string;
+  builderModelPool?: string[];
+  repairModelPool?: string[];
 }
 
 let cachedOmniRouteConfig: OmniRouteConfig | null = null;
@@ -53,8 +56,11 @@ export function getOmniRouteConfig(): OmniRouteConfig | null {
   let baseUrl = process.env.OMNIROUTE_BASE_URL || '';
   let apiKey = process.env.OMNIROUTE_API_KEY || '';
   let architectModel = process.env.OMNIROUTE_ARCHITECT_MODEL || 'agy/gemini-3.8-flash-high';
-  let builderModel = process.env.OMNIROUTE_BUILDER_MODEL || 'agy/gemini-3-flash';
+  let builderModel = process.env.OMNIROUTE_BUILDER_MODEL || 'cx/gpt-6-sol-medium';
   let verifierModel = process.env.OMNIROUTE_VERIFIER_MODEL || 'agy/gemini-3.8-flash-medium';
+  let repairModel = process.env.OMNIROUTE_REPAIR_MODEL || 'agy/gemini-3.8-flash-high';
+  let builderModelPoolRaw = process.env.OMNIROUTE_BUILDER_MODEL_POOL || '';
+  let repairModelPoolRaw = process.env.OMNIROUTE_REPAIR_MODEL_POOL || '';
 
   try {
     const envPath = join(process.cwd(), '.env');
@@ -70,8 +76,21 @@ export function getOmniRouteConfig(): OmniRouteConfig | null {
       if (bldMatch && bldMatch[1]) builderModel = bldMatch[1].trim().replace(/^['"]|['"]$/g, '');
       const verMatch = content.match(/OMNIROUTE_VERIFIER_MODEL\s*=\s*([^\r\n]+)/);
       if (verMatch && verMatch[1]) verifierModel = verMatch[1].trim().replace(/^['"]|['"]$/g, '');
+      const repMatch = content.match(/OMNIROUTE_REPAIR_MODEL\s*=\s*([^\r\n]+)/);
+      if (repMatch && repMatch[1]) repairModel = repMatch[1].trim().replace(/^['"]|['"]$/g, '');
+      const bldPoolMatch = content.match(/OMNIROUTE_BUILDER_MODEL_POOL\s*=\s*([^\r\n]+)/);
+      if (bldPoolMatch && bldPoolMatch[1]) builderModelPoolRaw = bldPoolMatch[1].trim().replace(/^['"]|['"]$/g, '');
+      const repPoolMatch = content.match(/OMNIROUTE_REPAIR_MODEL_POOL\s*=\s*([^\r\n]+)/);
+      if (repPoolMatch && repPoolMatch[1]) repairModelPoolRaw = repPoolMatch[1].trim().replace(/^['"]|['"]$/g, '');
     }
   } catch { }
+
+  const builderModelPool = builderModelPoolRaw
+    ? builderModelPoolRaw.split(',').map((s) => s.trim()).filter(Boolean)
+    : undefined;
+  const repairModelPool = repairModelPoolRaw
+    ? repairModelPoolRaw.split(',').map((s) => s.trim()).filter(Boolean)
+    : undefined;
 
   if (baseUrl && apiKey) {
     cachedOmniRouteConfig = {
@@ -79,7 +98,10 @@ export function getOmniRouteConfig(): OmniRouteConfig | null {
       apiKey,
       architectModel,
       builderModel,
-      verifierModel
+      verifierModel,
+      repairModel,
+      builderModelPool,
+      repairModelPool
     };
     return cachedOmniRouteConfig;
   }
@@ -119,13 +141,31 @@ export const OMNI_ARCHITECT_FALLBACK_CHAIN: string[] = [
   'agy/gemini-3-flash'
 ];
 
+export const OMNIROUTE_OPENAI_CODEX_BUILDER_MODELS = [
+  // Curated OpenAI Codex Builder Pool (Heavy -> Balanced -> Light; no 6.1-sol / no astra)
+  'cx/gpt-6-sol-medium',
+  'cx/gpt-5.6-sol-high',
+  'cx/gpt-6-sol-low',
+  'cx/gpt-5.6-terra-high',
+  'cx/gpt-5.6-terra-medium',
+  'cx/gpt-6-luna-high',
+  'cx/gpt-6-luna-medium'
+] as const;
+
 export const OMNI_BUILDER_FALLBACK_CHAIN: string[] = [
+  // Stage 1: OpenAI Codex Tier (Heavy -> Balanced -> Light)
+  ...OMNIROUTE_OPENAI_CODEX_BUILDER_MODELS,
+  // Stage 2: Antigravity Failover Tier (Heavy -> Balanced -> Light, auto-switches if OpenAI quota exhausts)
+  'agy/claude-sonnet-4-6',
+  'agy/claude-opus-4-6-thinking',
+  'agy/gemini-3.8-flash-high',
   'agy/gemini-3-flash',
   'agy/gemini-3.8-flash-tiered',
   'agy/gpt-oss-120b-medium',
   'agy/gemini-3.8-flash-medium',
-  'agy/claude-sonnet-4-6',
-  'agy/gemini-3.8-flash-low'
+  'agy/gemini-3.8-flash-low',
+  'agy/gemini-3.1-flash-lite',
+  'agy/gemini-3.5-flash-lite'
 ];
 
 export const OMNI_VERIFIER_FALLBACK_CHAIN: string[] = [
@@ -135,6 +175,32 @@ export const OMNI_VERIFIER_FALLBACK_CHAIN: string[] = [
   'agy/gemini-3.5-flash-lite',
   'agy/gemini-3-flash'
 ];
+
+// Dedicated QA Defect Repair Auto-Failover Chain:
+// Priority 1: agy/gemini-3.8-flash-high -> Priority 2: cx/gpt-6-sol-medium
+// Priority 3: agy/claude-sonnet-4-6 -> Priority 4: agy/claude-opus-4-6-thinking -> Rest
+export const OMNI_REPAIR_FALLBACK_CHAIN: string[] = [
+  'agy/gemini-3.8-flash-high',
+  'cx/gpt-6-sol-medium',
+  'agy/claude-sonnet-4-6',
+  'agy/claude-opus-4-6-thinking',
+  // Remaining OpenAI Codex & Antigravity pool
+  'cx/gpt-5.6-sol-high',
+  'cx/gpt-6-sol-low',
+  'cx/gpt-5.6-terra-high',
+  'cx/gpt-5.6-terra-medium',
+  'cx/gpt-6-luna-high',
+  'cx/gpt-6-luna-medium',
+  'agy/gemini-3-flash',
+  'agy/gemini-3.8-flash-tiered',
+  'agy/gpt-oss-120b-medium',
+  'agy/gemini-3.8-flash-medium',
+  'agy/gemini-3.8-flash-low',
+  'agy/gemini-3.1-flash-lite',
+  'agy/gemini-3.5-flash-lite'
+];
+
+export type OmniModelRole = 'architect' | 'builder' | 'verifier' | 'repair';
 
 const omniModelCooldowns = new Map<string, number>();
 
@@ -157,18 +223,47 @@ export function clearOmniModelCooldowns(): void {
   omniModelCooldowns.clear();
 }
 
-export function getOmniCandidateModels(requestedModel?: string): string[] {
-  if (!requestedModel) return [...OMNI_BUILDER_FALLBACK_CHAIN];
+export function getOmniCandidateModels(requestedModel?: string, role?: OmniModelRole): string[] {
+  const omniCfg = getOmniRouteConfig();
 
-  if (requestedModel.includes('high') || requestedModel.includes('opus')) {
+  // Dedicated Repair role ALWAYS cascades through the prioritized Repair Auto-Failover Chain
+  if (role === 'repair') {
+    const activeRepairChain =
+      omniCfg?.repairModelPool && omniCfg.repairModelPool.length > 0
+        ? Array.from(new Set([...omniCfg.repairModelPool, ...OMNI_REPAIR_FALLBACK_CHAIN]))
+        : OMNI_REPAIR_FALLBACK_CHAIN;
+    const primary = requestedModel || omniCfg?.repairModel || activeRepairChain[0];
+    return Array.from(new Set([primary, ...activeRepairChain.filter((m) => m !== primary)]));
+  }
+
+  const activeBuilderChain =
+    omniCfg?.builderModelPool && omniCfg.builderModelPool.length > 0
+      ? Array.from(new Set([...omniCfg.builderModelPool, ...OMNI_BUILDER_FALLBACK_CHAIN]))
+      : OMNI_BUILDER_FALLBACK_CHAIN;
+
+  if (!requestedModel) return [...activeBuilderChain];
+
+  // OpenAI Codex (cx/*) and Builder models ALWAYS cascade through the full Builder chain:
+  // Stage 1: OpenAI Codex (Heavy -> Light) -> Stage 2: Antigravity (Heavy -> Light)
+  if (
+    role === 'builder' ||
+    requestedModel.startsWith('cx/') ||
+    requestedModel.includes('builder') ||
+    (omniCfg?.builderModel && requestedModel === omniCfg.builderModel)
+  ) {
+    const list = [requestedModel, ...activeBuilderChain.filter((m) => m !== requestedModel)];
+    return Array.from(new Set(list));
+  }
+
+  if (role === 'architect' || requestedModel.includes('high') || requestedModel.includes('opus')) {
     const list = [requestedModel, ...OMNI_ARCHITECT_FALLBACK_CHAIN.filter((m) => m !== requestedModel)];
     return Array.from(new Set(list));
   }
-  if (requestedModel.includes('verifier') || requestedModel.includes('lite') || requestedModel.includes('low') || requestedModel.includes('medium')) {
+  if (role === 'verifier' || requestedModel.includes('verifier') || requestedModel.includes('lite') || requestedModel.includes('low') || requestedModel.includes('medium')) {
     const list = [requestedModel, ...OMNI_VERIFIER_FALLBACK_CHAIN.filter((m) => m !== requestedModel)];
     return Array.from(new Set(list));
   }
-  const list = [requestedModel, ...OMNI_BUILDER_FALLBACK_CHAIN.filter((m) => m !== requestedModel)];
+  const list = [requestedModel, ...activeBuilderChain.filter((m) => m !== requestedModel)];
   return Array.from(new Set(list));
 }
 
@@ -303,19 +398,32 @@ export async function callOmniRouteChatDetails(
   prompt: string,
   systemInstruction?: string,
   preferredModel?: string,
-  timeoutMs = 120000
+  timeoutMs = 120000,
+  role?: OmniModelRole
 ): Promise<Omit<LlmExecutionResult, 'durationMs'> | null> {
   const cfg = getOmniRouteConfig();
   if (!cfg) return null;
 
   const endpoint = `${cfg.baseUrl}/chat/completions`;
-  const candidates = getOmniCandidateModels(preferredModel || cfg.builderModel);
+  const candidates = getOmniCandidateModels(preferredModel || cfg.builderModel, role);
   const unexhausted = candidates.filter(isOmniModelAvailable);
   const modelsToTry = unexhausted.length > 0 ? unexhausted : candidates;
 
   for (let i = 0; i < modelsToTry.length; i++) {
     const model = modelsToTry[i];
     try {
+      const payload: Record<string, unknown> = {
+        model,
+        messages: [
+          ...(systemInstruction ? [{ role: 'system', content: systemInstruction }] : []),
+          { role: 'user', content: prompt }
+        ],
+        max_tokens: 8192
+      };
+      if (!model.startsWith('cx/')) {
+        payload.temperature = 0.7;
+      }
+
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: {
@@ -323,15 +431,7 @@ export async function callOmniRouteChatDetails(
           'Content-Type': 'application/json'
         },
         signal: AbortSignal.timeout(timeoutMs),
-        body: JSON.stringify({
-          model,
-          messages: [
-            ...(systemInstruction ? [{ role: 'system', content: systemInstruction }] : []),
-            { role: 'user', content: prompt }
-          ],
-          temperature: 0.7,
-          max_tokens: 8192
-        })
+        body: JSON.stringify(payload)
       });
 
       if (res.ok) {
@@ -348,7 +448,8 @@ export async function callOmniRouteChatDetails(
       } else {
         const errText = await res.text().catch(() => '');
         console.warn(`[OmniRoute] Model ${model} returned HTTP ${res.status}: ${errText.slice(0, 150)}`);
-        markOmniModelCooldown(model, 60000);
+        const isQuotaErr = res.status === 429 || /quota|rate.?limit|limit/i.test(errText);
+        markOmniModelCooldown(model, isQuotaErr ? 300000 : 60000);
         if (i < modelsToTry.length - 1) {
           console.log(`[OmniRoute Failover] Switching to candidate model "${modelsToTry[i + 1]}"...`);
         }
@@ -678,6 +779,7 @@ export async function executeAgentLlmCall(
     timeoutMs?: number;
     preferredModel?: string;
     minChars?: number;
+    role?: OmniModelRole;
   }
 ): Promise<LlmExecutionResult> {
   const timeoutMs = options?.timeoutMs ?? 120000;
@@ -688,7 +790,7 @@ export async function executeAgentLlmCall(
   const omniCfg = getOmniRouteConfig();
   if (omniCfg) {
     try {
-      const omniRes = await callOmniRouteChatDetails(prompt, systemInstruction, options?.preferredModel, timeoutMs);
+      const omniRes = await callOmniRouteChatDetails(prompt, systemInstruction, options?.preferredModel, timeoutMs, options?.role);
       if (omniRes && omniRes.text.length >= minChars) {
         return {
           ...omniRes,
@@ -860,6 +962,7 @@ export async function executeAgentLlmCallWithTools(
     minChars?: number;
     maxTurns?: number;
     allowedTools?: string[];
+    role?: OmniModelRole;
   }
 ): Promise<LlmToolExecutionResult> {
   if (!ctx) {
@@ -1329,7 +1432,7 @@ export async function executeAgentLlmCallWithTools(
     const config = getOmniRouteConfig();
     let endpoint = config ? `${config.baseUrl}/chat/completions` : '';
     let apiKey = config ? config.apiKey : '';
-    let candidateModels = config ? getOmniCandidateModels(options?.preferredModel || config.builderModel) : [];
+    let candidateModels = config ? getOmniCandidateModels(options?.preferredModel || config.builderModel, options?.role) : [];
 
     // Fallback if OmniRoute config not available (post-presentation / BYOK)
     if (!config || candidateModels.length === 0) {
@@ -1405,6 +1508,16 @@ export async function executeAgentLlmCallWithTools(
         }
 
         try {
+          const toolPayload: Record<string, unknown> = {
+            model: currentModel,
+            messages,
+            tools: openaiTools,
+            max_tokens: 16384
+          };
+          if (!currentModel.startsWith('cx/')) {
+            toolPayload.temperature = 0.7;
+          }
+
           const res = await fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -1412,13 +1525,7 @@ export async function executeAgentLlmCallWithTools(
               'Content-Type': 'application/json'
             },
             signal: AbortSignal.timeout(timeoutMs),
-            body: JSON.stringify({
-              model: currentModel,
-              messages,
-              tools: openaiTools,
-              temperature: 0.7,
-              max_tokens: 16384
-            })
+            body: JSON.stringify(toolPayload)
           });
 
           if (!res.ok) {
@@ -1525,7 +1632,8 @@ export async function executeAgentLlmCallWithTools(
         } catch (turnErr: any) {
           lastTurnError = turnErr.message;
           console.warn(`[OmniRoute Failover] Model "${currentModel}" failed on turn ${turn}: ${turnErr.message}`);
-          markOmniModelCooldown(currentModel, 45000);
+          const isQuotaErr = /HTTP 429|quota|rate.?limit|limit/i.test(String(turnErr.message || ''));
+          markOmniModelCooldown(currentModel, isQuotaErr ? 300000 : 45000);
           const nextModel = candidateModels[(activeModelIndex + attempt + 1) % candidateModels.length];
           console.log(`[OmniRoute Failover] Auto-switching immediately to candidate "${nextModel}"...`);
         }

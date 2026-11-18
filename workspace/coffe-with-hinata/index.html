@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ichiraku Roastery & Tea Haven (一楽 焙煎所 - 木ノ葉隠れの里)</title>
+  <!-- Google Fonts: Cinzel for cinematic shinobi lore & Inter for clean UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome for shinobi icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. TOP NOTICE BAR (VILLAGE BROADCAST) -->
+  <div id="village-alert-bar" class="village-alert-bar">
+    <div class="alert-container">
+      <div class="alert-broadcast">
+        <span class="broadcast-tag"><i class="fa-solid fa-scroll"></i> VILLAGE BROADCAST:</span>
+        <span class="marquee-text">Konoha Weather: Sunny Chakra 24°C | 🍜 Teuchi's Ramen-Infused Dango now available! | Use Coupon Code <strong id="coupon-promo-pill" class="coupon-pill" title="Click to copy DATTEBAYO">DATTEBAYO</strong> for 20% Off your Genin Welcome Scroll!</span>
+      </div>
+      <div class="alert-actions">
+        <button id="chakra-audio-toggle" class="audio-toggle-btn" title="Toggle Ninja Sound Effects">
+          <i class="fa-solid fa-volume-high"></i> <span id="audio-status-label">Sound: ON</span>
+        </button>
+        <span class="online-status-badge" id="online-data-status" title="Hybrid Data Status">
+          <i class="fa-solid fa-circle-notch fa-spin"></i> <span id="online-status-text">Checking Live API...</span>
+        </span>
+        <button id="btn-sync-live-data" class="audio-toggle-btn" title="Click to trigger Live Online API Fetch">
+          <i class="fa-solid fa-arrows-rotate"></i> <span>Sync Live API</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. GLOBAL NAVIGATION BAR -->
+  <header class="global-header">
+    <div class="nav-container">
+      <a href="#" id="brand-logo" class="brand-logo">
+        <div class="logo-crest">
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div class="logo-text">
+          <h1>Ichiraku Roastery</h1>
+          <span>一楽焙煎所 • Hidden Leaf Coffee & Tea</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#menu-section" id="nav-menu" class="nav-link"><i class="fa-solid fa-mug-hot"></i> Shinobi Menu</a>
+        <a href="#brew-lab-section" id="nav-lab" class="nav-link"><i class="fa-solid fa-flask"></i> Jutsu Brew Lab</a>
+        <a href="#rewards-section" id="nav-rewards" class="nav-link"><i class="fa-solid fa-id-card"></i> Hokage Club</a>
+        <a href="#reviews-section" id="nav-reviews" class="nav-link"><i class="fa-solid fa-comment-dots"></i> Ninja Reviews</a>
+        <a href="#location-section" id="nav-location" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> Village Map</a>
+      </nav>
+
+      <div class="nav-tools">
+        <button id="global-search-btn" class="tool-btn" title="Search Menu">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <button id="wishlist-btn" class="tool-btn" title="Shinobi Wishlist">
+          <i class="fa-solid fa-heart"></i>
+          <span id="wishlist-count" class="badge-count">2</span>
+        </button>
+        <button id="cart-btn" class="cart-trigger-btn" title="Open Cart">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <span id="cart-count" class="badge-count">0</span>
+          <span id="cart-total-badge" class="cart-subtotal-display">0 Ryo</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main>
+
+    <!-- 3. HERO BANNER SECTION -->
+    <section id="hero-section" class="hero-section">
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-badges">
+          <span class="hero-badge"><i class="fa-solid fa-crown"></i> Hokage Selection 2025</span>
+          <span class="hero-badge badge-s-rank"><i class="fa-solid fa-shuriken"></i> Rank S Roasted Beans</span>
+        </div>
+        <h1 class="hero-title">Awaken Your Inner Chakra with Konoha's Finest Roast</h1>
+        <p class="hero-subtitle">Handcrafted artisanal coffees, ceremonial Uji matchas, and chakra-infused elixirs brewed daily by master shinobi baristas.</p>
+        
+        <div class="hero-cta-group">
+          <button id="hero-cta-menu" class="btn btn-primary"><i class="fa-solid fa-mug-hot"></i> Explore Shinobi Menu</button>
+          <button id="hero-cta-custom" class="btn btn-secondary"><i class="fa-solid fa-flask"></i> Brew Your Custom Jutsu</button>
+          <button id="hero-cta-coupon" class="btn btn-outline"><i class="fa-solid fa-ticket"></i> Claim Genin Welcome Scroll (20% Off)</button>
+        </div>
+
+        <!-- Interactive Chakra Aroma Gauge -->
+        <div class="chakra-aroma-widget">
+          <div class="aroma-widget-header">
+            <span><i class="fa-solid fa-wind"></i> Live Chakra Aroma Gauge</span>
+            <button id="chakra-gauge-btn" class="btn-sm"><i class="fa-solid fa-bolt"></i> Charge Aroma</button>
+          </div>
+          <div class="aroma-gauge-track">
+            <div id="chakra-gauge-fill" class="aroma-gauge-fill" style="width: 92%;"></div>
+          </div>
+          <div id="chakra-gauge-value" class="aroma-gauge-label">Chakra Level: 92% - S-Rank Aroma Detected (Bergamot & Volcanic Cocoa)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. INTERACTIVE JUTSU FILTER & SEARCH BAR -->
+    <section id="menu-section" class="menu-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">MENU CATALOGUE</span>
+          <h2>The Shinobi Beverage Codex</h2>
+          <p>Filter by Chakra Nature or browse legendary roasts crafted for ANBU, Jonin, and Kage alike.</p>
+        </div>
+
+        <div class="menu-controls-wrapper">
+          <div class="search-box-group">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="menu-search-input" placeholder="Search by drink name, flavor note, or shinobi character..." autocomplete="off">
+            <button id="menu-search-clear" class="search-clear-btn" title="Clear search"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div class="filter-controls-row">
+            <!-- Category Pills -->
+            <div id="category-filter-container" class="category-pills">
+              <button class="filter-pill active" data-category="all" id="filter-all"><i class="fa-solid fa-globe"></i> All</button>
+              <button class="filter-pill" data-category="hokage-roast" id="filter-hokage-roast"><i class="fa-solid fa-crown"></i> Hokage Roasts</button>
+              <button class="filter-pill" data-category="rasengan-brew" id="filter-rasengan-brew"><i class="fa-solid fa-wind"></i> Rasengan Brews</button>
+              <button class="filter-pill" data-category="sage-matcha" id="filter-sage-matcha"><i class="fa-solid fa-leaf"></i> Sage Teas & Matcha</button>
+              <button class="filter-pill" data-category="uchiha-dark" id="filter-uchiha-dark"><i class="fa-solid fa-fire"></i> Uchiha Espressos</button>
+              <button class="filter-pill" data-category="shinobi-pastry" id="filter-shinobi-pastry"><i class="fa-solid fa-cookie-bite"></i> Pastries & Dango</button>
+            </div>
+
+            <!-- Secondary Selects -->
+            <div class="dropdown-filters">
+              <div class="select-wrapper">
+                <i class="fa-solid fa-bolt"></i>
+                <select id="chakra-nature-select">
+                  <option value="all">All Chakra Natures</option>
+                  <option value="Wind">Wind Release (Fuuton)</option>
+                  <option value="Fire">Fire Release (Katon)</option>
+                  <option value="Lightning">Lightning Release (Raiton)</option>
+                  <option value="Water">Water Release (Suiton)</option>
+                  <option value="Earth">Earth Release (Doton)</option>
+                </select>
+              </div>
+
+              <div class="select-wrapper">
+                <i class="fa-solid fa-sort"></i>
+                <select id="menu-sort-select">
+                  <option value="recommended">Sort: Recommended</option>
+                  <option value="price-asc">Price: Low to High (Ryo)</option>
+                  <option value="price-desc">Price: High to Low (Ryo)</option>
+                  <option value="chakra-desc">Highest Chakra Power</option>
+                  <option value="rating-desc">Customer Rating</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-status-bar">
+            <span id="menu-items-count">Showing 12 shinobi creations</span>
+            <span class="sync-status">⚡ Instant Magic Filter Active</span>
+          </div>
+        </div>
+
+        <!-- 5. DYNAMIC COFFEE & PASTRY PRODUCT GRID -->
+        <div id="menu-grid" class="menu-grid">
+          <!-- Dynamically populated from JS -->
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div id="menu-empty-state" class="menu-empty-state" style="display: none;">
+          <div class="empty-scroll-icon"><i class="fa-solid fa-scroll"></i></div>
+          <h3>No Shinobi Artifact Found</h3>
+          <p>Your search query did not match any hidden scroll or brew in Konoha. Try adjusting your filters.</p>
+          <button id="btn-reset-filters" class="btn btn-primary"><i class="fa-solid fa-rotate-right"></i> Reset All Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. "JUTSU BREW BUILDER" (INTERACTIVE CUSTOMIZATION LAB) -->
+    <section id="brew-lab-section" class="brew-lab-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CUSTOMIZATION LAB</span>
+          <h2>Jutsu Brew Builder</h2>
+          <p>Formulate your signature shinobi elixir. Combine secret clan bases, milk jutsus, and chakra infusions.</p>
+        </div>
+
+        <div class="brew-lab-grid">
+          <!-- Controls Panel -->
+          <div class="brew-controls-panel">
+            
+            <!-- Step 1: Base -->
+            <div class="brew-step-group">
+              <label><span class="step-num">01</span> Base Liquid <span class="req-tag">Required</span></label>
+              <div class="options-grid" id="brew-base-select">
+                <label class="option-card active">
+                  <input type="radio" name="brew-base" value="espresso" data-name="Twin Rasengan Dual Espresso" data-price="380" checked>
+                  <span class="opt-title">Espresso Shot</span>
+                  <span class="opt-desc">Dual Mandheling shot</span>
+                  <span class="opt-price">+380 Ryo</span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="brew-base" value="cold-drip" data-name="18h Slow Drip Cold Brew" data-price="420">
+                  <span class="opt-title">Cold Drip</span>
+                  <span class="opt-desc">18-hour extraction</span>
+                  <span class="opt-price">+420 Ryo</span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="brew-base" value="matcha" data-name="Mount Myoboku Ceremonial Matcha" data-price="480">
+                  <span class="opt-title">Ceremonial Matcha</span>
+                  <span class="opt-desc">Uji sacred stone</span>
+                  <span class="opt-price">+480 Ryo</span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="brew-base" value="pour-over" data-name="Kenyan AA Siphon Pour-Over" data-price="450">
+                  <span class="opt-title">Siphon Pour-Over</span>
+                  <span class="opt-desc">Halogen vacuum</span>
+                  <span class="opt-price">+450 Ryo</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Step 2: Milk Jutsu -->
+            <div class="brew-step-group">
+              <label><span class="step-num">02</span> Milk Jutsu</label>
+              <div class="options-grid" id="brew-milk-select">
+                <label class="option-card">
+                  <input type="radio" name="brew-milk" value="none" data-name="Black (No Milk)" data-price="0">
+                  <span class="opt-title">Black (No Dairy)</span>
+                  <span class="opt-desc">Pure extraction</span>
+                  <span class="opt-price">0 Ryo</span>
+                </label>
+                <label class="option-card active">
+                  <input type="radio" name="brew-milk" value="oat" data-name="Steamed Oat Silk" data-price="40" checked>
+                  <span class="opt-title">Steamed Oat Silk</span>
+                  <span class="opt-desc">Barista microfoam</span>
+                  <span class="opt-price">+40 Ryo</span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="brew-milk" value="almond" data-name="Almond Blossom Mist" data-price="40">
+                  <span class="opt-title">Almond Mist</span>
+                  <span class="opt-desc">Light & nutty</span>
+                  <span class="opt-price">+40 Ryo</span>
+                </label>
+                <label class="option-card">
+                  <input type="radio" name="brew-milk" value="shadow-cream" data-name="Shadow Clone Sweet Cream" data-price="60">
+                  <span class="opt-title">Shadow Cream</span>
+                  <span class="opt-desc">Rich heavy cream</span>
+                  <span class="opt-price">+60 Ryo</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Step 3: Chakra Infusions -->
+            <div class="brew-step-group">
+              <label><span class="step-num">03</span> Chakra Infusions (Select Add-ons)</label>
+              <div class="checkbox-grid" id="brew-infusion-select">
+                <label class="checkbox-card">
+                  <input type="checkbox" class="infusion-checkbox" value="Nine-Tails Cinnamon" data-price="50" checked>
+                  <span class="cb-box"><i class="fa-solid fa-check"></i></span>
+                  <span class="cb-text"><strong>Nine-Tails Cinnamon</strong> (+50 Ryo)</span>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="infusion-checkbox" value="Senjutsu Vanilla Bean" data-price="40">
+                  <span class="cb-box"><i class="fa-solid fa-check"></i></span>
+                  <span class="cb-text"><strong>Senjutsu Vanilla</strong> (+40 Ryo)</span>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="infusion-checkbox" value="Amaterasu Chili Spice" data-price="45">
+                  <span class="cb-box"><i class="fa-solid fa-check"></i></span>
+                  <span class="cb-text"><strong>Amaterasu Chili</strong> (+45 Ryo)</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Step 4: Toppings & Temperature -->
+            <div class="brew-step-group-row">
+              <div class="sub-group">
+                <label><span class="step-num">04</span> Magical Topping</label>
+                <div class="select-wrapper">
+                  <i class="fa-solid fa-sparkles"></i>
+                  <select id="brew-topping-select">
+                    <option value="none" data-price="0">None (Standard Seal)</option>
+                    <option value="azure-foam" data-price="50" selected>Rasengan Azure Microfoam (+50 Ryo)</option>
+                    <option value="dango-crumb" data-price="40">Mitarashi Dango Crumb (+40 Ryo)</option>
+                    <option value="gold-leaf" data-price="80">24K Leaf Village Gold Flakes (+80 Ryo)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="sub-group">
+                <label><span class="step-num">05</span> Sweetness & Temp</label>
+                <div class="sliders-container">
+                  <div class="slider-row">
+                    <span>Sweetness: <strong id="sweetness-val">50</strong>%</span>
+                    <input type="range" id="brew-sweetness-slider" min="0" max="100" step="25" value="50">
+                  </div>
+                  <div class="select-wrapper mt-sm">
+                    <i class="fa-solid fa-temperature-three-quarters"></i>
+                    <select id="brew-temp-select">
+                      <option value="chilled">Chilled (Ice Seal ❄️)</option>
+                      <option value="warm">Warm Shinobi Brew ☕</option>
+                      <option value="hot-flame">Hot Katon Flame 🔥</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Live Preview & Checkout Panel -->
+          <div class="brew-preview-panel">
+            <div class="preview-card">
+              <div class="preview-badge" id="brew-chakra-power-badge">Chakra Power: 96 / S-Rank</div>
+              
+              <!-- Visual Drink Simulator Cup -->
+              <div class="preview-cup-container">
+                <div id="brew-preview-cup" class="preview-cup base-espresso milk-oat topping-azure">
+                  <div class="cup-lid"></div>
+                  <div class="cup-sleeve">Ichiraku Lab</div>
+                  <div class="cup-liquid"></div>
+                  <div class="cup-foam"></div>
+                  <div class="cup-topping"></div>
+                </div>
+              </div>
+
+              <div class="preview-details">
+                <h3 id="preview-drink-title">Custom Jutsu Elixir #7</h3>
+                <p id="preview-drink-recipe">Twin Rasengan Dual Espresso + Steamed Oat Silk + Nine-Tails Cinnamon + Rasengan Azure Microfoam</p>
+                
+                <div class="preview-price-box">
+                  <span class="price-label">Calculated Toll:</span>
+                  <div>
+                    <span id="brew-calculated-price" class="price-ryo">470 Ryo</span>
+                    <span id="brew-calculated-usd" class="price-usd">($5.85 USD)</span>
+                  </div>
+                </div>
+
+                <div class="preview-actions">
+                  <button id="brew-add-to-cart-btn" class="btn btn-primary btn-full"><i class="fa-solid fa-cart-plus"></i> Seal & Add Custom Brew to Cart</button>
+                  <button id="brew-reset-btn" class="btn btn-outline btn-sm mt-sm"><i class="fa-solid fa-rotate-left"></i> Reset Lab Formula</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SHINOBI PASSPORT & LOYALTY CARD SYSTEM -->
+    <section id="rewards-section" class="rewards-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">HOKAGE CLUB & LOYALTY</span>
+          <h2 id="shinobi-passport-heading">Shinobi Passport & Rank Rewards</h2>
+          <p>Every Ryo spent earns Shinobi Points. Unlock lifetime discounts and ANBU privileges as you ascend.</p>
+        </div>
+
+        <div class="passport-wrapper">
+          
+          <!-- Interactive Passport Card -->
+          <div id="ninja-passport-card" class="ninja-passport-card village-leaf">
+            <div class="passport-bg-watermark"></div>
+            <div class="passport-header">
+              <div class="village-emblem-badge" id="ninja-card-emblem">
+                <i class="fa-solid fa-leaf"></i>
+              </div>
+              <div class="passport-title-group">
+                <span class="doc-title">KONOHA OFFICIAL ID</span>
+                <h4>Shinobi Cafe Registry</h4>
+              </div>
+              <div id="ninja-rank-badge" class="rank-badge-pill">Genin</div>
+            </div>
+
+            <div class="passport-body">
+              <div class="passport-avatar-box">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Ninja Avatar" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'><rect width=\'100%25\' height=\'100%25\' fill=\'%231A2024\'/><circle cx=\'50\' cy=\'50\' r=\'40\' fill=\'%232A3238\' stroke=\'%23FF6B00\' stroke-width=\'2\'/><path d=\'M25 35 Q50 20 75 35 L75 48 Q50 40 25 48 Z\' fill=\'%23FF6B00\'/><circle cx=\'40\' cy=\'54\' r=\'4\' fill=\'%2300E5FF\'/><circle cx=\'60\' cy=\'54\' r=\'4\' fill=\'%2300E5FF\'/><path d=\'M42 66 Q50 72 58 66\' stroke=\'%23F59E0B\' stroke-width=\'2\' fill=\'none\'/></svg>'">
+                <span class="status-dot"></span>
+              </div>
+              <div class="passport-info-grid">
+                <div class="info-item">
+                  <span class="label">Operative Name:</span>
+                  <span id="ninja-card-name-display" class="val">Naruto Uzumaki</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">Shinobi Rank:</span>
+                  <span id="ninja-card-rank-display" class="val">Genin (Active)</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">Village Affiliation:</span>
+                  <span id="ninja-card-village-display" class="val">Hidden Leaf (Konohagakure)</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">Shinobi XP / Points:</span>
+                  <span id="ninja-points-display" class="val highlight">340 Points</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="passport-footer">
+              <div class="progress-info-row">
+                <span id="ninja-progress-text">340 / 500 Points to Chunin (Unlocks 5% Lifetime Discount)</span>
+                <span id="ninja-progress-percent">68%</span>
+              </div>
+              <div class="passport-progress-bar">
+                <div id="ninja-progress-bar" class="progress-fill" style="width: 68%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Passport Customization & Perks Control -->
+          <div class="passport-controls-card">
+            <h3>Customize Your Ninja Identity</h3>
+            <p>Update your credentials to match your shinobi persona across Konoha.</p>
+
+            <div class="form-group mt-md">
+              <label for="ninja-name-input"><i class="fa-solid fa-user-ninja"></i> Ninja Operative Name</label>
+              <input type="text" id="ninja-name-input" value="Naruto Uzumaki" placeholder="Enter your ninja name...">
+            </div>
+
+            <div class="form-group mt-md">
+              <label for="ninja-village-select"><i class="fa-solid fa-landmark"></i> Village Emblem</label>
+              <select id="ninja-village-select">
+                <option value="leaf" selected>Leaf Village (Konohagakure - 🍃)</option>
+                <option value="sand">Sand Village (Sunagakure - ⏳)</option>
+                <option value="mist">Mist Village (Kirigakure - 🌊)</option>
+                <option value="cloud">Cloud Village (Kumogakure - ⚡)</option>
+                <option value="stone">Stone Village (Iwagakure - 🪨)</option>
+              </select>
+            </div>
+
+            <div class="perks-unlock-list mt-lg">
+              <h4>Rank Privileges Unlocked:</h4>
+              <ul>
+                <li class="unlocked"><i class="fa-solid fa-circle-check"></i> <strong>Genin Tier (0-499 pts):</strong> Access to standard menu & Genin Welcome Scroll.</li>
+                <li class="locked" id="perk-chunin"><i class="fa-solid fa-lock"></i> <strong>Chunin Tier (500-1499 pts):</strong> Unlocks 5% Lifetime Discount & Free Extra Dango.</li>
+                <li class="locked" id="perk-jonin"><i class="fa-solid fa-lock"></i> <strong>Jonin Tier (1500-2999 pts):</strong> Unlocks 10% Discount & Free Siphon Upgrade.</li>
+                <li class="locked" id="perk-hokage"><i class="fa-solid fa-lock"></i> <strong>Hokage Tier (3000+ pts):</strong> Unlocks VIP Feast Pass & Unlimited Chakra Refills.</li>
+              </ul>
+            </div>
+
+            <div class="passport-actions mt-lg">
+              <button id="ninja-card-download-btn" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download Digital Shinobi Passport</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. NINJA CUSTOMER REVIEWS SECTION -->
+    <section id="reviews-section" class="reviews-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">SHINOBI TESTIMONIALS</span>
+          <h2>Legendary Village Reviews</h2>
+          <p>See what legendary heroes, Hokages, and ANBU operatives have to say about Ichiraku Roastery.</p>
+        </div>
+
+        <!-- Reviews Carousel Grid -->
+        <div id="reviews-carousel" class="reviews-grid">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="reviews-action-center mt-xl text-center">
+          <button id="btn-open-review-modal" class="btn btn-secondary"><i class="fa-solid fa-pen-nib"></i> Submit Your Shinobi Review (+50 XP)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. VILLAGE MAP & LOCATION SECTION -->
+    <section id="location-section" class="location-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">KONOHAGAKURE HQ</span>
+          <h2>Visit Our Flagship Roastery</h2>
+          <p>Located right next to Ichiraku Ramen on Hokage Monument Avenue, Sector 7.</p>
+        </div>
+
+        <div class="location-grid">
+          <div class="location-info-card">
+            <h3><i class="fa-solid fa-store"></i> Ichiraku Roastery Flagship</h3>
+            <p class="address"><i class="fa-solid fa-location-dot"></i> 106 Hokage Monument Way, Sector 7, Konohagakure</p>
+            <p class="hours"><i class="fa-solid fa-clock"></i> Open Daily: 06:00 AM - 10:00 PM (Shinobi Standard Time)</p>
+            <p class="summoning"><i class="fa-solid fa-feather"></i> <strong>Summoning Hawk Delivery:</strong> Available across all 5 Great Shinobi Nations within 30 minutes.</p>
+
+            <div class="location-features mt-md">
+              <span class="loc-badge"><i class="fa-solid fa-wifi"></i> Free Chakra Wi-Fi</span>
+              <span class="loc-badge"><i class="fa-solid fa-mug-saucer"></i> Siphon Bar Barista Counter</span>
+              <span class="loc-badge"><i class="fa-solid fa-tree"></i> Outdoor Dango Garden</span>
+            </div>
+          </div>
+
+          <div class="location-map-mockup">
+            <div class="map-overlay-banner">
+              <span>🗺️ Konoha Sector 7 Interactive Radar</span>
+              <span class="pulsing-dot"></span>
+            </div>
+            <div class="map-graphic">
+              <div class="map-marker hokage-hq" title="Hokage Mansion">🏢 Hokage HQ</div>
+              <div class="map-marker ramen-shop" title="Ichiraku Ramen">🍜 Ichiraku Ramen</div>
+              <div class="map-marker roastery-shop active" title="Ichiraku Roastery (You Are Here)">☕ Ichiraku Roastery</div>
+              <div class="map-marker training-ground" title="Training Ground 3">🌲 Training Ground 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="global-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <i class="fa-solid fa-leaf"></i>
+            <span>Ichiraku Roastery</span>
+          </div>
+          <p>The premier specialty coffee and tea roastery inspired by the legendary spirit of Naruto: Shippuden. Brewed with passion, honor, and pure chakra.</p>
+          <div class="social-links">
+            <a href="#" title="Konoha Network"><i class="fa-solid fa-globe"></i></a>
+            <a href="#" title="Shinobi Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" title="Discord"><i class="fa-brands fa-discord"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Shinobi Codex</h4>
+          <ul>
+            <li><a href="#menu-section">Hokage Roasts</a></li>
+            <li><a href="#menu-section">Rasengan Cold Brews</a></li>
+            <li><a href="#menu-section">Sage Mode Matcha</a></li>
+            <li><a href="#menu-section">Uchiha Espressos</a></li>
+            <li><a href="#menu-section">Mitarashi Dango</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Secret Scrolls</h4>
+          <ul>
+            <li><a href="#brew-lab-section">Jutsu Brew Builder</a></li>
+            <li><a href="#rewards-section">Shinobi Passport</a></li>
+            <li><a href="#reviews-section">Customer Reviews</a></li>
+            <li><a href="#" id="footer-coupon-link">Redeem Code: DATTEBAYO</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Village Broadcast</h4>
+          <p>Subscribe for weekly seasonal bean arrivals and secret coupon scrolls delivered via messenger hawk.</p>
+          <div class="newsletter-form mt-sm">
+            <input type="email" placeholder="Enter shinobi email..." id="newsletter-email">
+            <button class="btn btn-primary" id="newsletter-btn">Subscribe</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Ichiraku Roastery & Tea Haven. Inspired by Masashi Kishimoto's Naruto / Naruto: Shippuden. Built with Leaf Village Chakra.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- =========================================================\n       MODALS, DRAWERS & OVERLAYS CONTRACT\n       ========================================================= -->
+
+  <!-- 1. CART DRAWER (`#cart-drawer`) -->
+  <div id="cart-overlay" class="drawer-overlay"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <h3>Shinobi Order Cart</h3>
+      </div>
+      <button id="cart-close-btn" class="drawer-close-btn" title="Close Cart"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="drawer-body">
+      <!-- Items Container -->
+      <div id="cart-items-container" class="cart-items-container">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="cart-empty-msg" class="cart-empty-msg" style="display: none;">
+        <div class="empty-icon"><i class="fa-solid fa-mug-hot"></i></div>
+        <h4>Your Cart is Empty</h4>
+        <p>No scrolls or brews selected yet. Summon an elixir from the Shinobi Menu or Jutsu Brew Lab!</p>
+      </div>
+    </div>
+
+    <div class="drawer-footer">
+      <!-- Promo Code Box -->
+      <div class="promo-box">
+        <div class="promo-input-row">
+          <input type="text" id="cart-promo-input" placeholder="Coupon Code (e.g. DATTEBAYO)">
+          <button id="cart-apply-promo-btn" class="btn btn-outline btn-sm">Apply</button>
+        </div>
+        <div id="cart-promo-feedback" class="promo-feedback"></div>
+      </div>
+
+      <div class="cart-summary-totals">
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal-ryo">0 Ryo</span>
+        </div>
+        <div class="summary-row discount-row" id="cart-discount-container" style="display: none;">
+          <span id="cart-discount-label">Discount (DATTEBAYO -20%):</span>
+          <span id="cart-discount-ryo">-0 Ryo</span>
+        </div>
+        <div class="summary-row">
+          <span>Leaf Village Council Duty (5%):</span>
+          <span id="cart-chakra-tax">0 Ryo</span>
+        </div>
+        <div class="summary-row grand-total">
+          <span>Grand Total:</span>
+          <div>
+            <span id="cart-final-total-ryo" class="val-ryo">0 Ryo</span>
+            <span id="cart-final-total-usd" class="val-usd">($0.00 USD)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cart-action-buttons">
+        <button id="cart-checkout-btn" class="btn btn-primary btn-full"><i class="fa-solid fa-scroll"></i> Proceed to Delivery Checkout</button>
+        <button id="cart-clear-btn" class="btn btn-outline btn-sm mt-sm"><i class="fa-solid fa-trash-can"></i> Clear Cart</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 2. QUICK VIEW DRINK MODAL (`#quick-view-modal`) -->
+  <div id="quick-view-modal" class="modal-backdrop hidden">
+    <div class="modal-dialog quick-view-dialog">
+      <button id="quick-view-close-btn" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      <div class="quick-view-grid">
+        <div class="qv-image-box">
+          <img id="quick-view-image" src="" alt="Drink Preview">
+          <span id="quick-view-badge" class="qv-badge">Best Seller</span>
+        </div>
+        <div class="qv-content-box">
+          <span id="quick-view-nature" class="qv-nature">Wind Release</span>
+          <h2 id="quick-view-title">Drink Name</h2>
+          <span id="quick-view-jap-title" class="jap-title">Japanese Name</span>
+          <p id="quick-view-desc" class="qv-desc">Description goes here...</p>
+
+          <div class="qv-meta-row">
+            <span class="meta-tag"><i class="fa-solid fa-fire-flame-curved"></i> <span id="quick-view-calories">120 kcal</span></span>
+            <span class="meta-tag"><i class="fa-solid fa-stopwatch"></i> <span id="quick-view-prep">18h Slow Drip</span></span>
+          </div>
+
+          <div class="qv-notes-section">
+            <h4>Flavor Notes & Aroma Profile:</h4>
+            <div id="quick-view-notes-list" class="notes-pills">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <div class="qv-price-action-row">
+            <div class="qv-price-box">
+              <span id="quick-view-price-ryo" class="price-ryo">450 Ryo</span>
+              <span id="quick-view-price-usd" class="price-usd">($5.75 USD)</span>
+            </div>
+            
+            <div class="qv-qty-selector">
+              <button id="quick-view-qty-minus" class="qty-btn"><i class="fa-solid fa-minus"></i></button>
+              <input type="number" id="quick-view-qty-input" value="1" min="1" max="99">
+              <button id="quick-view-qty-plus" class="qty-btn"><i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+
+          <div class="mt-md">
+            <button id="quick-view-add-btn" class="btn btn-primary btn-full"><i class="fa-solid fa-cart-plus"></i> Add to Shinobi Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. WISHLIST MODAL (`#wishlist-modal`) -->
+  <div id="wishlist-modal" class="modal-backdrop hidden">
+    <div class="modal-dialog standard-dialog">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-heart" style="color: var(--color-sharingan-red);"></i> Saved Shinobi Favorites</h3>
+        <button id="wishlist-close-btn" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div id="wishlist-items-container" class="wishlist-items-container">
+          <!-- Rendered by JS -->
+        </div>
+        <div id="wishlist-empty-msg" class="cart-empty-msg" style="display: none;">
+          <div class="empty-icon"><i class="fa-regular fa-heart"></i></div>
+          <h4>No Favorites Saved</h4>
+          <p>Click the heart icon on any coffee card to save your favorite Konoha brews here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. CHECKOUT MODAL (`#checkout-modal`) -->
+  <div id="checkout-modal" class="modal-backdrop hidden">
+    <div class="modal-dialog scroll-checkout-dialog">
+      <div class="scroll-handle-top"></div>
+      <button id="checkout-close-btn" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="scroll-content-wrapper">
+        <div class="scroll-title-banner">
+          <i class="fa-solid fa-scroll"></i>
+          <h2>Konoha Mission Delivery Scroll</h2>
+          <p>Fill out your secure dispatch destination for rapid ninja courier delivery.</p>
+        </div>
+
+        <form id="checkout-form" class="checkout-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="checkout-ninja-name"><i class="fa-solid fa-user-ninja"></i> Recipient Shinobi Name</label>
+              <input type="text" id="checkout-ninja-name" value="Naruto Uzumaki" required>
+            </div>
+            <div class="form-group">
+              <label for="checkout-address"><i class="fa-solid fa-map-location-dot"></i> Village Sector & Address</label>
+              <input type="text" id="checkout-address" placeholder="e.g. Sector 7, Hokage Monument Rd" required>
+            </div>
+          </div>
+
+          <div class="form-grid mt-md">
+            <div class="form-group">
+              <label for="checkout-delivery-method"><i class="fa-solid fa-feather"></i> Dispatch Summon Method</label>
+              <select id="checkout-delivery-method">
+                <option value="hawk">Summoning Hawk Express (30 Mins - Standard)</option>
+                <option value="anbu">ANBU Courier Stealth Drop (+100 Ryo)</option>
+                <option value="genin">Genin Academy Runner (Budget)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="checkout-payment-method"><i class="fa-solid fa-coins"></i> Payment Scroll</label>
+              <select id="checkout-payment-method">
+                <option value="ryo-cash">Ryo Pouch Cash on Delivery</option>
+                <option value="ninja-card">Ninja Credit Scroll (Konoha Bank)</option>
+                <option value="leaf-pay">Leaf Village Pay (Instant Chakra)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="checkout-summary-box mt-lg">
+            <h4>Mission Order Summary</h4>
+            <div id="checkout-order-summary-list" class="checkout-summary-list">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <div class="checkout-submit-row mt-lg">
+            <button type="submit" id="checkout-submit-btn" class="btn btn-primary btn-full"><i class="fa-solid fa-paper-plane"></i> Seal Delivery Scroll & Dispatch Mission</button>
+          </div>
+        </form>
+      </div>
+      <div class="scroll-handle-bottom"></div>
+    </div>
+  </div>
+
+  <!-- 5. ORDER TRACKING MODAL (`#order-tracking-modal`) -->
+  <div id="order-tracking-modal" class="modal-backdrop hidden">
+    <div class="modal-dialog tracking-dialog">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-radar"></i> Mission Execution & Tracking</h3>
+        <span id="order-mission-rank" class="mission-rank-pill">Rank S Mission</span>
+      </div>
+      
+      <div class="modal-body text-center">
+        <div class="tracking-animation-container">
+          <div class="kunai-track">
+            <div id="tracking-kunai-progress" class="kunai-progress-bar" style="width: 25%;">
+              <i class="fa-solid fa-shuriken spinning-shuriken"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="tracking-steps-list">
+          <div class="tracking-step active" id="tracking-status-step-1">
+            <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+            <div class="step-text">
+              <h5>Scroll Sealed & Beans Ground</h5>
+              <p>Master roaster has prepared your specialty beans.</p>
+            </div>
+          </div>
+          <div class="tracking-step" id="tracking-status-step-2">
+            <div class="step-icon"><i class="fa-solid fa-spinner fa-spin"></i></div>
+            <div class="step-text">
+              <h5>Chakra Boiling & Extraction</h5>
+              <p>Brewing at high pressure with chakra infusion.</p>
+            </div>
+          </div>
+          <div class="tracking-step" id="tracking-status-step-3">
+            <div class="step-icon"><i class="fa-regular fa-circle"></i></div>
+            <div class="step-text">
+              <h5>Summoning Courier in Transit</h5>
+              <p>Hawks are flying across Sector 7 to your address.</p>
+            </div>
+          </div>
+          <div class="tracking-step" id="tracking-status-step-4">
+            <div class="step-icon"><i class="fa-regular fa-circle"></i></div>
+            <div class="step-text">
+              <h5>Delivered to Shinobi Post</h5>
+              <p>Enjoy your Ichiraku Roastery brew!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-lg">
+          <button id="btn-tracking-complete" class="btn btn-primary"><i class="fa-solid fa-trophy"></i> Receive Order & Claim Shinobi XP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. ADD REVIEW MODAL (`#add-review-modal`) -->
+  <div id="add-review-modal" class="modal-backdrop hidden">
+    <div class="modal-dialog standard-dialog">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-pen-nib"></i> Submit Shinobi Review</h3>
+        <button id="btn-close-review-modal" class="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="review-form">
+          <div class="form-group">
+            <label for="review-author"><i class="fa-solid fa-user-ninja"></i> Ninja Operative Name</label>
+            <input type="text" id="review-author" placeholder="e.g. Kakashi Hatake" required>
+          </div>
+          <div class="form-group mt-md">
+            <label for="review-fav-drink"><i class="fa-solid fa-mug-hot"></i> Favorite Shinobi Brew</label>
+            <input type="text" id="review-fav-drink" placeholder="e.g. Rasengan Spiraling Cold Brew" required>
+          </div>
+          <div class="form-grid mt-md">
+            <div class="form-group">
+              <label for="review-rating"><i class="fa-solid fa-star"></i> Chakra Rating (1-5)</label>
+              <select id="review-rating">
+                <option value="5" selected>⭐⭐⭐⭐⭐ (5.0 - S-Rank Perfection)</option>
+                <option value="4.5">⭐⭐⭐⭐✨ (4.5 - Jonin Grade)</option>
+                <option value="4">⭐⭐⭐⭐ (4.0 - Chunin Approved)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group mt-md">
+            <label for="review-comment"><i class="fa-solid fa-comment"></i> Review / Lore Testimony</label>
+            <textarea id="review-comment" rows="4" placeholder="Share your flavor experience and chakra awakening..." required></textarea>
+          </div>
+          <div class="form-actions mt-lg text-right">
+            <button type="submit" id="btn-submit-review" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Publish Review (+50 XP)</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. GLOBAL TOAST CONTAINER (`#toast-container`) -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- JavaScript App Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
